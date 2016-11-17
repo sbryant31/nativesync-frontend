@@ -43,3 +43,11 @@ server {
    }
 
 ```
+
+#About
+Anyone working with this code should be familiar with the following libraries: 
+
+React https://facebook.github.io/react/docs/
+Blueprintjs http://blueprintjs.com/docs/
+FlexboxGrid http://flexboxgrid.com/
+Browserify https://github.com/substack/node-browserify
