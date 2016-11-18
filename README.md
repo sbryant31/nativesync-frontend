@@ -33,7 +33,7 @@ Example nginx config. This makes sure the url gets pushed to the app, which its 
 server {
    listen 9090 default_server;
    listen [::]:9090 default_server ipv6only=on;
-   root /home/developer/src/csgodirect/csgodirect-frontend;
+   root /home/developer/src/nativesync/nativesync-frontend;
 
    # Make site accessible from http://localhost/
    server_name localhost;
@@ -50,4 +50,4 @@ Anyone working with this code should be familiar with the following libraries:
 React https://facebook.github.io/react/docs/    
 Blueprintjs http://blueprintjs.com/docs/    
 FlexboxGrid http://flexboxgrid.com/    
-Browserify https://github.com/substack/node-browserify   
+Browserify https://github.com/substack/node-browserify
