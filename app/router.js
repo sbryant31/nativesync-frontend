@@ -4,15 +4,53 @@ import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 
 var App = require('./app')
 var Landing = require('./pages/landing')
-var Develop = require('./pages/develop')
+var Partner = require('./pages/partner')
+var Client = require('./pages/client')
+var ClientDashboard = require('./pages/client_dashboard')
+var ClientGigs = require('./pages/client_gigs')
+var ClientGigsNew = require('./pages/client_gigs_new')
+var Partners = require('./pages/partners')
+var PartnerDashboard = require('./pages/partner_dashboard')
+var Integrations = require('./pages/integrations')
+var ClientProfile = require('./pages/client_profile')
+var PartnerProfile = require('./pages/partner_profile')
+var PartnerGigs = require('./pages/partner_gigs')
+var Actions = require('./pages/actions');
+var Gigs = require('./pages/gigs');
+var PartnerIntegrationsNew = require('./pages/partner_integrations_new');
+var PartnerIntegrations = require('./pages/partner_integrations');
+var PartnerActionsNew = require('./pages/partner_actions_new');
+var PartnerActions = require('./pages/partner_actions');
+var PartnerClientsNew = require('./pages/partner_clients_new');
+var PartnerClients = require('./pages/partner_clients');
+var Profile = require('./pages/profile');
 var Login = require('./pages/login')
 
 module.exports = (
   <Router history = {browserHistory}>
-    <Route path='/' component={App}> 
+    <Route path='/' component={App}>
       <IndexRoute component={Landing} />
-      <Route path='/develop' component={Develop}/>
+      <Route path='/partner' component={Partner}/>
+      <Route path='/client' component={ClientDashboard}/>
+      <Route path='/client/dashboard' component={ClientDashboard}/>
+      <Route path='/client/gigs' component={ClientGigs}/>
+      <Route path='/client/gigs/new' component={ClientGigsNew}/>
+      <Route path='/partners' component={Partners}/>
+      <Route path='/integrations' component={Integrations}/>
+      <Route path='/actions' component={Actions}/>
       <Route path='/login' component={Login}/>
+      <Route path='/client/profile' component={ClientProfile}/>
+      <Route path='/partner/profile' component={PartnerProfile}/>
+      <Route path='/partner/dashboard' component={PartnerDashboard}/>
+      <Route path='/partner/gigs' component={PartnerGigs}/>
+      <Route path='/gigs' component={Gigs}/>
+      <Route path='/partner/integrations/new' component={PartnerIntegrationsNew}/>
+      <Route path='/partner/integrations' component={PartnerIntegrations}/>
+      <Route path='/partner/actions/new' component={PartnerActionsNew}/>
+      <Route path='/partner/actions' component={PartnerActions}/>
+      <Route path='/partner/clients' component={PartnerClients}/>
+      <Route path='/partner/clients/new' component={PartnerClientsNew}/>
+      <Route path='/profile' component={Profile}/>
     </Route>
   </Router>
 )

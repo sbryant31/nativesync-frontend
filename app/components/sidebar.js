@@ -15,7 +15,7 @@ module.exports = React.createClass({
   render:function(){
     var items = lodash.map(this.props.items,function(item){
       return <li key={item.name}>
-        <button 
+        <button
           type='button'
           onClick={this.goto.bind(this,item.url)}
           className='pt-menu-item'>{item.name}</button>
