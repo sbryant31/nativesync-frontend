@@ -1,6 +1,6 @@
 var React = require('react')
 var Navbar = require('../components/navbar')
-var Sidebar = require('../components/sidebar')
+var PartnerSidebar = require('../components/partner_sidebar')
 
 module.exports = React.createClass({
   render:function(){
@@ -12,7 +12,7 @@ module.exports = React.createClass({
       <div className='container'>
         <div className='row'>
           <div className='pt-card col-xs-3'>
-            <Sidebar items={sidebarItems}/>
+            <PartnerSidebar/>
           </div>
           <div className='pt-card col-xs-9'>
             Main Body

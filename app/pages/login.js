@@ -11,7 +11,7 @@ module.exports = React.createClass({
       user:{
         email:'',password:''
       },
-      nextPath:'/develop'
+      nextPath:'/client'
     }
   },
   handleUserChange:function(prop,val){
@@ -31,16 +31,16 @@ module.exports = React.createClass({
   render(){
     var show = null
     if(this.state.signup){
-      show = <Signup onSubmit={this.handleSubmit} 
-                     onSwitch={this.switchToLogin} 
-                     onChange={this.handleUserChange} 
-                     email={this.state.email} 
+      show = <Signup onSubmit={this.handleSubmit}
+                     onSwitch={this.switchToLogin}
+                     onChange={this.handleUserChange}
+                     email={this.state.email}
                      password={this.state.password}/>
     }else{
-      show = <Login onSubmit={this.handleSubmit} 
-                    onSwitch={this.switchToSignup} 
-                    onChange={this.handleUserChange} 
-                    email={this.state.email} 
+      show = <Login onSubmit={this.handleSubmit}
+                    onSwitch={this.switchToSignup}
+                    onChange={this.handleUserChange}
+                    email={this.state.email}
                     password={this.state.password}/>
     }
     return <div>
