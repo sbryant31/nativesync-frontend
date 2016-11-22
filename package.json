@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "mkdir -p public && browserify app/index.js -d -p [minifyify --map app.js.map --output public/app.js.map] -o public/app.js",
     "watch": "mkdir -p public && watchify app/index.js -d -p [minifyify --map app.js.map --output public/app.js.map] -o public/app.js -v",
-    "start": "budo app/index.js -s public/app.js --pushstate"
+    "dev": "budo app/index.js -s public/app.js --pushstate",
+    "start": "node index.js"
   },
   "browserify": {
     "transform": [
@@ -52,5 +53,7 @@
     "statesync": "^0.1.1",
     "watchify": "^3.7.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "node-static": "^0.7.9"
+  }
 }
