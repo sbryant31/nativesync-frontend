@@ -4,9 +4,8 @@ import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 
 var App = require('./app')
 var Landing = require('./pages/landing')
-var Partner = require('./pages/partner')
-var Client = require('./pages/client')
 var ClientDashboard = require('./pages/client_dashboard')
+// ClientDashboard = require('./pages/client_gigs_new')
 var ClientGigs = require('./pages/client_gigs')
 var ClientGigsNew = require('./pages/client_gigs_new')
 var Partners = require('./pages/partners')
@@ -30,7 +29,7 @@ module.exports = (
   <Router history = {browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={Landing} />
-      <Route path='/partner' component={Partner}/>
+      <Route path='/partner' component={PartnerDashboard}/>
       <Route path='/client' component={ClientDashboard}/>
       <Route path='/client/dashboard' component={ClientDashboard}/>
       <Route path='/client/gigs' component={ClientGigs}/>
