@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router'
 
 var Login = require('../components/login')
 var Signup = require('../components/signup')
+var actions = require('../modules/actions')
 
 module.exports = React.createClass({
   getInitialState:function(){
@@ -19,8 +20,24 @@ module.exports = React.createClass({
     user[prop] = val
     this.setState(user)
   },
-  handleSubmit:function(){
-    browserHistory.push(this.state.nextPath)
+  handleLoginSubmit:function(){
+    var self = this
+    actions.login(this.state.user.email,this.state.user.password).then(function(user){
+      console.log(user)
+      browserHistory.push(self.state.nextPath)
+    }).catch(function(err){
+      actions.toastError(err.error)
+    }) 
+
+  },
+  handleSignupSubmit:function(){
+    var self = this
+    actions.signup(this.state.user.email,this.state.user.password).then(function(user){
+      console.log(user)
+      browserHistory.push(self.state.nextPath)
+    }).catch(function(err){
+      actions.toastError(err.error)
+    })
   },
   switchToLogin:function(){
     this.setState({signup:false})
@@ -31,13 +48,13 @@ module.exports = React.createClass({
   render(){
     var show = null
     if(this.state.signup){
-      show = <Signup onSubmit={this.handleSubmit}
+      show = <Signup onSubmit={this.handleSignupSubmit}
                      onSwitch={this.switchToLogin}
                      onChange={this.handleUserChange}
                      email={this.state.email}
                      password={this.state.password}/>
     }else{
-      show = <Login onSubmit={this.handleSubmit}
+      show = <Login onSubmit={this.handleLoginSubmit}
                     onSwitch={this.switchToSignup}
                     onChange={this.handleUserChange}
                     email={this.state.email}
