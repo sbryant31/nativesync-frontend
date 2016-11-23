@@ -1,21 +1,16 @@
 var React = require('react')
 var Navbar = require('../components/navbar')
-var ClientSidebar = require('../components/client_sidebar');
+var PartnerSidebar = require('../components/partner_sidebar')
+var Layout = require('../components/layout')
+var IntegrationFilter = require('../components/integration_filter')
 
 module.exports = React.createClass({
   render:function(){
-    return <div style={{paddingTop:50}}>
-      <Navbar/>
-      <div className='container'>
-        <div className='row'>
-          <div className='pt-card col-xs-3'>
-            <ClientSidebar/>
-          </div>
-          <div className='pt-card col-xs-9'>
-            Main Body
-          </div>
-        </div>
-      </div>
+    return <div>
+      <Layout>
+        <IntegrationFilter/>
+        Layout page
+      </Layout>
     </div>
-  }
+    }
 })
