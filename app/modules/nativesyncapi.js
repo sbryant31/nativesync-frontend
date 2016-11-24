@@ -9,7 +9,7 @@ function call(path,data,method,authtoken,clienttoken){
   return request({
     method:method || 'POST',
     uri:url.resolve(base,path),
-    body:data,
+    body:data || {},
     json:true
   })
 }
@@ -23,7 +23,7 @@ exports.signup = function(email,password){
 }
 
 exports.logout = function(token){
-  return call('/auth/logut',null,null,token)
+  return call('/auth/logout',null,null,token)
 }
 
 exports.me = function(token){
