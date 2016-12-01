@@ -2,6 +2,9 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 
+var actions = require('./modules/actions')
+
+
 var App = require('./app')
 var Landing = require('./pages/landing')
 var ClientDashboard = require('./pages/client_dashboard')
@@ -24,11 +27,30 @@ var PartnerClientsNew = require('./pages/partner_clients_new');
 var PartnerClients = require('./pages/partner_clients');
 var Profile = require('./pages/profile');
 var Login = require('./pages/login')
+var Dashboard = require('./pages/dashboard')
+
+
+function checkToken(nextState,replace,cb){
+  actions.getToken()
+  return actions.me().then(function(user){
+    if(user) {
+      replace({pathname:'/dashboard'})
+    }else{
+      replace({pathname:'/login'})
+    }
+    cb()
+  }).catch(function(){
+    replace({pathname:'/login'})
+    cb()
+  })
+}
 
 module.exports = (
   <Router history = {browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={Landing} />
+      <Route path='/login' component={Login}/>
+      <Route path='/dashboard' component={Dashboard} onEnter={checkToken}/>
       <Route path='/partner' component={PartnerDashboard}/>
       <Route path='/client' component={ClientDashboard}/>
       <Route path='/client/dashboard' component={ClientDashboard}/>
@@ -37,7 +59,6 @@ module.exports = (
       <Route path='/partners' component={Partners}/>
       <Route path='/integrations' component={Integrations}/>
       <Route path='/actions' component={Actions}/>
-      <Route path='/login' component={Login}/>
       <Route path='/client/profile' component={ClientProfile}/>
       <Route path='/partner/profile' component={PartnerProfile}/>
       <Route path='/partner/dashboard' component={PartnerDashboard}/>

@@ -32,7 +32,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/nativesyncdev/nativesync-frontend#readme",
   "devDependencies": {
-    "@blueprintjs/core": "^1.0.1",
+    "@blueprintjs/core": "^1.1.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babelify": "^7.3.0",
@@ -44,14 +44,15 @@
     "flexboxgrid": "^6.3.1",
     "lodash": "^4.17.2",
     "minifyify": "^7.3.4",
-    "react": "^15.4.0",
+    "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
     "react-dom": "^15.4.0",
     "react-router": "^2.8.1",
     "react-tools": "^0.13.3",
     "request": "^2.75.0",
     "request-promise": "^4.1.1",
-    "statesync": "^0.1.1",
+    "statesync": "^0.1.2",
+    "store": "^1.3.20",
     "watchify": "^3.7.0"
   },
   "dependencies": {
