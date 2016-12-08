@@ -6,7 +6,7 @@
   },
   "proxies": {
     "/api/": {
-      "origin": "https://api.nativesync.io"
+      "origin": "http://api.nativesync.io"
     }
   },
   "headers": {
