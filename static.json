@@ -6,7 +6,7 @@
   },
   "proxies": {
     "/api/": {
-      "origin": "https://nativeapi.herokuapp.com"
+      "origin": "api.nativesync.io"
     }
   },
   "headers": {
