@@ -30,7 +30,7 @@ exports.logout = function(token){
 }
 
 exports.me = function(token){
-  return call('auth/user',null,null,token)
+  return call('me',null,'GET',token)
 }
 
 exports.myAssociations = function(token){
