@@ -12,7 +12,7 @@ module.exports = React.createClass({
       user:{
         email:'',password:''
       },
-      nextPath:'/client'
+      nextPath:'/dashboard'
     }
   },
   handleUserChange:function(prop,val){
@@ -24,20 +24,16 @@ module.exports = React.createClass({
     var self = this
     actions.login(this.state.user.email,this.state.user.password).then(function(user){
       console.log(user)
-      browserHistory.push(self.state.nextPath)
-    }).catch(function(err){
-      actions.toastError(err.error)
-    }) 
+      actions.goto(self.state.nextPath)
+    }).catch(actions.toastError)
 
   },
   handleSignupSubmit:function(){
     var self = this
     actions.signup(this.state.user.email,this.state.user.password).then(function(user){
       console.log(user)
-      browserHistory.push(self.state.nextPath)
-    }).catch(function(err){
-      actions.toastError(err.error)
-    })
+      actions.goto(self.state.nextPath)
+    }).catch(actions.toastError)
   },
   switchToLogin:function(){
     this.setState({signup:false})

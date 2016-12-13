@@ -3,6 +3,7 @@ var normalize = require('../node_modules/normalize.css/normalize.css')
 var flexbox = require('../node_modules/flexboxgrid/dist/flexboxgrid.min.css')
 var blueprintjs = require('../node_modules/@blueprintjs/core/dist/blueprint.css')
 var state = require('./modules/state')
+var store = require('store')
 import { browserHistory } from 'react-router'
 import { Toaster, Position} from "@blueprintjs/core";
 
@@ -19,17 +20,22 @@ module.exports = React.createClass({
   componentWillMount:function(){
     console.log('app component mountiung')
     var self = this
-    state.on('change',function(){
-      console.log('app state',arguments)
-    })
+    // state.on('change',function(){
+    //   console.log('app state',arguments)
+    // })
     state.on(['token'],function(value){
+      console.log('token',value)
+      store.set('token',value)
       self.setState({token:value})
     })
     state.on(['error'],function(value){
       console.log('error',value)
       if(value) self.errorToast.show({message:value})
+      state.set('error',null)
+
     })
     state.on(['me'],function(value){
+      store.set('me',value)
       self.setState({me:value})
     })
   },

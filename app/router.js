@@ -31,7 +31,6 @@ var Dashboard = require('./pages/dashboard')
 
 
 function checkToken(nextState,replace,cb){
-  actions.getToken()
   return actions.me().then(function(user){
     if(user) {
       replace({pathname:'/dashboard'})
@@ -45,11 +44,24 @@ function checkToken(nextState,replace,cb){
   })
 }
 
+function logout(nextState,replace,cb){
+  actions.logout().then(function(){
+    replace({
+      pathname:'/login'
+    })
+    cb()
+  }).catch(function(err){
+    actions.toastError(err)
+    cb()
+  })
+}
+
 module.exports = (
   <Router history = {browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={Landing} />
       <Route path='/login' component={Login}/>
+      <Route path='/logout' onEnter={logout}/>
       <Route path='/dashboard' component={Dashboard} onEnter={checkToken}/>
       <Route path='/partner' component={PartnerDashboard}/>
       <Route path='/client' component={ClientDashboard}/>

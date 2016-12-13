@@ -40,7 +40,7 @@ module.exports = React.createClass({
           </div>
           <button onClick={this.submit}
             className='pt-button pt-large pt-intent-primary'>
-            Submit
+            Login
           </button>
         </div>
       </div>
