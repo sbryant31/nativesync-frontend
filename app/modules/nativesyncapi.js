@@ -1,14 +1,14 @@
 var request = require('request-promise')
 var state = require('./state')
 var env = process.env
-var base = env.NS_API_URL ? env.NS_API_URL : '/api'
-var url = require('url')
+var base = env.NS_API_URL ? env.NS_API_URL : 'https://api.nativesync.io/internal/'
+var urljoin = require('url-join')
 
 function call(path,data,method,authtoken,clienttoken){
-  console.log(base,path,url.resolve(base,path))
+  console.log(base,path,urljoin(base,path))
   return request({
     method:method || 'POST',
-    uri:url.resolve(base,path),
+    uri:urljoin(base,path),
     body:data || {},
     json:true,
     header:{
