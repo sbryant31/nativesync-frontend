@@ -1,7 +1,7 @@
 var request = require('request-promise')
 var state = require('./state')
 var env = require('../../.env')
-var base = env.NS_API_URL
+var base = env.NS_API_URL ? env.NS_API_URL : '/api'
 var url = require('url')
 
 function call(path,data,method,authtoken,clienttoken){
