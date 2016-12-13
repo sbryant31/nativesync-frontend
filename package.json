@@ -69,6 +69,7 @@
     "browserify-css": "^0.9.2",
     "minifyify": "^7.3.4",
     "node-static": "^0.7.9",
+    "normalize.css": "^5.0.0",
     "react-dom": "^15.4.1"
   }
 }
