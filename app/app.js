@@ -37,8 +37,8 @@ module.exports = React.createClass({
       }
     })
     state.on(['me'],function(value){
-      // store.set('me',value)
-      // self.setState({me:value})
+      store.set('me',value)
+      self.setState({me:value})
     })
   },
   clearError:function(){
@@ -55,7 +55,7 @@ module.exports = React.createClass({
       <Toaster className='pt-intent-danger' onDismiss={this.clearError} timeout={3000} ref={(x)=>{this.errorToast=x;}}/>
       {child}
     </div>
-    
+
   }
 })
 
