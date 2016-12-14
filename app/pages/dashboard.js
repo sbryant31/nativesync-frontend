@@ -10,8 +10,8 @@ module.exports = React.createClass({
      }
     ]
     return <div style={{paddingTop:50}}>
-      <Navbar links={links}/>
-      Dashboard 
+      <Navbar links={links} />
+      Dashboard
     </div>
   }
 })

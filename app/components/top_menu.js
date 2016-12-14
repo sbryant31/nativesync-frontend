@@ -41,8 +41,8 @@ module.exports = React.createClass({
       {name: 'Actions', url: '/partner/actions'}
     ];
     return <div>
-        <Menu items={browse_items} />
-        <Menu items={partner_items} />
+      <Menu items={browse_items} />
+      <Menu items={partner_items} />
     </div>
   }
 })
