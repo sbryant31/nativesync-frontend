@@ -66,7 +66,9 @@ function logout(nextState,replace,cb){
     })
     cb()
   }).catch(function(err){
-    actions.toastError(err)
+    replace({
+      pathname:'/login'
+    })
     cb()
   })
 }
