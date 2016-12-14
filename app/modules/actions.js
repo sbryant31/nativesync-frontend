@@ -1,26 +1,22 @@
 var nsapi = require('./nativesyncapi')
+//memory
 var state = require('./state')
+//persistence
 var store = require('store')
 var assert = require('assert')
 import { browserHistory } from 'react-router'
 
-var token = null
+//token gets loaded into memory on start
+var token = state.get('token')
 
 exports.getToken = function(){
-  token = state.get('token')
-  if(token) return 
-  token = store.get('token')
-  if(token) return state.set('token',token)
-  return 
+  return token
 }
-//get token on load
-exports.getToken()
 
 exports.login = function(username,password){
   return nsapi.login(username,password).then(function(t){
     assert(t,'login failed')
     state.set('token',t.token)
-    store.set('token',t.token)
     token = t.token
     return exports.me()
   })

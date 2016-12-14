@@ -14,7 +14,8 @@ const ErrorToast = Toaster.create({
 
 module.exports = React.createClass({
   getInitialState(){
-    return {}
+    console.log('initial state',state())
+    return state()
   },
   errorToast:null,
   componentWillMount:function(){
@@ -30,13 +31,14 @@ module.exports = React.createClass({
     })
     state.on(['error'],function(value){
       console.log('error',value)
-      if(value) self.errorToast.show({message:value})
-      state.set('error',null)
-
+      if(value){
+        self.errorToast.show({message:value})
+        state.set('error',null)
+      }
     })
     state.on(['me'],function(value){
-      store.set('me',value)
-      self.setState({me:value})
+      // store.set('me',value)
+      // self.setState({me:value})
     })
   },
   clearError:function(){

@@ -32,14 +32,29 @@ var Dashboard = require('./pages/dashboard')
 
 function checkToken(nextState,replace,cb){
   return actions.me().then(function(user){
-    if(user) {
-      replace({pathname:'/dashboard'})
-    }else{
+    console.log('checktoken',user)
+    if(user == null) {
       replace({pathname:'/login'})
     }
     cb()
   }).catch(function(){
+    console.log('error checking tokne')
+    // actions.toastError('error getting my user info')
     replace({pathname:'/login'})
+    cb()
+  })
+}
+
+function notLoggedIn(nextState,replace,cb){
+  console.log(nextState)
+  return actions.me().then(function(user){
+    if(user){
+      replace({
+        pathname:'/dashboard'
+      })
+    }
+    cb()
+  }).catch(function(){
     cb()
   })
 }
@@ -60,7 +75,7 @@ module.exports = (
   <Router history = {browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={Landing} />
-      <Route path='/login' component={Login}/>
+      <Route path='/login' component={Login} onEnter={notLoggedIn}/>
       <Route path='/logout' onEnter={logout}/>
       <Route path='/dashboard' component={Dashboard} onEnter={checkToken}/>
       <Route path='/partner' component={PartnerDashboard}/>

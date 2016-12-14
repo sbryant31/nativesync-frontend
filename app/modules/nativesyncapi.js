@@ -5,7 +5,7 @@ var base = env.NS_API_URL ? env.NS_API_URL : 'https://api.nativesync.io/internal
 var urljoin = require('url-join')
 
 function call(path,data,method,authtoken,clienttoken){
-  console.log(base,path,urljoin(base,path), authtoken, clienttoken)
+  console.log(arguments)
   return request({
     method: method || 'POST',
     uri: urljoin(base,path),
