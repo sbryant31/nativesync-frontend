@@ -21,8 +21,8 @@ exports.login = function(email,password){
   return call('auth/login',{email:email,password:password})
 }
 
-exports.signup = function(email,password){
-  return call('auth/signup',{email:email,password:password})
+exports.signup = function(email,password, accountType, companyName){
+  return call('auth/signup',{email:email,password:password, accountType: accountType, companyName: companyName})
 }
 
 exports.logout = function(token){

@@ -22,8 +22,8 @@ exports.login = function(username,password){
   })
 }
 
-exports.signup = function(username,password){
-  return nsapi.signup(username,password).then(function(user){
+exports.signup = function(username,password, accountType, companyName){
+  return nsapi.signup(username,password, accountType, companyName).then(function(user){
     assert(user,'signup failed')
     return exports.login(username,password)
   })

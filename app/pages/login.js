@@ -30,7 +30,7 @@ module.exports = React.createClass({
   },
   handleSignupSubmit:function(){
     var self = this
-    actions.signup(this.state.user.email,this.state.user.password).then(function(user){
+    actions.signup(this.state.user.email,this.state.user.password, this.state.accountType, this.state.companyName).then(function(user){
       console.log(user)
       actions.goto(self.state.nextPath)
     }).catch(actions.toastError)
@@ -48,6 +48,8 @@ module.exports = React.createClass({
                      onSwitch={this.switchToLogin}
                      onChange={this.handleUserChange}
                      email={this.state.email}
+                     companyName={this.state.companyName}
+                     accountType={this.state.accountType}
                      password={this.state.password}/>
     }else{
       show = <Login onSubmit={this.handleLoginSubmit}
