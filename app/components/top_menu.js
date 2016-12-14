@@ -17,9 +17,9 @@ var Menu = React.createClass({
         className={'pt-button pt-minimal ' + menuItem.icon}>{menuItem.name}</button>
     }.bind(this))
     return <div>
-				<ul className='pt-menu'>
-					{ menuItems }
-				</ul>
+        <ul className='pt-menu'>
+          { menuItems }
+        </ul>
     </div>
   }
 })
@@ -32,17 +32,17 @@ module.exports = React.createClass({
     browserHistory.push(url)
   },
   render:function(){
-		var browse_items = [
-			{name: 'Actions', url: '/actions/browse'}
-		]
-		var partner_items = [
-			{name: 'Dashboard', url: '/partner/dashboard'},
-			{name: 'Integrations', url: '/partner/integrations'},
-			{name: 'Actions', url: '/partner/actions'}
-		];
+    var browse_items = [
+      {name: 'Actions', url: '/actions/browse'}
+    ]
+    var partner_items = [
+      {name: 'Dashboard', url: '/partner/dashboard'},
+      {name: 'Integrations', url: '/partner/integrations'},
+      {name: 'Actions', url: '/partner/actions'}
+    ];
     return <div>
-				<Menu items={browse_items} />
-				<Menu items={partner_items} />
+        <Menu items={browse_items} />
+        <Menu items={partner_items} />
     </div>
   }
 })
