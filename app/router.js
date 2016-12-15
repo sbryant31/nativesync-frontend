@@ -28,6 +28,7 @@ var PartnerClients = require('./pages/partner_clients');
 var Profile = require('./pages/profile');
 var Login = require('./pages/login')
 var Dashboard = require('./pages/dashboard')
+var NavbarLayout = require('./pages/navbar_layout')
 
 
 function checkToken(nextState,replace,cb){
@@ -66,6 +67,7 @@ function logout(nextState,replace,cb){
     })
     cb()
   }).catch(function(err){
+    actions.toastError(err)
     replace({
       pathname:'/login'
     })
@@ -79,7 +81,9 @@ module.exports = (
       <IndexRoute component={Landing} />
       <Route path='/login' component={Login} onEnter={notLoggedIn}/>
       <Route path='/logout' onEnter={logout}/>
-      <Route path='/dashboard' component={Dashboard} onEnter={checkToken}/>
+      <Route path='/dashboard' component={NavbarLayout} onEnter={checkToken}>
+        <IndexRoute component={Dashboard}/>
+      </Route>
       <Route path='/partner' component={PartnerDashboard}/>
       <Route path='/client' component={ClientDashboard}/>
       <Route path='/client/dashboard' component={ClientDashboard}/>

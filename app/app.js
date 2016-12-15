@@ -5,19 +5,14 @@ var blueprintjs = require('../node_modules/@blueprintjs/core/dist/blueprint.css'
 var state = require('./modules/state')
 var store = require('store')
 import { browserHistory } from 'react-router'
-import { Toaster, Position} from "@blueprintjs/core";
-
-const ErrorToast = Toaster.create({
-  className: "pt-intent-danger",
-  position: Position.TOP_CENTER,
-});
+import { Toaster, Position, Intent} from "@blueprintjs/core";
 
 module.exports = React.createClass({
   getInitialState(){
     console.log('initial state',state())
     return state()
   },
-  errorToast:null,
+  toast:null,
   componentWillMount:function(){
     console.log('app component mountiung')
     var self = this
@@ -32,13 +27,19 @@ module.exports = React.createClass({
     state.on(['error'],function(value){
       console.log('error',value)
       if(value){
-        self.errorToast.show({message:value})
+        self.toast.show({message:value,intent:Intent.DANGER})
         state.set('error',null)
       }
     })
+    state.on(['showSuccess'],function(value){
+      if(value){
+        self.toast.show({message:value,intent:Intent.SUCCESS})
+        state.set('showSuccess',null)
+      }
+    })
     state.on(['me'],function(value){
-      // store.set('me',value)
-      // self.setState({me:value})
+      store.set('me',value)
+      self.setState({me:value})
     })
   },
   clearError:function(){
@@ -52,7 +53,7 @@ module.exports = React.createClass({
       child = React.cloneElement(this.props.children,this.state)
     }
     return <div>
-      <Toaster className='pt-intent-danger' onDismiss={this.clearError} timeout={3000} ref={(x)=>{this.errorToast=x;}}/>
+      <Toaster onDismiss={this.clearError} timeout={3000} ref={(x)=>{this.toast=x;}}/>
       {child}
     </div>
     

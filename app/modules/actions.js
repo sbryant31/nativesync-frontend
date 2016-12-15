@@ -30,10 +30,16 @@ exports.signup = function(username,password, accountType, companyName){
 }
 
 exports.logout = function(){
-  return nsapi.logout(token).finally(function(){
+  return nsapi.logout(token).then(function(){
     state.set('token',null)
     state.set('me',null)
     token = null
+    return true
+  }).catch(function(){
+    state.set('token',null)
+    state.set('me',null)
+    token = null
+    return true
   })
 }
 

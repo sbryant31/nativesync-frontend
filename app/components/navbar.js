@@ -1,10 +1,8 @@
 var React = require('react')
 var lodash = require('lodash')
+var actions = require('../modules/actions')
 import { browserHistory } from 'react-router'
 module.exports = React.createClass({
-  goto:function(url){
-    browserHistory.push(url)
-  },
   getDefaultProps:function(){
     return {
       links:[]
@@ -14,7 +12,7 @@ module.exports = React.createClass({
     var links = lodash.map(this.props.links,function(link){
       return <button 
         key={link.name}
-        onClick={this.goto.bind(this,link.url)}
+        onClick={actions.goto.bind(null,link.url)}
         className={'pt-button pt-minimal ' + link.icon}>{link.name}</button>
     }.bind(this))
 
@@ -24,6 +22,7 @@ module.exports = React.createClass({
       </div>
       <div className="pt-navbar-group pt-align-right">
         {links}
+        {this.props.children}
       </div>
     </nav>
   }
