@@ -14,7 +14,7 @@ module.exports = React.createClass({
   },
   toast:null,
   componentWillMount:function(){
-    console.log('app component mountiung')
+    console.log('app component mounting')
     var self = this
     // state.on('change',function(){
     //   console.log('app state',arguments)
@@ -41,6 +41,22 @@ module.exports = React.createClass({
       store.set('me',value)
       self.setState({me:value})
     })
+    state.on(['mode'],function(value){
+      store.set('mode',value)
+      self.setState({mode:value})
+    })
+    state.on(['client_id'],function(value){
+      store.set('client_id',value)
+      store.set('partner_id',null)
+      self.setState({client_id:value})
+      self.setState({partner_id:null})
+    })
+    state.on(['partner_id'],function(value){
+      store.set('client_id',null)
+      store.set('partner_id',value)
+      self.setState({client_id:null})
+      self.setState({partner_id:value})
+    })
   },
   clearError:function(){
     console.log('clearing error')
@@ -56,7 +72,7 @@ module.exports = React.createClass({
       <Toaster onDismiss={this.clearError} timeout={3000} ref={(x)=>{this.toast=x;}}/>
       {child}
     </div>
-    
+
   }
 })
 

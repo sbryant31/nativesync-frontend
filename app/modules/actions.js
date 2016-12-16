@@ -13,6 +13,16 @@ exports.getToken = function(){
   return token
 }
 
+exports.loginAsPartner = function(partner_id) {
+  state.set('partner_id', partner_id);
+  state.set('mode', 'partner');
+}
+
+exports.loginAsClient = function(client_id) {
+  state.set('client_id', client_id);
+  state.set('mode', 'client');
+}
+
 exports.login = function(username,password){
   return nsapi.login(username,password).then(function(t){
     assert(t,'login failed')
