@@ -7,13 +7,11 @@ var lodash = require('lodash')
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      filter: {
-        partner_id: this.props.partner_id
-      }
+      filter: { }
     }
   },
   render() {
-    return <IntegrationBrowser filter={this.filter} view='self' />
+    return <IntegrationBrowser filter={this.filter} />
   }
 })
 

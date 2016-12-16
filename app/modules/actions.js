@@ -61,8 +61,12 @@ exports.me = function(){
   })
 }
 
-exports.myActions = function(){
-  return nsapi.getActions(token)
+exports.getIntegrations = function(filter){
+  return nsapi.getIntegrations(filter, token)
+}
+
+exports.getActions = function(filter){
+  return nsapi.getActions(filter, token)
 }
 
 exports.getActionById = function(id) {

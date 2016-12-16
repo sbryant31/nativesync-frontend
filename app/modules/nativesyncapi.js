@@ -9,7 +9,8 @@ function call(path,data,method,authtoken,clienttoken){
   return request({
     method: method || 'POST',
     uri: urljoin(base,path),
-    body: data || {},
+    body: (method == 'POST' && data) ? data : {},
+    qs: (method == 'GET' && data) ? data : {},
     json: true,
     headers: {
       Token: authtoken
@@ -37,8 +38,12 @@ exports.myAssociations = function(token){
   return call('me/associations',null,'GET',token)
 }
 
-exports.getActions = function(token){
-  return call('/actions',null,'GET',token)
+exports.getActions = function(filter, token){
+  return call('/actions', filter,'GET',token)
+}
+
+exports.getIntegrations = function(filter, token){
+  return call('/integrations', filter, 'GET', token)
 }
 
 exports.getActionById = function(id, token){
