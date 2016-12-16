@@ -1,12 +1,10 @@
 var React = require('react')
-
-
+var Navbar = require('../components/navbar')
 module.exports = React.createClass({
-  render:function(){
+  render(){
     return <div>
-      <PartnerPage>
-        partner dashboard
-      </PartnerPage>
+      Existing actions available for usage
     </div>
   }
 })
+

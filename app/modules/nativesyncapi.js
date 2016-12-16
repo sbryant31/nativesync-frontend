@@ -36,3 +36,7 @@ exports.me = function(token){
 exports.myAssociations = function(token){
   return call('me/associations',null,'GET',token)
 }
+
+exports.getActions = function(token){
+  return call('/actions',null,'GET',token)
+}

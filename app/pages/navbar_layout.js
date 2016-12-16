@@ -34,28 +34,20 @@ var UserMenu = React.createClass({
   }
 })
 
-var IntegrationsMenu = React.createClass({
+var BrowseMenu = React.createClass({
   render(){
     var items = [
       {
-        name:'Dashboard',
-        link:'/dashboard',
+        name:'Integrations',
+        link:'/integrations/browse',
       },
       {
-        name:'Manage Integrations',
-        link:'/dashboard',
+        name:'Actions',
+        link:'/actions/browse',
       },
       {
-        name:'Create Integration',
-        link:'/dashboard',
-      },
-      {
-        name:'Create Action',
-        link:'/dashboard',
-      },
-      {
-        name:'Transaction History',
-        link:'/dashboard',
+        name:'Partner Profiles',
+        link:'/partners/browse',
       }
     ]
     items = lodash.map(items,function(item){
@@ -68,7 +60,35 @@ var IntegrationsMenu = React.createClass({
       {items}
     </Menu>
   }
-})              
+})
+
+var BuildMenu = React.createClass({
+  render(){
+    var items = [
+      {
+        name:'Dashboard',
+        link:'/dashboard',
+      },
+      {
+        name:'My Integrations',
+        link:'/integrations/me',
+      },
+      {
+        name:'My Actions',
+        link:'/actions/me',
+      },
+    ]
+    items = lodash.map(items,function(item){
+      return <MenuItem key={item.name}
+        text={item.name}
+        onClick={actions.goto.bind(null,item.link)}
+      />
+    })
+    return <Menu>
+      {items}
+    </Menu>
+  }
+})
 
 module.exports = React.createClass({
   render(){
@@ -80,8 +100,11 @@ module.exports = React.createClass({
     ]
     return <div style={{paddingTop:50}}>
       <Navbar links={links}>
-        <Popover content={<IntegrationsMenu/>} position={Position.BOTTOM_RIGHT}>
-          <button className='pt-button pt-minimal'>My Integrations</button>
+        <Popover content={<BrowseMenu/>} position={Position.BOTTOM_RIGHT}>
+          <button className='pt-button pt-minimal'>Browse</button>
+        </Popover>
+        <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
+          <button className='pt-button pt-minimal'>Build</button>
         </Popover>
         <Popover content={<UserMenu/>} position={Position.BOTTOM_RIGHT}>
           <button className='pt-button pt-minimal'>{this.props.me.email}</button>
