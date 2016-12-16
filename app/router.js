@@ -9,6 +9,7 @@ var App = require('./app')
 var Landing = require('./pages/landing')
 var IntegrationsMe = require('./pages/integrations_me')
 var ActionsMe = require('./pages/actions_me');
+var Action = require('./pages/action');
 var Profile = require('./pages/profile');
 var Login = require('./pages/login')
 var Dashboard = require('./pages/dashboard')
@@ -70,6 +71,12 @@ module.exports = (
       </Route>
       <Route path='/actions/me' component={NavbarLayout}>
         <IndexRoute component={ActionsMe}/>
+      </Route>
+      <Route path='/action/:id' component={NavbarLayout}>
+        <IndexRoute component={Action}/>
+      </Route>
+      <Route path='/action/new' component={NavbarLayout}>
+        <IndexRoute component={Action}/>
       </Route>
       <Route path='/profile' component={Profile}/>
     </Route>

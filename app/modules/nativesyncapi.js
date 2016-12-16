@@ -40,3 +40,7 @@ exports.myAssociations = function(token){
 exports.getActions = function(token){
   return call('/actions',null,'GET',token)
 }
+
+exports.getActionById = function(id, token){
+  return call('/action/' + id,null,'GET',token)
+}

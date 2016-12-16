@@ -55,6 +55,10 @@ exports.myActions = function(){
   return nsapi.getActions(token)
 }
 
+exports.getActionById = function(id) {
+  return nsapi.getActionById(id, token)
+}
+
 exports.myAssociations = function(){
   return nsapi.myAssociations(token).then(function(result){
     state.set('clients',result.clients)

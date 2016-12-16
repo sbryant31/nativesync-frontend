@@ -18,13 +18,15 @@ module.exports = React.createClass({
   },
   render() {
     var actionsList = lodash.map(this.state.actions,function(action){
-      return <tr>
+      return <tr key={action.id}>
         <td>{action.service_name}</td>
         <td>{action.function_name}</td>
         <td><a onClick={actions.goto.bind(null, '/action/' + action.id)}>Edit</a></td>
       </tr>
     })
     return <div>
+      <a onClick={actions.goto.bind(null, '/action/new')}>New action</a>
+      <hr/>
       <table className="pt-table pt-striped">
         <thead>
         <tr>
@@ -37,7 +39,6 @@ module.exports = React.createClass({
           {actionsList}
         </tbody>
       </table>
-      <a href="/action/new">Create an action</a>
     </div>
   }
 })
