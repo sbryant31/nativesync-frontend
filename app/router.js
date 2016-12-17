@@ -9,7 +9,8 @@ var App = require('./app')
 var Landing = require('./pages/landing')
 var IntegrationsMe = require('./pages/integrations_me')
 var IntegrationsBrowse = require('./pages/integrations_browse')
-var Integration = require('./pages/integration')
+var IntegrationView = require('./pages/integration_view')
+var IntegrationEdit = require('./pages/integration_edit')
 var ActionsMe = require('./pages/actions_me');
 var ActionsBrowse = require('./pages/actions_browse');
 var Action = require('./pages/action');
@@ -91,10 +92,13 @@ module.exports = (
         <IndexRoute component={IntegrationsBrowse}/>
       </Route>
       <Route path='/integration/:id' component={NavbarLayout}>
-        <IndexRoute component={Integration}/>
+        <IndexRoute component={IntegrationView}/>
       </Route>
       <Route path='/integration/new' component={NavbarLayout}>
-        <IndexRoute component={Integration}/>
+        <IndexRoute component={IntegrationEdit}/>
+      </Route>
+      <Route path='/integration/:id/edit' component={NavbarLayout}>
+        <IndexRoute component={IntegrationEdit}/>
       </Route>
       <Route path='/profile' component={Profile}/>
     </Route>

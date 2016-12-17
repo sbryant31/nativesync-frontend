@@ -8,12 +8,13 @@ module.exports = React.createClass({
     return {
       action: {},
       service: {},
-      serviceAuths: []
+      serviceAuths: [],
+      readOnly: false
     }
   },
   componentDidMount: function() {
     var self = this;
-    if (this.props.params.id) {
+    if (!isNaN(this.props.params.id)) {
       console.log('getting action id', this.props.params.id);
       actions.getActionById(this.props.params.id)
       .then(function(result) {

@@ -65,6 +65,10 @@ exports.getIntegrations = function(filter){
   return nsapi.getIntegrations(filter, token)
 }
 
+exports.getIntegrationById = function(id) {
+  return nsapi.getIntegrationById(id, token)
+}
+
 exports.getActions = function(filter){
   return nsapi.getActions(filter, token)
 }

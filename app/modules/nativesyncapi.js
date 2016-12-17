@@ -46,6 +46,10 @@ exports.getIntegrations = function(filter, token){
   return call('/integrations', filter, 'GET', token)
 }
 
+exports.getIntegrationById = function(id, token){
+  return call('/integration/' + id, null, 'GET', token)
+}
+
 exports.getActionById = function(id, token){
   return call('/action/' + id,null,'GET',token)
 }
