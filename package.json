@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm run build",
     "build": "mkdir -p dist/node_modules && browserify app/index.js -d -p [minifyify --map app.js.map --output dist/app.js.map] -o dist/app.js",
-    "postbuild": "cp index.html dist/ && cp -r node_modules/@blueprintjs dist/node_modules/",
+    "postbuild": "cp -r img dist/ && cp index.html dist/ && cp -r node_modules/@blueprintjs dist/node_modules/",
     "watch": "mkdir -p dist/node_modules && watchify --poll=1000 app/index.js -d -p [minifyify --map app.js.map --output dist/app.js.map] -o dist/app.js -v",
     "dev": "budo app/index.js -s app.js --pushstate",
     "start": ""

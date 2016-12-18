@@ -135,21 +135,21 @@ module.exports = React.createClass({
       child = React.cloneElement(this.props.children,this.props)
     }
     var links = [ ]
-    return <div style={{paddingTop:50}}>
+    return <div style={{paddingTop:100}}>
       <Navbar links={links}>
         <Popover content={<OrganizationMenu/>} position={Position.BOTTOM_RIGHT}>
-          <button className='pt-button pt-minimal'>Login as...</button>
+          <li className='pt-menu-item'>Login as...</li>
         </Popover>
         <Popover content={<BrowseMenu/>} position={Position.BOTTOM_RIGHT}>
-          <button className='pt-button pt-minimal'>Browse</button>
+          <li className='pt-menu-item'>Browse</li>
         </Popover>
         { this.props.mode == 'partner' &&
           <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
-            <button className='pt-button pt-minimal'>Build</button>
+            <li className='pt-menu-item'>Build</li>
           </Popover>
         }
         <Popover content={<UserMenu/>} position={Position.BOTTOM_RIGHT}>
-          <button className='pt-button pt-minimal'>{this.props.me.email}</button>
+          <li className='pt-menu-item'>{this.props.me.email}</li>
         </Popover>
       </Navbar>
       {child}
