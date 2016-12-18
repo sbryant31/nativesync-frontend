@@ -73,8 +73,20 @@ exports.getActions = function(filter){
   return nsapi.getActions(filter, token)
 }
 
+exports.getServices = function(filter){
+  return nsapi.getServices(filter, token)
+}
+
+exports.getServiceAuths = function(service_id){
+  return nsapi.getServiceAuths(service_id, token)
+}
+
 exports.getActionById = function(id) {
   return nsapi.getActionById(id, token)
+}
+
+exports.upsertAction = function(action, service, serviceAuths) {
+  return nsapi.upsertAction(action, service, serviceAuths, token)
 }
 
 exports.myAssociations = function(){

@@ -5,6 +5,74 @@ var lodash = require('lodash')
 
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 
+var ServiceSelector = React.createClass({
+  getInitialState: function() {
+    return {
+      services: [],
+    }
+  },
+  getDefaultProps: function() {
+    return {
+      service: {}
+    }
+  },
+  componentDidMount: function() {
+    var self = this;
+    actions.getServices()
+    .then(function(services) {
+      self.setState({services: services})
+    })
+  },
+  render() {
+    var self = this;
+    var services = lodash.map(this.state.services, function(service) {
+      return <option value={service.id} key={service.id}>
+               {service.name}
+      </option>
+    });
+    return <label className="pt-label pt-inline col-xs">
+      Service
+      <select value={this.props.service.id}>
+        {services}
+      </select>
+    </label>
+  }
+})
+
+var ServiceAuthSelector = React.createClass({
+  getInitialState: function() {
+    return {
+      serviceAuths: [],
+    }
+  },
+  getDefaultProps: function() {
+    return {
+      service: {},
+    }
+  },
+  componentDidMount: function() {
+    var self = this;
+    actions.getServiceAuths(this.props.service.id)
+    .then(function(serviceAuths) {
+      self.setState({serviceAuths: serviceAuths})
+    })
+  },
+  render() {
+    var self = this;
+    var serviceAuths = lodash.map(this.state.serviceAuths, function(serviceAuth) {
+      return <option value={serviceAuth.id} key={serviceAuth.id}>
+               {serviceAuth.name}
+      </option>
+    });
+    return <label className="pt-label pt-inline col-xs">
+      Authentication Schemes for {this.props.service.name}
+      <select>
+        {serviceAuths}
+      </select>
+    </label>
+  }
+})
+
 module.exports = React.createClass({
   getInitialState: function() {
     return {
@@ -23,6 +91,9 @@ module.exports = React.createClass({
         self.setState({action: result.action, service: result.service, serviceAuths: result.serviceAuths});
       })
     }
+  },
+  handleSave: function() {
+    actions.upsertAction(this.state.action, this.state.service, this.state.serviceAuths)
   },
   render() {
     var authList = lodash.map(this.state.serviceAuths,function(serviceAuth){
@@ -90,45 +161,51 @@ module.exports = React.createClass({
           </TabList>
           <TabPanel>
             <h4>Basics</h4>
-            <label class="pt-label">
-              Service
-              <input class="pt-input" value={ this.state.service.name } />
-            </label>
-            <br/>
-            <label class="pt-label">
-              Function
-              <input class="pt-input" value={ this.state.action.function_name } />
-            </label>
-            <br/>
-            <label class="pt-label">
-              Description
-              <input class="pt-input" value={ this.state.action.description } />
-            </label>
-            <br/>
-            <label class="pt-label">
-              Action Type
-              <input class="pt-input" value={ this.state.action.type } />
-            </label>
-            <br/>
-            <label class="pt-label">
-              Host
-              <input class="pt-input" value={ this.state.action.host } />
-            </label>
-            <br/>
-            <label class="pt-label">
-              Path
-              <input class="pt-input" value={ this.state.action.path } />
-            </label>
-            <br/>
-            <label class="pt-label">
-              Method
-              <input class="pt-input" value={ this.state.action.method } />
-            </label>
-            <br/>
-            <label class="pt-label">
-              Scheme
-              <input class="pt-input" value={ this.state.action.schemes } />
-            </label>
+            <div className="row">
+              <ServiceSelector service={ this.state.service } />
+            </div>
+            <div className="row">
+              <label className="pt-label pt-inline col-xs">
+                Function
+                <input className="pt-input" value={ this.state.action.function_name } />
+              </label>
+            </div>
+            <div className="row">
+              <label className="pt-label pt-inline col-xs">
+                Description
+                <input className="pt-input" value={ this.state.action.description } />
+              </label>
+            </div>
+            <div className="row">
+              <label className="pt-label pt-inline col-xs">
+                Action Type
+                <input className="pt-input" value={ this.state.action.type } />
+              </label>
+            </div>
+            <div className="row">
+              <label className="pt-label pt-inline col-xs">
+                Host
+                <input className="pt-input" value={ this.state.action.host } />
+              </label>
+            </div>
+            <div className="row">
+              <label className="pt-label pt-inline col-xs">
+                Path
+                <input className="pt-input" value={ this.state.action.path } />
+              </label>
+            </div>
+            <div className="row">
+              <label className="pt-label pt-inline col-xs">
+                Method
+                <input className="pt-input" value={ this.state.action.method } />
+              </label>
+            </div>
+            <div className="row">
+              <label className="pt-label pt-inline col-xs">
+                Scheme
+                <input className="pt-input" value={ this.state.action.schemes } />
+              </label>
+            </div>
             <hr />
             <h4>Headers</h4>
             { headerList }
@@ -138,11 +215,12 @@ module.exports = React.createClass({
           </TabPanel>
           <TabPanel>
             { authList }
+            <ServiceAuthSelector service={ this.state.service } />
           </TabPanel>
           <TabPanel>
-            <label class="pt-label">
+            <label className="pt-label">
               Content Type
-              <input class="pt-input" value={ this.state.action.input_content_type } />
+              <input className="pt-input" value={ this.state.action.input_content_type } />
             </label>
             <h4>Parameters</h4>
             { inputList }
@@ -150,9 +228,9 @@ module.exports = React.createClass({
             { JSON.stringify(this.state.action.input_example) }
           </TabPanel>
           <TabPanel>
-            <label class="pt-label">
+            <label className="pt-label">
               Content Type
-              <input class="pt-input" value={ this.state.action.output_content_type } />
+              <input className="pt-input" value={ this.state.action.output_content_type } />
             </label>
             <h4>Parameters</h4>
             { outputList }
@@ -160,6 +238,8 @@ module.exports = React.createClass({
             { JSON.stringify(this.state.action.output_example) }
           </TabPanel>
       </Tabs>
+      <hr />
+      <button className="pt-button pt-icon-add" onClick={this.handleSave}>Save</button>
     </div>
   }
 })

@@ -15,6 +15,9 @@ function call(path,data,method,authtoken,clienttoken){
     headers: {
       Token: authtoken
     }
+  }).catch((response) => {
+    console.log(response);
+    return response;
   })
 }
 
@@ -42,6 +45,14 @@ exports.getActions = function(filter, token){
   return call('/actions', filter,'GET',token)
 }
 
+exports.getServices = function(filter, token){
+  return call('/services', filter,'GET',token)
+}
+
+exports.getServiceAuths = function(service_id, token){
+  return call('/service_auths', {service_id: service_id}, 'GET',token)
+}
+
 exports.getIntegrations = function(filter, token){
   return call('/integrations', filter, 'GET', token)
 }
@@ -52,4 +63,8 @@ exports.getIntegrationById = function(id, token){
 
 exports.getActionById = function(id, token){
   return call('/action/' + id,null,'GET',token)
+}
+
+exports.upsertAction = function(action, service, serviceAuths, token){
+  return call('/actions/upsert',{action: action, service: service, serviceAuths: serviceAuths},'POST',token)
 }

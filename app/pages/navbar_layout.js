@@ -135,7 +135,7 @@ module.exports = React.createClass({
       child = React.cloneElement(this.props.children,this.props)
     }
     var links = [ ]
-    return <div style={{paddingTop:100}}>
+    return <div style={{paddingTop:50}}>
       <Navbar links={links}>
         <Popover content={<OrganizationMenu/>} position={Position.BOTTOM_RIGHT}>
           <li className='pt-menu-item'>Login as...</li>
@@ -152,7 +152,9 @@ module.exports = React.createClass({
           <li className='pt-menu-item'>{this.props.me.email}</li>
         </Popover>
       </Navbar>
-      {child}
+      <div className="pt-content" style={{padding: 20}}>
+        {child}
+      </div>
     </div>
   }
 })
