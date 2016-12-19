@@ -6,8 +6,9 @@ var urljoin = require('url-join')
 
 function call(path,data,method,authtoken,clienttoken){
   console.log(arguments)
+  var method = method || 'POST';
   return request({
-    method: method || 'POST',
+    method: method,
     uri: urljoin(base,path),
     body: (method == 'POST' && data) ? data : {},
     qs: (method == 'GET' && data) ? data : {},
@@ -17,7 +18,7 @@ function call(path,data,method,authtoken,clienttoken){
     }
   }).catch((response) => {
     console.log(response);
-    return response;
+    throw response;
   })
 }
 
