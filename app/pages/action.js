@@ -57,11 +57,11 @@ module.exports = React.createClass({
       {value: 'code', label: 'NativeSync Code Action 1.0'}
     ];
     var httpMethods = [
-      {value: 'get', label: 'GET'},
-      {value: 'post', label: 'POST'},
-      {value: 'put', label: 'PUT'},
-      {value: 'patch', label: 'PATCH'},
-      {value: 'delete', label: 'DELETE'},
+      {value: 'GET', label: 'GET'},
+      {value: 'POST', label: 'POST'},
+      {value: 'PUT', label: 'PUT'},
+      {value: 'PATCH', label: 'PATCH'},
+      {value: 'DELETE', label: 'DELETE'},
     ];
     var schemes = [
       {value: 'http', label: 'HTTP'},
