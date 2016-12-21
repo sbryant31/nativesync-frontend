@@ -4,6 +4,8 @@ var Navbar = require('../components/navbar')
 var lodash = require('lodash')
 var _ = require('underscore');
 
+var Select = require('react-select');
+
 var ServiceAuthSelector = require('../components/service_auth/service_auth_selector');
 var ServiceSelector = require('../components/service/service_selector');
 var ParameterList = require('../components/action/parameter_list');
@@ -34,7 +36,11 @@ module.exports = React.createClass({
   },
   handleChange: function(field, e) {
     var action = this.state.action;
-    this.handleChangeValue(field, e.target.value);
+    if (e.target) { // normal input handler
+      this.handleChangeValue(field, e.target.value);
+    } else if (e.value) { // dropdown handler
+      this.handleChangeValue(field, e.value);
+    }
   },
   handleChangeValue: function(field, value) {
     var action = this.state.action;
@@ -46,6 +52,26 @@ module.exports = React.createClass({
     this.setState({serviceAuths: serviceAuths});
   },
   render() {
+    var actionTypes = [
+      {value: 'rest', label: 'NativeSync REST Action 1.0'},
+      {value: 'code', label: 'NativeSync Code Action 1.0'}
+    ];
+    var httpMethods = [
+      {value: 'get', label: 'GET'},
+      {value: 'post', label: 'POST'},
+      {value: 'put', label: 'PUT'},
+      {value: 'patch', label: 'PATCH'},
+      {value: 'delete', label: 'DELETE'},
+    ];
+    var schemes = [
+      {value: 'http', label: 'HTTP'},
+      {value: 'https', label: 'HTTPS'},
+    ];
+    var bodyTypes = [
+      {value: 'formData', label: 'Form'},
+      {value: 'json', label: 'JSON'},
+      {value: 'xml', label: 'XML'}
+    ];
     return <div>
       <h2>Build an Action</h2>
       <Tabs>
@@ -75,7 +101,7 @@ module.exports = React.createClass({
             <div className="row">
               <label className="pt-label pt-inline col-xs">
                 Action Type
-                <input className="pt-input" value={ this.state.action.type } onChange={this.handleChange.bind(this, 'type')} />
+                <Select options={actionTypes} value={ this.state.action.type } onChange={this.handleChange.bind(this, 'type')} />
               </label>
             </div>
             <div className="row">
@@ -93,13 +119,13 @@ module.exports = React.createClass({
             <div className="row">
               <label className="pt-label pt-inline col-xs">
                 Method
-                <input className="pt-input" value={ this.state.action.method } onChange={this.handleChange.bind(this, 'method')} />
+                <Select options={httpMethods} value={ this.state.action.method } onChange={this.handleChange.bind(this, 'method')} />
               </label>
             </div>
             <div className="row">
               <label className="pt-label pt-inline col-xs">
                 Scheme
-                <input className="pt-input" value={ this.state.action.schemes } onChange={this.handleChange.bind(this, 'schemes')} />
+                <Select options={schemes} value={ this.state.action.schemes } onChange={this.handleChange.bind(this, 'schemes')} />
               </label>
             </div>
             <hr />
@@ -114,8 +140,8 @@ module.exports = React.createClass({
           </TabPanel>
           <TabPanel>
             <label className="pt-label">
-              Content Type
-              <input className="pt-input" value={ this.state.action.input_content_type } onChange={this.handleChange.bind(this, 'input_content_type')} />
+              Body Type
+              <Select value={ this.state.action.input_content_type } options={bodyTypes} onChange={this.handleChange.bind(this, 'input_content_type')} />
             </label>
             <h4>Parameters</h4>
             <ParameterList parameters={this.state.action.input} onChange={this.handleChangeValue.bind(this, 'input')} />
@@ -124,8 +150,8 @@ module.exports = React.createClass({
           </TabPanel>
           <TabPanel>
             <label className="pt-label">
-              Content Type
-              <input className="pt-input" value={ this.state.action.output_content_type } onChange={this.handleChange.bind(this, 'output_content_type')} />
+              Body Type
+              <Select value={ this.state.action.output_content_type } options={bodyTypes} onChange={this.handleChange.bind(this, 'output_content_type')} />
             </label>
             <h4>Parameters</h4>
             <ParameterList parameters={this.state.action.output} onChange={this.handleChangeValue.bind(this, 'output')} />
