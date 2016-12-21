@@ -2,6 +2,7 @@ var React = require('react')
 var normalize = require('../node_modules/normalize.css/normalize.css')
 var flexbox = require('../node_modules/flexboxgrid/dist/flexboxgrid.min.css')
 var blueprintjs = require('../node_modules/@blueprintjs/core/dist/blueprint.css')
+var react_select = require('../node_modules/react-select/dist/react-select.css')
 var state = require('./modules/state')
 var store = require('store')
 import { browserHistory } from 'react-router'

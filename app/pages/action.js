@@ -2,76 +2,14 @@ var React = require('react')
 var actions = require('../modules/actions')
 var Navbar = require('../components/navbar')
 var lodash = require('lodash')
+var _ = require('underscore');
+
+var ServiceAuthSelector = require('../components/service_auth/service_auth_selector');
+var ServiceSelector = require('../components/service/service_selector');
+var ParameterList = require('../components/action/parameter_list');
+var KeyValueList = require('../components/action/key_value_list');
 
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
-
-var ServiceSelector = React.createClass({
-  getInitialState: function() {
-    return {
-      services: [],
-    }
-  },
-  getDefaultProps: function() {
-    return {
-      service: {}
-    }
-  },
-  componentDidMount: function() {
-    var self = this;
-    actions.getServices()
-    .then(function(services) {
-      self.setState({services: services})
-    })
-  },
-  render() {
-    var self = this;
-    var services = lodash.map(this.state.services, function(service) {
-      return <option value={service.id} key={service.id}>
-               {service.name}
-      </option>
-    });
-    return <label className="pt-label pt-inline col-xs">
-      Service
-      <select value={this.props.service.id}>
-        {services}
-      </select>
-    </label>
-  }
-})
-
-var ServiceAuthSelector = React.createClass({
-  getInitialState: function() {
-    return {
-      serviceAuths: [],
-    }
-  },
-  getDefaultProps: function() {
-    return {
-      service: {},
-    }
-  },
-  componentDidMount: function() {
-    var self = this;
-    actions.getServiceAuths(this.props.service.id)
-    .then(function(serviceAuths) {
-      self.setState({serviceAuths: serviceAuths})
-    })
-  },
-  render() {
-    var self = this;
-    var serviceAuths = lodash.map(this.state.serviceAuths, function(serviceAuth) {
-      return <option value={serviceAuth.id} key={serviceAuth.id}>
-               {serviceAuth.name}
-      </option>
-    });
-    return <label className="pt-label pt-inline col-xs">
-      Authentication Schemes for {this.props.service.name}
-      <select>
-        {serviceAuths}
-      </select>
-    </label>
-  }
-})
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -85,7 +23,6 @@ module.exports = React.createClass({
   componentDidMount: function() {
     var self = this;
     if (!isNaN(this.props.params.id)) {
-      console.log('getting action id', this.props.params.id);
       actions.getActionById(this.props.params.id)
       .then(function(result) {
         self.setState({action: result.action, service: result.service, serviceAuths: result.serviceAuths});
@@ -95,61 +32,32 @@ module.exports = React.createClass({
   handleSave: function() {
     actions.upsertAction(this.state.action, this.state.service, this.state.serviceAuths)
   },
+  handleChange: function(field, e) {
+    var action = this.state.action;
+    this.handleChangeValue(field, e.target.value);
+  },
+  handleChangeValue: function(field, value) {
+    var action = this.state.action;
+    action[field] = value;
+    this.setState({action: action});
+  },
+  handleParameterAdd: function(type) {
+    // get input or output params
+    var action = this.state.action;
+    action[type].push({name: '', in: '', description: '', type: ''});
+    this.setState({action: action});
+  },
+  handleParameterRemove: function(type, index) {
+    console.log('remove index', index);
+    var action = this.state.action;
+    action[type].splice(index, 1);
+    this.setState({action: action});
+  },
+  handleAuthSchemeChange: function(serviceAuths) {
+    console.log(serviceAuths);
+    this.setState({serviceAuths: serviceAuths});
+  },
   render() {
-    var authList = lodash.map(this.state.serviceAuths,function(serviceAuth){
-      return <div className="row">
-        <div className="col-xs-3">
-          name: { serviceAuth.name }
-        </div>
-        <div className="col-xs-3">
-          type: { serviceAuth.type }
-        </div>
-        <div className="col-xs-3">
-          details: { JSON.stringify(serviceAuth.details) }
-        </div>
-      </div>
-    })
-    var headerList = lodash.map(this.state.action.headers,function(value, key){
-      return <div className="row">
-        <label className="pt-label col-xs-3">
-          Name
-          <input className="pt-input" value={ key } />
-        </label>
-        <label className="pt-label col-xs-3">
-          Value
-          <input className="pt-input" value={ value } />
-        </label>
-      </div>
-    })
-    var queryList = lodash.map(this.state.action.query,function(value, key){
-      return <div className="row">
-        <label className="pt-label col-xs-3">
-          Name
-          <input className="pt-input" value={ key } />
-        </label>
-        <label className="pt-label col-xs-3">
-          Value
-          <input className="pt-input" value={ value } />
-        </label>
-      </div>
-    })
-    var inputList = lodash.map(this.state.action.input,function(parameter){
-      return <div className="row">
-        <label className="pt-label pt-inline col-xs-2">
-          Name <input className="pt-input" value={ parameter.name } />
-        </label>
-        <label className="pt-label pt-inline col-xs-2">
-          In <input className="pt-input" value={ parameter.in } />
-        </label>
-        <label className="pt-label pt-inline col-xs-3">
-          Description <input className="pt-input" value={ parameter.description } />
-        </label>
-        <label className="pt-label pt-inline col-xs-2">
-          Type <input className="pt-input" value={ parameter.type } />
-        </label>
-      </div>
-    })
-    var outputList = []; // todo: refactor input list and output list into a component
     return <div>
       <h2>Build an Action</h2>
       <Tabs>
@@ -167,55 +75,54 @@ module.exports = React.createClass({
             <div className="row">
               <label className="pt-label pt-inline col-xs">
                 Function
-                <input className="pt-input" value={ this.state.action.function_name } />
+                <input className="pt-input" value={ this.state.action.function_name } onChange={this.handleChange.bind(this, 'function_name')} />
               </label>
             </div>
             <div className="row">
               <label className="pt-label pt-inline col-xs">
                 Description
-                <input className="pt-input" value={ this.state.action.description } />
+                <input className="pt-input" value={ this.state.action.description } onChange={this.handleChange.bind(this, 'description')}/>
               </label>
             </div>
             <div className="row">
               <label className="pt-label pt-inline col-xs">
                 Action Type
-                <input className="pt-input" value={ this.state.action.type } />
+                <input className="pt-input" value={ this.state.action.type } onChange={this.handleChange.bind(this, 'type')} />
               </label>
             </div>
             <div className="row">
               <label className="pt-label pt-inline col-xs">
                 Host
-                <input className="pt-input" value={ this.state.action.host } />
+                <input className="pt-input" value={ this.state.action.host } onChange={this.handleChange.bind(this, 'host')} />
               </label>
             </div>
             <div className="row">
               <label className="pt-label pt-inline col-xs">
                 Path
-                <input className="pt-input" value={ this.state.action.path } />
+                <input className="pt-input" value={ this.state.action.path } onChange={this.handleChange.bind(this, 'path')} />
               </label>
             </div>
             <div className="row">
               <label className="pt-label pt-inline col-xs">
                 Method
-                <input className="pt-input" value={ this.state.action.method } />
+                <input className="pt-input" value={ this.state.action.method } onChange={this.handleChange.bind(this, 'method')} />
               </label>
             </div>
             <div className="row">
               <label className="pt-label pt-inline col-xs">
                 Scheme
-                <input className="pt-input" value={ this.state.action.schemes } />
+                <input className="pt-input" value={ this.state.action.schemes } onChange={this.handleChange.bind(this, 'schemes')} />
               </label>
             </div>
             <hr />
             <h4>Headers</h4>
-            { headerList }
+              <KeyValueList list={this.state.action.headers} onChange={this.handleChangeValue.bind(this, 'headers')} />
             <hr />
             <h4>Query params</h4>
-            { queryList }
+              <KeyValueList list={this.state.action.query} onChange={this.handleChangeValue.bind(this, 'query')} />
           </TabPanel>
           <TabPanel>
-            { authList }
-            <ServiceAuthSelector service={ this.state.service } />
+            <ServiceAuthSelector service={ this.state.service } onChange={this.handleAuthSchemeChange} value={this.state.serviceAuths} />
           </TabPanel>
           <TabPanel>
             <label className="pt-label">
@@ -223,7 +130,7 @@ module.exports = React.createClass({
               <input className="pt-input" value={ this.state.action.input_content_type } />
             </label>
             <h4>Parameters</h4>
-            { inputList }
+            <ParameterList parameters={this.state.action.input} onAdd={this.handleParameterAdd.bind(this, 'input')} onRemove={this.handleParameterRemove.bind(this, 'input')} />
             <h4>Example</h4>
             { JSON.stringify(this.state.action.input_example) }
           </TabPanel>
@@ -233,7 +140,7 @@ module.exports = React.createClass({
               <input className="pt-input" value={ this.state.action.output_content_type } />
             </label>
             <h4>Parameters</h4>
-            { outputList }
+            <ParameterList parameters={this.state.action.output} onAdd={this.handleParameterAdd.bind(this, 'output')} onRemove={this.handleParameterRemove.bind(this, 'output')} />
             <h4>Example</h4>
             { JSON.stringify(this.state.action.output_example) }
           </TabPanel>
