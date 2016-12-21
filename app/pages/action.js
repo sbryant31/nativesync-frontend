@@ -41,18 +41,6 @@ module.exports = React.createClass({
     action[field] = value;
     this.setState({action: action});
   },
-  handleParameterAdd: function(type) {
-    // get input or output params
-    var action = this.state.action;
-    action[type].push({name: '', in: '', description: '', type: ''});
-    this.setState({action: action});
-  },
-  handleParameterRemove: function(type, index) {
-    console.log('remove index', index);
-    var action = this.state.action;
-    action[type].splice(index, 1);
-    this.setState({action: action});
-  },
   handleAuthSchemeChange: function(serviceAuths) {
     console.log(serviceAuths);
     this.setState({serviceAuths: serviceAuths});
@@ -127,22 +115,22 @@ module.exports = React.createClass({
           <TabPanel>
             <label className="pt-label">
               Content Type
-              <input className="pt-input" value={ this.state.action.input_content_type } />
+              <input className="pt-input" value={ this.state.action.input_content_type } onChange={this.handleChange.bind(this, 'input_content_type')} />
             </label>
             <h4>Parameters</h4>
-            <ParameterList parameters={this.state.action.input} onAdd={this.handleParameterAdd.bind(this, 'input')} onRemove={this.handleParameterRemove.bind(this, 'input')} />
+            <ParameterList parameters={this.state.action.input} onChange={this.handleChangeValue.bind(this, 'input')} />
             <h4>Example</h4>
-            { JSON.stringify(this.state.action.input_example) }
+            <textarea className="pt-input" onChange={this.handleChange.bind(this, 'input_example')} value={this.state.action.input_example} />
           </TabPanel>
           <TabPanel>
             <label className="pt-label">
               Content Type
-              <input className="pt-input" value={ this.state.action.output_content_type } />
+              <input className="pt-input" value={ this.state.action.output_content_type } onChange={this.handleChange.bind(this, 'output_content_type')} />
             </label>
             <h4>Parameters</h4>
-            <ParameterList parameters={this.state.action.output} onAdd={this.handleParameterAdd.bind(this, 'output')} onRemove={this.handleParameterRemove.bind(this, 'output')} />
+            <ParameterList parameters={this.state.action.output} onChange={this.handleChangeValue.bind(this, 'output')} />
             <h4>Example</h4>
-            { JSON.stringify(this.state.action.output_example) }
+            <textarea className="pt-input" onChange={this.handleChange.bind(this, 'output_example')} value={this.state.action.output_example} />
           </TabPanel>
       </Tabs>
       <hr />
