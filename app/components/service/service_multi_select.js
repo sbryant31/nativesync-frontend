@@ -7,40 +7,45 @@ var Select = require('react-select');
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      services: {},
+      services: [],
     }
   },
   getDefaultProps: function() {
     return {
-      service: {},
-      onChange: (service) => { console.log('change service', service) }
+      value: [],
+      onChange: (services) => { console.log('change services', services) }
     }
   },
   handleChange: function(selection) {
-    this.props.onChange(this.state.services[selection.value]);
+		var selectedIDs = _.pluck(value, 'value');
+    var services = _.filter(this.state.services, (service) => {
+      return selectedIDs.indexOf(service.id) !== -1;
+    })
+    this.props.onChange(services);
   },
-  loadOptions: function(input, callback) {
+  componentDidMount: function() {
     console.log('loading options for service');
     var self = this;
     return actions.getServices()
     .then(function(services) {
-      self.setState({services: _.indexBy(services, 'id')})
-      var services = _.map(services, (service) => {
+      self.setState({services: services});
+      var serviceOptions = _.map(services, (service) => {
         return {value: service.id, label: service.name}
       })
-      return {
-        options: services
-      };
+			self.setState({serviceOptions: serviceOptions})
     })
   },
   render() {
     var self = this;
+		var value = _.map(self.props.value, (service) => {
+			return {value: service.id, label: service.name};
+		})
     return <label className="pt-label pt-inline col-xs">
       Service
-      <Select.Async
-        name="service-selector"
-        value={this.props.service ? this.props.service.id : null}
-        loadOptions={this.loadOptions}
+      <Select
+        name="service-multi-select"
+        value={value}
+        options={this.state.serviceOptions}
         onChange={this.handleChange}
       />
     </label>

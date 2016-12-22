@@ -3,6 +3,7 @@ var _ = require('underscore');
 var lodash = require('lodash');
 var Select = require('react-select');
 var actions = require('../../modules/actions');
+var ServiceAuthList = require('./service_auth_list');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -17,21 +18,24 @@ module.exports = React.createClass({
       value: []
     }
   },
-  loadOptions: function(input, callback) {
+  componentDidMount: function(input, callback) {
     var self = this;
+    console.log('loading options for service_auth_selector');
     return actions.getServiceAuths(this.props.service.id)
     .then(function(serviceAuths) {
+      console.log('loading service auths', serviceAuths);
       self.setState({serviceAuths: serviceAuths});
-      serviceAuths = _.map(serviceAuths, (serviceAuth) => {
+
+      var serviceAuthOptions = _.map(serviceAuths, (serviceAuth) => {
         return {value: serviceAuth.id, label: serviceAuth.name};
       })
+      self.setState({serviceAuthOptions: serviceAuthOptions});
+
       // set initial values (from the database)
       var initialValue = _.map(self.props.value, (serviceAuth) => {
         return {value: serviceAuth.id, label: serviceAuth.name};
       })
-      console.log('initial', initialValue, self.props.value);
       self.setState({value: initialValue});
-      return {options: serviceAuths};
     })
   },
   getSelectedServiceAuths: function(value) {
@@ -48,33 +52,17 @@ module.exports = React.createClass({
   render() {
     var self = this;
     var selectedIDs = _.pluck(this.state.value, 'value');
-    var authList = lodash.map(this.state.serviceAuths,function(serviceAuth){
-      var isSelected = (selectedIDs.indexOf(serviceAuth.id) !== -1)
-      return <div className="row">
-        <div className="col-xs">
-          { isSelected && <span className="pt-icon-confirm" /> }
-        </div>
-        <div className="col-xs-3">
-          name: { serviceAuth.name }
-        </div>
-        <div className="col-xs-3">
-          type: { serviceAuth.type }
-        </div>
-        <div className="col-xs-3">
-          details: { JSON.stringify(serviceAuth.details) }
-        </div>
-      </div>
-    })
     return <label className="pt-label pt-inline col-xs">
       <h4>Authentication Schemes for {this.props.service.name}</h4>
-      { authList }
+      <ServiceAuthList serviceAuths={this.state.serviceAuths} selectedIDs={selectedIDs} services={[this.props.service]}/>
       <hr/>
       <h4>Add/Remove Auth Schemes</h4>
-      <Select.Async
+      <Select
+          name="service-auth-selector"
           value={this.state.value}
           multi={true}
           joinValues={true}
-          loadOptions={this.loadOptions}
+          options={self.state.serviceAuthOptions}
           onChange={this.handleChange}
       />
     </label>

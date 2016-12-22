@@ -2,15 +2,49 @@ var React = require('react')
 var actions = require('../modules/actions')
 var Navbar = require('../components/navbar')
 var lodash = require('lodash')
+var ServiceAuthList = require('../components/service_auth/service_auth_list');
+var ServiceMultiSelect = require('../components/service/service_multi_select');
+var TriggerInfo = require('../components/integration/trigger_info');
+var TextInputField = require('../components/inputs/text_input_field');
+var CodeEditor = require('../components/inputs/code_editor');
+var ActionMultiSelect = require('../components/action/action_multi_select');
+var MarkdownEditor = require('../components/inputs/markdown_editor');
+import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      integration: {},
+      integration: {
+        scheduling_info: {}
+      },
       services: [],
-      serviceAuths: [],
-      integrationCode: {},
+      actions: [],
+      integrationCode: { },
     }
+  },
+  handleChange: function(field, e) {
+    var integration = this.state.integration;
+    if (e.target) { // normal input handler
+      this.handleChangeValue(field, e.target.value);
+    } else if (e.value) { // dropdown handler
+      this.handleChangeValue(field, e.value);
+    }
+  },
+  handleChangeValue: function(field, value) {
+    var integration = this.state.integration;
+    integration[field] = value;
+    this.setState({integration: integration});
+  },
+  handleServiceChange: function(services) {
+    this.setState({services: []});
+  },
+  handleActionChange: function(actions) {
+    this.setState({actions: actions});
+  },
+  handleCodeChange: function(e) {
+		var integrationCode = this.state.integrationCode;
+		integrationCode.code = e.target.value;
+    this.setState({integrationCode: integrationCode});
   },
   getDefaultProps: function() {
     return {
@@ -27,69 +61,45 @@ module.exports = React.createClass({
     }
   },
   render() {
-    var authList = lodash.map(this.state.serviceAuths,function(serviceAuth){
-      return <div>
-        name: { serviceAuth.name }
-        type: { serviceAuth.type }
-        details: { serviceAuth.details }
-      </div>
-    })
-    var serviceList = lodash.map(this.state.services,function(service){
-      return <div>
-        <label classNameName="pt-label">
-          Name
-          <input className="pt-input" value={ service.name } />
-        </label>
-      </div>
-    })
-    var codeSection = '';
-    if (this.state.integrationCode) {
-      codeSection = <div>
-        <h2>Code</h2>
-        <textarea class="pt-input pt-fill" value={ this.state.integrationCode.code ? this.state.integrationCode.code : ''} />
-      </div>;
-    }
     return <div>
-      <h2>{this.state.integration.title}</h2>
-      <label className="pt-label">
-        Scheduling Info
-        <input className="pt-input" value={ JSON.stringify(this.state.integration.scheduling_info)} />
-      </label>
-      <br/>
-      <label className="pt-label">
-        Type
-        <input className="pt-input" value={ this.state.integration.type } />
-      </label>
-      <br/>
-      <label className="pt-label">
-        Title
-        <input className="pt-input" value={ this.state.integration.title } />
-      </label>
-      <br/>
-      <label className="pt-label">
-        Description
-        <input className="pt-input" value={ this.state.integration.description } />
-      </label>
-      <br/>
-      <label className="pt-label">
-        Version
-        <input className="pt-input" value={ this.state.integration.version } />
-      </label>
-      <br/>
-      <label className="pt-label">
-        Documentation
-        <input className="pt-input" value={ this.state.integration.documentation } />
-      </label>
-      <br/>
-      <hr />
-      <h2>Services</h2>
-      { serviceList }
-      <hr />
-      <h2>Authentication</h2>
-      { authList }
-      <hr />
-      { codeSection }
-
+      <h2>Build an Integration {this.state.integration.title}</h2>
+			<Tabs>
+				<TabList>
+						<Tab>General</Tab>
+						<Tab>Services</Tab>
+						<Tab>Actions</Tab>
+						<Tab>Code</Tab>
+						<Tab>Documentation</Tab>
+						<Tab>Publish</Tab>
+				</TabList>
+				<TabPanel>
+					<h2>General</h2>
+					<TextInputField label="Title" value={this.state.integration.title} onChange={this.handleChange.bind(this, 'title')} />
+					<TextInputField label="Version" value={this.state.integration.version} onChange={this.handleChange.bind(this, 'version')} />
+					<TextInputField label="Type" value={this.state.integration.type} onChange={this.handleChange.bind(this, 'type')} />
+					<TextInputField label="Description" value={this.state.integration.description} onChange={this.handleChange.bind(this, 'description')} />
+					<TriggerInfo value={this.state.integration.scheduling_info} onChange={this.handleChange.bind(this, 'scheduling_info')} />
+				</TabPanel>
+				<TabPanel>
+					<h2>Services</h2>
+					<ServiceMultiSelect value={this.state.services} onChange={this.handleServiceChange.bind(this)} />
+				</TabPanel>
+				<TabPanel>
+					<h2>Actions</h2>
+					<ActionMultiSelect value={this.state.actions} onChange={this.handleActionChange.bind(this)} />
+				</TabPanel>
+				<TabPanel>
+					<h2>Code</h2>
+					<CodeEditor value={this.state.integration.code} onChange={this.handleCodeChange.bind(this)} />
+				</TabPanel>
+				<TabPanel>
+					<h2>Documentation</h2>
+					<MarkdownEditor value={this.state.integration.documentation} onChange={this.handleChange.bind(this, 'documentation')} />
+				</TabPanel>
+				<TabPanel>
+					<h2>Publish</h2>
+				</TabPanel>
+			</Tabs>
     </div>
   }
 })
