@@ -16,7 +16,6 @@ module.exports = React.createClass({
       return <ActionDocumentation action={action} />
     });
     return <div>
-      <h4>Documentation</h4>
       { documentationList }
     </div>
   }

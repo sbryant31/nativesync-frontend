@@ -15,6 +15,7 @@ module.exports = React.createClass({
   render() {
     return <div>
       <h4><b>{ this.props.action.service_name }</b> - { this.props.action.function_name }</h4>
+      <p>{this.props.action.description}</p>
       <h5>Input</h5>
       <ParameterList parameters={ this.props.action.input } readOnly={true} />
       <h5>Outputs</h5>

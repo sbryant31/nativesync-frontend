@@ -91,6 +91,16 @@ exports.getActionById = function(id) {
 
 exports.upsertAction = function(action, service, serviceAuths) {
   return nsapi.upsertAction(action, service, serviceAuths, token)
+  .then((result) => {
+    return exports.goto('/action/' + result.action.id);
+  })
+}
+
+exports.upsertIntegration = function(integration, services, actions, integrationCode) {
+  return nsapi.upsertIntegration(integration, services, actions, integrationCode, token)
+  .then((result) => {
+    return exports.goto('/integration/' + result.integration.id);
+  })
 }
 
 exports.myAssociations = function(){
