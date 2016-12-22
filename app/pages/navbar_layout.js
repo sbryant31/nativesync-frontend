@@ -143,7 +143,7 @@ module.exports = React.createClass({
         <Popover content={<BrowseMenu/>} position={Position.BOTTOM_RIGHT}>
           <li className='pt-menu-item'>Browse</li>
         </Popover>
-        { this.props.mode == 'partner' &&
+        { actions.getState('mode') == 'partner' &&
           <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
             <li className='pt-menu-item'>Build</li>
           </Popover>

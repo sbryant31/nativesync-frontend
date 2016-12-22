@@ -27,7 +27,7 @@ module.exports = React.createClass({
     })
     return <div>
       <h1>Actions</h1>
-      { this.state.mode == 'partner' &&
+      { actions.getState('mode') == 'partner' &&
         <a onClick={actions.goto.bind(null, '/action/new')}>New action</a>
       }
       <hr/>

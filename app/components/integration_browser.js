@@ -27,7 +27,7 @@ module.exports = React.createClass({
     })
     return <div>
       <h1>Integrations</h1>
-      { this.state.mode == 'partner' &&
+      { actions.getState('mode') == 'partner' &&
         <a onClick={actions.goto.bind(null, '/integration/new')}>New Integration</a>
       }
       <hr/>

@@ -9,6 +9,10 @@ import { browserHistory } from 'react-router'
 //token gets loaded into memory on start
 var token = state.get('token')
 
+exports.getState = function(key) {
+  return state.get(key);
+}
+
 exports.getToken = function(){
   return token
 }

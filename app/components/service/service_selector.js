@@ -2,37 +2,47 @@ var React = require('react');
 var _ = require('underscore');
 var lodash = require('lodash');
 var actions = require('../../modules/actions');
+var Select = require('react-select');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      services: [],
+      services: {},
     }
   },
   getDefaultProps: function() {
     return {
-      service: {}
+      service: {},
+      onChange: (service) => { console.log('change service', service) }
     }
   },
-  componentDidMount: function() {
+  handleChange: function(selection) {
+    this.props.onChange(this.state.services[selection.value]);
+  },
+  loadOptions: function(input, callback) {
     var self = this;
-    actions.getServices()
+    return actions.getServices()
     .then(function(services) {
-      self.setState({services: services})
+      self.setState({services: _.indexBy(services, 'id')})
+      var services = _.map(services, (service) => {
+        return {value: service.id, label: service.name}
+      })
+      console.log('serivcs', services);
+
+      return {
+        options: services
+      };
     })
   },
   render() {
     var self = this;
-    var services = lodash.map(this.state.services, function(service) {
-      return <option value={service.id} key={service.id}>
-               {service.name}
-      </option>
-    });
     return <label className="pt-label pt-inline col-xs">
       Service
-      <select value={this.props.service.id}>
-        {services}
-      </select>
+      <Select.Async
+        value={this.props.service ? this.props.service.id : null}
+        loadOptions={this.loadOptions}
+        onChange={this.handleChange}
+      />
     </label>
   }
 })

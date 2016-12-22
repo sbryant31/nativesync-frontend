@@ -16,7 +16,12 @@ import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      action: {},
+      action: {
+        headers: [],
+        query: [],
+        input: [],
+        output: []
+      },
       service: {},
       serviceAuths: [],
       readOnly: false
@@ -24,8 +29,9 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     var self = this;
-    if (!isNaN(this.props.params.id)) {
-      actions.getActionById(this.props.params.id)
+    console.log('loading action', self.props.params.id);
+    if (!isNaN(self.props.params.id)) {
+      actions.getActionById(self.props.params.id)
       .then(function(result) {
         self.setState({action: result.action, service: result.service, serviceAuths: result.serviceAuths});
       })
@@ -46,6 +52,10 @@ module.exports = React.createClass({
     var action = this.state.action;
     action[field] = value;
     this.setState({action: action});
+  },
+  handleServiceChange: function(service) {
+    this.setState({service: service});
+    this.handleChangeValue('service_name', service.name);
   },
   handleAuthSchemeChange: function(serviceAuths) {
     console.log(serviceAuths);
@@ -84,7 +94,7 @@ module.exports = React.createClass({
           <TabPanel>
             <h4>Basics</h4>
             <div className="row">
-              <ServiceSelector service={ this.state.service } />
+              <ServiceSelector service={ this.state.service } onChange={this.handleServiceChange.bind(this)} />
             </div>
             <div className="row">
               <label className="pt-label pt-inline col-xs">
