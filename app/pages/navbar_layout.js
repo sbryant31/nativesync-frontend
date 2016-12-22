@@ -93,10 +93,6 @@ var BrowseMenu = React.createClass({
       {
         name:'Actions',
         link:'/actions/browse',
-      },
-      {
-        name:'Partner Profiles',
-        link:'/partners/browse',
       }
     ]
     items = lodash.map(items,function(item){
