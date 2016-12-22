@@ -54,13 +54,13 @@ module.exports = React.createClass({
           Name <input className="pt-input" value={ parameter.name } onChange={self.handleChange.bind(self, currentIndex, 'name')} />
         </label>
         <label className="pt-label pt-inline col-xs">
-          In <Select className="pt-select" options={parameterInLocations} value={ parameter.in } onChange={self.handleChange.bind(self, currentIndex, 'in')} />
+          In <Select options={parameterInLocations} value={ parameter.in } onChange={self.handleChange.bind(self, currentIndex, 'in')} />
         </label>
         <label className="pt-label pt-inline col-xs">
           Description <input className="pt-input" value={ parameter.description } onChange={self.handleChange.bind(self, currentIndex, 'description')} />
         </label>
         <label className="pt-label pt-inline col-xs">
-          Type <Select className="pt-select" options={parameterTypes} value={ parameter.type } onChange={self.handleChange.bind(self, currentIndex, 'type')} />
+          Type <Select options={parameterTypes} value={ parameter.type } onChange={self.handleChange.bind(self, currentIndex, 'type')} />
         </label>
         {!self.props.readOnly &&
         <div className="pt-label pt-inlinecol-xs">

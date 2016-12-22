@@ -38,7 +38,6 @@ module.exports = React.createClass({
     return <label className="pt-label pt-inline col-xs">
       Service
       <Select.Async
-        className="pt-select"
         name="service-selector"
         value={this.props.service ? this.props.service.id : null}
         loadOptions={this.loadOptions}
