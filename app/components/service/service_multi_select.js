@@ -17,7 +17,7 @@ module.exports = React.createClass({
     }
   },
   handleChange: function(selection) {
-		var selectedIDs = _.pluck(value, 'value');
+    var selectedIDs = _.pluck(selection, 'value');
     var services = _.filter(this.state.services, (service) => {
       return selectedIDs.indexOf(service.id) !== -1;
     })
@@ -32,18 +32,19 @@ module.exports = React.createClass({
       var serviceOptions = _.map(services, (service) => {
         return {value: service.id, label: service.name}
       })
-			self.setState({serviceOptions: serviceOptions})
+      self.setState({serviceOptions: serviceOptions})
     })
   },
   render() {
     var self = this;
-		var value = _.map(self.props.value, (service) => {
-			return {value: service.id, label: service.name};
-		})
+    var value = _.map(self.props.value, (service) => {
+      return {value: service.id, label: service.name};
+    })
     return <label className="pt-label pt-inline col-xs">
       Service
       <Select
         name="service-multi-select"
+        multi={true}
         value={value}
         options={this.state.serviceOptions}
         onChange={this.handleChange}

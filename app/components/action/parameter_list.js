@@ -6,7 +6,8 @@ module.exports = React.createClass({
   getDefaultProps: () => {
     return {
       parameters: [],
-      onChange: (parameters) => { console.log('params changed', parameters); }
+      onChange: (parameters) => { console.log('params changed', parameters); },
+      readOnly: false
     }
   },
   handleRemove: function(index) {
@@ -53,24 +54,28 @@ module.exports = React.createClass({
           Name <input className="pt-input" value={ parameter.name } onChange={self.handleChange.bind(self, currentIndex, 'name')} />
         </label>
         <label className="pt-label pt-inline col-xs">
-          In <Select options={parameterInLocations} value={ parameter.in } onChange={self.handleChange.bind(self, currentIndex, 'in')} />
+          In <Select className="pt-select" options={parameterInLocations} value={ parameter.in } onChange={self.handleChange.bind(self, currentIndex, 'in')} />
         </label>
         <label className="pt-label pt-inline col-xs">
           Description <input className="pt-input" value={ parameter.description } onChange={self.handleChange.bind(self, currentIndex, 'description')} />
         </label>
         <label className="pt-label pt-inline col-xs">
-          Type <Select options={parameterTypes} value={ parameter.type } onChange={self.handleChange.bind(self, currentIndex, 'type')} />
+          Type <Select className="pt-select" options={parameterTypes} value={ parameter.type } onChange={self.handleChange.bind(self, currentIndex, 'type')} />
         </label>
-        <div className="col-xs">
-          <button className="pt-button pt-icon-remove" onClick={removeHandler}>Remove</button>
+        {!self.props.readOnly &&
+        <div className="pt-label pt-inlinecol-xs">
+            <button className="pt-button pt-icon-remove" onClick={removeHandler}>Remove</button>
         </div>
+        }
       </div>
     })
     return <div>
       { parameters }
       <div className="row">
         <div className="col-xs">
-          <button className="pt-button pt-icon-add" onClick={this.handleAdd}>Add</button>
+          {!self.props.readOnly &&
+            <button className="pt-button pt-icon-add" onClick={this.handleAdd}>Add</button>
+          }
         </div>
       </div>
     </div>

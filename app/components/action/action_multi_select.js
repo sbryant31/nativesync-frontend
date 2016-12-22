@@ -17,10 +17,11 @@ module.exports = React.createClass({
     }
   },
   handleChange: function(selection) {
-    var selectedIDs = _.pluck(value, 'value');
+    var selectedIDs = _.pluck(selection, 'value');
     var actions = _.filter(this.state.actions, (action) => {
       return selectedIDs.indexOf(action.id) !== -1;
     })
+    console.log('actions changed', actions);
     this.props.onChange(actions);
   },
   componentDidMount: function() {
@@ -45,6 +46,7 @@ module.exports = React.createClass({
       <Select
         name="action-multi-select"
         value={value}
+        multi={true}
         options={this.state.actionOptions}
         onChange={this.handleChange}
       />
