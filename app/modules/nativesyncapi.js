@@ -66,6 +66,10 @@ exports.getClientById = function(id, token){
   return call('/client/' + id, null, 'GET', token)
 }
 
+exports.getPartnerById = function(id, token){
+  return call('/partner/' + id, null, 'GET', token)
+}
+
 exports.getActionById = function(id, token){
   return call('/action/' + id,null,'GET',token)
 }
@@ -77,6 +81,11 @@ exports.upsertAction = function(action, service, serviceAuths, token){
 exports.upsertClient = function(client, token){
   return call('/clients/upsert',{client: client},'POST',token)
 }
+
+exports.upsertPartner = function(partner, token){
+  return call('/partners/upsert',{partner: partner},'POST',token)
+}
+
 exports.upsertIntegration = function(integration, services, actions, integrationCode, token){
   return call('/integrations/upsert',{integration: integration, services: services, actions: actions, integrationCode: integrationCode},'POST',token)
 }

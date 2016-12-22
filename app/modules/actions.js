@@ -79,6 +79,10 @@ exports.getClientById = function(id) {
   return nsapi.getClientById(id, token)
 }
 
+exports.getPartnerById = function(id) {
+  return nsapi.getPartnerById(id, token)
+}
+
 exports.getActions = function(filter){
   return nsapi.getActions(filter, token)
 }
@@ -106,6 +110,13 @@ exports.upsertClient = function(client) {
   return nsapi.upsertClient(client, token)
   .then((result) => {
     return exports.goto('/client/' + result.client.id);
+  })
+}
+
+exports.upsertPartner = function(partner) {
+  return nsapi.upsertPartner(partner, token)
+  .then((result) => {
+    return exports.goto('/partner/' + result.partner.id);
   })
 }
 
