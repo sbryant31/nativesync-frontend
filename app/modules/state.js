@@ -6,8 +6,9 @@ var init = {
   token:store.get('token'),
   me:store.get('me'),
   mode:store.get('mode'),
-  partner_id:store.get('partner_id'),
-  client_id:store.get('client_id')
+  partner:store.get('partner'),
+  client:store.get('client'),
+  org:store.get('org')
 }
 
 var state = State(init,lodash.cloneDeep,function(){ return false })

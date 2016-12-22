@@ -7,7 +7,8 @@ import { Colors } from '@blueprintjs/core'
 module.exports = React.createClass({
   getDefaultProps:function(){
     return {
-      links:[]
+      links:[],
+      avatarMenu: ''
     }
   },
   render: function() {
@@ -28,6 +29,7 @@ module.exports = React.createClass({
           {links}
           {this.props.children}
         </ul>
+        {this.props.avatarMenu}
       </div>
     </nav>
   }

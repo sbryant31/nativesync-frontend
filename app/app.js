@@ -49,17 +49,21 @@ module.exports = React.createClass({
       store.set('mode',value)
       self.setState({mode:value})
     })
-    state.on(['client_id'],function(value){
-      store.set('client_id',value)
-      store.set('partner_id',null)
-      self.setState({client_id:value})
-      self.setState({partner_id:null})
+    state.on(['client'],function(value){
+      store.set('client',value)
+      store.set('partner',null)
+      self.setState({client:value})
+      self.setState({partner:null})
     })
-    state.on(['partner_id'],function(value){
-      store.set('client_id',null)
-      store.set('partner_id',value)
-      self.setState({client_id:null})
-      self.setState({partner_id:value})
+    state.on(['partner'],function(value){
+      store.set('client',null)
+      store.set('partner',value)
+      self.setState({client:null})
+      self.setState({partner:value})
+    })
+    state.on(['org'],function(value){
+      store.set('org',value)
+      self.setState({'org':value})
     })
   },
   clearError:function(){

@@ -17,13 +17,15 @@ exports.getToken = function(){
   return token
 }
 
-exports.loginAsPartner = function(partner_id) {
-  state.set('partner_id', partner_id);
-  state.set('mode', 'partner');
+exports.setViewToOrg = function(type, org) {
+  // {partner: <partner>, mode: 'partner', 'org': <partner>}
+  state.set(type, org);
+  state.set('mode', type);
+  state.set('org', org);
 }
 
-exports.loginAsClient = function(client_id) {
-  state.set('client_id', client_id);
+exports.loginAsClient = function(client) {
+  state.set('client', client);
   state.set('mode', 'client');
 }
 
@@ -73,6 +75,10 @@ exports.getIntegrationById = function(id) {
   return nsapi.getIntegrationById(id, token)
 }
 
+exports.getClientById = function(id) {
+  return nsapi.getClientById(id, token)
+}
+
 exports.getActions = function(filter){
   return nsapi.getActions(filter, token)
 }
@@ -93,6 +99,13 @@ exports.upsertAction = function(action, service, serviceAuths) {
   return nsapi.upsertAction(action, service, serviceAuths, token)
   .then((result) => {
     return exports.goto('/action/' + result.action.id);
+  })
+}
+
+exports.upsertClient = function(client) {
+  return nsapi.upsertClient(client, token)
+  .then((result) => {
+    return exports.goto('/client/' + result.client.id);
   })
 }
 
