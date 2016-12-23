@@ -8,12 +8,13 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       filter: {
-        partner_id: this.props.partner_id
+        partner_id: actions.getState('org').id
       }
     }
   },
   render() {
-    return <IntegrationBrowser filter={this.filter} view='self' />
+    console.log('integrationbrowser', this.state);
+    return <IntegrationBrowser initialFilter={this.filter} />
   }
 })
 

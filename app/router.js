@@ -10,6 +10,7 @@ var Landing = require('./pages/landing')
 var IntegrationsMe = require('./pages/integrations_me')
 var IntegrationsBrowse = require('./pages/integrations_browse')
 var IntegrationView = require('./pages/integration_view')
+var IntegrationInstanceEdit = require('./pages/integration_instance_edit')
 var IntegrationEdit = require('./pages/integration_edit')
 var ClientEdit = require('./pages/client_edit')
 var PartnerEdit = require('./pages/partner_edit')
@@ -95,6 +96,15 @@ module.exports = (
       </Route>
       <Route path='/integration/:id' component={NavbarLayout}>
         <IndexRoute component={IntegrationView}/>
+      </Route>
+      <Route path='/integration/:integrationId/instance/new' component={NavbarLayout}>
+        <IndexRoute component={IntegrationInstanceEdit}/>
+      </Route>
+      <Route path='/integration/:integrationId/instance/:id' component={NavbarLayout}>
+        <IndexRoute component={IntegrationInstanceEdit}/>
+      </Route>
+      <Route path='/integration_instance/:id' component={NavbarLayout}>
+        <IndexRoute component={IntegrationInstanceEdit}/>
       </Route>
       <Route path='/integration/new' component={NavbarLayout}>
         <IndexRoute component={IntegrationEdit}/>

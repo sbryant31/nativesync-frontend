@@ -58,8 +58,20 @@ exports.getIntegrations = function(filter, token){
   return call('/integrations', filter, 'GET', token)
 }
 
-exports.getIntegrationById = function(id, token){
-  return call('/integration/' + id, null, 'GET', token)
+exports.getClients = function(filter, token){
+  return call('/clients', filter, 'GET', token)
+}
+
+exports.getIntegrationInstances = function(integrationId, token){
+  return call('/integration/' + integrationId + '/instances', {}, 'GET', token)
+}
+
+exports.getIntegrationInstanceById = function(id, token){
+  return call('/integration_instance/' + id, {}, 'GET', token)
+}
+
+exports.getIntegrationById = function(id, options, token){
+  return call('/integration/' + id, options, 'GET', token)
 }
 
 exports.getClientById = function(id, token){
@@ -88,4 +100,8 @@ exports.upsertPartner = function(partner, token){
 
 exports.upsertIntegration = function(integration, services, actions, integrationCode, token){
   return call('/integrations/upsert',{integration: integration, services: services, actions: actions, integrationCode: integrationCode},'POST',token)
+}
+
+exports.upsertIntegrationInstance = function(integrationInstance, integration, client, token){
+  return call('/integration_instances/upsert',{integrationInstance: integrationInstance, integration: integration, client: client},'POST',token)
 }

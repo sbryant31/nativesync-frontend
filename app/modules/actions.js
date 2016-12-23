@@ -22,6 +22,7 @@ exports.setViewToOrg = function(type, org) {
   state.set(type, org);
   state.set('mode', type);
   state.set('org', org);
+  exports.goto('/dashboard');
 }
 
 exports.loginAsClient = function(client) {
@@ -71,8 +72,20 @@ exports.getIntegrations = function(filter){
   return nsapi.getIntegrations(filter, token)
 }
 
-exports.getIntegrationById = function(id) {
-  return nsapi.getIntegrationById(id, token)
+exports.getClients = function(filter){
+  return nsapi.getClients(filter, token)
+}
+
+exports.getIntegrationInstances = function(integrationId){
+  return nsapi.getIntegrationInstances(integrationId, token)
+}
+
+exports.getIntegrationById = function(id, includeAssociations) {
+  return nsapi.getIntegrationById(id, {includeAssociations: includeAssociations}, token)
+}
+
+exports.getIntegrationInstanceById = function(id) {
+  return nsapi.getIntegrationInstanceById(id, token)
 }
 
 exports.getClientById = function(id) {
@@ -124,6 +137,13 @@ exports.upsertIntegration = function(integration, services, actions, integration
   return nsapi.upsertIntegration(integration, services, actions, integrationCode, token)
   .then((result) => {
     return exports.goto('/integration/' + result.integration.id);
+  })
+}
+
+exports.upsertIntegrationInstance = function(integrationInstance, integration, client) {
+  return nsapi.upsertIntegrationInstance(integrationInstance, integration, client, token)
+  .then((result) => {
+    return exports.goto('/integration_instance/' + result.integrationInstance.id);
   })
 }
 

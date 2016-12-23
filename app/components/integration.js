@@ -61,7 +61,7 @@ module.exports = React.createClass({
   componentDidMount: function() {
     var self = this;
     if (self.props.id && !isNaN(self.props.id)) {
-      actions.getIntegrationById(self.props.id)
+      actions.getIntegrationById(self.props.id, true)
       .then(function(result) {
         self.setState({integration: result.integration, services: result.services, actions: result.actions, integrationCode: result.integrationCode});
       })

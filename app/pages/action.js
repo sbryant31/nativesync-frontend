@@ -9,7 +9,7 @@ var Select = require('react-select');
 var ServiceAuthSelector = require('../components/service_auth/service_auth_selector');
 var ServiceSelector = require('../components/service/service_selector');
 var ParameterList = require('../components/action/parameter_list');
-var KeyValueList = require('../components/action/key_value_list');
+var KeyValueList = require('../components/inputs/key_value_list');
 
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 
