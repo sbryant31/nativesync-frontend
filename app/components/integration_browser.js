@@ -76,8 +76,8 @@ module.exports = React.createClass({
         <tr>
            <th>Title</th>
            <th>Description</th>
-           <th>Instances</th>
-           <th>Create New</th>
+           <th>Managed Instances</th>
+           <th>New Instance</th>
         </tr>
         </thead>
         <tbody>

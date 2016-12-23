@@ -58,6 +58,10 @@ exports.getIntegrations = function(filter, token){
   return call('/integrations', filter, 'GET', token)
 }
 
+exports.getClientAuths = function(clientId, serviceAuthIds, token){
+  return call('/client_auths', {client_id: clientId, service_auth_ids: serviceAuthIds}, 'GET', token)
+}
+
 exports.getClients = function(filter, token){
   return call('/clients', filter, 'GET', token)
 }

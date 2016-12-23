@@ -54,7 +54,7 @@ module.exports = React.createClass({
     var selectedIDs = _.pluck(this.state.value, 'value');
     return <label className="pt-label pt-inline col-xs">
       <h4>Authentication Schemes for {this.props.service.name}</h4>
-      <ServiceAuthList serviceAuths={this.state.serviceAuths} selectedIDs={selectedIDs} services={[this.props.service]}/>
+      <ServiceAuthList serviceAuths={this.state.serviceAuths} selectedIDs={selectedIDs} services={[this.props.service]} readOnly />
       <hr/>
       <h4>Add/Remove Auth Schemes</h4>
       <Select

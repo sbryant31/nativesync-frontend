@@ -72,6 +72,10 @@ exports.getIntegrations = function(filter){
   return nsapi.getIntegrations(filter, token)
 }
 
+exports.getClientAuths = function(clientId, serviceAuthIDs){
+  return nsapi.getClientAuths(clientId, serviceAuthIDs, token);
+}
+
 exports.getClients = function(filter){
   return nsapi.getClients(filter, token)
 }

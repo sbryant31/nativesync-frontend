@@ -4,7 +4,7 @@ var lodash = require('lodash');
 module.exports = React.createClass({
   getDefaultProps: () => {
     return {
-      list: {},
+      list: [],
       onChange: (list) => { console.log('kv changed', list); }
     }
   },

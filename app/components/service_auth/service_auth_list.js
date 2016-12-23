@@ -3,13 +3,15 @@ var _ = require('underscore');
 var lodash = require('lodash');
 var Select = require('react-select');
 var actions = require('../../modules/actions');
+var ServiceAuthView = require('../service_auth/service_auth_view');
 
 module.exports = React.createClass({
   getDefaultProps: function() {
     return {
       serviceAuths: [],
       services: [],
-      selectedIDs: []
+      selectedIDs: [],
+      readOnly: false
     }
   },
   render() {
@@ -17,23 +19,8 @@ module.exports = React.createClass({
     var servicesByID = _.indexBy(this.props.services, 'id');
     var authList = lodash.map(this.props.serviceAuths,function(serviceAuth){
       var isSelected = (self.props.selectedIDs.indexOf(serviceAuth.id) !== -1)
-      return <div className="row">
-        <div className="col-xs">
-          { isSelected && <span className="pt-icon-confirm" /> }
-        </div>
-        <div className="col-xs-3">
-          service: { servicesByID[serviceAuth.service_id].name }
-        </div>
-        <div className="col-xs-3">
-          name: { serviceAuth.name }
-        </div>
-        <div className="col-xs-3">
-          type: { serviceAuth.type }
-        </div>
-        <div className="col-xs-3">
-          details: { JSON.stringify(serviceAuth.details) }
-        </div>
-      </div>
+      var service = servicesByID[serviceAuth.service_id]
+      return <ServiceAuthView isSelected={isSelected} service={service} serviceAuth={serviceAuth}  />
     })
     return <div>
       { authList }

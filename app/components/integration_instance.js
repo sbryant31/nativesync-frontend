@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var React = require('react')
 var actions = require('../modules/actions')
 var Navbar = require('../components/navbar')
@@ -7,11 +8,14 @@ var TriggerInfo = require('../components/integration/trigger_info');
 var TextInputField = require('../components/inputs/text_input_field');
 var ClientSelect = require('../components/client/client_select');
 var KeyValueList = require('../components/inputs/key_value_list');
+var ClientAuthForm = require('../components/client_auth/client_auth_form');
+var ServiceAuthList = require('../components/service_auth/service_auth_list');
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
+      clientAuths: [],
       client: {},
       integration: {
         scheduling_info: {}
@@ -42,6 +46,25 @@ module.exports = React.createClass({
   },
   handleClientChange: function(client) {
     this.setState({client: client});
+    self.getClientAuths();
+  },
+  getClientAuths: function() {
+    var self = this;
+    var serviceAuthIDs = _.pluck(this.state.serviceAuths, 'id');
+    var client = this.state.client;
+    actions.getClientAuths(this.state.client.id, serviceAuthIDs)
+    .then((result) => {
+      var clientAuths = result.clientAuths;
+      for (let serviceAuthId of serviceAuthIDs) {
+        if (!_.findWhere(clientAuths, {service_auth_id: serviceAuthId})) {
+          clientAuths.push({
+            service_auth_id: serviceAuthId,
+            client_id: client.id,
+          })
+        }
+      }
+      self.setState({clientAuths: clientAuths});
+    });
   },
   getDefaultProps: function() {
     return {
@@ -59,18 +82,28 @@ module.exports = React.createClass({
       .then(function(result) {
         var integrationInstance = self.state.integrationInstance;
         integrationInstance.scheduling_info = result.integration.scheduling_info;
-        self.setState({integrationInstance: integrationInstance, integration: result.integration});
+        self.setState({
+          integrationInstance: integrationInstance,
+          integration: result.integration,
+          actions: result.actions,
+          services: result.services,
+          serviceAuths: result.serviceAuths
+        });
+        self.getClientAuths();
       })
     } else {
-      console.log('getting instance id', self.props.id);
       actions.getIntegrationInstanceById(self.props.id)
       .then(function(result) {
         console.log('getting instance', result);
         self.setState({
           integrationInstance: result.integrationInstance,
           integration: result.integration,
-          client: result.client
+          client: result.client,
+          actions: result.actions,
+          services: result.services,
+          serviceAuths: result.serviceAuths
         });
+        self.getClientAuths();
       })
     }
   },
@@ -92,6 +125,7 @@ module.exports = React.createClass({
         </TabPanel>
         <TabPanel>
           <h2>Authentication</h2>
+          <ClientAuthForm clientAuths={this.state.clientAuths} client={this.state.client} services={this.state.services} serviceAuths={this.state.serviceAuths} />
         </TabPanel>
         <TabPanel>
           <h2>Configure</h2>
