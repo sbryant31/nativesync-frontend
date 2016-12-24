@@ -10,7 +10,7 @@ var ServiceAuthSelector = require('../components/service_auth/service_auth_selec
 var ServiceSelector = require('../components/service/service_selector');
 var ParameterList = require('../components/action/parameter_list');
 var KeyValueList = require('../components/inputs/key_value_list');
-
+var TextInputField = require('../components/inputs/text_input_field');
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 
 module.exports = React.createClass({
@@ -24,6 +24,7 @@ module.exports = React.createClass({
       },
       service: {},
       serviceAuths: [],
+      selectedServiceAuths: [],
       readOnly: false
     }
   },
@@ -33,12 +34,28 @@ module.exports = React.createClass({
     if (!isNaN(self.props.params.id)) {
       actions.getActionById(self.props.params.id)
       .then(function(result) {
-        self.setState({action: result.action, service: result.service, serviceAuths: result.serviceAuths});
+        self.setState({
+          action: result.action,
+          service: result.service,
+          selectedServiceAuths: result.serviceAuths
+        });
+        return self.loadServiceAuths(result.service);
       })
     }
   },
+  loadServiceAuths: function(service) {
+    var self = this;
+    self.setState({serviceAuths: []});
+    actions.getServiceAuths(service.id)
+    .then((result) => {
+      console.log('got service auths', result);
+      self.setState({serviceAuths: result.serviceAuths});
+      var newSelected = _.where(self.state.selectedServiceAuths, {service_id: service.id});
+      self.setState({selectedServiceAuths: newSelected});
+    });
+  },
   handleSave: function() {
-    actions.upsertAction(this.state.action, this.state.service, this.state.serviceAuths)
+    actions.upsertAction(this.state.action, this.state.service, this.state.selectedServiceAuths)
   },
   handleChange: function(field, e) {
     var action = this.state.action;
@@ -56,10 +73,10 @@ module.exports = React.createClass({
   handleServiceChange: function(service) {
     this.setState({service: service});
     this.handleChangeValue('service_name', service.name);
+    this.loadServiceAuths(service);
   },
   handleAuthSchemeChange: function(serviceAuths) {
-    console.log(serviceAuths);
-    this.setState({serviceAuths: serviceAuths});
+    this.setState({selectedServiceAuths: serviceAuths});
   },
   render() {
     var actionTypes = [
@@ -97,16 +114,10 @@ module.exports = React.createClass({
               <ServiceSelector service={ this.state.service } onChange={this.handleServiceChange.bind(this)} />
             </div>
             <div className="row">
-              <label className="pt-label pt-inline col-xs">
-                Function
-                <input className="pt-input" value={ this.state.action.function_name } onChange={this.handleChange.bind(this, 'function_name')} />
-              </label>
+              <TextInputField label="Function" value={this.state.action.function_name} onChange={this.handleChange.bind(this, 'function_name')} />
             </div>
             <div className="row">
-              <label className="pt-label pt-inline col-xs">
-                Description
-                <input className="pt-input" value={ this.state.action.description } onChange={this.handleChange.bind(this, 'description')}/>
-              </label>
+              <TextInputField label="Description" value={this.state.action.description} onChange={this.handleChange.bind(this, 'description')} />
             </div>
             <div className="row">
               <label className="pt-label pt-inline col-xs">
@@ -115,16 +126,10 @@ module.exports = React.createClass({
               </label>
             </div>
             <div className="row">
-              <label className="pt-label pt-inline col-xs">
-                Host
-                <input className="pt-input" value={ this.state.action.host } onChange={this.handleChange.bind(this, 'host')} />
-              </label>
+              <TextInputField label="Host" value={this.state.action.host} onChange={this.handleChange.bind(this, 'host')} />
             </div>
             <div className="row">
-              <label className="pt-label pt-inline col-xs">
-                Path
-                <input className="pt-input" value={ this.state.action.path } onChange={this.handleChange.bind(this, 'path')} />
-              </label>
+              <TextInputField label="Path" value={this.state.action.path} onChange={this.handleChange.bind(this, 'path')} />
             </div>
             <div className="row">
               <label className="pt-label pt-inline col-xs">
@@ -146,7 +151,12 @@ module.exports = React.createClass({
               <KeyValueList list={this.state.action.query} onChange={this.handleChangeValue.bind(this, 'query')} />
           </TabPanel>
           <TabPanel>
-            <ServiceAuthSelector service={ this.state.service } onChange={this.handleAuthSchemeChange} value={this.state.serviceAuths} />
+            <ServiceAuthSelector
+              service={ this.state.service }
+              onSelectChange={this.handleAuthSchemeChange}
+              selected={this.state.selectedServiceAuths}
+              serviceAuths={this.state.serviceAuths}
+            />
           </TabPanel>
           <TabPanel>
             <label className="pt-label">

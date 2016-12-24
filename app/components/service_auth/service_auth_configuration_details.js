@@ -10,13 +10,18 @@ module.exports = React.createClass({
   getDefaultProps: function() {
     return {
       details: {},
-      readOnly: false
+      readOnly: false,
+      onChange: function(details) { console.log('details changed', details); }
     }
   },
   render() {
     var self = this;
     return <div>
-      <KeyValueObject object={this.props.details} readOnly={this.props.readOnly} />
+      <KeyValueObject
+				object={this.props.details}
+				readOnly={this.props.readOnly}
+				onChange={this.props.onChange}
+			/>
     </div>
   }
 })

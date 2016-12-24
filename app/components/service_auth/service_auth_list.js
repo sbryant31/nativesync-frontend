@@ -12,8 +12,9 @@ module.exports = React.createClass({
     return {
       serviceAuths: [],
       services: [],
-      selectedIDs: [],
+      selected: [],
       onChange: function(serviceAuths) {console.log('service auths change', serviceAuths)},
+      onSelectChange: function(serviceAuths) {console.log('service auths select changed', serviceAuths)},
       readOnly: false,
     }
   },
@@ -32,7 +33,6 @@ module.exports = React.createClass({
   },
   handleAdd: function() {
     var self = this;
-    console.log('add', self.props);
     var serviceAuths = self.props.serviceAuths;
     serviceAuths.push({service_id: self.props.services[0].id, name: 'New Service Auth', details: {}});
     self.props.onChange(serviceAuths);
@@ -43,17 +43,39 @@ module.exports = React.createClass({
     serviceAuths.splice(index, 1);
     self.props.onChange(serviceAuths);
   },
+  handleSelect: function(name) {
+    var selected = this.props.selected;
+    console.log('select', name, selected);
+    selected.push(_.findWhere(this.props.serviceAuths, {name: name}));
+    this.props.onSelectChange(selected);
+  },
+  handleDeselect: function(name) {
+    var selected = _.reject(this.props.selected, (serviceAuth) => {
+      return serviceAuth.name == name;
+    });
+    console.log('deselect', name, selected);
+    this.props.onSelectChange(selected);
+  },
   render() {
     var self = this;
-    var servicesByID = _.indexBy(this.props.services, 'id');
-    var authList = lodash.map(this.props.serviceAuths,function(serviceAuth, index){
-      var isSelected = (self.props.selectedIDs.indexOf(serviceAuth.id) !== -1)
+    var servicesByID = _.indexBy(self.props.services, 'id');
+    var authList = lodash.map(self.props.serviceAuths,function(serviceAuth, index){
+      var isSelected = _.findWhere(self.props.selected, {id: serviceAuth.id});
       var service = servicesByID[serviceAuth.service_id]
       return <div className="row">
-        <ServiceAuthView isSelected={isSelected} service={service} serviceAuth={serviceAuth} onChange={self.handleChange.bind(self, serviceAuth.name)}>
-          <div className="col-xs">
-            <button className="pt-button" onClick={self.handleRemove.bind(self, index)}>Remove</button>
-          </div>
+        <ServiceAuthView
+          isSelected={isSelected}
+          service={service}
+          serviceAuth={serviceAuth}
+          onChange={self.handleChange.bind(self, serviceAuth.name)}
+          onSelect={self.handleSelect.bind(self, serviceAuth.name)}
+          onDeselect={self.handleDeselect.bind(self, serviceAuth.name)}
+        >
+          {!self.props.readOnly &&
+            <div className="col-xs">
+              <button className="pt-button" onClick={self.handleRemove.bind(self, index)}>Remove</button>
+            </div>
+          }
         </ServiceAuthView>
       </div>
     })

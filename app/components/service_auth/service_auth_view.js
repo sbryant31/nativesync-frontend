@@ -29,9 +29,12 @@ module.exports = React.createClass({
   },
   render() {
     var self = this;
+    var checkboxHandler = this.props.isSelected ? this.props.onDeselect : this.props.onSelect;
+    var checked = this.props.isSelected ? true : false;
+        //<Checkbox onChange={checkboxHandler} checked={checked} />
     return <div className="row">
       <div className="col-xs">
-        { this.props.isSelected && <span className="pt-icon-confirm" /> }
+       <input type="checkbox" checked={checked} onChange={checkboxHandler} />
       </div>
       <div className="col-xs">
         <TextInputField label="Service" value={this.props.service.name} />

@@ -22,7 +22,6 @@ module.exports = React.createClass({
     var clientAuthList = lodash.map(this.props.serviceAuths, function(serviceAuth) {
       return (
         <div>
-          <ServiceAuthView service={servicesById[serviceAuth.service_id]} serviceAuth={serviceAuth} readOnly />
           <ClientAuthEditor client={self.props.client} service={servicesById[serviceAuth.service_id]} serviceAuth={serviceAuth} clientAuth={clientAuthsByServiceAuthID[serviceAuth.id]} />
         </div>
       )

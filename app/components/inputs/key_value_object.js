@@ -1,5 +1,6 @@
 var React = require('react');
 var lodash = require('lodash');
+var _ = require('underscore');
 
 module.exports = React.createClass({
   getDefaultProps: () => {
@@ -16,6 +17,9 @@ module.exports = React.createClass({
   },
   handleAdd: function() {
     var object = this.props.object;
+    var newKey = 'new key' + _.random(0,1000);
+    var newValue = 'new value' + _.random(0,1000);
+    object[newKey] = newValue;
     this.props.onChange(object);
   },
   handleChangeKey: function(key, e) {
