@@ -81,8 +81,8 @@ module.exports = React.createClass({
   },
   render() {
     var actionTypes = [
-      {value: 'rest', label: 'NativeSync REST Action 1.0'},
-      {value: 'code', label: 'NativeSync Code Action 1.0'}
+      {value: 'rest', label: 'REST Action 1.0'},
+      {value: 'code', label: 'Code Action 1.0'}
     ];
     var httpMethods = [
       {value: 'GET', label: 'GET'},
