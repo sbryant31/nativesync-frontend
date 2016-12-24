@@ -62,7 +62,7 @@ module.exports = React.createClass({
     var authList = lodash.map(self.props.serviceAuths,function(serviceAuth, index){
       var isSelected = _.findWhere(self.props.selected, {id: serviceAuth.id});
       var service = servicesByID[serviceAuth.service_id]
-      return <div className="row">
+      return <div>
         <ServiceAuthView
           isSelected={isSelected}
           service={service}
@@ -80,7 +80,7 @@ module.exports = React.createClass({
       </div>
     })
     return <div>
-      <div className="row">
+      <div>
         { authList }
       </div>
       <div className="row">
