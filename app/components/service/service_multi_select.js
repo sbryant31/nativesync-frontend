@@ -27,9 +27,9 @@ module.exports = React.createClass({
     console.log('loading options for service');
     var self = this;
     return actions.getServices()
-    .then(function(services) {
-      self.setState({services: services});
-      var serviceOptions = _.map(services, (service) => {
+    .then(function(result) {
+      self.setState({services: result.services});
+      var serviceOptions = _.map(result.services, (service) => {
         return {value: service.id, label: service.name}
       })
       self.setState({serviceOptions: serviceOptions})

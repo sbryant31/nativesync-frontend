@@ -23,13 +23,13 @@ module.exports = React.createClass({
     console.log('loading options for service');
     var self = this;
     return actions.getServices()
-    .then(function(services) {
-      self.setState({services: _.indexBy(services, 'id')})
-      var services = _.map(services, (service) => {
+    .then(function(result ) {
+      self.setState({services: _.indexBy(result.services, 'id')})
+      var services = _.map(result.services, (service) => {
         return {value: service.id, label: service.name}
       })
       return {
-        options: services
+        options: result.services
       };
     })
   },

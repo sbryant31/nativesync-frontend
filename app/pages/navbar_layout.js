@@ -122,6 +122,10 @@ var BuildMenu = React.createClass({
         name:'My Actions',
         link:'/actions/me',
       },
+      {
+        name:'Services',
+        link:'/services/browse',
+      },
     ]
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}

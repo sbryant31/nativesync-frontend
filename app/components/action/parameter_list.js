@@ -1,6 +1,7 @@
 var React = require('react');
 var lodash = require('lodash');
 var Select = require('react-select');
+var ParameterInSelector = require('../action/parameter_in_selector');
 
 module.exports = React.createClass({
   getDefaultProps: () => {
@@ -26,6 +27,8 @@ module.exports = React.createClass({
       parameters[index][field] = e.target.value;
     } else if (e.value) {
       parameters[index][field] = e.value;
+    } else {
+      parameters[index][field] = e;
     }
     this.props.onChange(parameters);
   },
@@ -41,20 +44,12 @@ module.exports = React.createClass({
         {value: 'object', label: 'Object'},
         {value: 'list', label: 'List'}
       ];
-      var parameterInLocations = [
-        {value: 'query', label: 'Query'},
-        {value: 'header', label: 'Header'},
-        {value: 'body', label: 'Body'},
-        {value: 'path', label: 'Path'},
-        {value: 'host', label: 'Host'},
-        {value: 'formData', label: 'Form Data'},
-      ];
       return <div className="row">
         <label className="pt-label pt-inline col-xs">
           Name <input className="pt-input" value={ parameter.name } onChange={self.handleChange.bind(self, currentIndex, 'name')} />
         </label>
         <label className="pt-label pt-inline col-xs">
-          In <Select options={parameterInLocations} value={ parameter.in } onChange={self.handleChange.bind(self, currentIndex, 'in')} />
+          In <ParameterInSelector value={ parameter.in } onChange={self.handleChange.bind(self, currentIndex, 'in')} />
         </label>
         <label className="pt-label pt-inline col-xs">
           Description <input className="pt-input" value={ parameter.description } onChange={self.handleChange.bind(self, currentIndex, 'description')} />

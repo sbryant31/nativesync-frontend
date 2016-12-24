@@ -72,6 +72,10 @@ exports.getIntegrations = function(filter){
   return nsapi.getIntegrations(filter, token)
 }
 
+exports.getServices = function(filter){
+  return nsapi.getServices(filter, token)
+}
+
 exports.getClientAuths = function(clientId, serviceAuthIDs){
   return nsapi.getClientAuths(clientId, serviceAuthIDs, token);
 }
@@ -88,6 +92,10 @@ exports.getIntegrationById = function(id, includeAssociations) {
   return nsapi.getIntegrationById(id, {includeAssociations: includeAssociations}, token)
 }
 
+exports.getServiceById = function(id) {
+  return nsapi.getServiceById(id, token)
+}
+
 exports.getIntegrationInstanceById = function(id) {
   return nsapi.getIntegrationInstanceById(id, token)
 }
@@ -102,10 +110,6 @@ exports.getPartnerById = function(id) {
 
 exports.getActions = function(filter){
   return nsapi.getActions(filter, token)
-}
-
-exports.getServices = function(filter){
-  return nsapi.getServices(filter, token)
 }
 
 exports.getServiceAuths = function(service_id){
@@ -142,6 +146,10 @@ exports.upsertIntegration = function(integration, services, actions, integration
   .then((result) => {
     return exports.goto('/integration/' + result.integration.id);
   })
+}
+
+exports.upsertService = function(service, serviceAuths) {
+  return nsapi.upsertService(service, serviceAuths, token)
 }
 
 exports.upsertIntegrationInstance = function(integrationInstance, integration, client) {

@@ -74,6 +74,10 @@ exports.getIntegrationInstanceById = function(id, token){
   return call('/integration_instance/' + id, {}, 'GET', token)
 }
 
+exports.getServiceById = function(id, token){
+  return call('/service/' + id, {}, 'GET', token)
+}
+
 exports.getIntegrationById = function(id, options, token){
   return call('/integration/' + id, options, 'GET', token)
 }
@@ -93,6 +97,11 @@ exports.getActionById = function(id, token){
 exports.upsertAction = function(action, service, serviceAuths, token){
   return call('/actions/upsert',{action: action, service: service, serviceAuths: serviceAuths},'POST',token)
 }
+
+exports.upsertService = function(service, serviceAuths, token){
+  return call('/services/upsert',{service: service, serviceAuths: serviceAuths},'POST',token)
+}
+
 
 exports.upsertClient = function(client, token){
   return call('/clients/upsert',{client: client},'POST',token)
