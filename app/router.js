@@ -18,7 +18,7 @@ var ClientEdit = require('./pages/client_edit')
 var PartnerEdit = require('./pages/partner_edit')
 var ActionsMe = require('./pages/actions_me');
 var ActionsBrowse = require('./pages/actions_browse');
-var Action = require('./pages/action');
+var ActionEdit = require('./pages/action_edit');
 var Profile = require('./pages/profile');
 var Login = require('./pages/login')
 var Dashboard = require('./pages/dashboard')
@@ -85,10 +85,10 @@ module.exports = (
         <IndexRoute component={ActionsBrowse}/>
       </Route>
       <Route path='/action/:id' component={NavbarLayout}>
-        <IndexRoute component={Action}/>
+        <IndexRoute component={ActionEdit}/>
       </Route>
       <Route path='/action/new' component={NavbarLayout}>
-        <IndexRoute component={Action}/>
+        <IndexRoute component={ActionEdit}/>
       </Route>
       <Route path='/integrations/me' component={NavbarLayout}>
         <IndexRoute component={IntegrationsMe}/>

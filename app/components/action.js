@@ -12,6 +12,7 @@ var ParameterList = require('../components/action/parameter_list');
 var KeyValueList = require('../components/inputs/key_value_list');
 var TextInputField = require('../components/inputs/text_input_field');
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
+var BodyEditor = require('../components/action/body_editor');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -30,9 +31,9 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     var self = this;
-    console.log('loading action', self.props.params.id);
-    if (!isNaN(self.props.params.id)) {
-      actions.getActionById(self.props.params.id)
+    console.log('loading action', self.props.id);
+    if (!isNaN(self.props.id)) {
+      actions.getActionById(self.props.id)
       .then(function(result) {
         self.setState({
           action: result.action,
@@ -94,11 +95,6 @@ module.exports = React.createClass({
       {value: 'http', label: 'HTTP'},
       {value: 'https', label: 'HTTPS'},
     ];
-    var bodyTypes = [
-      {value: 'formData', label: 'Form'},
-      {value: 'json', label: 'JSON'},
-      {value: 'xml', label: 'XML'}
-    ];
     return <div>
       <h2>Build an Action</h2>
       <Tabs>
@@ -159,24 +155,14 @@ module.exports = React.createClass({
             />
           </TabPanel>
           <TabPanel>
-            <label className="pt-label">
-              Body Type
-              <Select value={ this.state.action.input_content_type } options={bodyTypes} onChange={this.handleChange.bind(this, 'input_content_type')} />
-            </label>
             <h4>Parameters</h4>
             <ParameterList parameters={this.state.action.input} onChange={this.handleChangeValue.bind(this, 'input')} />
-            <h4>Example</h4>
-            <textarea className="pt-input" onChange={this.handleChange.bind(this, 'input_example')} value={this.state.action.input_example} />
+            <h4>Input Body</h4>
+            <BodyEditor value={this.state.action.input_body} onChange={this.handleChange.bind(this, 'input_body')} />
           </TabPanel>
           <TabPanel>
-            <label className="pt-label">
-              Body Type
-              <Select value={ this.state.action.output_content_type } options={bodyTypes} onChange={this.handleChange.bind(this, 'output_content_type')} />
-            </label>
-            <h4>Parameters</h4>
-            <ParameterList parameters={this.state.action.output} onChange={this.handleChangeValue.bind(this, 'output')} />
-            <h4>Example</h4>
-            <textarea className="pt-input" onChange={this.handleChange.bind(this, 'output_example')} value={this.state.action.output_example} />
+            <h4>Output Body</h4>
+            <BodyEditor value={this.state.action.output_body} onChange={this.handleChange.bind(this, 'output_body')} />
           </TabPanel>
       </Tabs>
       <hr />

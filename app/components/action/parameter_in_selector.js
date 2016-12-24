@@ -21,10 +21,8 @@ module.exports = React.createClass({
     var parameterInLocations = [
       {value: 'query', label: 'Query'},
       {value: 'header', label: 'Header'},
-      {value: 'body', label: 'Body'},
       {value: 'path', label: 'Path'},
       {value: 'host', label: 'Host'},
-      {value: 'formData', label: 'Form Data'},
     ];
     return (
       <Select options={parameterInLocations} value={this.props.value} onChange={self.handleChange} />
