@@ -34,7 +34,7 @@ module.exports = React.createClass({
   handleAdd: function() {
     var self = this;
     var serviceAuths = self.props.serviceAuths;
-    serviceAuths.push({service_id: self.props.services[0].id, name: 'New Service Auth', details: {}});
+    serviceAuths.push({service_id: self.props.services[0].id, name: 'New Service Auth' + _.random(0,1000), details: {}});
     self.props.onChange(serviceAuths);
   },
   handleRemove: function(index) {

@@ -40,14 +40,18 @@ module.exports = React.createClass({
       {value: 'xml', label: 'XML'}
     ];
     return <div>
-			<label className="pt-label">
-				Content Type
-				<Select value={ this.props.value.content_type } options={bodyTypes} onChange={this.handleChange.bind(this, 'content_type')} />
-			</label>
-			<label className="pt-label" >
-				Example
-				<textarea className="pt-input" onChange={this.handleChange.bind(this, 'example')} value={this.props.value.example} />
-			</label>
+      <label className="pt-label">
+        Content Type
+        <Select value={ this.props.value.content_type } options={bodyTypes} onChange={this.handleChange.bind(this, 'content_type')} />
+      </label>
+      <label className="pt-label" >
+        Parameters
+        <textarea className="pt-input" onChange={this.handleChange.bind(this, 'parameters')} value={this.props.value.parameters} />
+      </label>
+      <label className="pt-label" >
+        Example
+        <textarea className="pt-input" onChange={this.handleChange.bind(this, 'example')} value={this.props.value.example} />
+      </label>
 
     </div>
   }

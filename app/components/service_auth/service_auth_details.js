@@ -6,6 +6,7 @@ var actions = require('../../modules/actions');
 var ServiceAuthConfigurationDetails = require('./service_auth_configuration_details');
 var ServiceAuthApikeyDetails = require('./service_auth_apikey_details');
 var ServiceAuthBasicDetails = require('./service_auth_basic_details');
+var ServiceAuthOauth2Details = require('./service_auth_oauth2_details');
 
 module.exports = React.createClass({
   getDefaultProps: function() {
@@ -43,7 +44,7 @@ module.exports = React.createClass({
         <ServiceAuthBasicDetails details={this.props.details} readOnly={this.props.readOnly} onChange={self.props.onDetailsChange} />
       }
       { this.props.type == 'oauth2' &&
-        <div>Coming soon: OAuth 2.0</div>
+        <ServiceAuthOauth2Details details={this.props.details} readOnly={this.props.readOnly} onChange={self.props.onDetailsChange} />
       }
     </div>
   }

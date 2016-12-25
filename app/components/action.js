@@ -21,7 +21,8 @@ module.exports = React.createClass({
         headers: [],
         query: [],
         input: [],
-        output: []
+        input_body: {},
+        output_body: {}
       },
       service: {},
       serviceAuths: [],
