@@ -31,7 +31,7 @@ module.exports = React.createClass({
       {value: 'oauth2', label: 'Oauth 2.0'},
     ];
     console.log('rendering details for', this.props);
-    return <div>
+    return <div className="ServiceAuthDetails">
       <Select options={types} value={this.props.type} onChange={self.handleTypeChange} />
       { this.props.type == 'configuration' &&
         <ServiceAuthConfigurationDetails details={this.props.details} readOnly={this.props.readOnly} onChange={self.props.onDetailsChange} />

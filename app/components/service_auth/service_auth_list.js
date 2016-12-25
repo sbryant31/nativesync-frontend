@@ -63,7 +63,7 @@ module.exports = React.createClass({
       var isSelected = _.findWhere(self.props.selected, {id: serviceAuth.id});
       var service = servicesByID[serviceAuth.service_id]
       return (
-          <div>
+          <div className="ServiceAuthListItem">
             <ServiceAuthView
               isSelected={isSelected}
               service={service}
@@ -82,11 +82,11 @@ module.exports = React.createClass({
       );
     })
     return (
-        <div>
-            <div>
+        <div className="ServiceAuthList">
+            <div className="ServiceAuthListItems">
                 { authList }
             </div>
-            <div className="row">
+            <div className="row parent button-container bg">
                 { !self.props.readOnly &&
                     <button className="pt-button" onClick={self.handleAdd.bind(self)}>Add</button>
                 }

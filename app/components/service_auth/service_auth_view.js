@@ -33,8 +33,8 @@ module.exports = React.createClass({
     var checked = this.props.isSelected ? true : false;
         //<Checkbox onChange={checkboxHandler} checked={checked} />
     return (
-        <div>
-            <div className="row">
+        <div className="ServiceAuthView">
+            <div className="parent row">
               <div className="col-xs">
                <input type="checkbox" checked={checked} onChange={checkboxHandler} />
               </div>
@@ -52,7 +52,7 @@ module.exports = React.createClass({
                                     onTypeChange={this.handleChange.bind(self, 'type')} 
                                     onDetailsChange={this.handleChange.bind(self, 'details')} />
               </div>
-              <div className="button-container">
+              <div className="parent button-container">
                   { this.props.children }
               </div>
             </div>

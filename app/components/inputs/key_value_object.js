@@ -57,7 +57,7 @@ module.exports = React.createClass({
       );
     })
     return (
-        <div>
+        <div className="KeyValueObject">
           <div className="row">
               { object }
           </div>

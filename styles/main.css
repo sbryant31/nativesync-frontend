@@ -2,12 +2,32 @@
   box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
 }
 
-.ServiceAuthConfigurationDetails .item {
+.button-container,
+.parent.button-container {
+    background: transparent;
+}
+
+.ServiceAuthConfigurationDetails .KeyValueObject .item {
     padding: 20px;
     border-bottom: 1px solid #ddd;
 }
-
-.ServiceAuthConfigurationDetails .parent.button-container {
+.ServiceAuthConfigurationDetails .KeyValueObject .parent.button-container {
     padding: 20px;
 }
 
+
+.ServiceAuthList {
+    max-width: 1000px;
+    margin: auto;
+}
+.ServiceAuthList .button-container.bg {
+    background: #eee;
+    padding: 20px;
+}
+.ServiceAuthList .ServiceAuthListItem {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+.ServiceAuthView .parent.button-container {
+    padding: 20px;
+}
