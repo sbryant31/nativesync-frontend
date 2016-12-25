@@ -32,20 +32,31 @@ module.exports = React.createClass({
     var checkboxHandler = this.props.isSelected ? this.props.onDeselect : this.props.onSelect;
     var checked = this.props.isSelected ? true : false;
         //<Checkbox onChange={checkboxHandler} checked={checked} />
-    return <div className="row">
-      <div className="col-xs">
-       <input type="checkbox" checked={checked} onChange={checkboxHandler} />
-      </div>
-      <div className="col-xs">
-        <TextInputField label="Service" value={this.props.service.name} />
-      </div>
-      <div className="col-xs">
-        <TextInputField label="Name" value={this.props.serviceAuth.name} onChange={this.handleChange.bind(self, 'name')} />
-      </div>
-      <div className="col-xs-3">
-        <ServiceAuthDetails type={this.props.serviceAuth.type} details={this.props.serviceAuth.details} readOnly={self.props.readOnly} onTypeChange={this.handleChange.bind(self, 'type')} onDetailsChange={this.handleChange.bind(self, 'details')} />
-      </div>
-      { this.props.children }
-    </div>
+    return (
+        <div>
+            <div className="row">
+              <div className="col-xs">
+               <input type="checkbox" checked={checked} onChange={checkboxHandler} />
+              </div>
+              <div className="col-xs">
+                <TextInputField label="Service" value={this.props.service.name} />
+              </div>
+              <div className="col-xs">
+                <TextInputField label="Name" value={this.props.serviceAuth.name} 
+                                             onChange={this.handleChange.bind(self, 'name')} />
+              </div>
+              <div className="col-xs-3">
+                <ServiceAuthDetails type={this.props.serviceAuth.type} 
+                                    details={this.props.serviceAuth.details} 
+                                    readOnly={self.props.readOnly} 
+                                    onTypeChange={this.handleChange.bind(self, 'type')} 
+                                    onDetailsChange={this.handleChange.bind(self, 'details')} />
+              </div>
+              <div className="button-container">
+                  { this.props.children }
+              </div>
+            </div>
+        </div>
+    );
   }
 })
