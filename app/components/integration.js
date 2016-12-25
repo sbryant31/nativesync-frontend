@@ -63,11 +63,17 @@ module.exports = React.createClass({
     if (self.props.id && !isNaN(self.props.id)) {
       actions.getIntegrationById(self.props.id, true)
       .then(function(result) {
-        self.setState({integration: result.integration, services: result.services, actions: result.actions, integrationCode: result.integrationCode});
+        self.setState({
+          integration: result.integration,
+          services: result.services,
+          actions: result.actions,
+          integrationCode: result.integrationCode
+        });
       })
     }
   },
   render() {
+    var self = this;
     var integrationTypes = [
       {value: 'hosted_mvp', label: 'NativeSync CloudCode 1.0'},
       {value: 'external', label: 'External/Custom'},
@@ -112,7 +118,7 @@ module.exports = React.createClass({
           <h2>Code</h2>
           <div className="row">
             <div className="col-xs">
-              <CodeEditor code={this.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
+              <CodeEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
             </div>
             <div className="col-xs">
               <h4>Actions</h4>
