@@ -16,12 +16,13 @@ module.exports = React.createClass({
   },
   render() {
     var self = this;
-    return <div>
-      <KeyValueObject
-				object={this.props.details}
-				readOnly={this.props.readOnly}
-				onChange={this.props.onChange}
-			/>
-    </div>
+    return (
+        <div className="ServiceAuthConfigurationDetails">
+            <KeyValueObject
+                object={this.props.details}
+                readOnly={this.props.readOnly}
+                onChange={this.props.onChange} />
+        </div>
+    );
   }
 })

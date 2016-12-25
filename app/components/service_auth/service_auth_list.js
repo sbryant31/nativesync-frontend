@@ -62,32 +62,36 @@ module.exports = React.createClass({
     var authList = lodash.map(self.props.serviceAuths,function(serviceAuth, index){
       var isSelected = _.findWhere(self.props.selected, {id: serviceAuth.id});
       var service = servicesByID[serviceAuth.service_id]
-      return <div className="row">
-        <ServiceAuthView
-          isSelected={isSelected}
-          service={service}
-          serviceAuth={serviceAuth}
-          onChange={self.handleChange.bind(self, serviceAuth.name)}
-          onSelect={self.handleSelect.bind(self, serviceAuth.name)}
-          onDeselect={self.handleDeselect.bind(self, serviceAuth.name)}
-        >
-          {!self.props.readOnly &&
-            <div className="col-xs">
-              <button className="pt-button" onClick={self.handleRemove.bind(self, index)}>Remove</button>
-            </div>
-          }
-        </ServiceAuthView>
-      </div>
+      return (
+          <div>
+            <ServiceAuthView
+              isSelected={isSelected}
+              service={service}
+              serviceAuth={serviceAuth}
+              onChange={self.handleChange.bind(self, serviceAuth.name)}
+              onSelect={self.handleSelect.bind(self, serviceAuth.name)}
+              onDeselect={self.handleDeselect.bind(self, serviceAuth.name)}
+            >
+              {!self.props.readOnly &&
+                <div className="col-xs">
+                  <button className="pt-button" onClick={self.handleRemove.bind(self, index)}>Remove</button>
+                </div>
+              }
+            </ServiceAuthView>
+          </div>
+      );
     })
-    return <div>
-      <div className="row">
-        { authList }
-      </div>
-      <div className="row">
-        { !self.props.readOnly &&
-          <button className="pt-button" onClick={self.handleAdd.bind(self)}>Add</button>
-        }
-      </div>
-    </div>
+    return (
+        <div>
+            <div>
+                { authList }
+            </div>
+            <div className="row">
+                { !self.props.readOnly &&
+                    <button className="pt-button" onClick={self.handleAdd.bind(self)}>Add</button>
+                }
+            </div>
+        </div>
+    );
   }
 })
