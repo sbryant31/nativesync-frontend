@@ -1,7 +1,7 @@
 var React = require('react');
 var lodash = require('lodash');
 var Select = require('react-select');
-var ParameterInSelector = require('../action/parameter_in_selector');
+var ServiceObjectPropertyEditor = require('../service_object/service_object_property_editor');
 
 module.exports = React.createClass({
   getDefaultProps: () => {
@@ -21,16 +21,18 @@ module.exports = React.createClass({
     parameters.push({in: '', name: '', description: '', type: ''});
     this.props.onChange(parameters);
   },
-  handleChange(index, field, e) {
-    var parameters = this.props.parameters;
+  handleChange(field, e) {
+    var value = this.props.value;
     if (e.target) {
-      parameters[index][field] = e.target.value;
+      value[field] = e.target.value;
     } else if (e.value) {
-      parameters[index][field] = e.value;
+      value[field] = e.value;
     } else {
-      parameters[index][field] = e;
+      value[field] = e;
     }
-    this.props.onChange(parameters);
+    this.props.onChange(value);
+    // idk why this is necessary but the select wasnt updating
+    this.forceUpdate();
   },
   render() {
     var self = this;
@@ -46,6 +48,7 @@ module.exports = React.createClass({
       </label>
       <label className="pt-label" >
         Parameters
+        <ServiceObjectPropertyEditor onChange={this.handleChange.bind(this, 'object')} value={this.props.value.object} />
         <textarea className="pt-input" onChange={this.handleChange.bind(this, 'parameters')} value={this.props.value.parameters} />
       </label>
       <label className="pt-label" >

@@ -36,6 +36,7 @@ module.exports = React.createClass({
     if (!isNaN(self.props.id)) {
       actions.getActionById(self.props.id)
       .then(function(result) {
+        console.log(result.action.input_body);
         self.setState({
           action: result.action,
           service: result.service,

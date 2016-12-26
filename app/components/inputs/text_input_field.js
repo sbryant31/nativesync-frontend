@@ -12,13 +12,13 @@ module.exports = React.createClass({
   },
   render() {
     var self = this;
-    return ( 
+    return (
         <div>
             <label className="pt-label pt-inline col-xs">
                 <span>{this.props.label}</span>
                 <input type="pt-input" onChange={this.props.onChange} value={this.props.value} />
             </label>
         </div>
-    ); 
+    );
   }
 })
