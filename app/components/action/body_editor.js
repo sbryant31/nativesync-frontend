@@ -1,7 +1,7 @@
 var React = require('react');
 var lodash = require('lodash');
 var Select = require('react-select');
-var ServiceObjectPropertyEditor = require('../service_object/service_object_property_editor');
+var Json = require('react-json');
 
 module.exports = React.createClass({
   getDefaultProps: () => {
@@ -48,8 +48,7 @@ module.exports = React.createClass({
       </label>
       <label className="pt-label" >
         Parameters
-        <ServiceObjectPropertyEditor onChange={this.handleChange.bind(this, 'object')} value={this.props.value.object} />
-        <textarea className="pt-input" onChange={this.handleChange.bind(this, 'parameters')} value={this.props.value.parameters} />
+        <Json onChange={this.handleChange.bind(this, 'object')} value={this.props.value.object} />
       </label>
       <label className="pt-label" >
         Example
