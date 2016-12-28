@@ -12,12 +12,17 @@ module.exports = React.createClass({
   },
   getDefaultProps: function() {
     return {
+      idOnly: false,
       organization: {},
       onChange: (organization) => { console.log('change organization', organization) }
     }
   },
   handleChange: function(selection) {
-    this.props.onChange(this.state.organizations[selection.value]);
+    if (this.props.idOnly) {
+      this.props.onChange(selection.value);
+    } else {
+      this.props.onChange(this.state.organizations[selection.value]);
+    }
   },
   componentDidMount: function() {
     console.log('loading options for organization');
@@ -35,11 +40,19 @@ module.exports = React.createClass({
   },
   render() {
     var self = this;
+    let value;
+    if (this.props.organization) {
+      if (this.props.idOnly) {
+        value = this.props.organization;
+      } else {
+        value = this.props.organization.id;
+      }
+    }
     return <label className="pt-label pt-inline col-xs">
       Organization
       <Select
         name="organization-selector"
-        value={this.props.organization ? this.props.organization.id : null}
+        value={value}
         options={this.state.organizationOptions}
         onChange={this.handleChange}
       />

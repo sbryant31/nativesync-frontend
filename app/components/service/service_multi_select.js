@@ -8,6 +8,7 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       services: [],
+      serviceOptions: []
     }
   },
   getDefaultProps: function() {

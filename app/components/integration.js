@@ -4,11 +4,15 @@ var Navbar = require('../components/navbar')
 var lodash = require('lodash')
 var Select = require('react-select');
 var ServiceAuthList = require('../components/service_auth/service_auth_list');
+var ConfigurationInputView = require('../components/integration/configuration_input_view');
+var ReferralCodesList = require('../components/integration/referral_codes_list');
+var PricingInfo = require('../components/integration/pricing_info');
 var ServiceMultiSelect = require('../components/service/service_multi_select');
 var TriggerInfo = require('../components/integration/trigger_info');
 var TextInputField = require('../components/inputs/text_input_field');
 var CodeEditor = require('../components/inputs/code_editor');
 var ActionMultiSelect = require('../components/action/action_multi_select');
+var IntegrationConfigurationBuilder = require('../components/integration/integration_configuration_builder');
 var ActionDocumentationList = require('../components/action/action_documentation_list');
 var MarkdownEditor = require('react-markdown-editor').MarkdownEditor;
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
@@ -17,7 +21,10 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       integration: {
-        scheduling_info: {}
+        scheduling_info: {},
+        pricing: {},
+        configuration: [],
+        referrals: [],
       },
       services: [],
       actions: [],
@@ -63,6 +70,10 @@ module.exports = React.createClass({
     if (self.props.id && !isNaN(self.props.id)) {
       actions.getIntegrationById(self.props.id, true)
       .then(function(result) {
+        if (!result.integration.pricing) { result.integration.pricing = {} };
+        if (!result.integration.configuration) { result.integration.configuration = [] };
+        if (!result.integration.referrals) { result.integration.referrals = [] };
+
         self.setState({
           integration: result.integration,
           services: result.services,
@@ -86,6 +97,7 @@ module.exports = React.createClass({
             <Tab>General</Tab>
             <Tab>Services</Tab>
             <Tab>Actions</Tab>
+            <Tab>Configuration</Tab>
             <Tab>Code</Tab>
             <Tab>Documentation</Tab>
             <Tab>Publish</Tab>
@@ -115,12 +127,18 @@ module.exports = React.createClass({
           <ActionDocumentationList actions={this.state.actions} />
         </TabPanel>
         <TabPanel>
+          <h2>Configuration</h2>
+          <IntegrationConfigurationBuilder value={this.state.integration.configuration} onChange={this.handleChange.bind(this, 'configuration')} />
+        </TabPanel>
+        <TabPanel>
           <h2>Code</h2>
           <div className="row">
             <div className="col-xs">
               <CodeEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
             </div>
             <div className="col-xs">
+              <h4>Configuration Inputs</h4>
+              <ConfigurationInputView value={this.state.integration.configuration} />
               <h4>Actions</h4>
               <ActionDocumentationList actions={this.state.actions} />
             </div>
@@ -132,6 +150,10 @@ module.exports = React.createClass({
         </TabPanel>
         <TabPanel>
           <h2>Publish</h2>
+          <h4>Pricing</h4>
+          <PricingInfo value={this.state.integration.pricing} onChange={this.handleChangeValue.bind(this, 'pricing')} />
+          <h4>Referral Codes</h4>
+          <ReferralCodesList referrals={this.state.integration.referrals} onChange={this.handleChangeValue.bind(this, 'referrals')} />
         </TabPanel>
       </Tabs>
       <hr />
