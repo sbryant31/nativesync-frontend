@@ -5,6 +5,7 @@ var Navbar = require('../components/navbar')
 var lodash = require('lodash')
 var Select = require('react-select');
 var TriggerInfo = require('../components/integration/trigger_info');
+var IntegrationInstanceInputEditor = require('../components/integration_instance/integration_instance_input_editor');
 var TextInputField = require('../components/inputs/text_input_field');
 var OrganizationSelect = require('../components/organization/organization_select');
 var KeyValueList = require('../components/inputs/key_value_list');
@@ -17,12 +18,10 @@ module.exports = React.createClass({
     return {
       organizationAuths: [],
       organization: {},
-      integration: {
-        scheduling_info: {}
-      },
+      integration: { },
       integrationInstance: {
         scheduling_info: {},
-        inputs: []
+        inputs: {}
       }
     }
   },
@@ -46,7 +45,7 @@ module.exports = React.createClass({
   },
   handleOrganizationChange: function(organization) {
     this.setState({organization: organization});
-    self.getOrganizationAuths();
+    this.getOrganizationAuths();
   },
   getOrganizationAuths: function() {
     var self = this;
@@ -82,12 +81,14 @@ module.exports = React.createClass({
       .then(function(result) {
         var integrationInstance = self.state.integrationInstance;
         integrationInstance.scheduling_info = result.integration.scheduling_info;
+        console.log('checking org', actions.getState('org'));
         self.setState({
           integrationInstance: integrationInstance,
           integration: result.integration,
           actions: result.actions,
           services: result.services,
-          serviceAuths: result.serviceAuths
+          serviceAuths: result.serviceAuths,
+          organization: actions.getState('org')
         });
         self.getOrganizationAuths();
       })
@@ -129,7 +130,11 @@ module.exports = React.createClass({
         </TabPanel>
         <TabPanel>
           <h2>Configure</h2>
-          <KeyValueList list={self.state.integrationInstance.inputs} onChange={this.handleChange.bind(this, 'inputs')} />
+          <IntegrationInstanceInputEditor
+            value={self.state.integrationInstance.inputs}
+            configuration={self.state.integration.configuration}
+            onChange={this.handleChange.bind(this, 'inputs')}
+          />
         </TabPanel>
       </Tabs>
       <hr />

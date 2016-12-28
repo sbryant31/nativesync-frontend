@@ -45,22 +45,6 @@ module.exports = React.createClass({
       store.set('me',value)
       self.setState({me:value})
     })
-    state.on(['mode'],function(value){
-      store.set('mode',value)
-      self.setState({mode:value})
-    })
-    state.on(['client'],function(value){
-      store.set('client',value)
-      store.set('partner',null)
-      self.setState({client:value})
-      self.setState({partner:null})
-    })
-    state.on(['partner'],function(value){
-      store.set('client',null)
-      store.set('partner',value)
-      self.setState({client:null})
-      self.setState({partner:value})
-    })
     state.on(['org'],function(value){
       store.set('org',value)
       self.setState({'org':value})

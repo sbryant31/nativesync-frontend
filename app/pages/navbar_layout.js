@@ -15,12 +15,12 @@ var OrganizationMenu = React.createClass({
   },
   getDefaultProps: function() {
     return {
-      onChangeOrg: function(type, org) {console.log('changed org', type, org);}
+      onChangeOrg: function(org) {console.log('changed org', org);}
     }
   },
-  handleChangeView: function(type, org) {
-    actions.setViewToOrg(type, org);
-    this.props.onChangeOrg(type, org);
+  handleChangeView: function(org) {
+    actions.setViewToOrg(org);
+    this.props.onChangeOrg(org);
   },
   componentDidMount: function() {
     var self = this;
@@ -34,7 +34,7 @@ var OrganizationMenu = React.createClass({
     var organizations = lodash.map(this.state.organizations,function(organization){
       return <MenuItem key={organization.name}
         text={organization.name}
-        onClick={self.handleChangeView.bind(self, 'organization', organization)}
+        onClick={self.handleChangeView.bind(self, organization)}
       />
     })
     return <Menu>
@@ -136,8 +136,8 @@ module.exports = React.createClass({
       mode: actions.getState('mode'),
     }
   },
-  handleChangeOrg: function(type, org) {
-    this.setState({org: org, mode: type})
+  handleChangeOrg: function(org) {
+    this.setState({org: org})
   },
   render(){
     var child = null
@@ -165,16 +165,12 @@ module.exports = React.createClass({
         <Popover content={<OrganizationMenu onChangeOrg={this.handleChangeOrg.bind(this)} />} position={Position.BOTTOM_RIGHT}  >
           <li className='pt-menu-item'>{orgName}</li>
         </Popover>
-        { this.state.mode &&
-          <Popover content={<BrowseMenu/>} position={Position.BOTTOM_RIGHT}>
-            <li className='pt-menu-item'>Browse</li>
-          </Popover>
-        }
-        { this.state.mode == 'organization' &&
-          <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
-            <li className='pt-menu-item'>Build</li>
-          </Popover>
-        }
+        <Popover content={<BrowseMenu/>} position={Position.BOTTOM_RIGHT}>
+          <li className='pt-menu-item'>Browse</li>
+        </Popover>
+        <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
+          <li className='pt-menu-item'>Build</li>
+        </Popover>
       </Navbar>
       <div className="pt-content" style={{padding: 20}}>
         {child}
