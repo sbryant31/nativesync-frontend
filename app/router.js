@@ -14,8 +14,7 @@ var ServiceEdit = require('./pages/service_edit')
 var IntegrationView = require('./pages/integration_view')
 var IntegrationInstanceEdit = require('./pages/integration_instance_edit')
 var IntegrationEdit = require('./pages/integration_edit')
-var ClientEdit = require('./pages/client_edit')
-var PartnerEdit = require('./pages/partner_edit')
+var OrganizationEdit = require('./pages/organization_edit')
 var ActionsMe = require('./pages/actions_me');
 var ActionsBrowse = require('./pages/actions_browse');
 var ActionEdit = require('./pages/action_edit');
@@ -123,17 +122,11 @@ module.exports = (
       <Route path='/service/:id' component={NavbarLayout}>
         <IndexRoute component={ServiceEdit}/>
       </Route>
-      <Route path='/client/:id' component={NavbarLayout}>
-        <IndexRoute component={ClientEdit}/>
+      <Route path='/organization/:id' component={NavbarLayout}>
+        <IndexRoute component={OrganizationEdit}/>
       </Route>
-      <Route path='/client/new' component={NavbarLayout}>
-        <IndexRoute component={ClientEdit}/>
-      </Route>
-      <Route path='/partner/:id' component={NavbarLayout}>
-        <IndexRoute component={PartnerEdit}/>
-      </Route>
-      <Route path='/partner/new' component={NavbarLayout}>
-        <IndexRoute component={PartnerEdit}/>
+      <Route path='/organization/new' component={NavbarLayout}>
+        <IndexRoute component={OrganizationEdit}/>
       </Route>
       <Route path='/profile' component={Profile}/>
     </Route>

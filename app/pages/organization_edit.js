@@ -1,7 +1,7 @@
 var React = require('react')
 var actions = require('../modules/actions')
 var Navbar = require('../components/navbar')
-var Client = require('../components/client');
+var Organization = require('../components/organization');
 var lodash = require('lodash')
 
 module.exports = React.createClass({
@@ -9,7 +9,7 @@ module.exports = React.createClass({
     return { }
   },
   render() {
-    return <Client id={this.props.params.id} />
+    return <Organization id={this.props.params.id} />
   }
 })
 

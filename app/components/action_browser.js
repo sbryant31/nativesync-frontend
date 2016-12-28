@@ -27,9 +27,7 @@ module.exports = React.createClass({
     })
     return <div>
       <h1>Actions</h1>
-      { actions.getState('mode') == 'partner' &&
-        <a onClick={actions.goto.bind(null, '/action/new')}>New action</a>
-      }
+      <a onClick={actions.goto.bind(null, '/action/new')}>New action</a>
       <hr/>
       <table className="pt-table pt-striped">
         <thead>

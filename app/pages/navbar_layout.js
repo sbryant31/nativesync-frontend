@@ -10,8 +10,7 @@ import {Position,Popover, Menu, MenuItem, MenuDivider} from "@blueprintjs/core"
 var OrganizationMenu = React.createClass({
   getInitialState: function() {
     return {
-      clients: [],
-      partners: []
+      organizations: [],
     }
   },
   getDefaultProps: function() {
@@ -27,30 +26,21 @@ var OrganizationMenu = React.createClass({
     var self = this;
     actions.myAssociations()
     .then(function(result) {
-      self.setState({clients: result.clients, partners: result.partners});
+      self.setState({organizations: result.organizations});
     })
   },
   render(){
     var self = this;
-    var partners = lodash.map(this.state.partners,function(partner){
-      return <MenuItem key={partner.name}
-        text={partner.name}
-        onClick={self.handleChangeView.bind(self, 'partner', partner)}
-      />
-    })
-    var clients = lodash.map(this.state.clients,function(client){
-      return <MenuItem key={client.name}
-        text={client.name}
-        onClick={self.handleChangeView.bind(self, 'client', client)}
+    var organizations = lodash.map(this.state.organizations,function(organization){
+      return <MenuItem key={organization.name}
+        text={organization.name}
+        onClick={self.handleChangeView.bind(self, 'organization', organization)}
       />
     })
     return <Menu>
-      <li className="pt-menu-header"><h6>Teams</h6></li>
-      {partners}
-      <MenuItem key="newPartner" text="Create a New Team" className="pt-icon-add" onClick={actions.goto.bind(null, '/partner/new')} />
-      <li className="pt-menu-header"><h6>Clients</h6></li>
-      {clients}
-      <MenuItem key="newClient" text="Create a New Client" className="pt-icon-add" onClick={actions.goto.bind(null, '/client/new')} />
+      <li className="pt-menu-header"><h6>Organizations</h6></li>
+      {organizations}
+      <MenuItem key="newOrganization" text="Create a New Organization" className="pt-icon-add" onClick={actions.goto.bind(null, '/organization/new')} />
     </Menu>
   }
 })
@@ -165,13 +155,9 @@ module.exports = React.createClass({
     // "view" should be a bug - user should always be logged into an org view
     var orgName;
     if (this.state.org) {
-      if (this.state.mode == 'partner') {
-        orgName = "Team: " + this.state.org.name
-      } else {
-        orgName = "Client: " + this.state.org.name
-      }
+      orgName = "Organization: " + this.state.org.name
     } else {
-      orgName = 'View';
+      orgName = 'Choose an Organization';
     }
 
     return <div style={{paddingTop:50}}>
@@ -184,7 +170,7 @@ module.exports = React.createClass({
             <li className='pt-menu-item'>Browse</li>
           </Popover>
         }
-        { this.state.mode == 'partner' &&
+        { this.state.mode == 'organization' &&
           <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
             <li className='pt-menu-item'>Build</li>
           </Popover>

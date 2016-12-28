@@ -6,17 +6,17 @@ var lodash = require('lodash')
 var Select = require('react-select');
 var TriggerInfo = require('../components/integration/trigger_info');
 var TextInputField = require('../components/inputs/text_input_field');
-var ClientSelect = require('../components/client/client_select');
+var OrganizationSelect = require('../components/organization/organization_select');
 var KeyValueList = require('../components/inputs/key_value_list');
-var ClientAuthForm = require('../components/client_auth/client_auth_form');
+var OrganizationAuthForm = require('../components/organization_auth/organization_auth_form');
 var ServiceAuthList = require('../components/service_auth/service_auth_list');
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      clientAuths: [],
-      client: {},
+      organizationAuths: [],
+      organization: {},
       integration: {
         scheduling_info: {}
       },
@@ -27,7 +27,7 @@ module.exports = React.createClass({
     }
   },
   handleSave: function() {
-    actions.upsertIntegrationInstance(this.state.integrationInstance, this.state.integration, this.state.client)
+    actions.upsertIntegrationInstance(this.state.integrationInstance, this.state.integration, this.state.organization)
   },
   handleChange: function(field, e) {
     var integrationInstance = this.state.integrationInstance;
@@ -44,26 +44,26 @@ module.exports = React.createClass({
     integrationInstance[field] = value;
     this.setState({integrationInstance: integrationInstance});
   },
-  handleClientChange: function(client) {
-    this.setState({client: client});
-    self.getClientAuths();
+  handleOrganizationChange: function(organization) {
+    this.setState({organization: organization});
+    self.getOrganizationAuths();
   },
-  getClientAuths: function() {
+  getOrganizationAuths: function() {
     var self = this;
     var serviceAuthIDs = _.pluck(this.state.serviceAuths, 'id');
-    var client = this.state.client;
-    actions.getClientAuths(this.state.client.id, serviceAuthIDs)
+    var organization = this.state.organization;
+    actions.getOrganizationAuths(this.state.organization.id, serviceAuthIDs)
     .then((result) => {
-      var clientAuths = result.clientAuths;
+      var organizationAuths = result.organizationAuths;
       for (let serviceAuthId of serviceAuthIDs) {
-        if (!_.findWhere(clientAuths, {service_auth_id: serviceAuthId})) {
-          clientAuths.push({
+        if (!_.findWhere(organizationAuths, {service_auth_id: serviceAuthId})) {
+          organizationAuths.push({
             service_auth_id: serviceAuthId,
-            client_id: client.id,
+            organization_id: organization.id,
           })
         }
       }
-      self.setState({clientAuths: clientAuths});
+      self.setState({organizationAuths: organizationAuths});
     });
   },
   getDefaultProps: function() {
@@ -89,7 +89,7 @@ module.exports = React.createClass({
           services: result.services,
           serviceAuths: result.serviceAuths
         });
-        self.getClientAuths();
+        self.getOrganizationAuths();
       })
     } else {
       actions.getIntegrationInstanceById(self.props.id)
@@ -98,12 +98,12 @@ module.exports = React.createClass({
         self.setState({
           integrationInstance: result.integrationInstance,
           integration: result.integration,
-          client: result.client,
+          organization: result.organization,
           actions: result.actions,
           services: result.services,
           serviceAuths: result.serviceAuths
         });
-        self.getClientAuths();
+        self.getOrganizationAuths();
       })
     }
   },
@@ -120,12 +120,12 @@ module.exports = React.createClass({
         <TabPanel>
           <h2>General</h2>
           <TextInputField label="Title" value={this.state.integrationInstance.title} onChange={self.handleChange.bind(self, 'title')} />
-          <ClientSelect client={self.state.client} onChange={this.handleClientChange.bind(this)} />
+          <OrganizationSelect organization={self.state.organization} onChange={this.handleOrganizationChange.bind(this)} />
           <TriggerInfo value={this.state.integrationInstance.scheduling_info} onChange={this.handleChange.bind(this, 'scheduling_info')} />
         </TabPanel>
         <TabPanel>
           <h2>Authentication</h2>
-          <ClientAuthForm clientAuths={this.state.clientAuths} client={this.state.client} services={this.state.services} serviceAuths={this.state.serviceAuths} />
+          <OrganizationAuthForm organizationAuths={this.state.organizationAuths} organization={this.state.organization} services={this.state.services} serviceAuths={this.state.serviceAuths} />
         </TabPanel>
         <TabPanel>
           <h2>Configure</h2>

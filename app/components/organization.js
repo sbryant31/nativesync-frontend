@@ -9,12 +9,12 @@ import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      partner: {
+      organization: {
       }
     }
   },
   handleSave: function() {
-    actions.upsertPartner(this.state.partner)
+    actions.upsertOrganization(this.state.organization)
   },
   handleChange: function(field, e) {
     if (e.target) { // normal input handler
@@ -26,9 +26,9 @@ module.exports = React.createClass({
     }
   },
   handleChangeValue: function(field, value) {
-    var partner = this.state.partner;
-    partner[field] = value;
-    this.setState({partner: partner});
+    var organization = this.state.organization;
+    organization[field] = value;
+    this.setState({organization: organization});
   },
   getDefaultProps: function() {
     return {
@@ -38,16 +38,16 @@ module.exports = React.createClass({
   componentDidMount: function() {
     var self = this;
     if (self.props.id && !isNaN(self.props.id)) {
-      actions.getPartnerById(self.props.id)
+      actions.getOrganizationById(self.props.id)
       .then(function(result) {
-        self.setState({partner: result.partner});
+        self.setState({organization: result.organization});
       })
     }
   },
   render() {
     return <div>
-      <h2>Create/Edit Team {this.state.partner.name}</h2>
-      <TextInputField label="Name" value={this.state.partner.name} onChange={this.handleChange.bind(this, 'name')} />
+      <h2>Create/Edit Organization {this.state.organization.name}</h2>
+      <TextInputField label="Name" value={this.state.organization.name} onChange={this.handleChange.bind(this, 'name')} />
       <hr />
       <button className="pt-button pt-icon-add" onClick={this.handleSave}>Save</button>
     </div>

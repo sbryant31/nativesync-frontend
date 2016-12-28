@@ -4,7 +4,7 @@ var env = process.env
 var base = env.NS_API_URL ? env.NS_API_URL : 'https://api.nativesync.io/internal/'
 var urljoin = require('url-join')
 
-function call(path,data,method,authtoken,clienttoken){
+function call(path,data,method,authtoken,organizationtoken){
   console.log(arguments)
   var method = method || 'POST';
   return request({
@@ -58,12 +58,12 @@ exports.getIntegrations = function(filter, token){
   return call('/integrations', filter, 'GET', token)
 }
 
-exports.getClientAuths = function(clientId, serviceAuthIds, token){
-  return call('/client_auths', {client_id: clientId, service_auth_ids: serviceAuthIds}, 'GET', token)
+exports.getOrganizationAuths = function(organizationId, serviceAuthIds, token){
+  return call('/organization_auths', {organization_id: organizationId, service_auth_ids: serviceAuthIds}, 'GET', token)
 }
 
-exports.getClients = function(filter, token){
-  return call('/clients', filter, 'GET', token)
+exports.getOrganizations = function(filter, token){
+  return call('/organizations', filter, 'GET', token)
 }
 
 exports.getIntegrationInstances = function(integrationId, token){
@@ -82,12 +82,8 @@ exports.getIntegrationById = function(id, options, token){
   return call('/integration/' + id, options, 'GET', token)
 }
 
-exports.getClientById = function(id, token){
-  return call('/client/' + id, null, 'GET', token)
-}
-
-exports.getPartnerById = function(id, token){
-  return call('/partner/' + id, null, 'GET', token)
+exports.getOrganizationById = function(id, token){
+  return call('/org/' + id, null, 'GET', token)
 }
 
 exports.getActionById = function(id, token){
@@ -103,18 +99,14 @@ exports.upsertService = function(service, serviceAuths, token){
 }
 
 
-exports.upsertClient = function(client, token){
-  return call('/clients/upsert',{client: client},'POST',token)
-}
-
-exports.upsertPartner = function(partner, token){
-  return call('/partners/upsert',{partner: partner},'POST',token)
+exports.upsertOrganization = function(organization, token){
+  return call('/organizations/upsert',{organization: organization},'POST',token)
 }
 
 exports.upsertIntegration = function(integration, services, actions, integrationCode, token){
   return call('/integrations/upsert',{integration: integration, services: services, actions: actions, integrationCode: integrationCode},'POST',token)
 }
 
-exports.upsertIntegrationInstance = function(integrationInstance, integration, client, token){
-  return call('/integration_instances/upsert',{integrationInstance: integrationInstance, integration: integration, client: client},'POST',token)
+exports.upsertIntegrationInstance = function(integrationInstance, integration, organization, token){
+  return call('/integration_instances/upsert',{integrationInstance: integrationInstance, integration: integration, organization: organization},'POST',token)
 }

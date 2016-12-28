@@ -44,7 +44,7 @@ module.exports = React.createClass({
       if (self.state.selectedIntegrationId == integration.id) {
         instances = lodash.map(self.state.integrationInstances, function(instance) {
           return <div className="row">
-            <a onClick={actions.goto.bind(null, '/integration_instance/' + instance.id)}>{instance.client.name} {instance.title}</a>
+            <a onClick={actions.goto.bind(null, '/integration_instance/' + instance.id)}>{instance.organization.name} {instance.title}</a>
           </div>
         });
       }
@@ -67,9 +67,7 @@ module.exports = React.createClass({
     console.log('list', integrationsList);
     return <div>
       <h1>Integrations</h1>
-      { actions.getState('mode') == 'partner' &&
-        <a onClick={actions.goto.bind(null, '/integration/new')}>New Integration</a>
-      }
+      <a onClick={actions.goto.bind(null, '/integration/new')}>New Integration</a>
       <hr/>
       <table className="pt-table pt-striped">
         <thead>

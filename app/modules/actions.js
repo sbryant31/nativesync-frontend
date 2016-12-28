@@ -1,6 +1,7 @@
 var nsapi = require('./nativesyncapi')
 //memory
 var state = require('./state')
+var _ = require('underscore');
 //persistence
 var store = require('store')
 var assert = require('assert')
@@ -17,17 +18,9 @@ exports.getToken = function(){
   return token
 }
 
-exports.setViewToOrg = function(type, org) {
-  // {partner: <partner>, mode: 'partner', 'org': <partner>}
-  state.set(type, org);
-  state.set('mode', type);
+exports.setViewToOrg = function(org) {
   state.set('org', org);
   exports.goto('/dashboard');
-}
-
-exports.loginAsClient = function(client) {
-  state.set('client', client);
-  state.set('mode', 'client');
 }
 
 exports.login = function(username,password){
@@ -76,12 +69,12 @@ exports.getServices = function(filter){
   return nsapi.getServices(filter, token)
 }
 
-exports.getClientAuths = function(clientId, serviceAuthIDs){
-  return nsapi.getClientAuths(clientId, serviceAuthIDs, token);
+exports.getOrganizationAuths = function(organizationId, serviceAuthIDs){
+  return nsapi.getOrganizationAuths(organizationId, serviceAuthIDs, token);
 }
 
-exports.getClients = function(filter){
-  return nsapi.getClients(filter, token)
+exports.getOrganizations = function(filter){
+  return nsapi.getOrganizations(filter, token)
 }
 
 exports.getIntegrationInstances = function(integrationId){
@@ -100,12 +93,8 @@ exports.getIntegrationInstanceById = function(id) {
   return nsapi.getIntegrationInstanceById(id, token)
 }
 
-exports.getClientById = function(id) {
-  return nsapi.getClientById(id, token)
-}
-
-exports.getPartnerById = function(id) {
-  return nsapi.getPartnerById(id, token)
+exports.getOrganizationById = function(id) {
+  return nsapi.getOrganizationById(id, token)
 }
 
 exports.getActions = function(filter){
@@ -127,17 +116,10 @@ exports.upsertAction = function(action, service, serviceAuths) {
   })
 }
 
-exports.upsertClient = function(client) {
-  return nsapi.upsertClient(client, token)
+exports.upsertOrganization = function(org) {
+  return nsapi.upsertOrganization(org, token)
   .then((result) => {
-    return exports.goto('/client/' + result.client.id);
-  })
-}
-
-exports.upsertPartner = function(partner) {
-  return nsapi.upsertPartner(partner, token)
-  .then((result) => {
-    return exports.goto('/partner/' + result.partner.id);
+    return exports.goto('/organization/' + result.organization.id);
   })
 }
 
@@ -152,8 +134,8 @@ exports.upsertService = function(service, serviceAuths) {
   return nsapi.upsertService(service, serviceAuths, token)
 }
 
-exports.upsertIntegrationInstance = function(integrationInstance, integration, client) {
-  return nsapi.upsertIntegrationInstance(integrationInstance, integration, client, token)
+exports.upsertIntegrationInstance = function(integrationInstance, integration, organization) {
+  return nsapi.upsertIntegrationInstance(integrationInstance, integration, organization, token)
   .then((result) => {
     return exports.goto('/integration_instance/' + result.integrationInstance.id);
   })
@@ -161,8 +143,7 @@ exports.upsertIntegrationInstance = function(integrationInstance, integration, c
 
 exports.myAssociations = function(){
   return nsapi.myAssociations(token).then(function(result){
-    state.set('clients',result.clients)
-    state.set('partners',result.partners)
+    state.set('organizations',result.organizations)
     return result
   })
 }

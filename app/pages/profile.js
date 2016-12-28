@@ -5,9 +5,9 @@ var Sidebar = require('../components/sidebar')
 module.exports = React.createClass({
   render:function(){
     var sidebarItems = [
-      {name:'Dashboard',url:'/client/dashboard'},
-      {name:'My Gigs',url:'/client/gigs'},
-      {name:'Post a Gig',url:'/client/gigs/new'},
+      {name:'Dashboard',url:'/organization/dashboard'},
+      {name:'My Gigs',url:'/organization/gigs'},
+      {name:'Post a Gig',url:'/organization/gigs/new'},
       {name:'Browse Integrations',url:'/integrations'},
       {name:'Profile',url:'/profile'}
     ];

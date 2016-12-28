@@ -35,7 +35,7 @@ module.exports = React.createClass({
       if (self.state.selectedServiceId == service.id) {
         instances = lodash.map(self.state.serviceInstances, function(instance) {
           return <div className="row">
-            <a onClick={actions.goto.bind(null, '/service_instance/' + instance.id)}>{instance.client.name} {instance.title}</a>
+            <a onClick={actions.goto.bind(null, '/service_instance/' + instance.id)}>{instance.organization.name} {instance.title}</a>
           </div>
         });
       }
@@ -47,9 +47,7 @@ module.exports = React.createClass({
     })
     return <div>
       <h1>Services</h1>
-      { actions.getState('mode') == 'partner' &&
-        <a onClick={actions.goto.bind(null, '/service/new')}>New Service</a>
-      }
+      <a onClick={actions.goto.bind(null, '/service/new')}>New Service</a>
       <hr/>
       <table className="pt-table pt-striped">
         <thead>
