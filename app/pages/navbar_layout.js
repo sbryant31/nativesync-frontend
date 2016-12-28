@@ -73,17 +73,45 @@ var UserMenu = React.createClass({
   }
 })
 
-var BrowseMenu = React.createClass({
+var MarketMenu = React.createClass({
   render(){
     var items = [
       {
-        name:'Integrations',
-        link:'/integrations/browse',
+        name:'Buy Integrations',
+        link:'/marketplace/integrations',
       },
       {
-        name:'Actions',
-        link:'/actions/browse',
-      }
+        name:'Request Custom Integration',
+        link:'/marketplace/request',
+      },
+    ]
+    items = lodash.map(items,function(item){
+      return <MenuItem key={item.name}
+        text={item.name}
+        onClick={actions.goto.bind(null,item.link)}
+      />
+    })
+    return <Menu>
+      {items}
+    </Menu>
+  }
+})
+
+var ManageMenu = React.createClass({
+  render(){
+    var items = [
+      {
+        name:'My Integrations',
+        link:'/integration_instances',
+      },
+      {
+        name:'My Database',
+        link:'/datastore',
+      },
+      {
+        name:'My Organization',
+        link:'/organization',
+      },
     ]
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}
@@ -101,15 +129,11 @@ var BuildMenu = React.createClass({
   render(){
     var items = [
       {
-        name:'Dashboard',
-        link:'/dashboard',
-      },
-      {
-        name:'My Integrations',
+        name:'Integrations',
         link:'/integrations/me',
       },
       {
-        name:'My Actions',
+        name:'Actions',
         link:'/actions/me',
       },
       {
@@ -155,7 +179,7 @@ module.exports = React.createClass({
     // "view" should be a bug - user should always be logged into an org view
     var orgName;
     if (this.state.org) {
-      orgName = "Organization: " + this.state.org.name
+      orgName = this.state.org.name;
     } else {
       orgName = 'Choose an Organization';
     }
@@ -163,13 +187,17 @@ module.exports = React.createClass({
     return <div style={{paddingTop:50}}>
       <Navbar links={links} avatarMenu={avatarMenu}>
         <Popover content={<OrganizationMenu onChangeOrg={this.handleChangeOrg.bind(this)} />} position={Position.BOTTOM_RIGHT}  >
-          <li className='pt-menu-item'>{orgName}</li>
+          <li className='pt-menu-item pt-icon-people'>{orgName}</li>
         </Popover>
-        <Popover content={<BrowseMenu/>} position={Position.BOTTOM_RIGHT}>
-          <li className='pt-menu-item'>Browse</li>
+        <span class="pt-navbar-divider"></span>
+        <Popover content={<MarketMenu/>} position={Position.BOTTOM_RIGHT}>
+          <li className='pt-menu-item pt-icon-shopping-cart'>Marketplace</li>
+        </Popover>
+        <Popover content={<ManageMenu/>} position={Position.BOTTOM_RIGHT}>
+          <li className='pt-menu-item pt-icon-office'>Manage</li>
         </Popover>
         <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
-          <li className='pt-menu-item'>Build</li>
+          <li className='pt-menu-item pt-icon-wrench'>Build</li>
         </Popover>
       </Navbar>
       <div className="pt-content" style={{padding: 20}}>

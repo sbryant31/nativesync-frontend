@@ -24,9 +24,10 @@ module.exports = React.createClass({
       <div className="pt-navbar-group pt-align-left">
         <div className="pt-navbar-heading"><img src={'/img/cloud.png'} style={{height: 45, width: 79}} /><img src={'/img/logo_text.png'} style={{height: 35, width: 210}}/></div>
       </div>
-      <div className="pt-navbar-group pt-align-right">
+      <div className="pt-navbar-group pt-align-right" >
         <ul className='pt-menu' style={{backgroundColor: '#16253d', color: '#FFF'}}>
           {links}
+          <span class="pt-navbar-divider"></span>
           {this.props.children}
         </ul>
         {this.props.avatarMenu}
