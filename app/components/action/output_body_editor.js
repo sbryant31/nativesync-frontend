@@ -12,16 +12,6 @@ module.exports = React.createClass({
       readOnly: false
     }
   },
-  handleRemove: function(index) {
-    var parameters = this.props.parameters;
-    parameters.splice(index, 1);
-    this.props.onChange(parameters);
-  },
-  handleAdd: function() {
-    var parameters = this.props.parameters;
-    parameters.push({in: '', name: '', description: '', type: ''});
-    this.props.onChange(parameters);
-  },
   handleChange(field, e) {
     var value = this.props.value;
     if (e.target) {
@@ -32,8 +22,6 @@ module.exports = React.createClass({
       value[field] = e;
     }
     this.props.onChange(value);
-    // idk why this is necessary but the select wasnt updating
-    this.forceUpdate();
   },
   render() {
     var self = this;
@@ -49,6 +37,7 @@ module.exports = React.createClass({
       code = this.props.value.code;
     } else {
       code = 'return output; // todo: custom transform output'
+      this.handleChange('code', code);
     }
     return <div>
       <label className="pt-label">
