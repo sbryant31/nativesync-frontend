@@ -58,6 +58,12 @@ module.exports = React.createClass({
         codeMode = 'xml';
       }
     }
+    var code;
+    if (this.props.value.code) {
+      code = this.props.value.code;
+    } else {
+      code = "return input; // todo: custom transform input";
+    }
     return <div>
       <label className="pt-label">
         <h4>Data Type</h4>
@@ -75,7 +81,7 @@ module.exports = React.createClass({
           <label className="pt-label pt-inline">
             <h4>Input Body</h4>
             {codeMode == 'javascript' &&
-              <span>Write a javascript function that returns a request body. Assume "inputs" is
+              <span>Write a javascript function that returns a request body. Assume "input" is
               a javascript object containing all the parameters above.</span>
             }
             {this.props.value.body_code_type == 'handlebars' &&
@@ -83,8 +89,8 @@ module.exports = React.createClass({
               variables specified in the "parameters" section above. Example: {{variable}}</span>
             }
             <CodeEditor
-              onChange={this.handleChange.bind(this, 'object')}
-              code={this.props.value.object}
+              onChange={this.handleChange.bind(this, 'code')}
+              code={code}
               json={json}
               mode={codeMode}
             />

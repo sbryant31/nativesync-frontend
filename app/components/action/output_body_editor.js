@@ -45,10 +45,10 @@ module.exports = React.createClass({
       {value: 'javascript', label: 'Javascript'},
     ];
     var code;
-    if (this.props.value.object) {
-      code = this.props.value.object;
+    if (this.props.value.code) {
+      code = this.props.value.code;
     } else {
-      code = 'return output;'
+      code = 'return output; // todo: custom transform output'
     }
     return <div>
       <label className="pt-label">
@@ -65,7 +65,7 @@ module.exports = React.createClass({
             <h4>Output Body Parser</h4>
             <span>Write a javascript function that parses the result of the request. Assume "output" is a javascript object representing the parsed result of your API call.</span>
             <CodeEditor
-              onChange={this.handleChange.bind(this, 'object')}
+              onChange={this.handleChange.bind(this, 'code')}
               code={code}
               mode={'javascript'}
             />

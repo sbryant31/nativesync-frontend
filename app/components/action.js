@@ -9,6 +9,7 @@ var Select = require('react-select');
 var ServiceAuthSelector = require('../components/service_auth/service_auth_selector');
 var ServiceSelector = require('../components/service/service_selector');
 var ParameterList = require('../components/action/parameter_list');
+var OutputParameterList = require('../components/action/output_parameter_list');
 var KeyValueList = require('../components/inputs/key_value_list');
 var TextInputField = require('../components/inputs/text_input_field');
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
@@ -22,6 +23,7 @@ module.exports = React.createClass({
         headers: [],
         query: [],
         input: [],
+        output: [],
         input_body: {},
         output_body: {}
       },
@@ -158,6 +160,8 @@ module.exports = React.createClass({
             <InputBodyEditor value={this.state.action.input_body} onChange={this.handleChange.bind(this, 'input_body')} />
           </TabPanel>
           <TabPanel>
+            <h4>Parameters</h4>
+            <OutputParameterList parameters={this.state.action.output} onChange={this.handleChangeValue.bind(this, 'output')} />
             <h4>Output Body</h4>
             <OutputBodyEditor value={this.state.action.output_body} onChange={this.handleChange.bind(this, 'output_body')} />
           </TabPanel>
