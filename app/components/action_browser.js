@@ -21,8 +21,10 @@ module.exports = React.createClass({
   render() {
     var actionsList = lodash.map(this.state.actions,function(action){
       return <tr key={action.id}>
+        <td>{action.organization_id}</td>
         <td>{action.service_name}</td>
         <td><a onClick={actions.goto.bind(null, '/action/' + action.id)}>{action.function_name}</a></td>
+        <td><span className="pt-icon-fork"></span></td>
       </tr>
     })
     return <div>
@@ -32,8 +34,10 @@ module.exports = React.createClass({
       <table className="pt-table pt-striped">
         <thead>
         <tr>
+           <th>Owner</th>
            <th>Service</th>
            <th>Function</th>
+           <th>Menu</th>
         </tr>
         </thead>
         <tbody>

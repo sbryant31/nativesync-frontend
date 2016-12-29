@@ -50,6 +50,7 @@ module.exports = React.createClass({
       }
       return (
         <tr key={integration.id}>
+          <td>{integration.organization_id}</td>
           <td><a onClick={actions.goto.bind(null, '/integration/' + integration.id)}>{integration.title}</a></td>
           <td>{integration.description}</td>
           <td>
@@ -72,10 +73,11 @@ module.exports = React.createClass({
       <table className="pt-table pt-striped">
         <thead>
         <tr>
+           <th>Owner</th>
            <th>Title</th>
            <th>Description</th>
            <th>Managed Instances</th>
-           <th>New Instance</th>
+           <th>Implement Instance</th>
         </tr>
         </thead>
         <tbody>
