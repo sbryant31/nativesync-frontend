@@ -86,7 +86,7 @@ module.exports = React.createClass({
             }
             {this.props.value.body_code_type == 'handlebars' &&
               <span>Write a handlebars.js template that creates the request body. You can use
-              variables specified in the "parameters" section above. Example: {{variable}}</span>
+              variables specified in the "parameters" section above.</span>
             }
             <CodeEditor
               onChange={this.handleChange.bind(this, 'code')}
