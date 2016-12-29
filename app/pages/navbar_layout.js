@@ -53,17 +53,15 @@ var UserMenu = React.createClass({
         link:'/profile',
       },
       {
-        name:'Account Settings',
-        link:'/account',
-      },
-      {
         name:'Logout',
         link:'/logout',
+        icon: 'log-out'
       }
     ]
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}
         text={item.name}
+        iconName={item.iconName}
         onClick={actions.goto.bind(null,item.link)}
       />
     })
@@ -79,15 +77,18 @@ var MarketMenu = React.createClass({
       {
         name:'Buy Integrations',
         link:'/marketplace/integrations',
+        icon: 'shop',
       },
       {
         name:'Request Custom Integration',
         link:'/marketplace/request',
+        icon: 'projects',
       },
     ]
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}
         text={item.name}
+        iconName={item.icon}
         onClick={actions.goto.bind(null,item.link)}
       />
     })
@@ -103,19 +104,23 @@ var ManageMenu = React.createClass({
       {
         name:'My Integrations',
         link:'/integration_instances',
+        icon:'search-around',
       },
       {
         name:'My Database',
         link:'/datastore',
+        icon: 'database'
       },
       {
         name:'My Organization',
         link:'/organization',
+        icon: 'office'
       },
     ]
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}
         text={item.name}
+        iconName={item.icon}
         onClick={actions.goto.bind(null,item.link)}
       />
     })
@@ -131,19 +136,23 @@ var BuildMenu = React.createClass({
       {
         name:'Integrations',
         link:'/integrations/me',
+        icon: 'code'
       },
       {
         name:'Actions',
         link:'/actions/me',
+        icon: 'git-pull'
       },
       {
         name:'Services',
         link:'/services/browse',
+        icon: 'cloud'
       },
     ]
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}
         text={item.name}
+        iconName={item.icon}
         onClick={actions.goto.bind(null,item.link)}
       />
     })

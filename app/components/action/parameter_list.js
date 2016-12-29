@@ -42,6 +42,8 @@ module.exports = React.createClass({
         {value: 'string', label: 'String'},
         {value: 'number', label: 'Number'},
         {value: 'date', label: 'Date'},
+        {value: 'object', label: 'Object'},
+        {value: 'list', label: 'List'},
       ];
       return <div className="row">
         <label className="pt-label pt-inline col-xs">

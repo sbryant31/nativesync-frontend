@@ -38,33 +38,22 @@ module.exports = React.createClass({
   render() {
     var self = this;
     var bodyTypes = [
-      {value: 'formData', label: 'Form'},
       {value: 'json', label: 'JSON'},
       {value: 'xml', label: 'XML'}
     ];
     var bodyCodeTypes = [
       {value: 'javascript', label: 'Javascript'},
-      {value: 'handlebars', label: 'Handlebars.js'},
     ];
-    var codeMode;
-    var json = false;
-    if (this.props.value.body_code_type == 'javascript') {
-      codeMode = 'javascript';
+    var code;
+    if (this.props.value.object) {
+      code = this.props.value.object;
     } else {
-      if (this.props.value.content_type == 'json') {
-        codeMode = 'javascript';
-        json = true;
-      } else if (this.props.value.content_type == 'xml') {
-        codeMode = 'xml';
-      }
+      code = 'return output;'
     }
     return <div>
       <label className="pt-label">
         <h4>Data Type</h4>
         <Select value={ this.props.value.content_type } options={bodyTypes} onChange={this.handleChange.bind(this, 'content_type')} />
-        {this.props.value.content_type == 'form' &&
-          <span>The parameters specified as in "body" will be sent as form data</span>
-        }
       </label>
       { (this.props.value.content_type == 'xml' || this.props.value.content_type == 'json') &&
         <div>
@@ -73,20 +62,12 @@ module.exports = React.createClass({
             <Select value={ this.props.value.body_code_type } options={bodyCodeTypes} onChange={this.handleChange.bind(this, 'body_code_type')} />
           </label>
           <label className="pt-label pt-inline">
-            <h4>Input Body</h4>
-            {codeMode == 'javascript' &&
-              <span>Write a javascript function that returns a request body. Assume "inputs" is
-              a javascript object containing all the parameters above.</span>
-            }
-            {this.props.value.body_code_type == 'handlebars' &&
-              <span>Write a handlebars.js template that creates the request body. You can use
-              variables specified in the "parameters" section above. Example: {{variable}}</span>
-            }
+            <h4>Output Body Parser</h4>
+            <span>Write a javascript function that parses the result of the request. Assume "output" is a javascript object representing the parsed result of your API call.</span>
             <CodeEditor
               onChange={this.handleChange.bind(this, 'object')}
-              code={this.props.value.object}
-              json={json}
-              mode={codeMode}
+              code={code}
+              mode={'javascript'}
             />
         </label>
         </div>

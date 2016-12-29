@@ -12,7 +12,8 @@ var ParameterList = require('../components/action/parameter_list');
 var KeyValueList = require('../components/inputs/key_value_list');
 var TextInputField = require('../components/inputs/text_input_field');
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
-var BodyEditor = require('../components/action/body_editor');
+var InputBodyEditor = require('../components/action/input_body_editor');
+var OutputBodyEditor = require('./action/output_body_editor');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -118,12 +119,6 @@ module.exports = React.createClass({
               <TextInputField label="Description" value={this.state.action.description} onChange={this.handleChange.bind(this, 'description')} />
             </div>
             <div className="row">
-              <label className="pt-label pt-inline col-xs">
-                Action Type
-                <Select options={actionTypes} value={ this.state.action.type } onChange={this.handleChange.bind(this, 'type')} />
-              </label>
-            </div>
-            <div className="row">
               <TextInputField label="Host" value={this.state.action.host} onChange={this.handleChange.bind(this, 'host')} />
             </div>
             <div className="row">
@@ -160,11 +155,11 @@ module.exports = React.createClass({
             <h4>Parameters</h4>
             <ParameterList parameters={this.state.action.input} onChange={this.handleChangeValue.bind(this, 'input')} />
             <h4>Input Body</h4>
-            <BodyEditor value={this.state.action.input_body} onChange={this.handleChange.bind(this, 'input_body')} />
+            <InputBodyEditor value={this.state.action.input_body} onChange={this.handleChange.bind(this, 'input_body')} />
           </TabPanel>
           <TabPanel>
             <h4>Output Body</h4>
-            <BodyEditor value={this.state.action.output_body} onChange={this.handleChange.bind(this, 'output_body')} />
+            <OutputBodyEditor value={this.state.action.output_body} onChange={this.handleChange.bind(this, 'output_body')} />
           </TabPanel>
       </Tabs>
       <hr />

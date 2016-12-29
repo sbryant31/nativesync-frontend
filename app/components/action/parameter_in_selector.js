@@ -23,6 +23,7 @@ module.exports = React.createClass({
       {value: 'header', label: 'Header'},
       {value: 'path', label: 'Path'},
       {value: 'host', label: 'Host'},
+      {value: 'body', label: 'Body'},
     ];
     return (
       <Select options={parameterInLocations} value={this.props.value} onChange={self.handleChange} />
