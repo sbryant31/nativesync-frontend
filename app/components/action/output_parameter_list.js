@@ -1,11 +1,14 @@
 var React = require('react');
 var lodash = require('lodash');
 var Select = require('react-select');
+var _ = require('underscore');
+
+var statusCodeParam = {name: 'statusCode', description: 'http status code response', type: 'number', readOnly: true};
 
 module.exports = React.createClass({
   getDefaultProps: () => {
     return {
-      parameters: [],
+      parameters: [statusCodeParam],
       onChange: (parameters) => { console.log('params changed', parameters); },
       readOnly: false
     }
@@ -17,7 +20,7 @@ module.exports = React.createClass({
   },
   handleAdd: function() {
     var parameters = this.props.parameters;
-    parameters.push({in: '', name: '', description: '', type: ''});
+    parameters.push({name: '', description: '', type: ''});
     this.props.onChange(parameters);
   },
   handleChange(index, field, e) {
@@ -30,6 +33,13 @@ module.exports = React.createClass({
       parameters[index][field] = e;
     }
     this.props.onChange(parameters);
+  },
+  componentWillMount: function() {
+    var parameters = this.props.parameters;
+    if (!_.findWhere(parameters, {name: 'statusCode'})) {
+      parameters.push(statusCodeParam);
+      this.props.onChange(parameters);
+    }
   },
   render() {
     var index = 0;
@@ -54,7 +64,7 @@ module.exports = React.createClass({
         <label className="pt-label pt-inline col-xs">
           Type <Select options={parameterTypes} value={ parameter.type } onChange={self.handleChange.bind(self, currentIndex, 'type')} />
         </label>
-        {!self.props.readOnly &&
+        {!self.props.readOnly && !parameter.readOnly &&
         <div className="pt-label pt-inlinecol-xs">
             <button className="pt-button pt-icon-remove" onClick={removeHandler}>Remove</button>
         </div>
