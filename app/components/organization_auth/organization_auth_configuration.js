@@ -28,7 +28,7 @@ module.exports = React.createClass({
   render() {
     var self = this;
     var inputList = lodash.map(this.props.details, (datatype, field) => {
-      <TextInputField label={field} value={self.props.value[field]} onChange={self.handleChange.bind(self, field)} />
+      return <TextInputField label={field} value={self.props.value[field]} onChange={self.handleChange.bind(self, field)} />
     });
     return <div>
       { inputList }
