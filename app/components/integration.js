@@ -122,7 +122,7 @@ module.exports = React.createClass({
         </TabPanel>
         <TabPanel>
           <h2>Actions</h2>
-          <ActionMultiSelect value={this.state.actions} onChange={this.handleActionChange.bind(this)} />
+          <ActionMultiSelect value={this.state.actions} services={this.state.services} onChange={this.handleActionChange.bind(this)} />
           <h3>Documentation</h3>
           <ActionDocumentationList actions={this.state.actions} />
         </TabPanel>

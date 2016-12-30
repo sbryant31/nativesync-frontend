@@ -13,6 +13,7 @@ module.exports = React.createClass({
   getDefaultProps: function() {
     return {
       value: [],
+      services: [],
       onChange: (actions) => { console.log('change actions', actions) }
     }
   },
@@ -25,9 +26,13 @@ module.exports = React.createClass({
     this.props.onChange(actions);
   },
   componentDidMount: function() {
+    this.loadOptions()
+  },
+  loadOptions: function() {
     console.log('loading options for action');
+    var serviceIds = _.pluck(this.props.services, 'id');
     var self = this;
-    return actions.getActions()
+    return actions.getActions({service_ids: serviceIds})
     .then(function(actions) {
       self.setState({actions: actions});
       var actionOptions = _.map(actions, (action) => {
