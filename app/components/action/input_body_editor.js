@@ -22,6 +22,7 @@ module.exports = React.createClass({
       value[field] = e;
     }
     this.props.onChange(value);
+    this.forceUpdate();
   },
   render() {
     var self = this;
