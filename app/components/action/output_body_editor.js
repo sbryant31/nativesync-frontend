@@ -37,7 +37,7 @@ module.exports = React.createClass({
     if (this.props.value.code) {
       code = this.props.value.code;
     } else {
-      code = 'return output; // todo: custom transform output'
+      code = 'callback(output); // todo: custom transform output'
       this.handleChange('code', code);
     }
     return <div>

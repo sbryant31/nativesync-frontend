@@ -6,6 +6,8 @@ var _ = require('underscore');
 
 var Select = require('react-select');
 
+var OrganizationAuthForm = require('./organization_auth/organization_auth_form');
+var Json = require('react-json');
 var ServiceAuthSelector = require('../components/service_auth/service_auth_selector');
 var ServiceSelector = require('../components/service/service_selector');
 var ParameterList = require('../components/action/parameter_list');
@@ -27,9 +29,12 @@ module.exports = React.createClass({
         input_body: {},
         output_body: {}
       },
+      organizationAuths: {},
       service: {},
       serviceAuths: [],
       selectedServiceAuths: [],
+      testInput: {},
+      testOutput: {},
       readOnly: false
     }
   },
@@ -39,7 +44,7 @@ module.exports = React.createClass({
     if (!isNaN(self.props.id)) {
       actions.getActionById(self.props.id)
       .then(function(result) {
-        console.log(result.action.input_body);
+        console.log('got action', result);
         self.setState({
           action: result.action,
           service: result.service,
@@ -51,6 +56,7 @@ module.exports = React.createClass({
   },
   loadServiceAuths: function(service) {
     var self = this;
+    console.log('loading service auths', service);
     self.setState({serviceAuths: []});
     actions.getServiceAuths(service.id)
     .then((result) => {
@@ -58,10 +64,32 @@ module.exports = React.createClass({
       self.setState({serviceAuths: result.serviceAuths});
       var newSelected = _.where(self.state.selectedServiceAuths, {service_id: service.id});
       self.setState({selectedServiceAuths: newSelected});
+      return self.loadOrganizationAuths();
+    });
+  },
+  // whenever service auths change, load the corresponding organization auths
+  loadOrganizationAuths: function() {
+    var self = this;
+    var serviceAuthIDs = _.pluck(this.state.selectedServiceAuths, 'id');
+    var organization = actions.getState('org');
+    actions.getOrganizationAuths(organization.id, serviceAuthIDs)
+    .then((result) => {
+      self.setState({organizationAuths: result.organizationAuths});
     });
   },
   handleSave: function() {
-    actions.upsertAction(this.state.action, this.state.service, this.state.selectedServiceAuths)
+    return actions.upsertAction(this.state.action, this.state.service, this.state.selectedServiceAuths)
+  },
+  handleTest: function() {
+    var self = this;
+    var organization = actions.getState('org');
+    this.handleSave()
+    .then((result) => {
+      return actions.testAction(this.state.action.id, organization.id, this.state.testInput)
+      .then((result) => {
+        self.setState({testOutput: result});
+      });
+    });
   },
   handleChange: function(field, e) {
     var action = this.state.action;
@@ -80,6 +108,12 @@ module.exports = React.createClass({
     this.setState({service: service});
     this.handleChangeValue('service_name', service.name);
     this.loadServiceAuths(service);
+  },
+  handleChangeTestInput: function(testInput) {
+    this.setState({testInput: testInput});
+  },
+  handleChangeOrganizationAuths: function(organizationAuths) {
+    this.setState({organizationAuths: organizationAuths});
   },
   handleAuthSchemeChange: function(serviceAuths) {
     this.setState({selectedServiceAuths: serviceAuths});
@@ -108,6 +142,7 @@ module.exports = React.createClass({
               <Tab>Authentication</Tab>
               <Tab>Input</Tab>
               <Tab>Output</Tab>
+              <Tab>Test</Tab>
           </TabList>
           <TabPanel>
             <h4>Basics</h4>
@@ -164,6 +199,20 @@ module.exports = React.createClass({
             <OutputParameterList parameters={this.state.action.output} onChange={this.handleChangeValue.bind(this, 'output')} />
             <h4>Output Body</h4>
             <OutputBodyEditor value={this.state.action.output_body} onChange={this.handleChange.bind(this, 'output_body')} />
+          </TabPanel>
+          <TabPanel>
+            <h4>Authentication</h4>
+            <OrganizationAuthForm
+              organization={actions.getState('org')}
+              services={[this.state.service]}
+              serviceAuths={this.state.selectedServiceAuths}
+              onChange={this.handleChangeOrganizationAuths.bind(this)} />
+            <h4>Inputs</h4>
+            <Json value={this.state.testInput} onChange={this.handleChangeTestInput.bind(this)} />
+            <h4>Output</h4>
+            <Json value={this.state.testOutput} />
+            <hr />
+            <button onClick={this.handleTest.bind(this)}>Test</button>
           </TabPanel>
       </Tabs>
       <hr />

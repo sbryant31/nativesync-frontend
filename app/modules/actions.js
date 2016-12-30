@@ -119,6 +119,10 @@ exports.upsertAction = function(action, service, serviceAuths) {
   })
 }
 
+exports.testAction = function(id, organizationId, input) {
+  return nsapi.testAction(id, organizationId, input, token)
+}
+
 exports.upsertOrganization = function(org) {
   return nsapi.upsertOrganization(org, token)
   .then((result) => {
