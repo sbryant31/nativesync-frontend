@@ -1,6 +1,7 @@
 var React = require('react');
 var lodash = require('lodash');
 var Select = require('react-select');
+var TextInputField = require('../inputs/text_input_field');
 
 module.exports = React.createClass({
   getDefaultProps: () => {
@@ -21,7 +22,7 @@ module.exports = React.createClass({
     return <div>
       Trigger info
       <Select options={triggerTypes} value={this.props.value.type} onChange={this.handleChange.bind(this, 'type')} />
-      <input className="pt-input" value={this.props.value.value} onChange={this.handleChange.bind(this, 'value')} />
+      <TextInputField label="Cron" value={this.props.value.value} onChange={this.handleChange.bind(this, 'value')} />
     </div>
   }
 })

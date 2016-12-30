@@ -128,7 +128,10 @@ module.exports = React.createClass({
         </TabPanel>
         <TabPanel>
           <h2>Configuration</h2>
-          <IntegrationConfigurationBuilder value={this.state.integration.configuration} onChange={this.handleChange.bind(this, 'configuration')} />
+          <IntegrationConfigurationBuilder
+            configuration={this.state.integration.configuration}
+            onChange={this.handleChange.bind(this, 'configuration')}
+          />
         </TabPanel>
         <TabPanel>
           <h2>Code</h2>
@@ -138,7 +141,7 @@ module.exports = React.createClass({
             </div>
             <div className="col-xs">
               <h4>Configuration Inputs</h4>
-              <ConfigurationInputView value={this.state.integration.configuration} />
+              <ConfigurationInputView configuration={this.state.integration.configuration} />
               <h4>Actions</h4>
               <ActionDocumentationList actions={this.state.actions} />
             </div>

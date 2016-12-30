@@ -4,73 +4,108 @@ var lodash = require('lodash');
 var Select = require('react-select');
 var actions = require('../../modules/actions');
 var TextInputField = require('../inputs/text_input_field');
+var CodeEditor = require('../inputs/code_editor');
 
 module.exports = React.createClass({
   getDefaultProps: function() {
     return {
-      configuration: [],
+      configuration: {type: 'static', fields: [], code: ''},
       onChange: function(configuration) {console.log('service auths change', configuration)},
       readOnly: false,
     }
   },
-  handleChange: function(index, field, e) {
+  handleChange: function(field, e) {
     var self = this;
     var configuration = this.props.configuration;
+    var configuration = this.props.configuration;
     if (e.target) {
-      configuration[index][field] = e.target.value;
+      configuration[field] = e.target.value;
     } else if (e.value) {
-      configuration[index][field] = e.value;
+      configuration[field] = e.value;
     } else {
-      configuration[index][field] = e;
+      configuration[field] = e;
     }
     self.props.onChange(configuration);
   },
-  handleAdd: function() {
+  handleChangeField: function(index, field, e) {
     var self = this;
-    var configuration = self.props.configuration;
-    configuration.push({label: '', key: '', type: ''});
+    var configuration = this.props.configuration;
+    if (e.target) {
+      configuration['fields'][index][field] = e.target.value;
+    } else if (e.value) {
+      configuration['fields'][index][field] = e.value;
+    } else {
+      configuration['fields'][index][field] = e;
+    }
     self.props.onChange(configuration);
   },
-  handleRemove: function(index) {
+  handleAddField: function() {
     var self = this;
     var configuration = self.props.configuration;
-    configuration.splice(index, 1);
+    configuration.fields.push({label: '', key: '', type: ''});
+    self.props.onChange(configuration);
+  },
+  handleRemoveField: function(index) {
+    var self = this;
+    var configuration = self.props.configuration;
+    configuration.fields.splice(index, 1);
     self.props.onChange(configuration);
   },
   render() {
     var configurationTypes = [
+      {value: 'static', label: 'Static'},
+      {value: 'dynamic', label: 'Dynamic'}
+    ];
+    var configurationFieldTypes = [
       {value: 'string', label: 'String'},
       {value: 'number', label: 'Number'},
       {value: 'mapping', label: 'Mapping'},
     ];
     var self = this;
-    var configurationList = lodash.map(self.props.configuration,function(configuration, index){
+    var configurationList = lodash.map(self.props.configuration.fields, (configurationField, index) => {
       return (
-          <div>
-            <TextInputField label="Label" value={configuration.label} onChange={self.handleChange.bind(self, index, 'label')} />
-            <TextInputField label="Key" value={configuration.key} onChange={self.handleChange.bind(self, index, 'key')} />
-            Type: <Select options={configurationTypes}
-                    value={configuration.type}
-                    onChange={self.handleChange.bind(self, index, 'type')}
-            />
-            {!self.props.readOnly &&
-              <div className="col-xs">
-                <button className="pt-button" onClick={self.handleRemove.bind(self, index)}>Remove</button>
-              </div>
-            }
-          </div>
+        <div>
+          <TextInputField label="Label" value={configurationField.label} onChange={self.handleChangeField.bind(self, index, 'label')} />
+          <TextInputField label="Key" value={configurationField.key} onChange={self.handleChangeField.bind(self, index, 'key')} />
+          Type: <Select options={configurationFieldTypes}
+                  value={configurationField.type}
+                  onChange={self.handleChangeField.bind(self, index, 'type')}
+          />
+          {!self.props.readOnly &&
+            <div className="col-xs">
+              <button className="pt-button" onClick={self.handleRemoveField.bind(self, index)}>Remove</button>
+            </div>
+          }
+        </div>
       );
     })
     return (
         <div>
+          <div>
+            Type: <Select options={configurationTypes}
+                    value={this.props.configuration.type}
+                    onChange={self.handleChange.bind(self, 'type')}
+                  />
+          </div>
+          <hr />
+          { self.props.configuration.type == 'static' &&
             <div>
-                { configurationList }
+              <div>
+                  { configurationList }
+              </div>
+              <div className="row">
+                  { !self.props.readOnly &&
+                      <button className="pt-button" onClick={self.handleAddField.bind(self)}>Add</button>
+                  }
+              </div>
             </div>
-            <div className="row">
-                { !self.props.readOnly &&
-                    <button className="pt-button" onClick={self.handleAdd.bind(self)}>Add</button>
-                }
-            </div>
+          }
+          { self.props.configuration.type == 'dynamic' &&
+            <CodeEditor
+              code={this.props.configuration.code}
+              onChange={self.handleChange.bind(self, 'code')}
+            />
+          }
         </div>
     );
   }

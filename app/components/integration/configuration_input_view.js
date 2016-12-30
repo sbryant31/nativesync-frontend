@@ -6,17 +6,22 @@ import JSONTree from 'react-json-tree'
 module.exports = React.createClass({
   getDefaultProps: () => {
     return {
-      value: [],
+      configuration: {},
       onChange: (parameters) => { console.log('params changed', parameters); }
     }
   },
   render() {
     var inputObject = {};
-    for (var configuration of this.props.value) {
-      inputObject[configuration.key] = configuration.type;
+    for (var configurationField of this.props.configuration.fields) {
+      inputObject[configurationField.key] = configurationField.type;
     }
     return <div>
-      <JSONTree data={inputObject} />
+      { this.props.configuration.type == 'static' &&
+        <JSONTree data={inputObject} />
+      }
+      { this.props.configuration.type == 'dynamic' &&
+        <span>Dynamically generated</span>
+      }
     </div>
   }
 })
