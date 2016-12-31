@@ -27,7 +27,7 @@ module.exports = React.createClass({
       <div className="pt-navbar-group pt-align-right" >
         <ul className='pt-menu' style={{backgroundColor: '#16253d', color: '#FFF'}}>
           {links}
-          <span class="pt-navbar-divider"></span>
+          <span className="pt-navbar-divider"></span>
           {this.props.children}
         </ul>
         {this.props.avatarMenu}

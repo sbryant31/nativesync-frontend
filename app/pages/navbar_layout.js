@@ -213,7 +213,7 @@ module.exports = React.createClass({
         <Popover content={<OrganizationMenu onChangeOrg={this.handleChangeOrg.bind(this)} />} position={Position.BOTTOM_RIGHT}  >
           <li className='pt-menu-item pt-icon-people'>{orgName}</li>
         </Popover>
-        <span class="pt-navbar-divider"></span>
+        <span className="pt-navbar-divider"></span>
         <Popover content={<MarketMenu/>} position={Position.BOTTOM_RIGHT}>
           <li className='pt-menu-item pt-icon-shopping-cart'>Marketplace</li>
         </Popover>
