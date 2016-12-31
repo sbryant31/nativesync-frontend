@@ -2,6 +2,7 @@ var React = require('react')
 var actions = require('../../modules/actions')
 var Navbar = require('../../components/navbar')
 var lodash = require('lodash')
+var _ = require('underscore');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -14,13 +15,21 @@ module.exports = React.createClass({
   },
   render() {
     var self = this;
-    var integrationsList = lodash.map(self.props.integrations,function(integration){
+    console.log(self.props.integrations);
+    var integrationsList = lodash.map(self.props.integrations, function(integration){
+      var services = _.map(integration.Services, function(service) {
+        return (<div>
+            {service.name} <img src={service.logo_url} style={{height: 50, width: 50}} />
+          </div>
+        )
+      });
       return (
         <tr key={integration.id}>
           <td>{integration.organization_id}</td>
           <td><a onClick={actions.goto.bind(null, '/integration/' + integration.id)}>{integration.title}</a></td>
           <td>{integration.description}</td>
           <td>{integration.version}</td>
+          <td>{services}</td>
           <td>{JSON.stringify(integration.pricing)}</td>
         </tr>
       )
@@ -36,6 +45,7 @@ module.exports = React.createClass({
            <th>Title</th>
            <th>Description</th>
            <th>Version</th>
+           <th>Services</th>
            <th>Cost*</th>
         </tr>
         </thead>

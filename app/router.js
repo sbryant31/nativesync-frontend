@@ -10,6 +10,7 @@ var Landing = require('./pages/landing')
 var IntegrationsMe = require('./pages/integrations_me')
 var IntegrationInstancesMe = require('./pages/integration_instances_me')
 var Marketplace = require('./pages/marketplace')
+var MarketplaceRequest = require('./pages/marketplace_request')
 var IntegrationsBrowse = require('./pages/integrations_browse')
 var ServicesBrowse = require('./pages/services_browse')
 var ServiceEdit = require('./pages/service_edit')
@@ -135,6 +136,9 @@ module.exports = (
       </Route>
       <Route path='/marketplace' component={NavbarLayout}>
         <IndexRoute component={Marketplace}/>
+      </Route>
+      <Route path='/marketplace/request' component={NavbarLayout}>
+        <IndexRoute component={MarketplaceRequest}/>
       </Route>
       <Route path='/profile' component={Profile}/>
     </Route>
