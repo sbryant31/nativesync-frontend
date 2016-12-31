@@ -2,6 +2,7 @@ var React = require('react')
 var state = require('../modules/state')
 var store = require('store')
 var lodash = require('lodash')
+var _ = require('underscore');
 var actions = require('../modules/actions')
 var md5 = require('md5');
 var Navbar = require('../components/navbar')
@@ -24,9 +25,13 @@ var OrganizationMenu = React.createClass({
   },
   componentDidMount: function() {
     var self = this;
+    var user = actions.getState('me');
     actions.myAssociations()
     .then(function(result) {
       self.setState({organizations: result.organizations});
+      var org = _.findWhere(result.organizations, {id: user.default_organization_id});
+      if (!org) { org = result.organizations[0]; }
+      self.handleChangeView(org);
     })
   },
   render(){
@@ -162,6 +167,21 @@ module.exports = React.createClass({
     return {
       org: actions.getState('org'),
       mode: actions.getState('mode'),
+    }
+  },
+  componentDidMount: function() {
+    // if no org exists for the user logged in set the default org
+    var self = this;
+    var org = actions.getState('org');
+    if (!org) {
+      var user = actions.getState('me');
+      actions.myAssociations()
+      .then(function(result) {
+        var org = _.findWhere(result.organizations, {id: user.default_organization_id});
+        if (!org) { org = result.organizations[0]; }
+        actions.setViewToOrg(org)
+        self.handleChangeOrg(org);
+      })
     }
   },
   handleChangeOrg: function(org) {

@@ -6,17 +6,17 @@ var actions = require('../../modules/actions');
 var TextInputField = require('../inputs/text_input_field');
 var CodeEditor = require('../inputs/code_editor');
 
+var defaultConfiguration = {type: 'static', fields: [], code: ''}
 module.exports = React.createClass({
   getDefaultProps: function() {
     return {
-      configuration: {type: 'static', fields: [], code: ''},
+      configuration: defaultConfiguration,
       onChange: function(configuration) {console.log('service auths change', configuration)},
       readOnly: false,
     }
   },
   handleChange: function(field, e) {
     var self = this;
-    var configuration = this.props.configuration;
     var configuration = this.props.configuration;
     if (e.target) {
       configuration[field] = e.target.value;
@@ -42,12 +42,14 @@ module.exports = React.createClass({
   handleAddField: function() {
     var self = this;
     var configuration = self.props.configuration;
+    if (!configuration.fields) { configuration.fields = []};
     configuration.fields.push({label: '', key: '', type: ''});
     self.props.onChange(configuration);
   },
   handleRemoveField: function(index) {
     var self = this;
     var configuration = self.props.configuration;
+    if (!configuration.fields) { configuration.fields = []};
     configuration.fields.splice(index, 1);
     self.props.onChange(configuration);
   },

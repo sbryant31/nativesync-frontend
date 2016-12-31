@@ -95,7 +95,6 @@ module.exports = React.createClass({
       <Tabs>
         <TabList>
             <Tab>General</Tab>
-            <Tab>Services</Tab>
             <Tab>Actions</Tab>
             <Tab>Configuration</Tab>
             <Tab>Code</Tab>
@@ -119,8 +118,6 @@ module.exports = React.createClass({
         <TabPanel>
           <h2>Services</h2>
           <ServiceMultiSelect value={this.state.services} onChange={this.handleServiceChange.bind(this)} />
-        </TabPanel>
-        <TabPanel>
           <h2>Actions</h2>
           <ActionMultiSelect value={this.state.actions} services={this.state.services} onChange={this.handleActionChange.bind(this)} />
           <h3>Documentation</h3>

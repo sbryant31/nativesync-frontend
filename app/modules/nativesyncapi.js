@@ -98,6 +98,10 @@ exports.upsertAction = function(action, service, serviceAuths, token){
   return call('/actions/upsert',{action: action, service: service, serviceAuths: serviceAuths},'POST',token)
 }
 
+exports.updateUser = function(data, token){
+  return call('/me/update', data,'POST',token)
+}
+
 exports.testAction = function(id, organizationId, input, token){
   return call('/actions/test',{id: id, organizationId: organizationId, input: input},'POST',token)
 }

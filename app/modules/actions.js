@@ -20,7 +20,14 @@ exports.getToken = function(){
 
 exports.setViewToOrg = function(org) {
   state.set('org', org);
-  exports.goto('/dashboard');
+  var user = state.get('me');
+  user.default_organization_id = org.id;
+  state.set('me', user);
+
+  return exports.updateUser({default_organization_id: org.id})
+  .then((result) => {
+    exports.goto('/dashboard');
+  });
 }
 
 exports.login = function(username,password){
@@ -95,6 +102,10 @@ exports.getServiceById = function(id) {
 
 exports.getIntegrationInstanceById = function(id) {
   return nsapi.getIntegrationInstanceById(id, token)
+}
+
+exports.updateUser = function(data) {
+  return nsapi.updateUser(data, token);
 }
 
 exports.getOrganizationById = function(id) {
