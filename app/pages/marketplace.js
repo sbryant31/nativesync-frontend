@@ -1,19 +1,17 @@
 var React = require('react')
 var actions = require('../modules/actions')
 var Navbar = require('../components/navbar')
-var ActionBrowser = require('../components/action_browser');
+var IntegrationBrowser = require('../components/integration_browser');
 var lodash = require('lodash')
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      filter: {
-        organization_id: actions.getState('org').id
-      }
+      filter: { }
     }
   },
   render() {
-    return <ActionBrowser initialFilter={this.state.filter} view='self' />
+    return <IntegrationBrowser initialFilter={this.state.filter} view={'marketplace'} />
   }
 })
 

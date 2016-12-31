@@ -70,6 +70,10 @@ exports.getIntegrationInstances = function(integrationId, token){
   return call('/integration/' + integrationId + '/instances', {}, 'GET', token)
 }
 
+exports.getIntegrationInstancesForOrg = function(organizationId, token){
+  return call('/integration_instances/', {organization_id: organizationId}, 'GET', token)
+}
+
 exports.getIntegrationInstanceById = function(id, token){
   return call('/integration_instance/' + id, {}, 'GET', token)
 }

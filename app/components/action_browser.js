@@ -11,9 +11,17 @@ module.exports = React.createClass({
       actions: []
     }
   },
+  getDefaultProps: function() {
+    return {
+      initialFilter: {}
+    }
+  },
   componentDidMount: function() {
     var self = this;
-    actions.getActions(this.state.filter)
+    var filter = this.props.initialFilter;
+    self.setState({filter: filter});
+    console.log('get actions', filter);
+    actions.getActions(filter)
     .then(function(result) {
       self.setState({actions: result});
     })

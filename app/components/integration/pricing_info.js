@@ -10,16 +10,22 @@ module.exports = React.createClass({
       onChange: (parameters) => { console.log('params changed', parameters); }
     }
   },
-  handleChange: function(field) {
+  handleChange: function(field, e) {
     var pricingInfo = this.props.value;
-    pricingInfo[field] = selection.value;
+    if (e.target) {
+      pricingInfo[field] = e.target.value;
+    } else if (e.value) {
+      pricingInfo[field] = e.value;
+    } else {
+      pricingInfo[field] = e;
+    }
     this.props.onChange(pricingInfo);
   },
   render() {
     return <div>
-      <TextInputField label="Upfront Fee" value={this.props.value.upfront} onChange={this.handleChange.bind('upfront')} />
-      <TextInputField label="Monthly Fee" value={this.props.value.monthly} onChange={this.handleChange.bind('monthly')} />
-      <TextInputField label="Hourly rate (for support)" value={this.props.value.hourly} onChange={this.handleChange.bind('hourly')} />
+      <TextInputField label="Upfront Fee" value={this.props.value.upfront} onChange={this.handleChange.bind(this, 'upfront')} />
+      <TextInputField label="Monthly Fee" value={this.props.value.monthly} onChange={this.handleChange.bind(this, 'monthly')} />
+      <TextInputField label="Hourly rate (for support)" value={this.props.value.hourly} onChange={this.handleChange.bind(this, 'hourly')} />
     </div>
   }
 })

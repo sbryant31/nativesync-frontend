@@ -7,14 +7,11 @@ var lodash = require('lodash')
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      filter: {
-        partner_id: actions.getState('org').id
-      }
+      filter: { }
     }
   },
   render() {
-    console.log('integrationbrowser', this.state);
-    return <IntegrationBrowser initialFilter={this.filter} />
+    return <IntegrationBrowser org={actions.getState('org')} initialFilter={this.filter} />
   }
 })
 

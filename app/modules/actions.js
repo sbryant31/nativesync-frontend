@@ -81,6 +81,10 @@ exports.getIntegrationInstances = function(integrationId){
   return nsapi.getIntegrationInstances(integrationId, token)
 }
 
+exports.getIntegrationInstancesForOrg = function(organizationId){
+  return nsapi.getIntegrationInstancesForOrg(organizationId, token)
+}
+
 exports.getIntegrationById = function(id, includeAssociations) {
   return nsapi.getIntegrationById(id, {includeAssociations: includeAssociations}, token)
 }

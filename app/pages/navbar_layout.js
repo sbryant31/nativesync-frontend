@@ -76,7 +76,7 @@ var MarketMenu = React.createClass({
     var items = [
       {
         name:'Buy Integrations',
-        link:'/marketplace/integrations',
+        link:'/marketplace',
         icon: 'shop',
       },
       {

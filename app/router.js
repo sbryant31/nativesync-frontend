@@ -8,6 +8,8 @@ var actions = require('./modules/actions')
 var App = require('./app')
 var Landing = require('./pages/landing')
 var IntegrationsMe = require('./pages/integrations_me')
+var IntegrationInstancesMe = require('./pages/integration_instances_me')
+var Marketplace = require('./pages/marketplace')
 var IntegrationsBrowse = require('./pages/integrations_browse')
 var ServicesBrowse = require('./pages/services_browse')
 var ServiceEdit = require('./pages/service_edit')
@@ -107,6 +109,9 @@ module.exports = (
       <Route path='/integration_instance/:id' component={NavbarLayout}>
         <IndexRoute component={IntegrationInstanceEdit}/>
       </Route>
+      <Route path='/integration_instances' component={NavbarLayout}>
+        <IndexRoute component={IntegrationInstancesMe}/>
+      </Route>
       <Route path='/integration/new' component={NavbarLayout}>
         <IndexRoute component={IntegrationEdit}/>
       </Route>
@@ -127,6 +132,9 @@ module.exports = (
       </Route>
       <Route path='/organization/new' component={NavbarLayout}>
         <IndexRoute component={OrganizationEdit}/>
+      </Route>
+      <Route path='/marketplace' component={NavbarLayout}>
+        <IndexRoute component={Marketplace}/>
       </Route>
       <Route path='/profile' component={Profile}/>
     </Route>

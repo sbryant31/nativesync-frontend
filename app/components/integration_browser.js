@@ -1,90 +1,50 @@
 var React = require('react')
-var actions = require('../modules/actions')
 var Navbar = require('../components/navbar')
+var actions = require('../modules/actions')
 var lodash = require('lodash')
+var ListView = require('./integration_browser/list_view');
+var MarketplaceView = require('./integration_browser/marketplace_view');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
       filter: {},
       integrations: [],
-      selectedIntegrationId: null,
-      integrationInstances: []
     }
   },
   getDefaultProps: function() {
     return {
       initialFilter: {},
-      showInstances: false,
+      org: null,
+      view: 'list',
     }
   },
   componentDidMount: function() {
     var self = this;
     self.setState({filter: this.props.initialFilter})
-    actions.getIntegrations(this.state.filter)
+    var filter = this.state.filter;
+    if (this.props.org) {
+      filter.organization_id = this.props.org.id;
+    }
+    actions.getIntegrations(filter)
     .then(function(result) {
       self.setState({
         integrations: result.integrations
       });
     })
   },
-  handleGetIntegrationInstances: function(integrationId) {
-    var self = this;
-    self.setState({selectedIntegrationId: integrationId});
-    actions.getIntegrationInstances(integrationId)
-    .then(function(result) {
-      console.log('got instances', result);
-      self.setState({integrationInstances: result.integrationInstances});
-    })
-  },
   render() {
     var self = this;
-    var integrationsList = lodash.map(self.state.integrations,function(integration){
-      var instances = '';
-      if (self.state.selectedIntegrationId == integration.id) {
-        instances = lodash.map(self.state.integrationInstances, function(instance) {
-          return <div className="row">
-            <a onClick={actions.goto.bind(null, '/integration_instance/' + instance.id)}>{instance.organization.name} {instance.title}</a>
-          </div>
-        });
-      }
-      return (
-        <tr key={integration.id}>
-          <td>{integration.organization_id}</td>
-          <td><a onClick={actions.goto.bind(null, '/integration/' + integration.id)}>{integration.title}</a></td>
-          <td>{integration.description}</td>
-          <td>
-            <div className="row">
-              <span className="pt-icon-double-chevron-down" onClick={self.handleGetIntegrationInstances.bind(self, integration.id)} />
-            </div>
-            {instances}
-          </td>
-          <td>
-            <span className="pt-icon-add" onClick={actions.goto.bind(self, `/integration/${integration.id}/instance/new`)} />
-          </td>
-        </tr>
-      )
-    })
-    console.log('list', integrationsList);
-    return <div>
-      <h1>Integrations</h1>
-      <a onClick={actions.goto.bind(null, '/integration/new')}>New Integration</a>
-      <hr/>
-      <table className="pt-table pt-striped">
-        <thead>
-        <tr>
-           <th>Owner</th>
-           <th>Title</th>
-           <th>Description</th>
-           <th>Managed Instances</th>
-           <th>Implement Instance</th>
-        </tr>
-        </thead>
-        <tbody>
-          {integrationsList}
-        </tbody>
-      </table>
-    </div>
+    return (
+      <div>
+        { this.props.view == 'marketplace' &&
+          <MarketplaceView integrations={self.state.integrations} />
+        }
+        { this.props.view == 'list' &&
+          <ListView integrations={self.state.integrations} />
+        }
+      </div>
+    )
   }
 })
 
