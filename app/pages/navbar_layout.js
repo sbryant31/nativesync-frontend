@@ -134,9 +134,9 @@ var BuildMenu = React.createClass({
   render(){
     var items = [
       {
-        name:'Integrations',
-        link:'/integrations/me',
-        icon: 'code'
+        name:'Services',
+        link:'/services/browse',
+        icon: 'cloud'
       },
       {
         name:'Actions',
@@ -144,9 +144,9 @@ var BuildMenu = React.createClass({
         icon: 'git-pull'
       },
       {
-        name:'Services',
-        link:'/services/browse',
-        icon: 'cloud'
+        name:'Integrations',
+        link:'/integrations/me',
+        icon: 'code'
       },
     ]
     items = lodash.map(items,function(item){

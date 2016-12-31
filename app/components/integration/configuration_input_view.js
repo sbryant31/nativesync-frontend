@@ -12,8 +12,10 @@ module.exports = React.createClass({
   },
   render() {
     var inputObject = {};
-    for (var configurationField of this.props.configuration.fields) {
-      inputObject[configurationField.key] = configurationField.type;
+    if (this.props.configuration.fields) {
+      for (var configurationField of this.props.configuration.fields) {
+        inputObject[configurationField.key] = configurationField.type;
+      }
     }
     return <div>
       { this.props.configuration.type == 'static' &&
