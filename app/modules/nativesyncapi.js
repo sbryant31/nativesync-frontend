@@ -87,7 +87,7 @@ exports.getIntegrationById = function(id, options, token){
 }
 
 exports.getOrganizationById = function(id, token){
-  return call('/org/' + id, null, 'GET', token)
+  return call('/organization/' + id, null, 'GET', token)
 }
 
 exports.getActionById = function(id, token){

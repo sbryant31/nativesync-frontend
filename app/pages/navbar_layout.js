@@ -107,13 +107,8 @@ var ManageMenu = React.createClass({
         icon:'search-around',
       },
       {
-        name:'My Database',
-        link:'/datastore',
-        icon: 'database'
-      },
-      {
         name:'My Organization',
-        link:'/organization',
+        link:'/organization/' + actions.getState('org').id,
         icon: 'office'
       },
     ]

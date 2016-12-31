@@ -25,7 +25,7 @@ module.exports = React.createClass({
       });
       return (
         <tr key={integration.id}>
-          <td>{integration.organization_id}</td>
+          <td>{integration.organization.name} <img src={integration.organization.logo_url} style={{height: 50, width: 50}} /></td>
           <td><a onClick={actions.goto.bind(null, '/integration/' + integration.id)}>{integration.title}</a></td>
           <td>{integration.description}</td>
           <td>{integration.version}</td>

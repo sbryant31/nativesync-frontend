@@ -9,8 +9,7 @@ import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      organization: {
-      }
+      organization: { }
     }
   },
   handleSave: function() {
@@ -48,6 +47,11 @@ module.exports = React.createClass({
     return <div>
       <h2>Create/Edit Organization {this.state.organization.name}</h2>
       <TextInputField label="Name" value={this.state.organization.name} onChange={this.handleChange.bind(this, 'name')} />
+      <TextInputField label="Secret Passphrase (required to join your organization)" value={this.state.organization.passphrase} onChange={this.handleChange.bind(this, 'passphrase')} />
+      <TextInputField label="Logo Url" value={this.state.organization.logo_url} onChange={this.handleChange.bind(this, 'logo_url')} />
+      { this.state.organization.logo_url &&
+        <img src={this.state.organization.logo_url} style={{height: 50, width: 50}} />
+      }
       <hr />
       <button className="pt-button pt-icon-add" onClick={this.handleSave}>Save</button>
     </div>
