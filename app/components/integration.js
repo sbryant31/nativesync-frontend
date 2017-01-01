@@ -95,7 +95,6 @@ module.exports = React.createClass({
       <Tabs>
         <TabList>
             <Tab>General</Tab>
-            <Tab>Actions</Tab>
             <Tab>Configuration</Tab>
             <Tab>Code</Tab>
             <Tab>Documentation</Tab>
@@ -116,14 +115,6 @@ module.exports = React.createClass({
           <TriggerInfo value={this.state.integration.scheduling_info} onChange={this.handleChange.bind(this, 'scheduling_info')} />
         </TabPanel>
         <TabPanel>
-          <h2>Services</h2>
-          <ServiceMultiSelect value={this.state.services} onChange={this.handleServiceChange.bind(this)} />
-          <h2>Actions</h2>
-          <ActionMultiSelect value={this.state.actions} services={this.state.services} onChange={this.handleActionChange.bind(this)} />
-          <h3>Documentation</h3>
-          <ActionDocumentationList actions={this.state.actions} />
-        </TabPanel>
-        <TabPanel>
           <h2>Configuration</h2>
           <IntegrationConfigurationBuilder
             configuration={this.state.integration.configuration}
@@ -131,14 +122,21 @@ module.exports = React.createClass({
           />
         </TabPanel>
         <TabPanel>
+          <div className="row">
+            <ServiceMultiSelect value={this.state.services} onChange={this.handleServiceChange.bind(this)} />
+          </div>
+          <div className="row">
+            <ActionMultiSelect value={this.state.actions} services={this.state.services} onChange={this.handleActionChange.bind(this)} />
+          </div>
           <h2>Code</h2>
           <div className="row">
-            <div className="col-xs">
+            <div className="col-xs-9">
               <CodeEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
             </div>
             <div className="col-xs">
               <h4>Configuration Inputs</h4>
               <ConfigurationInputView configuration={this.state.integration.configuration} />
+              <hr />
               <h4>Actions</h4>
               <ActionDocumentationList actions={this.state.actions} />
             </div>

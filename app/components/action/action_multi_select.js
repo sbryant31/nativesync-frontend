@@ -47,7 +47,7 @@ module.exports = React.createClass({
       return {value: action.id, label: action.service_name + " " + action.function_name};
     })
     return <label className="pt-label pt-inline col-xs">
-      Action
+      Actions
       <Select
         name="action-multi-select"
         value={value}

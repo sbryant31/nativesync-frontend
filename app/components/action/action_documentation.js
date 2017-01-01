@@ -5,6 +5,7 @@ var actions = require('../../modules/actions');
 var Select = require('react-select');
 var ActionMultiSelect = require('./action_multi_select');
 var ParameterList = require('./parameter_list');
+var Json = require('react-json');
 
 module.exports = React.createClass({
   getDefaultProps: function() {
@@ -13,13 +14,27 @@ module.exports = React.createClass({
     }
   },
   render() {
+    var action = this.props.action;
+    var inputJson = {};
+    for (var param of action.input) {
+      inputJson[param.name] = ` <${param['type']}> - ${param['description']}`
+    }
+
+    var outputJson = {};
+    for (var param of action.output) {
+      outputJson[param.name] = ` <${param['type']}> - ${param['description']}`
+    }
+
+    var example = `return ns(${action.id}, ${action.service_name}, ${action.function_name}, ${JSON.stringify(inputJson)})`
     return <div>
-      <h4><b>{ this.props.action.service_name }</b> - { this.props.action.function_name }</h4>
-      <p>{this.props.action.description}</p>
+      <h6><b>{ action.service_name }</b> - { action.function_name }</h6>
+      <p>{action.description}</p>
       <h5>Input</h5>
-      <ParameterList parameters={ this.props.action.input } readOnly={true} />
+      <Json value={inputJson} />
       <h5>Outputs</h5>
-      <ParameterList parameters={ this.props.action.output } readOnly={true} />
+      <Json value={outputJson} />
+      <h5>Example</h5>
+      <textarea value={example} className="pt-input pt-fill" />
     </div>
   }
 })

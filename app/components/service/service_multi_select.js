@@ -42,7 +42,7 @@ module.exports = React.createClass({
       return {value: service.id, label: service.name};
     })
     return <label className="pt-label pt-inline col-xs">
-      Service
+      Services
       <Select
         name="service-multi-select"
         multi={true}

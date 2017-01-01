@@ -13,9 +13,12 @@ module.exports = React.createClass({
   },
   render() {
     var documentationList = lodash.map(this.props.actions, function(action) {
-      return <ActionDocumentation action={action} />
+      return <div>
+        <ActionDocumentation action={action} />
+        <hr />
+      </div>
     });
-    return <div>
+    return <div style={{height:500, overflow:'auto'}}>
       { documentationList }
     </div>
   }
