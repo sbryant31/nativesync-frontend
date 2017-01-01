@@ -20,7 +20,7 @@ module.exports = React.createClass({
   render() {
     var self = this;
     return <div>
-      <div className="row">Auth { this.props.serviceAuth.name } type { this.props.serviceAuth.type } </div>
+      <div className="row">{this.props.service.name} Auth { this.props.serviceAuth.name } type { this.props.serviceAuth.type } </div>
       <div className="row">
         { this.props.serviceAuth.type == 'basic' &&
           <OrganizationAuthBasic details={this.props.serviceAuth.details} value={this.props.organizationAuth.value} onChange={this.handleValueChange} />

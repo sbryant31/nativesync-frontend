@@ -212,7 +212,7 @@ module.exports = React.createClass({
             <h4>Output</h4>
             <Json value={this.state.testOutput} />
             <hr />
-            <button onClick={this.handleTest.bind(this)}>Test</button>
+            <button className="pt-button" onClick={this.handleTest.bind(this)}>Test</button>
           </TabPanel>
       </Tabs>
       <hr />

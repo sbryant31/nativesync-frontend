@@ -3,6 +3,8 @@ var actions = require('../modules/actions')
 var Navbar = require('../components/navbar')
 var lodash = require('lodash')
 var Select = require('react-select');
+var Json = require('react-json');
+var OrganizationAuthForm = require('./organization_auth/organization_auth_form');
 var ServiceAuthList = require('../components/service_auth/service_auth_list');
 var ConfigurationInputView = require('../components/integration/configuration_input_view');
 var ReferralCodesList = require('../components/integration/referral_codes_list');
@@ -29,10 +31,31 @@ module.exports = React.createClass({
       services: [],
       actions: [],
       integrationCode: { },
+      // test stuff
+      organizationAuths: {},
+      testInput: {},
+      testOutput: {},
+      serviceAuths: []
+    }
+  },
+  getDefaultProps: function() {
+    return {
+      id: null
     }
   },
   handleSave: function() {
-    actions.upsertIntegration(this.state.integration, this.state.services, this.state.actions, this.state.integrationCode)
+    return actions.upsertIntegration(this.state.integration, this.state.services, this.state.actions, this.state.integrationCode)
+  },
+  handleTest: function() {
+    var self = this;
+    var organization = actions.getState('org');
+    this.handleSave()
+    .then((result) => {
+      return actions.testIntegration(this.state.integration.id, organization.id, this.state.testInput)
+      .then((result) => {
+        self.setState({testOutput: result});
+      });
+    });
   },
   handleChange: function(field, e) {
     var integration = this.state.integration;
@@ -54,16 +77,33 @@ module.exports = React.createClass({
   },
   handleActionChange: function(actions) {
     this.setState({actions: actions});
+    var serviceAuths = [];
+    _.each(actions, (action) => {
+      serviceAuths = serviceAuths.concat(action.ServiceAuths);
+    })
+    this.setState({serviceAuths: serviceAuths});
+    return this.loadOrganizationAuths();
   },
   handleCodeChange: function(value) {
     var integrationCode = this.state.integrationCode;
     integrationCode.code = value;
     this.setState({integrationCode: integrationCode});
   },
-  getDefaultProps: function() {
-    return {
-      id: null
-    }
+  handleChangeTestInput: function(testInput) {
+    this.setState({testInput: testInput});
+  },
+  handleChangeOrganizationAuths: function(organizationAuths) {
+    this.setState({organizationAuths: organizationAuths});
+  },
+  // whenever service auths change, load the corresponding organization auths
+  loadOrganizationAuths: function() {
+    var self = this;
+    var serviceAuthIDs = _.pluck(this.state.serviceAuths, 'id');
+    var organization = actions.getState('org');
+    actions.getOrganizationAuths(organization.id, serviceAuthIDs)
+    .then((result) => {
+      self.setState({organizationAuths: result.organizationAuths});
+    });
   },
   componentDidMount: function() {
     var self = this;
@@ -78,7 +118,8 @@ module.exports = React.createClass({
           integration: result.integration,
           services: result.services,
           actions: result.actions,
-          integrationCode: result.integrationCode
+          integrationCode: result.integrationCode,
+          serviceAuths: result.serviceAuths
         });
       })
     }
@@ -97,6 +138,7 @@ module.exports = React.createClass({
             <Tab>General</Tab>
             <Tab>Configuration</Tab>
             <Tab>Code</Tab>
+            <Tab>Test</Tab>
             <Tab>Documentation</Tab>
             <Tab>Publish</Tab>
         </TabList>
@@ -141,6 +183,22 @@ module.exports = React.createClass({
               <ActionDocumentationList actions={this.state.actions} />
             </div>
           </div>
+        </TabPanel>
+        <TabPanel>
+          <h4>Authentication</h4>
+          <OrganizationAuthForm
+            organization={actions.getState('org')}
+            services={this.state.services}
+            serviceAuths={this.state.serviceAuths}
+            onChange={this.handleChangeOrganizationAuths.bind(this)} />
+          <h4>Inputs</h4>
+          <Json value={this.state.testInput} onChange={this.handleChangeTestInput.bind(this)} />
+          <h4>Return Value</h4>
+          <textarea value={JSON.stringify(this.state.testOutput.output)} className="pt-input pt-fill" />
+          <h4>Logs</h4>
+          <textarea value={this.state.testOutput.logs ? this.state.testOutput.logs.join('\n') : ''} className="pt-input pt-fill" />
+          <hr />
+          <button className="pt-button" onClick={this.handleTest.bind(this)}>Test</button>
         </TabPanel>
         <TabPanel>
           <h2>Documentation</h2>

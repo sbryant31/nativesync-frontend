@@ -139,6 +139,10 @@ exports.testAction = function(id, organizationId, input) {
   return nsapi.testAction(id, organizationId, input, token)
 }
 
+exports.testIntegration = function(id, organizationId, input) {
+  return nsapi.testIntegration(id, organizationId, input, token)
+}
+
 exports.upsertOrganization = function(org) {
   return nsapi.upsertOrganization(org, token)
   .then((result) => {

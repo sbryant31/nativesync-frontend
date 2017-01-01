@@ -20,6 +20,7 @@ module.exports = React.createClass({
     var servicesById = _.indexBy(this.props.services, 'id');
     var organizationAuthsByServiceAuthID = _.indexBy(this.props.organizationAuths, 'service_auth_id');
     var organizationAuthList = lodash.map(this.props.serviceAuths, function(serviceAuth) {
+      var service = servicesById[serviceAuth.service_id];
       return (
         <div>
           <OrganizationAuthEditor organization={self.props.organization} service={servicesById[serviceAuth.service_id]} serviceAuth={serviceAuth} organizationAuth={organizationAuthsByServiceAuthID[serviceAuth.id]} />

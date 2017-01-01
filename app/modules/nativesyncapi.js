@@ -105,6 +105,11 @@ exports.updateUser = function(data, token){
 exports.testAction = function(id, organizationId, input, token){
   return call('/actions/test',{id: id, organizationId: organizationId, input: input},'POST',token)
 }
+
+exports.testIntegration = function(id, organizationId, input, token){
+  return call('/integrations/test',{id: id, organizationId: organizationId, input: input},'POST',token)
+}
+
 exports.upsertService = function(service, serviceAuths, token){
   return call('/services/upsert',{service: service, serviceAuths: serviceAuths},'POST',token)
 }
