@@ -130,7 +130,8 @@ exports.upsertAction = function(action, service, serviceAuths) {
   }
   return nsapi.upsertAction(action, service, serviceAuths, token)
   .then((result) => {
-    return exports.goto('/action/' + result.action.id);
+    exports.goto('/action/' + result.action.id);
+    return result;
   })
 }
 
@@ -151,18 +152,24 @@ exports.upsertIntegration = function(integration, services, actions, integration
   }
   return nsapi.upsertIntegration(integration, services, actions, integrationCode, token)
   .then((result) => {
-    return exports.goto('/integration/' + result.integration.id);
+    exports.goto('/integration/' + result.integration.id);
+    return result;
   })
 }
 
 exports.upsertService = function(service, serviceAuths) {
   return nsapi.upsertService(service, serviceAuths, token)
+  .then((result) => {
+    exports.goto('/service/' + result.service.id)
+    return result;
+  })
 }
 
 exports.upsertIntegrationInstance = function(integrationInstance, integration, organization) {
   return nsapi.upsertIntegrationInstance(integrationInstance, integration, organization, token)
   .then((result) => {
-    return exports.goto('/integration_instance/' + result.integrationInstance.id);
+    exports.goto('/integration_instance/' + result.integrationInstance.id);
+    return result;
   })
 }
 

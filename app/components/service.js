@@ -16,7 +16,7 @@ module.exports = React.createClass({
   },
   handleSave: function() {
     var self = this;
-    actions.upsertService(this.state.service, this.state.serviceAuths)
+    return actions.upsertService(this.state.service, this.state.serviceAuths)
     .then(function(result) {
       self.setState({service: result.service, serviceAuths: result.serviceAuths});
     })
@@ -47,8 +47,10 @@ module.exports = React.createClass({
   componentDidMount: function() {
     var self = this;
     if (self.props.id && !isNaN(self.props.id)) {
-      actions.getServiceById(self.props.id, true)
+      console.log('getting service');
+      return actions.getServiceById(self.props.id, true)
       .then(function(result) {
+        console.log('got service', result.service);
         self.setState({service: result.service, serviceAuths: result.serviceAuths});
       })
     }
