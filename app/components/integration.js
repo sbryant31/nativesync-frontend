@@ -53,6 +53,7 @@ module.exports = React.createClass({
     .then((result) => {
       return actions.testIntegration(this.state.integration.id, organization.id, this.state.testInput)
       .then((result) => {
+        console.log('test result', result);
         self.setState({testOutput: result});
       });
     });
@@ -191,13 +192,15 @@ module.exports = React.createClass({
             services={this.state.services}
             serviceAuths={this.state.serviceAuths}
             onChange={this.handleChangeOrganizationAuths.bind(this)} />
+          <hr />
           <h4>Inputs</h4>
           <Json value={this.state.testInput} onChange={this.handleChangeTestInput.bind(this)} />
-          <h4>Return Value</h4>
-          <textarea value={JSON.stringify(this.state.testOutput.output)} className="pt-input pt-fill" />
+          <hr />
           <h4>Logs</h4>
           <textarea value={this.state.testOutput.logs ? this.state.testOutput.logs.join('\n') : ''} className="pt-input pt-fill" />
           <hr />
+          <h4>Return Value</h4>
+          <textarea value={JSON.stringify(this.state.testOutput.output)} className="pt-input pt-fill" />
           <button className="pt-button" onClick={this.handleTest.bind(this)}>Test</button>
         </TabPanel>
         <TabPanel>
