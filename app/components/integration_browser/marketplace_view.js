@@ -35,7 +35,6 @@ module.exports = React.createClass({
       )
     })
     return <div>
-      <h1>Integration Marketplace</h1>
       <span>Dont see what you need? <a onClick={actions.goto.bind(null, '/marketplace/request')}>Request a custom integration!</a></span>
       <hr/>
       <table className="pt-table pt-striped">

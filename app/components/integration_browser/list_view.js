@@ -54,7 +54,6 @@ module.exports = React.createClass({
       )
     })
     return <div>
-      <h1>Integrations</h1>
       <a onClick={actions.goto.bind(null, '/integration/new')}>New Integration</a>
       <hr/>
       <table className="pt-table pt-striped">
