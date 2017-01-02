@@ -10,6 +10,7 @@ import NumericInput from 'react-numeric-input';
 var OrganizationAuthForm = require('./organization_auth/organization_auth_form');
 var Json = require('react-json');
 var ServiceAuthSelector = require('../components/service_auth/service_auth_selector');
+var VisibilitySelector = require('./inputs/visibility_selector');
 var ServiceSelector = require('../components/service/service_selector');
 var ParameterList = require('../components/action/parameter_list');
 var OutputParameterList = require('../components/action/output_parameter_list');
@@ -138,10 +139,6 @@ module.exports = React.createClass({
       {value: 'http', label: 'HTTP'},
       {value: 'https', label: 'HTTPS'},
     ];
-    var visibilityOptions = [
-      {value: 'private', label: 'Private'},
-      {value: 'published', label: 'Published'},
-    ];
     return (<div>
       <h2>Build an Action</h2>
       <Tabs>
@@ -164,9 +161,7 @@ module.exports = React.createClass({
               </label>
             </div>
             <div className="row">
-              <label className="pt-label pt-inline col-xs">
-                Visibility
-                <Select options= {visibilityOptions} value={ this.state.action.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
+              <VisibilitySelector value={ this.state.action.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
               </label>
             </div>
             <div className="row">

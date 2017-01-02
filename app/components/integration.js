@@ -204,7 +204,6 @@ module.exports = React.createClass({
           <hr />
           <h4>Return Value</h4>
           <textarea value={JSON.stringify(this.state.testOutput.output)} className="pt-input pt-fill" />
-          <button className="pt-button" onClick={this.handleTest.bind(this)}>Test</button>
         </TabPanel>
         <TabPanel>
           <h2>Documentation</h2>
@@ -220,6 +219,7 @@ module.exports = React.createClass({
       </Tabs>
       <hr />
       <button className="pt-button pt-icon-add" onClick={this.handleSave}>Save</button>
+      <button className="pt-button" onClick={this.handleTest.bind(this)}>Test</button>
     </div>
   }
 })
