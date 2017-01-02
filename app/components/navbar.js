@@ -4,6 +4,9 @@ var actions = require('../modules/actions')
 import { browserHistory } from 'react-router'
 import { Colors } from '@blueprintjs/core'
 
+var cloud = require('../img/cloud.png');
+var logo_text = require('../img/logo_text.png');
+
 module.exports = React.createClass({
   getDefaultProps:function(){
     return {
@@ -22,7 +25,7 @@ module.exports = React.createClass({
 
     return <nav className='pt-navbar pt-fixed-top' style={{backgroundColor: '#16253d'}}>
       <div className="pt-navbar-group pt-align-left">
-        <div className="pt-navbar-heading"><img src={'/img/cloud.png'} style={{height: 45, width: 79}} /><img src={'/img/logo_text.png'} style={{height: 35, width: 210}}/></div>
+        <div className="pt-navbar-heading"><img src={cloud} style={{height: 45, width: 79}} /><img src={logo_text} style={{height: 35, width: 210}}/></div>
       </div>
       <div className="pt-navbar-group pt-align-right" >
         <ul className='pt-menu' style={{backgroundColor: '#16253d', color: '#FFF'}}>
