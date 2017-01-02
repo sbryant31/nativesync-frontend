@@ -154,7 +154,10 @@ module.exports = React.createClass({
                     onChange={this.handleChange.bind(this, 'type')}
             />
           </label>
-          <TextInputField label="Description" value={this.state.integration.description} onChange={this.handleChange.bind(this, 'description')} />
+          <label className="pt-label">
+            Description
+            <textarea className="pt-input pt-fill" value={this.state.integration.description} onChange={this.handleChange.bind(this, 'description')} />
+          </label>
           <TriggerInfo value={this.state.integration.scheduling_info} onChange={this.handleChange.bind(this, 'scheduling_info')} />
         </TabPanel>
         <TabPanel>

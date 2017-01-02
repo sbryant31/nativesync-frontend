@@ -19,7 +19,7 @@ module.exports = React.createClass({
     var integrationsList = lodash.map(self.props.integrations, function(integration){
       var services = _.map(integration.Services, function(service) {
         return (<div>
-            {service.name} <img src={service.logo_url} style={{height: 50, width: 50}} />
+            {service.name} style={{height: 50, width: 50}} />
           </div>
         )
       });

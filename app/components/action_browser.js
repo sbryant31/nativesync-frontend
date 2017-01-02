@@ -21,18 +21,26 @@ module.exports = React.createClass({
     var filter = this.props.initialFilter;
     self.setState({filter: filter});
     console.log('get actions', filter);
-    actions.getActions(filter)
+    return actions.getActions(filter)
     .then(function(result) {
       self.setState({actions: result});
     })
   },
+  handleMakeDuplicate: function(actionId) {
+    return actions.duplicateAction(actionId)
+    .then((result) => {
+      return actions.goto.bind(`/action/${result.action.id}`)
+    })
+  },
   render() {
+    var self = this;
     var actionsList = lodash.map(this.state.actions,function(action){
       return <tr key={action.id}>
-        <td>{action.organization_id}</td>
+        <td>{action.organization.name}</td>
         <td>{action.service_name}</td>
         <td><a onClick={actions.goto.bind(null, '/action/' + action.id)}>{action.function_name}</a></td>
-        <td><span className="pt-icon-fork"></span></td>
+        <td>{action.version}</td>
+        <td><a onClick={self.handleMakeDuplicate.bind(null, action.id)}><span className="pt-icon-duplicate">Make a Copy</span></a></td>
       </tr>
     })
     return <div>
@@ -45,6 +53,7 @@ module.exports = React.createClass({
            <th>Owner</th>
            <th>Service</th>
            <th>Function</th>
+           <th>Version</th>
            <th>Menu</th>
         </tr>
         </thead>

@@ -46,6 +46,10 @@ exports.getActions = function(filter, token){
   return call('/actions', filter,'GET',token)
 }
 
+exports.duplicateAction = function(actionId, organizationId, token){
+  return call('/action/' + actionId + '/duplicate', {organization_id: organizationId},'POST',token)
+}
+
 exports.getServices = function(filter, token){
   return call('/services', filter,'GET',token)
 }

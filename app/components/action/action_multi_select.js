@@ -49,6 +49,7 @@ module.exports = React.createClass({
     return <label className="pt-label pt-inline col-xs">
       Actions
       <Select
+				style={{zIndex: 500}}
         name="action-multi-select"
         value={value}
         multi={true}

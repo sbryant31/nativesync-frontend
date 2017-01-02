@@ -96,6 +96,14 @@ exports.getIntegrationById = function(id, includeAssociations) {
   return nsapi.getIntegrationById(id, {includeAssociations: includeAssociations}, token)
 }
 
+exports.duplicateAction = function(actionId) {
+  var org = exports.getState('org');
+  return nsapi.duplicateAction(actionId, org.id, token)
+  .then((result) => {
+    exports.goto('/action/' + result.action.id);
+  })
+}
+
 exports.getServiceById = function(id) {
   return nsapi.getServiceById(id, token)
 }
@@ -126,7 +134,9 @@ exports.getActionById = function(id) {
 
 exports.upsertAction = function(action, service, serviceAuths) {
   if (!action.organization_id) {
-    action.organization_id = exports.getState('org').id;
+    var org = exports.getState('org');
+    action.organization_id = org.id;
+    action.organization_name = org.name;
   }
   return nsapi.upsertAction(action, service, serviceAuths, token)
   .then((result) => {

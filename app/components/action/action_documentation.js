@@ -25,7 +25,7 @@ module.exports = React.createClass({
       outputJson[param.name] = ` <${param['type']}> - ${param['description']}`
     }
 
-    var example = `return ns(${action.id}, ${action.service_name}, ${action.function_name}, ${JSON.stringify(inputJson)})`
+    var example = `callAction('${action.organization_name}/${action.service_name}/${action.function_name}/${action.version}', ${JSON.stringify(inputJson)})`
     return <div>
       <h6><b>{ action.service_name }</b> - { action.function_name }</h6>
       <p>{action.description}</p>

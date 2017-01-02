@@ -5,6 +5,7 @@ var lodash = require('lodash')
 var _ = require('underscore');
 
 var Select = require('react-select');
+import NumericInput from 'react-numeric-input';
 
 var OrganizationAuthForm = require('./organization_auth/organization_auth_form');
 var Json = require('react-json');
@@ -93,10 +94,13 @@ module.exports = React.createClass({
   },
   handleChange: function(field, e) {
     var action = this.state.action;
+    console.log('change', e);
     if (e.target) { // normal input handler
       this.handleChangeValue(field, e.target.value);
     } else if (e.value) { // dropdown handler
       this.handleChangeValue(field, e.value);
+    } else {
+      this.handleChangeValue(field, e);
     }
   },
   handleChangeValue: function(field, value) {
@@ -148,6 +152,12 @@ module.exports = React.createClass({
             <h4>Basics</h4>
             <div className="row">
               <ServiceSelector service={ this.state.service } onChange={this.handleServiceChange.bind(this)} />
+            </div>
+            <div className="row">
+              <label className="pt-label pt-inline col-xs">
+                Version
+                <NumericInput value={ this.state.action.version } onChange={this.handleChange.bind(this, 'version')} />
+              </label>
             </div>
             <div className="row">
               <TextInputField label="Function" value={this.state.action.function_name} onChange={this.handleChange.bind(this, 'function_name')} />
