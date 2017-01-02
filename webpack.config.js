@@ -3,7 +3,10 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+  // 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+  "process.env": {
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+  }
 };
 const PROD = process.env.NODE_ENV === 'production';
 

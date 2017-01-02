@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "npm-run-all --parallel lint:watch test:watch build:dev",
-    "start": "npm-run-all --parallel lint test build",
+    "start": "npm-run-all --parallel build",
     "clean-dist": "rimraf ./dist && mkdir dist",
     "clean-build": "rimraf ./build && mkdir build",
     "clean": "npm-run-all clean-dist clean-build",
