@@ -41,7 +41,7 @@ module.exports = React.createClass({
       value = e;
     }
     if (value) {
-      filter[field] = value;
+      filter[field] = value.toLowerCase();
     } else {
       delete filter[field];
     }
@@ -50,7 +50,7 @@ module.exports = React.createClass({
     var filteredServices = _.filter(this.state.services, (service) => {
       var match = true;
       _.each(filter, (value, key) => {
-        if (service[key].indexOf(value) === -1) {
+        if (service[key].toLowerCase().indexOf(value) === -1) {
           match = false;
         }
       });
