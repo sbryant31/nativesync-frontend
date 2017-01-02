@@ -1,11 +1,15 @@
 var React = require('react')
-var normalize = require('../node_modules/normalize.css/normalize.css')
-var flexbox = require('../node_modules/flexboxgrid/dist/flexboxgrid.min.css')
-var blueprintjs = require('../node_modules/@blueprintjs/core/dist/blueprint.css')
-var react_select = require('../node_modules/react-select/dist/react-select.css')
-var codemirror = require('../node_modules/codemirror/lib/codemirror.css');
+
+// CSS
+import '../node_modules/normalize.css/normalize.css';
+import '../node_modules/flexboxgrid/dist/flexboxgrid.min.css';
+import '../node_modules/@blueprintjs/core/dist/blueprint.css';
+import '../node_modules/react-select/dist/react-select.css';
+import '../node_modules/codemirror/lib/codemirror.css';
+
 // some temp styles nick made, replace this with sass
-var styles = require('../styles/main.css');
+import './styles/main.css';
+
 var state = require('./modules/state')
 var store = require('store')
 import { browserHistory } from 'react-router'
@@ -67,4 +71,3 @@ module.exports = React.createClass({
 
   }
 })
-

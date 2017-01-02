@@ -1,6 +1,8 @@
-node_modules
 *.log
-build
 tmp
 *.sw*
+
 dist
+build
+
+node_modules
