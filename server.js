@@ -11,7 +11,7 @@ const app = express();
 const compiler = webpack(config);
 const PROD = process.env.NODE_ENV === 'production';
 const domain = PROD ? '0.0.0.0' : '127.0.0.1';
-const port = PROD ? 8080 : 9966;
+const port = PROD ? (process.env.PORT || 8080) : 9966;
 const baseDir = PROD ? 'build' : 'dist';
 
 // Middleware
