@@ -1,53 +1,80 @@
-var React = require('react')
-var actions = require('../modules/actions')
-var Navbar = require('../components/navbar')
-var lodash = require('lodash')
+var React = require('react');
+var actions = require('../modules/actions');
+var Navbar = require('../components/navbar');
+var _ = require('underscore');
+var lodash = require('lodash');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
       filter: {},
+      filteredServices: {},
       services: [],
-      selectedServiceId: null,
       serviceInstances: []
-    }
+    };
   },
   getDefaultProps: function() {
     return {
       initialFilter: {},
       showInstances: false,
-    }
+    };
   },
   componentDidMount: function() {
     var self = this;
-    self.setState({filter: this.props.initialFilter})
+    self.setState({filter: this.props.initialFilter});
     actions.getServices(this.state.filter)
     .then(function(result) {
       self.setState({
-        services: result.services
+        services: result.services,
+        filteredServices: result.services
       });
-    })
+    });
+  },
+  handleFilterChange: function(field, e) {
+    var filter = this.state.filter;
+    let value;
+    if (e.target) {
+      value = e.target.value;
+    } else if (e.value) {
+      value = e.value;
+    } else {
+      value = e;
+    }
+    if (value) {
+      filter[field] = value;
+    } else {
+      delete filter[field];
+    }
+
+    this.setState({filter: filter});
+    var filteredServices = _.filter(this.state.services, (service) => {
+      var match = true;
+      _.each(filter, (value, key) => {
+        if (service[key].indexOf(value) === -1) {
+          match = false;
+        }
+      });
+      return match;
+    });
+    this.setState({filteredServices: filteredServices});
   },
   render() {
     var self = this;
-    var servicesList = lodash.map(self.state.services,function(service){
-      var instances = '';
-      if (self.state.selectedServiceId == service.id) {
-        instances = lodash.map(self.state.serviceInstances, function(instance) {
-          return <div className="row">
-            <a onClick={actions.goto.bind(null, '/service_instance/' + instance.id)}>{instance.organization.name} {instance.title}</a>
-          </div>
-        });
-      }
+    var servicesList = lodash.map(self.state.filteredServices, function(service){
       return (
         <tr key={service.id}>
           <td><a onClick={actions.goto.bind(null, '/service/' + service.id)}>{service.name}</a></td>
         </tr>
-      )
-    })
+      );
+    });
     return <div>
       <h1>Services</h1>
       <a onClick={actions.goto.bind(null, '/service/new')}>New Service</a>
+      <hr />
+      <label className="pt-label">
+        Name
+        <input className="pt-input" value={this.state.filter.name} onChange={this.handleFilterChange.bind(this, 'name')} />
+      </label>
       <hr/>
       <table className="pt-table pt-striped">
         <thead>
@@ -59,7 +86,7 @@ module.exports = React.createClass({
           {servicesList}
         </tbody>
       </table>
-    </div>
+    </div>;
   }
-})
+});
 

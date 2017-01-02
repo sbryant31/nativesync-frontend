@@ -1,7 +1,7 @@
-var React = require('react')
-var actions = require('../modules/actions')
-var Navbar = require('../components/navbar')
-var lodash = require('lodash')
+var React = require('react');
+var actions = require('../modules/actions');
+var Navbar = require('../components/navbar');
+var lodash = require('lodash');
 var _ = require('underscore');
 
 var Select = require('react-select');
@@ -15,7 +15,7 @@ var ParameterList = require('../components/action/parameter_list');
 var OutputParameterList = require('../components/action/output_parameter_list');
 var KeyValueList = require('../components/inputs/key_value_list');
 var TextInputField = require('../components/inputs/text_input_field');
-import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
+import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core";
 var InputBodyEditor = require('../components/action/input_body_editor');
 var OutputBodyEditor = require('./action/output_body_editor');
 
@@ -37,7 +37,7 @@ module.exports = React.createClass({
       testInput: {},
       testOutput: {},
       readOnly: false
-    }
+    };
   },
   componentDidMount: function() {
     var self = this;
@@ -52,7 +52,7 @@ module.exports = React.createClass({
           selectedServiceAuths: result.serviceAuths
         });
         return self.loadServiceAuths(result.service);
-      })
+      });
     }
   },
   loadServiceAuths: function(service) {
@@ -79,7 +79,7 @@ module.exports = React.createClass({
     });
   },
   handleSave: function() {
-    return actions.upsertAction(this.state.action, this.state.service, this.state.selectedServiceAuths)
+    return actions.upsertAction(this.state.action, this.state.service, this.state.selectedServiceAuths);
   },
   handleTest: function() {
     var self = this;
@@ -138,7 +138,11 @@ module.exports = React.createClass({
       {value: 'http', label: 'HTTP'},
       {value: 'https', label: 'HTTPS'},
     ];
-    return <div>
+    var visibilityOptions = [
+      {value: 'private', label: 'Private'},
+      {value: 'published', label: 'Published'},
+    ];
+    return (<div>
       <h2>Build an Action</h2>
       <Tabs>
           <TabList>
@@ -157,6 +161,12 @@ module.exports = React.createClass({
               <label className="pt-label pt-inline col-xs">
                 Version
                 <NumericInput value={ this.state.action.version } onChange={this.handleChange.bind(this, 'version')} />
+              </label>
+            </div>
+            <div className="row">
+              <label className="pt-label pt-inline col-xs">
+                Visibility
+                <Select options= {visibilityOptions} value={ this.state.action.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
               </label>
             </div>
             <div className="row">
@@ -228,6 +238,7 @@ module.exports = React.createClass({
       <hr />
       <button className="pt-button pt-icon-add" onClick={this.handleSave}>Save</button>
     </div>
+    );
   }
-})
+});
 

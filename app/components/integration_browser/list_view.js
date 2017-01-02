@@ -40,6 +40,7 @@ module.exports = React.createClass({
           <td>{integration.organization.name}</td>
           <td><a onClick={actions.goto.bind(null, '/integration/' + integration.id)}>{integration.title}</a></td>
           <td>{integration.description}</td>
+          <td>{integration.version}</td>
           <td>
             <div className="row">
               <span className="pt-icon-double-chevron-down" onClick={self.handleGetIntegrationInstances.bind(self, integration.id)} />
@@ -62,6 +63,7 @@ module.exports = React.createClass({
            <th>Owner</th>
            <th>Title</th>
            <th>Description</th>
+           <th>Version</th>
            <th>Managed Instances</th>
            <th>Implement Instance</th>
         </tr>
