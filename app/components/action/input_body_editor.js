@@ -68,7 +68,7 @@ module.exports = React.createClass({
             <Select value={ this.props.value.body_code_type } options={bodyCodeTypes} onChange={this.handleChange.bind(this, 'body_code_type')} />
           </label>
           <label className="pt-label pt-inline">
-            {codeMode == 'javascript' &&
+            {this.props.value.body_code_type == 'javascript' &&
               <div>
                 <h4>Input Body Generator</h4>
                 <span>Write a javascript function that returns a request body. Assume "input" is

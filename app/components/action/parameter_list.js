@@ -18,7 +18,7 @@ module.exports = React.createClass({
   },
   handleAdd: function() {
     var parameters = this.props.parameters;
-    parameters.push({in: '', name: '', description: '', type: ''});
+    parameters.push({in: 'body', name: '', description: '', type: 'string', required: false});
     this.props.onChange(parameters);
   },
   handleChange(index, field, e) {

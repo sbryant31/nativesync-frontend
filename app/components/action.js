@@ -28,8 +28,8 @@ module.exports = React.createClass({
         query: [],
         input: [],
         output: [],
-        input_body: {},
-        output_body: {}
+        input_body: {content_type: 'json', body_code_type: 'direct'},
+        output_body: {content_type: 'json', body_code_type: 'direct'}
       },
       organizationAuths: {},
       service: {},
