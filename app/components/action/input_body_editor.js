@@ -1,7 +1,7 @@
 var React = require('react');
-var lodash = require('lodash');
+// var lodash = require('lodash');
 var Select = require('react-select');
-var Json = require('react-json');
+// var Json = require('react-json');
 var CodeEditor = require('../inputs/code_editor');
 
 module.exports = React.createClass({
@@ -10,7 +10,7 @@ module.exports = React.createClass({
       value: {},
       onChange: (body) => { console.log('body changed', body); },
       readOnly: false
-    }
+    };
   },
   handleChange(field, e) {
     var value = this.props.value;
@@ -25,7 +25,7 @@ module.exports = React.createClass({
     this.forceUpdate();
   },
   render() {
-    var self = this;
+    // var self = this;
     var bodyTypes = [
       {value: 'formData', label: 'Form'},
       {value: 'json', label: 'JSON'},
@@ -87,6 +87,6 @@ module.exports = React.createClass({
         </label>
         </div>
       }
-    </div>
+    </div>;
   }
-})
+});

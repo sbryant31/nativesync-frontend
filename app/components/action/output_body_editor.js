@@ -1,7 +1,7 @@
 var React = require('react');
-var lodash = require('lodash');
+// var lodash = require('lodash');
 var Select = require('react-select');
-var Json = require('react-json');
+// var Json = require('react-json');
 var CodeEditor = require('../inputs/code_editor');
 
 module.exports = React.createClass({
@@ -10,7 +10,7 @@ module.exports = React.createClass({
       value: {},
       onChange: (body) => { console.log('body changed', body); },
       readOnly: false
-    }
+    };
   },
   handleChange(field, e) {
     var value = this.props.value;
@@ -37,7 +37,7 @@ module.exports = React.createClass({
     if (this.props.value.code) {
       code = this.props.value.code;
     } else {
-      code = 'callback(output); // todo: custom transform output'
+      code = 'callback(output); // todo: custom transform output';
       this.handleChange('code', code);
     }
     return <div>
@@ -62,6 +62,6 @@ module.exports = React.createClass({
         </label>
         </div>
       }
-    </div>
+    </div>;
   }
-})
+});
