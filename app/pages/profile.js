@@ -1,6 +1,6 @@
-var React = require('react');
-var Navbar = require('../components/navbar');
-var Sidebar = require('../components/sidebar');
+var React = require('react')
+var Navbar = require('../components/navbar')
+var Sidebar = require('../components/sidebar')
 
 module.exports = React.createClass({
   render:function(){

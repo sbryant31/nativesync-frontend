@@ -1,11 +1,11 @@
-var React = require('react');
-var actions = require('../modules/actions');
-// var Navbar = require('../components/navbar');
-// var lodash = require('lodash');
-// var Select = require('react-select');
+var React = require('react')
+var actions = require('../modules/actions')
+var Navbar = require('../components/navbar')
+var lodash = require('lodash')
+var Select = require('react-select');
 var ServiceAuthList = require('../components/service_auth/service_auth_list');
 var TextInputField = require('../components/inputs/text_input_field');
-import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core";
+import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -82,3 +82,4 @@ module.exports = React.createClass({
     </div>
   }
 })
+

@@ -1,12 +1,12 @@
-var React = require('react');
-// var state = require('../modules/state');
-// var store = require('store');
-var lodash = require('lodash');
+var React = require('react')
+var state = require('../modules/state')
+var store = require('store')
+var lodash = require('lodash')
 var _ = require('underscore');
-var actions = require('../modules/actions');
+var actions = require('../modules/actions')
 var md5 = require('md5');
-var Navbar = require('../components/navbar');
-// import {Position,Popover, Menu, MenuItem, MenuDivider} from "@blueprintjs/core";
+var Navbar = require('../components/navbar')
+import {Position,Popover, Menu, MenuItem, MenuDivider} from "@blueprintjs/core"
 
 var OrganizationMenu = React.createClass({
   getInitialState: function() {
@@ -230,3 +230,4 @@ module.exports = React.createClass({
     </div>
   }
 })
+

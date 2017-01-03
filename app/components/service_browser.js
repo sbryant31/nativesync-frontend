@@ -1,6 +1,6 @@
 var React = require('react');
 var actions = require('../modules/actions');
-// var Navbar = require('../components/navbar');
+var Navbar = require('../components/navbar');
 var _ = require('underscore');
 var lodash = require('lodash');
 
@@ -89,3 +89,4 @@ module.exports = React.createClass({
     </div>;
   }
 });
+

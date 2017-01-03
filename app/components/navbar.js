@@ -1,8 +1,8 @@
-var React = require('react');
-var lodash = require('lodash');
-var actions = require('../modules/actions');
-// import { browserHistory } from 'react-router';
-// import { Colors } from '@blueprintjs/core';
+var React = require('react')
+var lodash = require('lodash')
+var actions = require('../modules/actions')
+import { browserHistory } from 'react-router'
+import { Colors } from '@blueprintjs/core'
 
 var cloud = require('../img/cloud.png');
 var logo_text = require('../img/logo_text.png');

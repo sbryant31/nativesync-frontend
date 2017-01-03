@@ -1,6 +1,6 @@
-var React = require('react');
-var Navbar = require('../components/navbar');
-// import { browserHistory } from 'react-router';
+var React = require('react')
+var Navbar = require('../components/navbar')
+import { browserHistory } from 'react-router'
 
 module.exports = React.createClass({
   getInitialState(){
@@ -19,7 +19,7 @@ module.exports = React.createClass({
        url:'/login'
      }
     ]
-
+    
     return <div>
       <Navbar links={links}/>
       <div style={{paddingTop:50}}>

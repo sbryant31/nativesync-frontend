@@ -1,8 +1,8 @@
-var request = require('request-promise');
-// var state = require('./state');
-var env = process.env;
-var base = env.NS_API_URL ? env.NS_API_URL : 'https://api.nativesync.io/internal/';
-var urljoin = require('url-join');
+var request = require('request-promise')
+var state = require('./state')
+var env = process.env
+var base = env.NS_API_URL ? env.NS_API_URL : 'https://api.nativesync.io/internal/'
+var urljoin = require('url-join')
 
 function call(path,data,method,authtoken,organizationtoken){
   console.log(arguments)

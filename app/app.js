@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react')
 
 // CSS
 import '../node_modules/normalize.css/normalize.css';
@@ -10,10 +10,10 @@ import '../node_modules/codemirror/lib/codemirror.css';
 // some temp styles nick made, replace this with sass
 import './styles/main.css';
 
-var state = require('./modules/state');
-var store = require('store');
-// import { browserHistory } from 'react-router';
-import { Toaster, /*Position,*/ Intent} from "@blueprintjs/core";
+var state = require('./modules/state')
+var store = require('store')
+import { browserHistory } from 'react-router'
+import { Toaster, Position, Intent} from "@blueprintjs/core";
 
 module.exports = React.createClass({
   getInitialState(){

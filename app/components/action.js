@@ -1,7 +1,7 @@
 var React = require('react');
 var actions = require('../modules/actions');
-// var Navbar = require('../components/navbar');
-// var lodash = require('lodash');
+var Navbar = require('../components/navbar');
+var lodash = require('lodash');
 var _ = require('underscore');
 
 var Select = require('react-select');
@@ -235,3 +235,4 @@ module.exports = React.createClass({
     );
   }
 });
+

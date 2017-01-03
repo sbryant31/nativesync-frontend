@@ -1,9 +1,9 @@
-var React = require('react');
-// import { browserHistory } from 'react-router';
+var React = require('react')
+import { browserHistory } from 'react-router'
 
-var Login = require('../components/login');
-var Signup = require('../components/signup');
-var actions = require('../modules/actions');
+var Login = require('../components/login')
+var Signup = require('../components/signup')
+var actions = require('../modules/actions')
 
 module.exports = React.createClass({
   getInitialState:function(){
@@ -67,3 +67,4 @@ module.exports = React.createClass({
     </div>
   }
 })
+

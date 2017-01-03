@@ -1,6 +1,6 @@
 var React = require('react');
 var _ = require('underscore');
-// var lodash = require('lodash');
+var lodash = require('lodash');
 var actions = require('../../modules/actions');
 var Select = require('react-select');
 

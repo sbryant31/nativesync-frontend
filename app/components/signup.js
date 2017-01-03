@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react')
 module.exports = React.createClass({
   getDefaultProps(){
     return {
@@ -69,3 +69,4 @@ module.exports = React.createClass({
     </div>
   }
 })
+
