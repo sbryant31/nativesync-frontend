@@ -171,8 +171,8 @@ exports.upsertIntegration = function(integration, services, actions, integration
   })
 }
 
-exports.upsertService = function(service, serviceAuths) {
-  return nsapi.upsertService(service, serviceAuths, token)
+exports.upsertService = function(service, serviceAuths, serviceDefinitions) {
+  return nsapi.upsertService(service, serviceAuths, serviceDefinitions, token)
   .then((result) => {
     exports.goto('/service/' + result.service.id)
     return result;

@@ -4,6 +4,7 @@ var Navbar = require('../components/navbar')
 var lodash = require('lodash')
 var Select = require('react-select');
 var ServiceAuthList = require('../components/service_auth/service_auth_list');
+var ServiceDefinitionList = require('./service_definition/service_definition_list');
 var TextInputField = require('../components/inputs/text_input_field');
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 
@@ -11,14 +12,19 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       service: { },
-      serviceAuths: []
+      serviceAuths: [],
+      serviceDefinitions: [],
     }
   },
   handleSave: function() {
     var self = this;
-    return actions.upsertService(this.state.service, this.state.serviceAuths)
+    return actions.upsertService(this.state.service, this.state.serviceAuths, this.state.serviceDefinitions)
     .then(function(result) {
-      self.setState({service: result.service, serviceAuths: result.serviceAuths});
+      self.setState({
+        service: result.service,
+        serviceAuths: result.serviceAuths,
+        serviceDefinitions: result.serviceDefinitions
+      });
     })
   },
   handleChange: function(field, e) {
@@ -39,6 +45,9 @@ module.exports = React.createClass({
   handleServiceAuthChange: function(serviceAuths) {
     this.setState({serviceAuths: serviceAuths});
   },
+  handleServiceDefinitionChange: function(serviceDefinitions) {
+    this.setState({serviceDefinitions: serviceDefinitions});
+  },
   getDefaultProps: function() {
     return {
       id: null
@@ -51,7 +60,11 @@ module.exports = React.createClass({
       return actions.getServiceById(self.props.id, true)
       .then(function(result) {
         console.log('got service', result.service);
-        self.setState({service: result.service, serviceAuths: result.serviceAuths});
+        self.setState({
+          service: result.service,
+          serviceAuths: result.serviceAuths,
+          serviceDefinitions: result.serviceDefinitions
+        });
       })
     }
   },
@@ -62,6 +75,7 @@ module.exports = React.createClass({
         <TabList>
             <Tab>General</Tab>
             <Tab>Authentication</Tab>
+            <Tab>Definitions</Tab>
         </TabList>
         <TabPanel>
           <h2>General</h2>
@@ -75,6 +89,14 @@ module.exports = React.createClass({
         <TabPanel>
           <h2>Authentication</h2>
           <ServiceAuthList services={[this.state.service]} serviceAuths={this.state.serviceAuths} onChange={this.handleServiceAuthChange.bind(this)} readOnly={false} />
+        </TabPanel>
+        <TabPanel>
+          <h2>Definitions</h2>
+          <ServiceDefinitionList
+            service={this.state.service}
+            serviceDefinitions={this.state.serviceDefinitions}
+            onChange={this.handleServiceDefinitionChange.bind(this)}
+          />
         </TabPanel>
       </Tabs>
       <hr />

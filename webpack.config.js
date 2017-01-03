@@ -7,12 +7,13 @@ const GLOBALS = {
   "process.env": {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV)
   }
-};
+}
+
 const PROD = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  debug: true,
-  devtool: PROD ? 'source-map' : 'eval-source-map',
+  debug: false,
+  devtool: PROD ? '' : 'eval-source-map',
   noInfo: false,
   entry: PROD ? './app/index' :
     [ // reloads the page if hot module reloading fails
@@ -33,7 +34,8 @@ module.exports = {
     new webpack.DefinePlugin(GLOBALS),
     new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
+    // remove for now, uglify is causing memory to go through the roof
+    //new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
   ] : [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),

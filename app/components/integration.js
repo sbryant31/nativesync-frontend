@@ -5,6 +5,7 @@ var lodash = require('lodash')
 var Select = require('react-select');
 var Json = require('react-json');
 var OrganizationAuthForm = require('./organization_auth/organization_auth_form');
+var VisibilitySelector = require('./inputs/visibility_selector');
 var ServiceAuthList = require('../components/service_auth/service_auth_list');
 var ConfigurationInputView = require('../components/integration/configuration_input_view');
 var ReferralCodesList = require('../components/integration/referral_codes_list');
@@ -149,7 +150,7 @@ module.exports = React.createClass({
           <TextInputField label="Title" value={this.state.integration.title} onChange={this.handleChange.bind(this, 'title')} />
           <TextInputField label="Version" value={this.state.integration.version} onChange={this.handleChange.bind(this, 'version')} />
           <div className="row">
-            <VisibilitySelector value={ this.state.action.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
+            <VisibilitySelector value={ this.state.integration.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
           </div>
           <label className="pt-label">
             Description

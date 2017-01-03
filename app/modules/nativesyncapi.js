@@ -114,8 +114,8 @@ exports.testIntegration = function(id, organizationId, input, token){
   return call('/integrations/test',{id: id, organizationId: organizationId, input: input},'POST',token)
 }
 
-exports.upsertService = function(service, serviceAuths, token){
-  return call('/services/upsert',{service: service, serviceAuths: serviceAuths},'POST',token)
+exports.upsertService = function(service, serviceAuths, serviceDefinitions, token){
+  return call('/services/upsert',{service: service, serviceAuths: serviceAuths, serviceDefinitions: serviceDefinitions},'POST',token)
 }
 
 
