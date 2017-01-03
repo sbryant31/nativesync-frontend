@@ -8,7 +8,7 @@ module.exports = React.createClass({
       object: {},
       onChange: (object) => { console.log('kv changed', object); },
       readOnly: false
-    }
+    };
   },
   handleRemove: function(key) {
     var object = this.props.object;
@@ -55,7 +55,7 @@ module.exports = React.createClass({
             </div>
           </div>
       );
-    })
+    });
     return (
         <div>
           <div className="row">
@@ -71,4 +71,4 @@ module.exports = React.createClass({
         </div>
     );
   }
-})
+});

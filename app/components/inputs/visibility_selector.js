@@ -1,9 +1,9 @@
 var React = require('react');
-var actions = require('../../modules/actions');
-var _ = require('underscore');
+// var actions = require('../../modules/actions');
+// var _ = require('underscore');
 
 var Select = require('react-select');
-import NumericInput from 'react-numeric-input';
+// import NumericInput from 'react-numeric-input';
 
 
 module.exports = React.createClass({
@@ -24,4 +24,3 @@ module.exports = React.createClass({
     );
   }
 });
-
