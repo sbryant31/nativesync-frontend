@@ -31,7 +31,8 @@ module.exports = React.createClass({
       {value: 'xml', label: 'XML'}
     ];
     var bodyCodeTypes = [
-      {value: 'javascript', label: 'Javascript'},
+      {value: 'direct', label: 'Directly Map Response Body to Params'},
+      {value: 'javascript', label: 'Map Response Body to Output Params with Javascript '},
     ];
     var code;
     if (this.props.value.code) {
@@ -48,18 +49,19 @@ module.exports = React.createClass({
       { (this.props.value.content_type == 'xml' || this.props.value.content_type == 'json') &&
         <div>
           <label className="pt-label pt-inline">
-            <h4>Code Mode</h4>
             <Select value={ this.props.value.body_code_type } options={bodyCodeTypes} onChange={this.handleChange.bind(this, 'body_code_type')} />
           </label>
-          <label className="pt-label pt-inline">
-            <h4>Output Body Parser</h4>
-            <span>Write a javascript function that parses the result of the request. Assume "output" is a javascript object representing the parsed result of your API call.</span>
-            <CodeEditor
-              onChange={this.handleChange.bind(this, 'code')}
-              code={code}
-              mode={'javascript'}
-            />
-        </label>
+            { this.props.value.body_code_type == 'javascript' &&
+              <div>
+                <h4>Output Body Parser</h4>
+                <span>Write a javascript function that parses the result of the request. Assume "output" is a javascript object representing the parsed result of your API call.</span>
+                <CodeEditor
+                  onChange={this.handleChange.bind(this, 'code')}
+                  code={code}
+                  mode={'javascript'}
+                />
+              </div>
+            }
         </div>
       }
     </div>;

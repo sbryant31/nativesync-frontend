@@ -32,8 +32,8 @@ module.exports = React.createClass({
       {value: 'xml', label: 'XML'}
     ];
     var bodyCodeTypes = [
-      {value: 'javascript', label: 'Javascript'},
-      {value: 'handlebars', label: 'Handlebars.js'},
+      {value: 'direct', label: 'Directly Map Input Params to POST Body'},
+      {value: 'javascript', label: 'Map Input Params to POST Body with Javascript '},
     ];
     var codeMode;
     var json = false;
@@ -65,25 +65,22 @@ module.exports = React.createClass({
       { (this.props.value.content_type == 'xml' || this.props.value.content_type == 'json') &&
         <div>
           <label className="pt-label pt-inline">
-            <h4>Code Mode</h4>
             <Select value={ this.props.value.body_code_type } options={bodyCodeTypes} onChange={this.handleChange.bind(this, 'body_code_type')} />
           </label>
           <label className="pt-label pt-inline">
-            <h4>Input Body</h4>
             {codeMode == 'javascript' &&
-              <span>Write a javascript function that returns a request body. Assume "input" is
-              a javascript object containing all the parameters above.</span>
+              <div>
+                <h4>Input Body Generator</h4>
+                <span>Write a javascript function that returns a request body. Assume "input" is
+                a javascript object containing all the parameters above.</span>
+                <CodeEditor
+                  onChange={this.handleChange.bind(this, 'code')}
+                  code={code}
+                  json={json}
+                  mode={codeMode}
+                />
+              </div>
             }
-            {this.props.value.body_code_type == 'handlebars' &&
-              <span>Write a handlebars.js template that creates the request body. You can use
-              variables specified in the "parameters" section above.</span>
-            }
-            <CodeEditor
-              onChange={this.handleChange.bind(this, 'code')}
-              code={code}
-              json={json}
-              mode={codeMode}
-            />
         </label>
         </div>
       }
