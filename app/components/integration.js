@@ -13,6 +13,7 @@ var ServiceMultiSelect = require('../components/service/service_multi_select');
 var TriggerInfo = require('../components/integration/trigger_info');
 var TextInputField = require('../components/inputs/text_input_field');
 var CodeEditor = require('../components/inputs/code_editor');
+var DragAndDropEditor = require('./integration/drag_and_drop_editor');
 var ActionMultiSelect = require('../components/action/action_multi_select');
 var IntegrationConfigurationBuilder = require('../components/integration/integration_configuration_builder');
 var ActionDocumentationList = require('../components/action/action_documentation_list');
@@ -128,9 +129,9 @@ module.exports = React.createClass({
   render() {
     var self = this;
     var integrationTypes = [
-      {value: 'hosted_mvp', label: 'NativeSync CloudCode 1.0'},
+      {value: 'hosted_mvp', label: 'Cloud Code'},
       {value: 'external', label: 'External/Custom'},
-      {value: 'simple', label: 'Simple Drag-and-drop'},
+      {value: 'dragAndDrop', label: 'Drag-and-drop'},
     ];
     return <div>
       <h2>Build an Integration {this.state.integration.title}</h2>
@@ -147,16 +148,9 @@ module.exports = React.createClass({
           <h2>General</h2>
           <TextInputField label="Title" value={this.state.integration.title} onChange={this.handleChange.bind(this, 'title')} />
           <TextInputField label="Version" value={this.state.integration.version} onChange={this.handleChange.bind(this, 'version')} />
-					<div className="row">
-						<VisibilitySelector value={ this.state.action.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
-					</div>
-          <label className="pt-label pt-inline col-xs">
-            Type
-            <Select options={integrationTypes}
-                    value={this.state.integration.type}
-                    onChange={this.handleChange.bind(this, 'type')}
-            />
-          </label>
+          <div className="row">
+            <VisibilitySelector value={ this.state.action.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
+          </div>
           <label className="pt-label">
             Description
             <textarea className="pt-input pt-fill" value={this.state.integration.description} onChange={this.handleChange.bind(this, 'description')} />
@@ -178,9 +172,21 @@ module.exports = React.createClass({
             <ActionMultiSelect value={this.state.actions} services={this.state.services} onChange={this.handleActionChange.bind(this)} />
           </div>
           <h2>Code</h2>
+          <label className="pt-label pt-inline col-xs">
+            Type
+            <Select options={integrationTypes}
+                    value={this.state.integration.type}
+                    onChange={this.handleChange.bind(this, 'type')}
+            />
+          </label>
           <div className="row">
             <div className="col-xs-9">
-              <CodeEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
+              {this.state.integration.type == 'hosted_mvp' &&
+                <CodeEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
+              }
+              {this.state.integration.type == 'dragAndDrop' &&
+                <DragAndDropEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
+              }
             </div>
             <div className="col-xs">
               <h4>Configuration Inputs</h4>
