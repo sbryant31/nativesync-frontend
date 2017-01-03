@@ -1,19 +1,21 @@
 var React = require('react');
-var _ = require('underscore');
+// var _ = require('underscore');
 var lodash = require('lodash');
 var Select = require('react-select');
-var actions = require('../../modules/actions');
+// var actions = require('../../modules/actions');
 var TextInputField = require('../inputs/text_input_field');
 var CodeEditor = require('../inputs/code_editor');
 
-var defaultConfiguration = {type: 'static', fields: [], code: ''}
+var defaultConfiguration = {type: 'static', fields: [], code: ''};
 module.exports = React.createClass({
   getDefaultProps: function() {
     return {
       configuration: defaultConfiguration,
-      onChange: function(configuration) {console.log('service auths change', configuration)},
+      onChange: function(configuration) {
+        console.log('service auths change', configuration);
+      },
       readOnly: false,
-    }
+    };
   },
   handleChange: function(field, e) {
     var self = this;
@@ -42,14 +44,14 @@ module.exports = React.createClass({
   handleAddField: function() {
     var self = this;
     var configuration = self.props.configuration;
-    if (!configuration.fields) { configuration.fields = []};
+    if (!configuration.fields) { configuration.fields = []; }
     configuration.fields.push({label: '', key: '', type: ''});
     self.props.onChange(configuration);
   },
   handleRemoveField: function(index) {
     var self = this;
     var configuration = self.props.configuration;
-    if (!configuration.fields) { configuration.fields = []};
+    if (!configuration.fields) { configuration.fields = []; }
     configuration.fields.splice(index, 1);
     self.props.onChange(configuration);
   },
@@ -80,7 +82,7 @@ module.exports = React.createClass({
           }
         </div>
       );
-    })
+    });
     return (
         <div>
           <div>
@@ -111,4 +113,4 @@ module.exports = React.createClass({
         </div>
     );
   }
-})
+});

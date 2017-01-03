@@ -1,5 +1,5 @@
 var React = require('react');
-var lodash = require('lodash');
+// var lodash = require('lodash');
 var Select = require('react-select');
 
 module.exports = React.createClass({
@@ -8,7 +8,7 @@ module.exports = React.createClass({
       value: '',
       onChange: (parameters) => { console.log('params changed', parameters); },
       readOnly: false
-    }
+    };
   },
   handleChange: function(selection) {
     console.log('params thing handling change', selection);

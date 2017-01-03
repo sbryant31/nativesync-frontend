@@ -1,8 +1,8 @@
 var React = require('react');
-var _ = require('underscore');
+// var _ = require('underscore');
 var lodash = require('lodash');
-var Select = require('react-select');
-var actions = require('../../modules/actions');
+// var Select = require('react-select');
+// var actions = require('../../modules/actions');
 var TextInputField = require('../inputs/text_input_field');
 var OrganizationSelect = require('../organization/organization_select');
 
@@ -10,9 +10,9 @@ module.exports = React.createClass({
   getDefaultProps: function() {
     return {
       referrals: [],
-      onChange: function(referrals) {console.log('service auths change', referrals)},
+      onChange: function(referrals) {console.log('service auths change', referrals); },
       readOnly: false,
-    }
+    };
   },
   handleChange: function(index, field, e) {
     var self = this;
@@ -63,7 +63,7 @@ module.exports = React.createClass({
             }
           </div>
       );
-    })
+    });
     return (
         <div>
             <div>
@@ -77,4 +77,4 @@ module.exports = React.createClass({
         </div>
     );
   }
-})
+});

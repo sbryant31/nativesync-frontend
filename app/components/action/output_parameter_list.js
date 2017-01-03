@@ -11,7 +11,7 @@ module.exports = React.createClass({
       parameters: [statusCodeParam],
       onChange: (parameters) => { console.log('params changed', parameters); },
       readOnly: false
-    }
+    };
   },
   handleRemove: function(index) {
     var parameters = this.props.parameters;
@@ -69,8 +69,8 @@ module.exports = React.createClass({
             <button className="pt-button pt-icon-remove" onClick={removeHandler}>Remove</button>
         </div>
         }
-      </div>
-    })
+      </div>;
+    });
     return <div>
       { parameters }
       <div className="row">
@@ -80,6 +80,6 @@ module.exports = React.createClass({
           }
         </div>
       </div>
-    </div>
+    </div>;
   }
-})
+});

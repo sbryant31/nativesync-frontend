@@ -6,7 +6,7 @@ module.exports = React.createClass({
     return {
       list: [],
       onChange: (list) => { console.log('kv changed', list); }
-    }
+    };
   },
   handleRemove: function(index) {
     var list = this.props.list;
@@ -38,8 +38,8 @@ module.exports = React.createClass({
         <div className="col-xs">
           <button className="pt-button pt-icon-remove" onClick={self.handleRemove.bind(self, currentIndex)}>Remove</button>
         </div>
-      </div>
-    })
+      </div>;
+    });
     return <div>
       { list }
       <div className="row">
@@ -47,6 +47,6 @@ module.exports = React.createClass({
           <button className="pt-button pt-icon-add" onClick={self.handleAdd.bind(self)}>Add</button>
         </div>
       </div>
-    </div>
+    </div>;
   }
-})
+});
