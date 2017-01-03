@@ -1,8 +1,8 @@
 var React = require('react');
-var _ = require('underscore');
-var lodash = require('lodash');
+// var _ = require('underscore');
+// var lodash = require('lodash');
 var Select = require('react-select');
-var actions = require('../../modules/actions');
+// var actions = require('../../modules/actions');
 var ServiceAuthConfigurationDetails = require('./service_auth_configuration_details');
 var ServiceAuthApikeyDetails = require('./service_auth_apikey_details');
 var ServiceAuthBasicDetails = require('./service_auth_basic_details');

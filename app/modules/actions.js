@@ -1,14 +1,15 @@
-var nsapi = require('./nativesyncapi')
+var nsapi = require('./nativesyncapi');
 //memory
-var state = require('./state')
-var _ = require('underscore');
+var state = require('./state');
+// var _ = require('underscore');
+
 //persistence
-var store = require('store')
-var assert = require('assert')
-import { browserHistory } from 'react-router'
+// var store = require('store');
+var assert = require('assert');
+import { browserHistory } from 'react-router';
 
 //token gets loaded into memory on start
-var token = state.get('token')
+var token = state.get('token');
 
 exports.getState = function(key) {
   return state.get(key);

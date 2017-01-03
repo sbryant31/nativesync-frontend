@@ -1,8 +1,8 @@
 var React = require('react');
-var _ = require('underscore');
-var lodash = require('lodash');
-var Select = require('react-select');
-var actions = require('../../modules/actions');
+// var _ = require('underscore');
+// var lodash = require('lodash');
+// var Select = require('react-select');
+// var actions = require('../../modules/actions');
 var ParameterInSelector = require('../action/parameter_in_selector');
 var TextInputField = require('../inputs/text_input_field');
 

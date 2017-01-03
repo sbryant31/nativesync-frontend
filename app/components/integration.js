@@ -1,11 +1,11 @@
-var React = require('react')
-var actions = require('../modules/actions')
-var Navbar = require('../components/navbar')
-var lodash = require('lodash')
+var React = require('react');
+var actions = require('../modules/actions');
+// var Navbar = require('../components/navbar');
+// var lodash = require('lodash');
 var Select = require('react-select');
 var Json = require('react-json');
 var OrganizationAuthForm = require('./organization_auth/organization_auth_form');
-var ServiceAuthList = require('../components/service_auth/service_auth_list');
+// var ServiceAuthList = require('../components/service_auth/service_auth_list');
 var ConfigurationInputView = require('../components/integration/configuration_input_view');
 var ReferralCodesList = require('../components/integration/referral_codes_list');
 var PricingInfo = require('../components/integration/pricing_info');
@@ -18,7 +18,7 @@ var ActionMultiSelect = require('../components/action/action_multi_select');
 var IntegrationConfigurationBuilder = require('../components/integration/integration_configuration_builder');
 var ActionDocumentationList = require('../components/action/action_documentation_list');
 var MarkdownEditor = require('react-markdown-editor').MarkdownEditor;
-import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
+import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core";
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -232,4 +232,3 @@ module.exports = React.createClass({
     </div>
   }
 })
-

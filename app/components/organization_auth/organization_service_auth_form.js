@@ -1,8 +1,8 @@
 var React = require('react');
 var _ = require('underscore');
 var lodash = require('lodash');
-var Select = require('react-select');
-var actions = require('../../modules/actions');
+// var Select = require('react-select');
+// var actions = require('../../modules/actions');
 var ServiceAuthView = require('../service_auth/service_auth_view');
 var OrganizationServiceAuthEditor = require('../organization_service_auth/organization_service_auth_editor');
 

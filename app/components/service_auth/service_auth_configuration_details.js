@@ -1,9 +1,9 @@
 var React = require('react');
-var _ = require('underscore');
-var lodash = require('lodash');
-var Select = require('react-select');
-var actions = require('../../modules/actions');
-var ServiceAuthDetails = require('./service_auth_details');
+// var _ = require('underscore');
+// var lodash = require('lodash');
+// var Select = require('react-select');
+// var actions = require('../../modules/actions');
+// var ServiceAuthDetails = require('./service_auth_details');
 var KeyValueObject = require('../inputs/key_value_object');
 
 module.exports = React.createClass({

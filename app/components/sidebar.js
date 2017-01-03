@@ -1,7 +1,6 @@
-var React = require('react')
-var lodash = require('lodash')
-import { browserHistory } from 'react-router'
-
+var React = require('react');
+var lodash = require('lodash');
+import { browserHistory } from 'react-router';
 
 module.exports = React.createClass({
   getDefaultProps:function(){
@@ -28,4 +27,3 @@ module.exports = React.createClass({
     </div>
   }
 })
-
