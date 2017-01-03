@@ -1,19 +1,19 @@
-var React = require('react')
-var actions = require('../../modules/actions')
-var Navbar = require('../../components/navbar')
-var lodash = require('lodash')
+var React = require('react');
+var actions = require('../../modules/actions');
+// var Navbar = require('../../components/navbar');
+var lodash = require('lodash');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
       selectedIntegrationId: null,
       integrationInstances: []
-    }
+    };
   },
   getDefaultProps: function() {
     return {
       integrations: [],
-    }
+    };
   },
   handleGetIntegrationInstances: function(integrationId) {
     var self = this;
@@ -22,7 +22,7 @@ module.exports = React.createClass({
     .then(function(result) {
       console.log('got instances', result);
       self.setState({integrationInstances: result.integrationInstances});
-    })
+    });
   },
   render() {
     var self = this;
@@ -32,7 +32,7 @@ module.exports = React.createClass({
         instances = lodash.map(self.state.integrationInstances, function(instance) {
           return <div className="row">
             <a onClick={actions.goto.bind(null, '/integration_instance/' + instance.id)}>{instance.organization.name} {instance.title}</a>
-          </div>
+          </div>;
         });
       }
       return (
@@ -51,8 +51,8 @@ module.exports = React.createClass({
             <span className="pt-icon-add" onClick={actions.goto.bind(self, `/integration/${integration.id}/instance/new`)} />
           </td>
         </tr>
-      )
-    })
+      );
+    });
     return <div>
       <a onClick={actions.goto.bind(null, '/integration/new')}>New Integration</a>
       <hr/>
@@ -71,7 +71,6 @@ module.exports = React.createClass({
           {integrationsList}
         </tbody>
       </table>
-    </div>
+    </div>;
   }
-})
-
+});
