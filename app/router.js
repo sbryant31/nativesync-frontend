@@ -1,30 +1,30 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
+var React = require('react');
+// var ReactDOM = require('react-dom');
+import { Router, Route, /*Link,*/ browserHistory, IndexRoute } from 'react-router';
 
-var actions = require('./modules/actions')
+var actions = require('./modules/actions');
 
 
-var App = require('./app')
-var Landing = require('./pages/landing')
-var IntegrationsMe = require('./pages/integrations_me')
-var IntegrationInstancesMe = require('./pages/integration_instances_me')
-var Marketplace = require('./pages/marketplace')
-var MarketplaceRequest = require('./pages/marketplace_request')
-var IntegrationsBrowse = require('./pages/integrations_browse')
-var ServicesBrowse = require('./pages/services_browse')
-var ServiceEdit = require('./pages/service_edit')
-var IntegrationView = require('./pages/integration_view')
-var IntegrationInstanceEdit = require('./pages/integration_instance_edit')
-var IntegrationEdit = require('./pages/integration_edit')
-var OrganizationEdit = require('./pages/organization_edit')
+var App = require('./app');
+var Landing = require('./pages/landing');
+var IntegrationsMe = require('./pages/integrations_me');
+var IntegrationInstancesMe = require('./pages/integration_instances_me');
+var Marketplace = require('./pages/marketplace');
+var MarketplaceRequest = require('./pages/marketplace_request');
+var IntegrationsBrowse = require('./pages/integrations_browse');
+var ServicesBrowse = require('./pages/services_browse');
+var ServiceEdit = require('./pages/service_edit');
+var IntegrationView = require('./pages/integration_view');
+var IntegrationInstanceEdit = require('./pages/integration_instance_edit');
+var IntegrationEdit = require('./pages/integration_edit');
+var OrganizationEdit = require('./pages/organization_edit');
 var ActionsMe = require('./pages/actions_me');
 var ActionsBrowse = require('./pages/actions_browse');
 var ActionEdit = require('./pages/action_edit');
 var Profile = require('./pages/profile');
-var Login = require('./pages/login')
-var Dashboard = require('./pages/dashboard')
-var NavbarLayout = require('./pages/navbar_layout')
+var Login = require('./pages/login');
+var Dashboard = require('./pages/dashboard');
+var NavbarLayout = require('./pages/navbar_layout');
 
 
 function checkToken(nextState,replace,cb){

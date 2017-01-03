@@ -1,4 +1,4 @@
-var React = require('react')
+var React = require('react');
 module.exports = React.createClass({
   getDefaultProps(){
     return {
@@ -25,15 +25,15 @@ module.exports = React.createClass({
       <div className='pt-card'>
         <div className='pt-control-group pt-vertical'>
           <div className='pt-input-group pt-large'>
-            <input 
-              onChange={this.handleInput.bind(this,'email')} 
+            <input
+              onChange={this.handleInput.bind(this,'email')}
               className='pt-input' value={this.props.email}
               placeholder='Email'
             />
           </div>
           <div className='pt-input-group pt-large'>
-            <input 
-              onChange={this.handleInput.bind(this,'password')} 
+            <input
+              onChange={this.handleInput.bind(this,'password')}
               className='pt-input' type='password' value={this.props.password}
               placeholder='Password'
             />

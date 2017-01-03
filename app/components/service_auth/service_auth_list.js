@@ -1,8 +1,8 @@
 var React = require('react');
 var _ = require('underscore');
 var lodash = require('lodash');
-var Select = require('react-select');
-var actions = require('../../modules/actions');
+// var Select = require('react-select');
+// var actions = require('../../modules/actions');
 var ServiceAuthView = require('../service_auth/service_auth_view');
 
 // todo: create a service select only in the case when services.length > 1
