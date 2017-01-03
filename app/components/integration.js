@@ -147,6 +147,9 @@ module.exports = React.createClass({
           <h2>General</h2>
           <TextInputField label="Title" value={this.state.integration.title} onChange={this.handleChange.bind(this, 'title')} />
           <TextInputField label="Version" value={this.state.integration.version} onChange={this.handleChange.bind(this, 'version')} />
+					<div className="row">
+						<VisibilitySelector value={ this.state.action.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
+					</div>
           <label className="pt-label pt-inline col-xs">
             Type
             <Select options={integrationTypes}

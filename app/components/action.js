@@ -162,7 +162,6 @@ module.exports = React.createClass({
             </div>
             <div className="row">
               <VisibilitySelector value={ this.state.action.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
-              </label>
             </div>
             <div className="row">
               <TextInputField label="Function" value={this.state.action.function_name} onChange={this.handleChange.bind(this, 'function_name')} />

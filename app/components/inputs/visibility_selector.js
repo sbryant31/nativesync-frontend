@@ -1,7 +1,5 @@
 var React = require('react');
-var actions = require('../modules/actions');
-var Navbar = require('../components/navbar');
-var lodash = require('lodash');
+var actions = require('../../modules/actions');
 var _ = require('underscore');
 
 var Select = require('react-select');
