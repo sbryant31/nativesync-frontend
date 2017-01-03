@@ -1,14 +1,14 @@
 var React = require('react');
-var lodash = require('lodash');
-var Select = require('react-select');
-import JSONTree from 'react-json-tree'
+// var lodash = require('lodash');
+// var Select = require('react-select');
+import JSONTree from 'react-json-tree';
 
 module.exports = React.createClass({
   getDefaultProps: () => {
     return {
       configuration: {},
       onChange: (parameters) => { console.log('params changed', parameters); }
-    }
+    };
   },
   render() {
     var inputObject = {};
@@ -24,6 +24,6 @@ module.exports = React.createClass({
       { this.props.configuration.type == 'dynamic' &&
         <span>Dynamically generated</span>
       }
-    </div>
+    </div>;
   }
-})
+});

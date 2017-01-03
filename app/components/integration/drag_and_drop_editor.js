@@ -50,35 +50,35 @@
 
 var React = require('react');
 var _ = require('underscore');
-var lodash = require('lodash');
-var actions = require('../../modules/actions');
-var Select = require('react-select');
+// var lodash = require('lodash');
+// var actions = require('../../modules/actions');
+// var Select = require('react-select');
 
 var CodeLine = React.createClass({
   getDefaultProps: function() {
     return {
       onChange: (res) => { console.log(res); },
       line: {}
-    }
+    };
   },
   render() {
-    var self = this;
+    // var self = this;
     return <div>
       a code line
-    </div>
+    </div>;
   }
-})
+});
 module.exports = React.createClass({
   getDefaultProps: function() {
     return {
       onChange: (res) => { console.log(res); },
       code: ''
-    }
+    };
   },
   getInitialState: function() {
     return {
       parsedCode: []
-    }
+    };
   },
   componentDidMount: function() {
     let parsedCode;
@@ -90,12 +90,12 @@ module.exports = React.createClass({
     this.setState({parsedCode: parsedCode});
   },
   render() {
-    var self = this;
+    // var self = this;
     var codeList = _.map(this.state.parsedCode, function(line) {
-      return <CodeLine value={line} />
+      return <CodeLine value={line} />;
     });
     return <div>
       {codeList}
-    </div>
+    </div>;
   }
-})
+});
