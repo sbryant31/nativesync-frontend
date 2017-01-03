@@ -75,10 +75,23 @@ module.exports = React.createClass({
       code: ''
     }
   },
+  getInitialState: function() {
+    return {
+      parsedCode: []
+    }
+  },
+  componentDidMount: function() {
+    let parsedCode;
+    try {
+      parsedCode = JSON.parse(this.props.code);
+    } catch(e) {
+      parsedCode = [];
+    }
+    this.setState({parsedCode: parsedCode});
+  },
   render() {
     var self = this;
-    var parsedCode = JSON.parse(this.props.code);
-    var codeList = _.map(parsedCode, function(line) {
+    var codeList = _.map(this.state.parsedCode, function(line) {
       return <CodeLine value={line} />
     });
     return <div>
