@@ -5,6 +5,7 @@ var React = require('react');
 // var Select = require('react-select');
 // var ActionMultiSelect = require('./action_multi_select');
 // var ParameterList = require('./parameter_list');
+import {Popover, Position} from '@blueprintjs/core'
 var Json = require('react-json');
 
 module.exports = React.createClass({
@@ -27,14 +28,22 @@ module.exports = React.createClass({
 
     var example = `callAction('${action.organization_name}/${action.service_name}/${action.function_name}/${action.version}', ${JSON.stringify(inputJson)})`;
     return <div>
-      <h6><b>{ action.service_name }</b> - { action.function_name }</h6>
-      <p>{action.description}</p>
-      <h5>Input</h5>
-      <Json value={inputJson} />
-      <h5>Outputs</h5>
-      <Json value={outputJson} />
-      <h5>Example</h5>
-      <textarea value={example} className="pt-input pt-fill" />
+      <Popover content={
+          <div>
+            <h6><b>{ action.service_name }</b> - { action.function_name }</h6>
+            <p>{action.description}</p>
+            <h5>Input</h5>
+            <Json value={inputJson} />
+            <h5>Outputs</h5>
+            <Json value={outputJson} />
+            <h5>Example</h5>
+            <textarea value={example} className="pt-input pt-fill" />
+          </div>
+        }
+        position={Position.LEFT}
+        isModal={true}>
+        <a>{`${action.organization_name}/${action.service_name}/${action.function_name}/${action.version}`}</a>
+      </Popover>
     </div>;
   }
 });

@@ -5,6 +5,7 @@ var lodash = require('lodash')
 var Select = require('react-select');
 var Json = require('react-json');
 var OrganizationAuthForm = require('./organization_auth/organization_auth_form');
+import {Position,Popover} from "@blueprintjs/core"
 var VisibilitySelector = require('./inputs/visibility_selector');
 var ServiceAuthList = require('../components/service_auth/service_auth_list');
 var ConfigurationInputView = require('../components/integration/configuration_input_view');
@@ -141,7 +142,6 @@ module.exports = React.createClass({
             <Tab>General</Tab>
             <Tab>Configuration</Tab>
             <Tab>Code</Tab>
-            <Tab>Test</Tab>
             <Tab>Documentation</Tab>
             <Tab>Publish</Tab>
         </TabList>
@@ -166,15 +166,7 @@ module.exports = React.createClass({
           />
         </TabPanel>
         <TabPanel>
-          <div className="row">
-            <ServiceMultiSelect value={this.state.services} onChange={this.handleServiceChange.bind(this)} />
-          </div>
-          <div className="row">
-            <ActionMultiSelect value={this.state.actions} services={this.state.services} onChange={this.handleActionChange.bind(this)} />
-          </div>
-          <h2>Code</h2>
           <label className="pt-label pt-inline col-xs">
-            Type
             <Select options={integrationTypes}
                     value={this.state.integration.type}
                     onChange={this.handleChange.bind(this, 'type')}
@@ -182,38 +174,60 @@ module.exports = React.createClass({
           </label>
           <div className="row">
             <div className="col-xs-9">
-              {this.state.integration.type == 'hosted_mvp' &&
-                <CodeEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
-              }
-              {this.state.integration.type == 'dragAndDrop' &&
-                <DragAndDropEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
-              }
+              <div className="row">
+                {this.state.integration.type == 'hosted_mvp' &&
+                  <CodeEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
+                }
+                {this.state.integration.type == 'dragAndDrop' &&
+                  <DragAndDropEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
+                }
+              </div>
+              <div className="row">
+                <div className="col-xs">
+                  <div style={{overflow: 'auto', height: 150}}>
+                    Input
+                    <Json value={this.state.testInput} onChange={this.handleChangeTestInput.bind(this)} />
+                  </div>
+                </div>
+                <div className="col-xs">
+                  <div style={{overflow: 'auto', height: 150}}>
+                    Output
+                    <textarea value={
+                      (this.state.testOutput.logs ? this.state.testOutput.logs.join('\n') : '') + '\n' + JSON.stringify(this.state.testOutput.output)
+                    } className="pt-input pt-fill" />
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <Popover content={
+                    <div style={{overflow: 'auto', height: 200}}>
+                      <OrganizationAuthForm
+                        organization={actions.getState('org')}
+                        services={this.state.services}
+                        serviceAuths={this.state.serviceAuths}
+                        onChange={this.handleChangeOrganizationAuths.bind(this)} />
+                    </div> }
+                  isModal={true}
+                  position={Position.RIGHT_TOP}>
+                  <button className="pt-button">Auth Profiles</button>
+                </Popover>
+                <button className="pt-button" onClick={this.handleTest.bind(this)}>Test</button>
+              </div>
             </div>
             <div className="col-xs">
-              <h4>Configuration Inputs</h4>
-              <ConfigurationInputView configuration={this.state.integration.configuration} />
-              <hr />
-              <h4>Actions</h4>
-              <ActionDocumentationList actions={this.state.actions} />
+              <div className="row">
+                <ConfigurationInputView configuration={this.state.integration.configuration} />
+                <hr />
+              </div>
+              <div className="row">
+                <ServiceMultiSelect value={this.state.services} onChange={this.handleServiceChange.bind(this)} />
+              </div>
+              <div className="row">
+                <ActionMultiSelect value={this.state.actions} services={this.state.services} onChange={this.handleActionChange.bind(this)} />
+                <ActionDocumentationList actions={this.state.actions} />
             </div>
           </div>
-        </TabPanel>
-        <TabPanel>
-          <h4>Authentication</h4>
-          <OrganizationAuthForm
-            organization={actions.getState('org')}
-            services={this.state.services}
-            serviceAuths={this.state.serviceAuths}
-            onChange={this.handleChangeOrganizationAuths.bind(this)} />
-          <hr />
-          <h4>Inputs</h4>
-          <Json value={this.state.testInput} onChange={this.handleChangeTestInput.bind(this)} />
-          <hr />
-          <h4>Logs</h4>
-          <textarea value={this.state.testOutput.logs ? this.state.testOutput.logs.join('\n') : ''} className="pt-input pt-fill" />
-          <hr />
-          <h4>Return Value</h4>
-          <textarea value={JSON.stringify(this.state.testOutput.output)} className="pt-input pt-fill" />
+          </div>
         </TabPanel>
         <TabPanel>
           <h2>Documentation</h2>
@@ -229,7 +243,6 @@ module.exports = React.createClass({
       </Tabs>
       <hr />
       <button className="pt-button pt-icon-add" onClick={this.handleSave}>Save</button>
-      <button className="pt-button" onClick={this.handleTest.bind(this)}>Test</button>
     </div>
   }
 })

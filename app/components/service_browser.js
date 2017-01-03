@@ -63,7 +63,7 @@ module.exports = React.createClass({
     var servicesList = lodash.map(self.state.filteredServices, function(service){
       return (
         <tr key={service.id}>
-          <td><a onClick={actions.goto.bind(null, '/service/' + service.id)}>{service.name}</a></td>
+          <td><a onClick={actions.goto.bind(null, '/service/' + service.id)}><img src={service.logo_url} style={{height: 50, width: 50}} /> {service.name}</a></td>
         </tr>
       );
     });
@@ -72,16 +72,10 @@ module.exports = React.createClass({
       <a onClick={actions.goto.bind(null, '/service/new')}>New Service</a>
       <hr />
       <label className="pt-label">
-        Name
-        <input className="pt-input" value={this.state.filter.name} onChange={this.handleFilterChange.bind(this, 'name')} />
+        Name <input className="pt-input" value={this.state.filter.name} onChange={this.handleFilterChange.bind(this, 'name')} />
       </label>
       <hr/>
       <table className="pt-table pt-striped">
-        <thead>
-        <tr>
-           <th>Name</th>
-        </tr>
-        </thead>
         <tbody>
           {servicesList}
         </tbody>
