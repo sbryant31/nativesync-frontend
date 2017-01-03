@@ -1,4 +1,4 @@
-var React = require('react')
+var React = require('react');
 
 // CSS
 import '../node_modules/normalize.css/normalize.css';
@@ -10,64 +10,64 @@ import '../node_modules/codemirror/lib/codemirror.css';
 // some temp styles nick made, replace this with sass
 import './styles/main.css';
 
-var state = require('./modules/state')
-var store = require('store')
-import { browserHistory } from 'react-router'
+var state = require('./modules/state');
+var store = require('store');
+import { browserHistory } from 'react-router';
 import { Toaster, Position, Intent} from "@blueprintjs/core";
 
 module.exports = React.createClass({
   getInitialState(){
-    console.log('initial state',state())
-    return state()
+    console.log('initial state', state());
+    return state();
   },
   toast:null,
   componentWillMount:function(){
-    console.log('app component mounting')
-    var self = this
+    console.log('app component mounting');
+    var self = this;
     // state.on('change',function(){
     //   console.log('app state',arguments)
     // })
     state.on(['token'],function(value){
-      console.log('token',value)
-      store.set('token',value)
-      self.setState({token:value})
-    })
+      console.log('token',value);
+      store.set('token',value);
+      self.setState({token:value});
+    });
     state.on(['error'],function(value){
-      console.log('error',value)
-      if(value){
-        self.toast.show({message:value,intent:Intent.DANGER})
-        state.set('error',null)
+      console.log('error',value);
+      if(value) {
+        self.toast.show({message:value,intent:Intent.DANGER});
+        state.set('error',null);
       }
-    })
+    });
     state.on(['showSuccess'],function(value){
       if(value){
-        self.toast.show({message:value,intent:Intent.SUCCESS})
-        state.set('showSuccess',null)
+        self.toast.show({message:value,intent:Intent.SUCCESS});
+        state.set('showSuccess',null);
       }
-    })
+    });
     state.on(['me'],function(value){
-      store.set('me',value)
-      self.setState({me:value})
-    })
+      store.set('me',value);
+      self.setState({me:value});
+    });
     state.on(['org'],function(value){
-      store.set('org',value)
-      self.setState({'org':value})
-    })
+      store.set('org',value);
+      self.setState({'org':value});
+    });
   },
   clearError:function(){
-    console.log('clearing error')
-    state.set('error',null)
+    console.log('clearing error');
+    state.set('error',null);
   },
   render: function() {
-    var child = null
+    var child = null;
 
     if(this.props.children){
-      child = React.cloneElement(this.props.children,this.state)
+      child = React.cloneElement(this.props.children,this.state);
     }
     return <div>
       <Toaster onDismiss={this.clearError} timeout={3000} ref={(x)=>{this.toast=x;}}/>
       {child}
-    </div>
+    </div>;
 
   }
-})
+});
