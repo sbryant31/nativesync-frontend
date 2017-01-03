@@ -3,6 +3,7 @@ var actions = require('../modules/actions')
 var Navbar = require('../components/navbar')
 var lodash = require('lodash')
 var ServiceSelector = require('./service/service_selector');
+var TextInputField = require('./inputs/text_input_field');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -37,9 +38,12 @@ module.exports = React.createClass({
     })
   },
  handleFilterChange: function(field, e) {
+    console.log('filter change', field, e);
     var filter = this.state.filter;
     let value;
-    if (e.target) {
+    if (e == null) {
+      value = null;
+    } else if (e.target) {
       value = e.target.value;
     } else if (e.value) {
       value = e.value;
@@ -52,22 +56,19 @@ module.exports = React.createClass({
       delete filter[field];
     }
 
-		this.setState({filter: filter});
-		var filteredActions = _.filter(this.state.actions, (action) => {
-			var match = true;
-			_.each(filter, (value, key) => {
-				if (key == 'service_id') {
-					if (action.service_id != value.id	) {
-						match = false;
-					}
-				} else if (action[key].toLowerCase().indexOf(value.toLowerCase()) === -1) {
-					match = false;
-				}
-			});
-			return match;
-		});
-		this.setState({filteredActions: filteredActions});
-	},
+    this.setState({filter: filter});
+    var filteredActions = _.filter(this.state.actions, (action) => {
+      var match = true;
+      _.each(filter, (value, key) => {
+        if (action[key].toLowerCase().indexOf(value.toLowerCase()) === -1) {
+          match = false;
+        }
+      });
+      return match;
+    });
+    this.setState({filteredActions: filteredActions});
+    this.forceUpdate();
+  },
   render() {
     var self = this;
     var actionsList = lodash.map(this.state.filteredActions, function(action){
@@ -81,10 +82,10 @@ module.exports = React.createClass({
     })
     return <div>
       <h1>Actions</h1>
-			<ServiceSelector
-				value={this.state.filter.service_id}
-				onChange={this.handleFilterChange.bind(this, 'service_id')} />
-			<hr/>
+      <TextInputField label="Service" value={this.state.filter.service_name} onChange={this.handleFilterChange.bind(this, 'service_name')} />
+      <TextInputField label="Function" value={this.state.filter.function_name} onChange={this.handleFilterChange.bind(this, 'function_name')} />
+      <TextInputField label="Organization" value={this.state.filter.organization_name} onChange={this.handleFilterChange.bind(this, 'organization_name')} />
+      <hr/>
       <a onClick={actions.goto.bind(null, '/action/new')}>New action</a>
       <hr/>
       <table className="pt-table pt-striped">

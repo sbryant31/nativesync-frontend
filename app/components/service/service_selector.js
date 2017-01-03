@@ -17,7 +17,11 @@ module.exports = React.createClass({
     }
   },
   handleChange: function(selection) {
-    this.props.onChange(this.state.services[selection.value]);
+    if (selection == null) {
+      this.props.onChange(null);
+    } else {
+      this.props.onChange(this.state.services[selection.value]);
+    }
   },
   componentDidMount: function() {
     console.log('loading options for service');
