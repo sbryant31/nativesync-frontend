@@ -15,7 +15,7 @@ var ServiceMultiSelect = require('../components/service/service_multi_select');
 var TriggerInfo = require('../components/integration/trigger_info');
 var TextInputField = require('../components/inputs/text_input_field');
 var CodeEditor = require('../components/inputs/code_editor');
-var DragAndDropEditor = require('./integration/drag_and_drop_editor');
+var BlocklyEditor = require('./blockly/editor');
 var ActionMultiSelect = require('../components/action/action_multi_select');
 var IntegrationConfigurationBuilder = require('../components/integration/integration_configuration_builder');
 var ActionDocumentationList = require('../components/action/action_documentation_list');
@@ -88,9 +88,9 @@ module.exports = React.createClass({
     this.setState({serviceAuths: serviceAuths});
     return this.loadOrganizationAuths();
   },
-  handleCodeChange: function(value) {
+  handleCodeChange: function(field, value) {
     var integrationCode = this.state.integrationCode;
-    integrationCode.code = value;
+    integrationCode[field]= value;
     this.setState({integrationCode: integrationCode});
   },
   handleChangeTestInput: function(testInput) {
@@ -133,7 +133,7 @@ module.exports = React.createClass({
     var integrationTypes = [
       {value: 'hosted_mvp', label: 'Cloud Code'},
       {value: 'external', label: 'External/Custom'},
-      {value: 'dragAndDrop', label: 'Drag-and-drop'},
+      {value: 'blockly', label: 'Codeless'},
     ];
     return <div>
       <h2>Build an Integration {this.state.integration.title}</h2>
@@ -176,10 +176,13 @@ module.exports = React.createClass({
             <div className="col-xs-9">
               <div className="row">
                 {this.state.integration.type == 'hosted_mvp' &&
-                  <CodeEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
+                  <CodeEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this, 'code')} />
                 }
-                {this.state.integration.type == 'dragAndDrop' &&
-                  <DragAndDropEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this)} />
+                {this.state.integration.type == 'blockly' &&
+                  <BlocklyEditor
+                    initialXml={this.state.integrationCode.blockly_xml}
+                    onChangeCode={this.handleCodeChange.bind(this, 'code')}
+                    onChangeXml={this.handleCodeChange.bind(this, 'blockly_xml')} />
                 }
               </div>
               <div className="row">
