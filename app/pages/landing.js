@@ -19,7 +19,7 @@ module.exports = React.createClass({
        url:'/login'
      }
     ]
-    
+
     return <div>
       <Navbar links={links}/>
       <div style={{paddingTop:50}}>
