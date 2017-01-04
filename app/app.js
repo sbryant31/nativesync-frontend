@@ -64,10 +64,11 @@ module.exports = React.createClass({
     if(this.props.children){
       child = React.cloneElement(this.props.children,this.state);
     }
-    return <div>
-      <Toaster onDismiss={this.clearError} timeout={3000} ref={(x)=>{this.toast=x;}}/>
-      {child}
-    </div>;
-
+    return (
+      <div>
+        <Toaster onDismiss={this.clearError} timeout={3000} ref={(x)=>{this.toast=x;}}/>
+        {child}
+      </div>
+    );
   }
 });
