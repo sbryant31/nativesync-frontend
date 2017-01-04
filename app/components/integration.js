@@ -174,14 +174,15 @@ module.exports = React.createClass({
           </label>
           <div className="row">
             <div className="col-xs-9">
-              <div className="row">
+              <div className="row" style={{height: 500}}>
                 {this.state.integration.type == 'hosted_mvp' &&
                   <CodeEditor code={self.state.integrationCode.code} onChange={this.handleCodeChange.bind(this, 'code')} />
                 }
                 {this.state.integration.type == 'blockly' &&
                   <BlocklyEditor
+                    services={this.state.services}
+                    actions={this.state.actions}
                     initialXml={this.state.integrationCode.blockly_xml}
-                    onChangeCode={this.handleCodeChange.bind(this, 'code')}
                     onChangeXml={this.handleCodeChange.bind(this, 'blockly_xml')} />
                 }
               </div>
