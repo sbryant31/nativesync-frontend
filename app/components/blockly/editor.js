@@ -41,9 +41,10 @@ module.exports = React.createClass({
     var miscCategory = {
       name: "Miscellaneous",
       blocks: [
+        { type: "start_program" },
+        { type: "end_program" },
         { type: "input_value" },
         { type: "log_value" },
-        { type: "end_program" },
       ]
     }
 
@@ -83,25 +84,45 @@ module.exports = React.createClass({
     var actionCategories = _.map(this.props.services, (service) => {
       var serviceActions = _.where(this.props.actions, {service_id: service.id})
       var serviceActionBlocks = _.map(serviceActions, (action) => {
-        var name = `${action.organization_name}/${action.service_name}.${action.function_name}:${action.version}`;
-        var componentName = `${action.organization_name}_${action.service_name}_${action.function_name}_${action.version}`.toLowerCase().replace(' ', '_');
+				var actionParamsList = _.map(action.input, (param) => {
+					return {
+						type: 'nativesync_object_parameter',
+						values: {
+							'KEY': {type: 'text', fields: {'TEXT': param.name}},
+							'VALUE': {type: 'text', fields: {'TEXT': param.type}}
+						}
+					}
+				})
+				console.log('action params list', actionParamsList);
+				// super weird but we are basically constructing the
+				// params tree by iterating through the params list in reverse
+				// Its basically like building a linked list. Super fucking annoying
+				// that we cant just pass a list.
+				var paramsObject = {}
+				for (var i = actionParamsList.length - 1; i >= 0 ; i--) {
+					var currentParamsObject = paramsObject;
+					paramsObject = actionParamsList[i];
+					paramsObject['next'] = currentParamsObject;
+				}
+				console.log('paramsObject', paramsObject);
+
         var action = {
           type: 'nativesync_action',
           values: {
-            "NAME": { type: 'text', fields: {'TEXT': name} } ,
+            "NAME": { type: 'text', fields: {'TEXT': action.internal_name} } ,
             "INPUT": {
-              type: 'nativesync_object',
-              values: {
-                "PARAMS": {
-                  type: 'nativesync_object_parameter',
-                  fields: {
-                    'KEY': {type: 'text', fields: {'TEXT': 'test'}},
-                    'VALUE': {type: 'text', fields: {'TEXT': 'testvalue'}}
-                  }
-                }
-              }
-            },
-          }
+							type: 'nativesync_object',
+							values: {
+								"PARAMS": paramsObject
+							}
+						}
+          },
+					next: {
+						type: 'name_result',
+						values:  {
+							"NAME": { type: 'text', fields: {'TEXT': 'result'} } ,
+						}
+					},
         }
         return action;
       })
@@ -117,12 +138,10 @@ module.exports = React.createClass({
       blocks: [
         { type: "nativesync_object" },
         { type: "nativesync_object_parameter" },
+        { type: "get_object" },
+        { type: "get_object_key" },
+        { type: "set_object_key" },
       ]
-    }
-
-    var actionsCategory = {
-      name: 'Actions',
-      categories: actionCategories
     }
 
     var logicCategory = {
@@ -146,19 +165,17 @@ module.exports = React.createClass({
       ]
     }
     console.log('actionblocks', actionBlocks);
-    var toolboxCategories = [
+    var toolboxCategories = actionCategories.concat([
+      miscCategory,
+      variablesCategory,
+      objectsCategory,
+      listsCategory,
       logicCategory,
       loopsCategory,
       mathCategory,
       textCategory,
-      listsCategory,
-      variablesCategory,
-      //proceduresCategory,
-      objectsCategory,
       dataCategory,
-      actionsCategory,
-      miscCategory
-    ]
+    ])
     var Editor = React.createElement(ReactBlockly.BlocklyEditor, {
       workspaceConfiguration: {
         grid: {
