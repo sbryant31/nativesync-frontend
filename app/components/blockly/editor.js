@@ -28,7 +28,7 @@ module.exports = React.createClass({
         { type: "lists_setIndex", values: {"LIST": {type: 'variables_get', fields: {"VAR": 'list'}}}},
         { type: "lists_getSublist", values: {"LIST": {type: 'variables_get', fields: {"VAR": 'list'}}}},
       ]
-    }
+    };
 
     var dataCategory = {
       name: "Data Storage", // TODO: Push, Get, Put
@@ -36,7 +36,7 @@ module.exports = React.createClass({
         { type: "data_set" },
         { type: "data_get" },
       ]
-    }
+    };
 
     var miscCategory = {
       name: "Miscellaneous",
@@ -46,7 +46,7 @@ module.exports = React.createClass({
         { type: "input_value" },
         { type: "log_value" },
       ]
-    }
+    };
 
     var textCategory = {
       name: "Text",
@@ -59,7 +59,7 @@ module.exports = React.createClass({
         { type: "text_changeCase" },
         { type: "text_trim" },
       ]
-    }
+    };
     var mathCategory = {
       name: "Math",
       blocks: [
@@ -82,7 +82,7 @@ module.exports = React.createClass({
     };
     var actionBlocks = [];
     var actionCategories = _.map(this.props.services, (service) => {
-      var serviceActions = _.where(this.props.actions, {service_id: service.id})
+      var serviceActions = _.where(this.props.actions, {service_id: service.id});
       var serviceActionBlocks = _.map(serviceActions, (action) => {
 				var actionParamsList = _.map(action.input, (param) => {
 					return {
@@ -91,14 +91,14 @@ module.exports = React.createClass({
 							'KEY': {type: 'text', fields: {'TEXT': param.name}},
 							'VALUE': {type: 'text', fields: {'TEXT': param.type}}
 						}
-					}
-				})
+					};
+				});
 				console.log('action params list', actionParamsList);
 				// super weird but we are basically constructing the
 				// params tree by iterating through the params list in reverse
 				// Its basically like building a linked list. Super fucking annoying
 				// that we cant just pass a list.
-				var paramsObject = {}
+				var paramsObject = {};
 				for (var i = actionParamsList.length - 1; i >= 0 ; i--) {
 					var currentParamsObject = paramsObject;
 					paramsObject = actionParamsList[i];
@@ -123,14 +123,14 @@ module.exports = React.createClass({
 							"NAME": { type: 'text', fields: {'TEXT': 'result'} } ,
 						}
 					},
-        }
+        };
         return action;
-      })
+      });
       console.log('service action blocks', serviceActionBlocks);
       return {
         name: `${service.name} Actions`,
         blocks: serviceActionBlocks
-      }
+      };
     });
 
     var objectsCategory = {
@@ -142,7 +142,7 @@ module.exports = React.createClass({
         { type: "get_object_key" },
         { type: "set_object_key" },
       ]
-    }
+    };
 
     var logicCategory = {
       name: "Logic",
@@ -163,7 +163,7 @@ module.exports = React.createClass({
         { type: "controls_forEach" },
         { type: "controls_flow_statements" },
       ]
-    }
+    };
     console.log('actionblocks', actionBlocks);
     var toolboxCategories = actionCategories.concat([
       miscCategory,
@@ -175,7 +175,7 @@ module.exports = React.createClass({
       mathCategory,
       textCategory,
       dataCategory,
-    ])
+    ]);
     var Editor = React.createElement(ReactBlockly.BlocklyEditor, {
       workspaceConfiguration: {
         grid: {
@@ -194,6 +194,6 @@ module.exports = React.createClass({
     });
     return <div className='fill-height'>
       {Editor}
-    </div>
+    </div>;
   }
 });

@@ -1,17 +1,17 @@
-var React = require('react')
-var actions = require('../../modules/actions')
-var Navbar = require('../../components/navbar')
-var lodash = require('lodash')
+var React = require('react');
+var actions = require('../../modules/actions');
+var Navbar = require('../../components/navbar');
+var lodash = require('lodash');
 var _ = require('underscore');
 
 module.exports = React.createClass({
   getInitialState: function() {
-    return { }
+    return { };
   },
   getDefaultProps: function() {
     return {
       integrations: [],
-    }
+    };
   },
   render() {
     var self = this;
@@ -21,7 +21,7 @@ module.exports = React.createClass({
         return (<div>
             {service.name} <img src={service.logo_url} style={{height: 50, width: 50}} />
           </div>
-        )
+        );
       });
       return (
         <tr key={integration.id}>
@@ -32,8 +32,8 @@ module.exports = React.createClass({
           <td>{services}</td>
           <td>{JSON.stringify(integration.pricing)}</td>
         </tr>
-      )
-    })
+      );
+    });
     return <div>
       <span>Dont see what you need? <a onClick={actions.goto.bind(null, '/marketplace/request')}>Request a custom integration!</a></span>
       <hr/>
@@ -53,7 +53,6 @@ module.exports = React.createClass({
         </tbody>
       </table>
       <span>*Costs do not include platform fees which may incur from usage</span>
-    </div>
+    </div>;
   }
-})
-
+});
