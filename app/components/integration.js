@@ -182,6 +182,7 @@ module.exports = React.createClass({
                   <BlocklyEditor
                     services={this.state.services}
                     actions={this.state.actions}
+                    configuration={this.state.integration.configuration}
                     initialXml={this.state.integrationCode.blockly_xml}
                     onChangeXml={this.handleCodeChange.bind(this, 'blockly_xml')} />
                 }

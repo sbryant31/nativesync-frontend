@@ -1,11 +1,5 @@
 var React = require('react');
 var _ = require('underscore');
-var DOMParser = require('xmldom').DOMParser;
-
-var toolbox = new DOMParser().parseFromString(`
-<xml style="display: none" id="toolbox">
-</xml>`);
-
 var ReactBlockly = require('react-blockly-component');
 
 module.exports = React.createClass({
@@ -14,25 +8,12 @@ module.exports = React.createClass({
       onChangeXml: (res) => { console.log(res); },
       services: [],
       actions: [],
+      configuration: {},
       initialXml: ''
     };
   },
   render: function() {
     var self = this;
-
-/*
-		var variablesCategory: {
-			name: 'Local Variables',
-			custom: 'VARIABLE',
-			blocks: []
-		};
-
-		var proceduresCategory: {
-			name: 'Procedures',
-			custom: 'PROCEDURE',
-			blocks: []
-		};
-*/
 
     var listsCategory = {
       name: "Lists", // TODO: Push, Get, Put
@@ -46,16 +27,25 @@ module.exports = React.createClass({
         { type: "lists_getIndex", values: {"VALUE": {type: 'variables_get', fields: {"VAR": 'list'}}}},
         { type: "lists_setIndex", values: {"LIST": {type: 'variables_get', fields: {"VAR": 'list'}}}},
         { type: "lists_getSublist", values: {"LIST": {type: 'variables_get', fields: {"VAR": 'list'}}}},
-			]
-		}
+      ]
+    }
 
     var dataCategory = {
       name: "Data Storage", // TODO: Push, Get, Put
       blocks: [
-        { type: "text" },
-        { type: "text_join" },
-			]
-		}
+        { type: "data_set" },
+        { type: "data_get" },
+      ]
+    }
+
+    var miscCategory = {
+      name: "Miscellaneous",
+      blocks: [
+        { type: "input_value" },
+        { type: "log_value" },
+        { type: "end_program" },
+      ]
+    }
 
     var textCategory = {
       name: "Text",
@@ -67,8 +57,8 @@ module.exports = React.createClass({
         { type: "text_isEmpty" },
         { type: "text_changeCase" },
         { type: "text_trim" },
-			]
-		}
+      ]
+    }
     var mathCategory = {
       name: "Math",
       blocks: [
@@ -84,26 +74,36 @@ module.exports = React.createClass({
         { type: "math_random_int", values: { "FROM": { type: 'math_number', fields: { "NUM": 1 } }, "TO": { type: 'math_number', fields: { "NUM": 1 } } } },
       ]
     };
+
+    var variablesCategory = {
+      name: "Variables",
+      custom: 'VARIABLE',
+    };
+    var actionBlocks = [];
     var actionCategories = _.map(this.props.services, (service) => {
       var serviceActions = _.where(this.props.actions, {service_id: service.id})
       var serviceActionBlocks = _.map(serviceActions, (action) => {
         var name = `${action.organization_name}/${action.service_name}.${action.function_name}:${action.version}`;
-        return {
-          type: "thing",
-          custom: 'PROCEDURE',
+        var componentName = `${action.organization_name}_${action.service_name}_${action.function_name}_${action.version}`.toLowerCase().replace(' ', '_');
+        var action = {
+          type: 'nativesync_action',
           values: {
-            "NAME": {
-              type: "text",
-            },
+            "NAME": { type: 'text', fields: {'TEXT': name} } ,
             "INPUT": {
-              type: "text",
-            }
-          },
-          fields: {
-            "NAME": 'name',
-            "INPUT": 'input'
-          },
+              type: 'nativesync_object',
+              values: {
+                "PARAMS": {
+                  type: 'nativesync_object_parameter',
+                  fields: {
+                    'KEY': {type: 'text', fields: {'TEXT': 'test'}},
+                    'VALUE': {type: 'text', fields: {'TEXT': 'testvalue'}}
+                  }
+                }
+              }
+            },
+          }
         }
+        return action;
       })
       console.log('service action blocks', serviceActionBlocks);
       return {
@@ -111,6 +111,14 @@ module.exports = React.createClass({
         blocks: serviceActionBlocks
       }
     });
+
+    var objectsCategory = {
+      name: 'Objects',
+      blocks: [
+        { type: "nativesync_object" },
+        { type: "nativesync_object_parameter" },
+      ]
+    }
 
     var actionsCategory = {
       name: 'Actions',
@@ -128,25 +136,28 @@ module.exports = React.createClass({
         { type: "logic_ternary" },
       ]
     };
-		var loopsCategory = {
-			name: "Loops",
+    var loopsCategory = {
+      name: "Loops",
       blocks: [
         { type: "controls_repeat" },
         { type: "controls_whileUntil" },
         { type: "controls_forEach" },
         { type: "controls_flow_statements" },
       ]
-		}
+    }
+    console.log('actionblocks', actionBlocks);
     var toolboxCategories = [
       logicCategory,
       loopsCategory,
-			mathCategory,
-			textCategory,
-			listsCategory,
-      //variablesCategory,
+      mathCategory,
+      textCategory,
+      listsCategory,
+      variablesCategory,
       //proceduresCategory,
-			dataCategory,
-      actionsCategory
+      objectsCategory,
+      dataCategory,
+      actionsCategory,
+      miscCategory
     ]
     var Editor = React.createElement(ReactBlockly.BlocklyEditor, {
       workspaceConfiguration: {

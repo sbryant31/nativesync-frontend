@@ -6,6 +6,117 @@
   <script src="https://blockly-demo.appspot.com/static/blocks_compressed.js"></script>
   <script src="https://blockly-demo.appspot.com/static/demos/code/msg/en.js"></script>
   <script src="https://blockly-demo.appspot.com/static/msg/js/en.js"></script>
+  <script type="text/javascript">
+			console.log('derping derp');
+			Blockly.Blocks['nativesync_object_parameter'] = {
+				init: function() {
+					this.appendValueInput("KEY")
+							.setAlign(Blockly.ALIGN_CENTRE)
+							.appendField("Key");
+					this.appendValueInput("VALUE")
+							.setAlign(Blockly.ALIGN_CENTRE)
+							.appendField("Value");
+					this.setInputsInline(true);
+					this.setPreviousStatement(true, 'nativesync_object_parameter');
+					this.setNextStatement(true, 'nativesync_object_parameter');
+				}
+			};
+
+			Blockly.Blocks['nativesync_object'] = {
+				init: function() {
+					this.appendDummyInput().appendField('Params');
+					this.appendStatementInput('PARAMS')
+							.setCheck(['nativesync_object_parameter']);
+					this.setOutput(true, 'nativesync_object');
+				}
+			};
+
+		 Blockly.Blocks['nativesync_action'] = {
+			init: function() {
+				this.appendDummyInput().appendField('Call Action');
+				this.appendValueInput("NAME")
+						.setCheck("String")
+						.appendField("Name");
+				this.appendValueInput("INPUT")
+						.setAlign(Blockly.ALIGN_CENTRE)
+						.setCheck("nativesync_object")
+						.appendField("Input");
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+				this.setInputsInline(true);
+				this.setColour(330);
+				this.setTooltip('');
+				this.setHelpUrl('http://www.example.com/');
+			}
+		};
+
+		 Blockly.Blocks['input_value'] = {
+			init: function() {
+				this.appendValueInput("NAME")
+						.setCheck("String")
+						.appendField("Get input value named");
+				this.setOutput(true);
+				this.setInputsInline(true);
+				this.setColour(330);
+				this.setTooltip('');
+			}
+		};
+		 Blockly.Blocks['data_set'] = {
+			init: function() {
+				this.appendDummyInput().appendField('Set Data');
+				this.appendValueInput("key")
+						.setCheck("String")
+						.appendField("Key");
+				this.appendValueInput("value")
+						.setAlign(Blockly.ALIGN_CENTRE)
+						.setCheck("nativesync_object")
+						.appendField("Value");
+				this.setOutput(true, 'boolean');
+				this.setInputsInline(true);
+				this.setColour(330);
+				this.setTooltip('');
+				this.setHelpUrl('http://www.example.com/');
+			}
+		};
+
+		 Blockly.Blocks['data_get'] = {
+			init: function() {
+				this.appendDummyInput().appendField('Get Data');
+				this.appendValueInput("key")
+						.setCheck("String")
+						.appendField("Key");
+				this.setOutput(true, 'nativesync_object');
+				this.setInputsInline(true);
+				this.setColour(330);
+			}
+		};
+
+		 Blockly.Blocks['end_program'] = {
+			init: function() {
+				this.appendDummyInput().appendField('End Program');
+				this.appendValueInput("object")
+						.setCheck("nativesync_object")
+						.appendField("Value");
+				this.setColour(330);
+				this.setTooltip('end the program with an optional value');
+				this.setHelpUrl('http://www.example.com/');
+			}
+		};
+
+		 Blockly.Blocks['log_value'] = {
+			init: function() {
+				this.appendDummyInput().appendField('Log Value');
+				this.appendValueInput("object")
+						.setCheck("nativesync_object")
+						.appendField("Object");
+				this.appendValueInput("message")
+						.appendField("Message");
+				this.setColour(330);
+				this.setTooltip('log a message and an object');
+				this.setHelpUrl('http://www.example.com/');
+			}
+		};
+  </script>
 </head>
 <body>
   <div id="app"></div>
