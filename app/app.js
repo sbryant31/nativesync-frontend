@@ -1,14 +1,11 @@
 var React = require('react');
 
 // CSS
-import '../node_modules/normalize.css/normalize.css';
-import '../node_modules/flexboxgrid/dist/flexboxgrid.min.css';
-import '../node_modules/@blueprintjs/core/dist/blueprint.css';
 import '../node_modules/react-select/dist/react-select.css';
 import '../node_modules/codemirror/lib/codemirror.css';
 
 // some temp styles nick made, replace this with sass
-import './styles/main.css';
+// import './styles/main.css';
 
 var state = require('./modules/state');
 var store = require('store');
