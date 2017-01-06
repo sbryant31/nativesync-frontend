@@ -1,6 +1,7 @@
 var React = require('react');
 var _ = require('underscore');
 var ReactBlockly = require('react-blockly-component');
+var BlocklyBlocks = require('./blockly_blocks');
 
 module.exports = React.createClass({
   getDefaultProps: function() {
@@ -11,6 +12,9 @@ module.exports = React.createClass({
       configuration: {},
       initialXml: ''
     };
+  },
+  componentWillMount: function() {
+    BlocklyBlocks(this.props.services, this.props.actions, this.props.configuration);
   },
   render: function() {
     var self = this;
@@ -76,57 +80,28 @@ module.exports = React.createClass({
       ]
     };
 
-    var variablesCategory = {
-      name: "Variables",
-      custom: 'VARIABLE',
-    };
     var actionBlocks = [];
     var actionCategories = _.map(this.props.services, (service) => {
       var serviceActions = _.where(this.props.actions, {service_id: service.id})
       var serviceActionBlocks = _.map(serviceActions, (action) => {
-				var actionParamsList = _.map(action.input, (param) => {
-					return {
-						type: 'nativesync_object_parameter',
-						values: {
-							'KEY': {type: 'text', fields: {'TEXT': param.name}},
-							'VALUE': {type: 'text', fields: {'TEXT': param.type}}
-						}
-					}
-				})
-				console.log('action params list', actionParamsList);
-				// super weird but we are basically constructing the
-				// params tree by iterating through the params list in reverse
-				// Its basically like building a linked list. Super fucking annoying
-				// that we cant just pass a list.
-				var paramsObject = {}
-				for (var i = actionParamsList.length - 1; i >= 0 ; i--) {
-					var currentParamsObject = paramsObject;
-					paramsObject = actionParamsList[i];
-					paramsObject['next'] = currentParamsObject;
-				}
-				console.log('paramsObject', paramsObject);
-
+        var paramValues = {};
+        _.each(action.input, (param) => {
+          paramValues[param.name] = {
+            type: `nativesync_${param.type}`,
+            values: {
+              'VALUE':  ''
+            }
+          }
+        })
         var action = {
-          type: 'nativesync_action',
-          values: {
-            "NAME": { type: 'text', fields: {'TEXT': action.internal_name} } ,
-            "INPUT": {
-							type: 'nativesync_object',
-							values: {
-								"PARAMS": paramsObject
-							}
-						}
+          type: action.internal_name,
+          //values: paramValues,
+          next: {
+            type: `result_${action.internal_name}`
           },
-					next: {
-						type: 'name_result',
-						values:  {
-							"NAME": { type: 'text', fields: {'TEXT': 'result'} } ,
-						}
-					},
         }
         return action;
       })
-      console.log('service action blocks', serviceActionBlocks);
       return {
         name: `${service.name} Actions`,
         blocks: serviceActionBlocks
@@ -138,11 +113,27 @@ module.exports = React.createClass({
       blocks: [
         { type: "nativesync_object" },
         { type: "nativesync_object_parameter" },
-        { type: "get_object" },
+      ]
+    }
+
+    var variablesCategory = {
+      name: "Variables",
+      blocks: [
+        { type: 'set_variable_by_name' },
+        { type: 'get_variable_by_name' },
+        { type: 'get_list_by_name' },
+        { type: 'get_object_by_name' },
         { type: "get_object_key" },
         { type: "set_object_key" },
       ]
-    }
+    };
+
+    var inputsCategory = {
+      name: "Inputs",
+      blocks: _.map(this.props.configuration.fields, (field) => {
+        return {type: `input_${field.key}`};
+      }).concat({ type: 'input_by_key' })
+    };
 
     var logicCategory = {
       name: "Logic",
@@ -167,14 +158,15 @@ module.exports = React.createClass({
     console.log('actionblocks', actionBlocks);
     var toolboxCategories = actionCategories.concat([
       miscCategory,
-      variablesCategory,
       objectsCategory,
       listsCategory,
       logicCategory,
+      inputsCategory,
       loopsCategory,
       mathCategory,
       textCategory,
       dataCategory,
+      variablesCategory,
     ])
     var Editor = React.createElement(ReactBlockly.BlocklyEditor, {
       workspaceConfiguration: {
