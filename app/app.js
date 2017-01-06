@@ -8,7 +8,7 @@ import '../node_modules/react-select/dist/react-select.css';
 import '../node_modules/codemirror/lib/codemirror.css';
 
 // some temp styles nick made, replace this with sass
-import './styles/main.css';
+import './styles/main.scss';
 
 var state = require('./modules/state');
 var store = require('store');

@@ -7,7 +7,7 @@ const GLOBALS = {
   "process.env": {
     NODE_ENV: JSON.stringify(process.env.NODE_ENV)
   }
-}
+};
 
 const PROD = process.env.NODE_ENV === 'production';
 
@@ -40,6 +40,16 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
+  // resolve: {
+  //   extensions: ['', '.css', '.scss', '.js', '.json'],
+  //   fallback: path.join(__dirname, 'node_modules'),
+  //   modulesDirectories: [
+  //     'node_modules',
+  //     path.resolve(__dirname, './node_modules')
+  //   ],
+  //   root: [path.resolve('./app')],
+  // },
+  resolveLoader: { fallback: __dirname + "/node_modules" },
   module: {
     loaders: [
       {
@@ -55,9 +65,12 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: PROD ?
-          ExtractTextPlugin.extract('style', 'css?sourceMap!resolve-url!sass?sourceMap') :
-          'style!css?sourceMap!resolve-url!sass?sourceMap',
+        loaders: PROD ?
+          [ExtractTextPlugin.extract('style', 'css?sourceMap!resolve-url!sass?sourceMap')] :
+          ['style',
+          'css?sourceMap',
+          'resolve-url',
+          'sass?sourceMap'],
       },
       {test: /\.(svg|png|jpe?g|gif)(\?\S*)?$/, loader: 'url?limit=100000&name=img/[name].[ext]'},
       {test: /\.(eot|woff|woff2|ttf)(\?\S*)?$/, loader: 'url?limit=100000&name=fonts/[name].[ext]'},
