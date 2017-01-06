@@ -48,7 +48,7 @@ var OrganizationMenu = React.createClass({
       <MenuItem key="newOrganization" text="Create a New Organization" className="pt-icon-add" onClick={actions.goto.bind(null, '/organization/new')} />
     </Menu>
   }
-})
+});
 
 var UserMenu = React.createClass({
   render(){
@@ -230,4 +230,3 @@ module.exports = React.createClass({
     </div>
   }
 })
-
