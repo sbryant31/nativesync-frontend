@@ -8,14 +8,14 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       organizations: {},
-    }
+    };
   },
   getDefaultProps: function() {
     return {
       idOnly: false,
       organization: {},
-      onChange: (organization) => { console.log('change organization', organization) }
-    }
+      onChange: (organization) => { console.log('change organization', organization); }
+    };
   },
   handleChange: function(selection) {
     if (this.props.idOnly) {
@@ -30,13 +30,13 @@ module.exports = React.createClass({
     return actions.getOrganizations()
     .then(function(result) {
       var organizations = result.organizations;
-      self.setState({organizations: _.indexBy(organizations, 'id')})
+      self.setState({organizations: _.indexBy(organizations, 'id')});
       var organizationOptions = _.map(organizations, (organization) => {
-        return {value: organization.id, label: organization.name}
-      })
-      self.setState({organizationOptions: organizationOptions})
+        return {value: organization.id, label: organization.name};
+      });
+      self.setState({organizationOptions: organizationOptions});
       console.log(self.state);
-    })
+    });
   },
   render() {
     var self = this;
@@ -56,6 +56,6 @@ module.exports = React.createClass({
         options={this.state.organizationOptions}
         onChange={this.handleChange}
       />
-    </label>
+    </label>;
   }
-})
+});

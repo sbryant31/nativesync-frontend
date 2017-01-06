@@ -198,6 +198,7 @@ exports.toastError = function(error){
   state.set('error',error.message || error)
 }
 
-exports.goto = function(url){
+exports.goto = function(url, e){
+  if (e) e.preventDefault();
   browserHistory.push(url)
 }

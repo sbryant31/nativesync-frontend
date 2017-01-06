@@ -10,9 +10,9 @@ module.exports = React.createClass({
     return {
       configuration: [],
       value: {},
-      onChange: function(configuration) {console.log('service auths change', configuration)},
+      onChange: function(configuration) {console.log('service auths change', configuration); },
       readOnly: false,
-    }
+    };
   },
   handleChange: function(field, e) {
     var self = this;
@@ -37,11 +37,11 @@ module.exports = React.createClass({
              />
           </div>
       );
-    })
+    });
     return (
         <div>
           { configurationList }
         </div>
     );
   }
-})
+});

@@ -32,7 +32,7 @@ module.exports = React.createClass({
         { type: "lists_setIndex", values: {"LIST": {type: 'variables_get', fields: {"VAR": 'list'}}}},
         { type: "lists_getSublist", values: {"LIST": {type: 'variables_get', fields: {"VAR": 'list'}}}},
       ]
-    }
+    };
 
     var dataCategory = {
       name: "Data Storage", // TODO: Push, Get, Put
@@ -40,7 +40,7 @@ module.exports = React.createClass({
         { type: "data_set" },
         { type: "data_get" },
       ]
-    }
+    };
 
     var miscCategory = {
       name: "Miscellaneous",
@@ -50,7 +50,7 @@ module.exports = React.createClass({
         { type: "input_value" },
         { type: "log_value" },
       ]
-    }
+    };
 
     var textCategory = {
       name: "Text",
@@ -63,7 +63,7 @@ module.exports = React.createClass({
         { type: "text_changeCase" },
         { type: "text_trim" },
       ]
-    }
+    };
     var mathCategory = {
       name: "Math",
       blocks: [
@@ -82,7 +82,7 @@ module.exports = React.createClass({
 
     var actionBlocks = [];
     var actionCategories = _.map(this.props.services, (service) => {
-      var serviceActions = _.where(this.props.actions, {service_id: service.id})
+      var serviceActions = _.where(this.props.actions, {service_id: service.id});
       var serviceActionBlocks = _.map(serviceActions, (action) => {
         var paramValues = {};
         _.each(action.input, (param) => {
@@ -99,13 +99,20 @@ module.exports = React.createClass({
           next: {
             type: `result_${action.internal_name}`
           },
-        }
+          next: {
+            type: 'name_result',
+            values:  {
+              "NAME": { type: 'text', fields: {'TEXT': 'result'} } ,
+            }
+          },
+        };
         return action;
-      })
+      });
+      console.log('service action blocks', serviceActionBlocks);
       return {
         name: `${service.name} Actions`,
         blocks: serviceActionBlocks
-      }
+      };
     });
 
     var objectsCategory = {
@@ -127,6 +134,7 @@ module.exports = React.createClass({
         { type: "set_object_key" },
       ]
     };
+<<<<<<< HEAD
 
     var inputsCategory = {
       name: "Inputs",
@@ -134,6 +142,8 @@ module.exports = React.createClass({
         return {type: `input_${field.key}`};
       }).concat({ type: 'input_by_key' })
     };
+=======
+>>>>>>> 8c38dba5e819ba62d4920a776ca4cd6a7bc8969b
 
     var logicCategory = {
       name: "Logic",
@@ -154,7 +164,7 @@ module.exports = React.createClass({
         { type: "controls_forEach" },
         { type: "controls_flow_statements" },
       ]
-    }
+    };
     console.log('actionblocks', actionBlocks);
     var toolboxCategories = actionCategories.concat([
       miscCategory,
@@ -166,8 +176,12 @@ module.exports = React.createClass({
       mathCategory,
       textCategory,
       dataCategory,
+<<<<<<< HEAD
       variablesCategory,
     ])
+=======
+    ]);
+>>>>>>> 8c38dba5e819ba62d4920a776ca4cd6a7bc8969b
     var Editor = React.createElement(ReactBlockly.BlocklyEditor, {
       workspaceConfiguration: {
         grid: {
@@ -186,6 +200,6 @@ module.exports = React.createClass({
     });
     return <div className='fill-height'>
       {Editor}
-    </div>
+    </div>;
   }
 });
