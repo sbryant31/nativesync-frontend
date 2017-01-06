@@ -1,24 +1,24 @@
-var React = require('react');
-var Navbar = require('../components/navbar');
-import { browserHistory } from 'react-router';
+var React = require('react')
+var Navbar = require('../components/navbar')
+import { browserHistory } from 'react-router'
 
 module.exports = React.createClass({
   getInitialState(){
-    return {};
+    return {}
   },
   componentWillMount(){
   },
   render: function() {
     var style = {
       height:600,
-    };
+    }
     var links = [
      {
        name:'Login',
        icon:'pt-icon-log-in',
        url:'/login'
      }
-   ];
+    ]
 
     return <div>
       <Navbar links={links}/>
@@ -42,6 +42,6 @@ module.exports = React.createClass({
           Footer
         </div>
       </div>
-    </div>;
+    </div>
   }
-});
+})
