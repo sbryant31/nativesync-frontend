@@ -134,7 +134,6 @@ module.exports = React.createClass({
         { type: "set_object_key" },
       ]
     };
-<<<<<<< HEAD
 
     var inputsCategory = {
       name: "Inputs",
@@ -142,8 +141,6 @@ module.exports = React.createClass({
         return {type: `input_${field.key}`};
       }).concat({ type: 'input_by_key' })
     };
-=======
->>>>>>> 8c38dba5e819ba62d4920a776ca4cd6a7bc8969b
 
     var logicCategory = {
       name: "Logic",
@@ -176,12 +173,8 @@ module.exports = React.createClass({
       mathCategory,
       textCategory,
       dataCategory,
-<<<<<<< HEAD
       variablesCategory,
     ])
-=======
-    ]);
->>>>>>> 8c38dba5e819ba62d4920a776ca4cd6a7bc8969b
     var Editor = React.createElement(ReactBlockly.BlocklyEditor, {
       workspaceConfiguration: {
         grid: {
