@@ -18,6 +18,18 @@ module.exports = React.createClass({
   },
   render: function() {
     var self = this;
+    // default values for names of things
+
+    var defaultVariableValues = { NAME: { type: "text", fields: {'TEXT': 'name'} }}
+    var defaultObjectKeyValues = {
+      'NAME': defaultVariableValues.NAME,
+      'KEY': { type: 'text', fields: {'TEXT': 'key'}}
+    };
+
+    var defaultListInput = {
+      type: 'get_list_by_name',
+      values: {"NAME": defaultVariableValues.NAME}
+    }
 
     var listsCategory = {
       name: "Lists", // TODO: Push, Get, Put
@@ -27,18 +39,19 @@ module.exports = React.createClass({
         { type: "lists_repeat", values: {"NUM": {type: 'math_number', fields: {"NUM": 5}}} },
         { type: "lists_length" },
         { type: "lists_isEmpty" },
-        { type: "lists_indexOf", values: {"VALUE": {type: 'variables_get', fields: {"VAR": 'list'}}}},
-        { type: "lists_getIndex", values: {"VALUE": {type: 'variables_get', fields: {"VAR": 'list'}}}},
-        { type: "lists_setIndex", values: {"LIST": {type: 'variables_get', fields: {"VAR": 'list'}}}},
-        { type: "lists_getSublist", values: {"LIST": {type: 'variables_get', fields: {"VAR": 'list'}}}},
+        { type: "lists_indexOf", values: {"VALUE": defaultListInput}},
+        { type: "lists_getIndex", values: {"VALUE": defaultListInput}},
+        { type: "lists_setIndex", values: {"LIST": defaultListInput}},
+        { type: "lists_getSublist", values: {"LIST": defaultListInput}},
       ]
     };
 
+    var defaultKeyValue = { type: 'text', fields: {'TEXT': 'key'}}
     var dataCategory = {
       name: "Data Storage", // TODO: Push, Get, Put
       blocks: [
-        { type: "data_set" },
-        { type: "data_get" },
+        { type: "data_set", values: {KEY: defaultKeyValue} },
+        { type: "data_get", values: {KEY: defaultKeyValue} },
       ]
     };
 
@@ -85,25 +98,19 @@ module.exports = React.createClass({
       var serviceActions = _.where(this.props.actions, {service_id: service.id});
       var serviceActionBlocks = _.map(serviceActions, (action) => {
         var paramValues = {};
+				// todo: make this "get object / get list / get string / get number" dynamically
         _.each(action.input, (param) => {
           paramValues[param.name] = {
-            type: `nativesync_${param.type}`,
-            values: {
-              'VALUE':  ''
-            }
+            type: 'get_variable_by_name',
+            values: defaultVariableValues
           }
         })
+				// TODO: create "name" text for output values
         var action = {
           type: action.internal_name,
-          //values: paramValues,
+          values: paramValues,
           next: {
             type: `result_${action.internal_name}`
-          },
-          next: {
-            type: 'name_result',
-            values:  {
-              "NAME": { type: 'text', fields: {'TEXT': 'result'} } ,
-            }
           },
         };
         return action;
@@ -123,15 +130,16 @@ module.exports = React.createClass({
       ]
     }
 
+    console.log('default var values', defaultObjectKeyValues);
     var variablesCategory = {
       name: "Variables",
       blocks: [
-        { type: 'set_variable_by_name' },
-        { type: 'get_variable_by_name' },
-        { type: 'get_list_by_name' },
-        { type: 'get_object_by_name' },
-        { type: "get_object_key" },
-        { type: "set_object_key" },
+        { type: 'set_variable_by_name', values: defaultVariableValues},
+        { type: 'get_variable_by_name', values: defaultVariableValues},
+        { type: 'get_list_by_name', values: defaultVariableValues},
+        { type: 'get_object_by_name', values: defaultVariableValues },
+        { type: "get_object_key", values: defaultObjectKeyValues },
+        { type: "set_object_key", values: defaultObjectKeyValues },
       ]
     };
 

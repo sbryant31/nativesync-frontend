@@ -4,7 +4,8 @@ module.exports = (services, actions, configuration) => {
     init: function() {
       this.appendValueInput("NAME")
           .setAlign(Blockly.ALIGN_CENTRE)
-          .appendField("Get Object By Name");
+          .setCheck('String')
+          .appendField("Get Object Name");
       this.setColour(90);
       this.setInputsInline(true);
       this.setOutput(true, 'nativesync_object');
@@ -14,17 +15,18 @@ module.exports = (services, actions, configuration) => {
     init: function() {
       this.appendValueInput("NAME")
           .setAlign(Blockly.ALIGN_CENTRE)
-          .appendField("Get List By Name");
+          .setCheck('String')
+          .appendField("Get List Name");
       this.setColour(90);
       this.setInputsInline(true);
-      this.setOutput(true, 'list');
+      this.setOutput(true, 'Array');
     }
   };
   Blockly.Blocks['get_variable_by_name'] = {
     init: function() {
       this.appendValueInput("NAME")
           .setAlign(Blockly.ALIGN_CENTRE)
-          .appendField("Get List By Name");
+          .appendField("Get Variable Name");
       this.setColour(90);
       this.setInputsInline(true);
       this.setOutput(true);
@@ -46,10 +48,9 @@ module.exports = (services, actions, configuration) => {
   };
   Blockly.Blocks['get_object_key'] = {
     init: function() {
-      this.appendDummyInput().appendField('Get Value from Object');
-      this.appendValueInput("OBJECT_NAME")
+      this.appendValueInput("NAME")
           .setAlign(Blockly.ALIGN_CENTRE)
-          .appendField("Name");
+          .appendField("Object");
       this.appendValueInput("KEY")
           .setAlign(Blockly.ALIGN_CENTRE)
           .appendField("Key");
@@ -60,10 +61,9 @@ module.exports = (services, actions, configuration) => {
   };
   Blockly.Blocks['set_object_key'] = {
     init: function() {
-      this.appendDummyInput().appendField('Set value on Object');
-      this.appendValueInput("OBJECT_NAME")
+      this.appendValueInput("NAME")
           .setAlign(Blockly.ALIGN_CENTRE)
-          .appendField("Object Name");
+          .appendField("Set Object");
       this.appendValueInput("KEY")
           .setAlign(Blockly.ALIGN_CENTRE)
           .appendField("Key");
@@ -148,11 +148,10 @@ module.exports = (services, actions, configuration) => {
 
    Blockly.Blocks['data_set'] = {
       init: function() {
-        this.appendDummyInput().appendField('Persist Data');
-        this.appendValueInput("key")
+        this.appendValueInput("KEY")
             .setCheck("String")
-            .appendField("Key");
-        this.appendValueInput("value")
+            .appendField("Persist Data Key");
+        this.appendValueInput("VALUE")
             .setAlign(Blockly.ALIGN_CENTRE)
             .setCheck("nativesync_object")
             .appendField("Value");
@@ -167,7 +166,7 @@ module.exports = (services, actions, configuration) => {
      Blockly.Blocks['data_get'] = {
       init: function() {
         this.appendDummyInput().appendField('Retrieve Data');
-        this.appendValueInput("key")
+        this.appendValueInput("KEY")
             .setCheck("String")
             .appendField("Key");
         this.setOutput(true, 'nativesync_object');
