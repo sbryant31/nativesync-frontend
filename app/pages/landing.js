@@ -16,14 +16,6 @@ module.exports = React.createClass({
       name:'Login',
       icon:'pt-icon-log-in',
       url:'/login'
-    }, {
-      name: 'Marketplace',
-      icon: '',
-      url: 'marketplace',
-    }, {
-      name: 'Build',
-      icon: '',
-      url: ''
     }];
 
     return <div>
