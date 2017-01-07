@@ -33,11 +33,12 @@ module.exports = React.createClass({
     var serviceIds = _.pluck(this.props.services, 'id');
     var self = this;
     return actions.getActions({service_ids: serviceIds})
-    .then(function(actions) {
-      self.setState({actions: actions});
-      var actionOptions = _.map(actions, (action) => {
+    .then(function(result) {
+      self.setState({actions: result.actions});
+      var actionOptions = _.map(result.actions, (action) => {
         return {value: action.id, label: action.service_name + " " + action.function_name};
       });
+      console.log('action options', actionOptions, actions);
       self.setState({actionOptions: actionOptions});
     });
   },
@@ -49,7 +50,7 @@ module.exports = React.createClass({
     return <label className="pt-label pt-inline col-xs">
       Actions
       <Select
-				style={{zIndex: 500}}
+        style={{zIndex: 500}}
         name="action-multi-select"
         value={value}
         multi={true}

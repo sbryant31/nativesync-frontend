@@ -3,6 +3,8 @@ var actions = require('../modules/actions');
 var Navbar = require('../components/navbar');
 var _ = require('underscore');
 var lodash = require('lodash');
+import {Position,Popover} from "@blueprintjs/core"
+var Iframe = require('react-iframe');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -61,9 +63,15 @@ module.exports = React.createClass({
   render() {
     var self = this;
     var servicesList = lodash.map(self.state.filteredServices, function(service){
+      var documentationUrl = `https://swagger-ui.aerobatic.io/?url=https://api.nativesync.io/docs/service/${service.id}/swagger.json`;
       return (
         <tr key={service.id}>
           <td><a onClick={actions.goto.bind(null, '/service/' + service.id)}><img src={service.logo_url} style={{height: 50, width: 50}} /> {service.name}</a></td>
+          <td>
+            <a href={documentationUrl} target="new">
+              <button className="pt-button">Action API Documentation</button>
+            </a>
+          </td>
         </tr>
       );
     });
