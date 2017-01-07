@@ -3,6 +3,11 @@ var _ = require('underscore');
 var ReactBlockly = require('react-blockly-component');
 var BlocklyBlocks = require('./blockly_blocks');
 
+// a machine readable format for any string
+var internalize = function(string) {
+	return string.toLowerCase().replace(new RegExp(' ', 'g'), '_');
+}
+
 module.exports = React.createClass({
   getDefaultProps: function() {
     return {
@@ -106,11 +111,16 @@ module.exports = React.createClass({
           }
         })
 				// TODO: create "name" text for output values
+				var outputValues = {};
+				_.each(action.output, (param) => {
+					outputValues[param.name] = { type: "text", fields: {'TEXT': internalize(`${action.function_name}_${param.name}`)} }
+				});
         var action = {
           type: action.internal_name,
           values: paramValues,
           next: {
-            type: `result_${action.internal_name}`
+            type: `result_${action.internal_name}`,
+						values: outputValues
           },
         };
         return action;
@@ -131,6 +141,9 @@ module.exports = React.createClass({
     }
 
     console.log('default var values', defaultObjectKeyValues);
+		var inputVariables = _.map(this.props.configuration.fields, (field) => {
+			return {type: `input_${field.key}`};
+		})
     var variablesCategory = {
       name: "Variables",
       blocks: [
@@ -140,15 +153,11 @@ module.exports = React.createClass({
         { type: 'get_object_by_name', values: defaultVariableValues },
         { type: "get_object_key", values: defaultObjectKeyValues },
         { type: "set_object_key", values: defaultObjectKeyValues },
+        { type: "input_by_key", values: defaultObjectKeyValues },
       ]
+			.concat(inputVariables)
     };
 
-    var inputsCategory = {
-      name: "Inputs",
-      blocks: _.map(this.props.configuration.fields, (field) => {
-        return {type: `input_${field.key}`};
-      }).concat({ type: 'input_by_key' })
-    };
 
     var logicCategory = {
       name: "Logic",
@@ -176,7 +185,6 @@ module.exports = React.createClass({
       objectsCategory,
       listsCategory,
       logicCategory,
-      inputsCategory,
       loopsCategory,
       mathCategory,
       textCategory,
