@@ -2,14 +2,15 @@ var React = require('react');
 var actions = require('../modules/actions');
 var _ = require('underscore');
 var ListView = require('./integration_browser/list_view');
-var MarketplaceView = require('./integration_browser/marketplace_view');
+// var MarketplaceView = require('./integration_browser/marketplace_view');
+var MarketplaceView2 = require('./integration_browser/marketplace_view2');
 const ServiceMultiSelect = require('./service/service_multi_select');
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
       filter: {},
-      filteredIntegrations: {},
+      filteredIntegrations: [],
       integrations: [],
     };
   },
@@ -21,21 +22,20 @@ module.exports = React.createClass({
     };
   },
   componentDidMount: function() {
-    var self = this;
-    self.setState({filter: this.props.initialFilter});
+    this.setState({filter: this.props.initialFilter});
     var filter = this.state.filter;
     if (this.props.org) {
       filter.organization_id = this.props.org.id;
     }
     actions.getIntegrations(filter)
-    .then(function(result) {
-      self.setState({
+    .then((result) => {
+      this.setState({
         integrations: result.integrations,
         filteredIntegrations: result.integrations,
       });
     });
   },
- handleFilterChange: function(field, e) {
+  handleFilterChange: function(field, e) {
     var filter = this.state.filter;
     let value;
     if (e.target) {
@@ -74,7 +74,6 @@ module.exports = React.createClass({
     this.setState({filteredIntegrations: filteredIntegrations});
   },
   render() {
-    var self = this;
     return (
       <div>
         { this.props.view == 'marketplace' &&
@@ -86,16 +85,19 @@ module.exports = React.createClass({
 				<hr/>
 				<ServiceMultiSelect
 					value={this.state.filter.serviceIDs}
-					onChange={this.handleFilterChange.bind(this, 'serviceIDs')} />
+					onChange={this.handleFilterChange.bind(this, 'serviceIDs')}
+        />
 				<hr/>
         { this.props.view == 'marketplace' &&
-          <MarketplaceView integrations={self.state.filteredIntegrations} />
+          <div>
+            <MarketplaceView2 integrations={this.state.filteredIntegrations} />
+            {/* <MarketplaceView integrations={this.state.filteredIntegrations} /> */}
+          </div>
         }
         { this.props.view == 'list' &&
-          <ListView integrations={self.state.filteredIntegrations} />
+          <ListView integrations={this.state.filteredIntegrations} />
         }
       </div>
     );
   }
 });
-

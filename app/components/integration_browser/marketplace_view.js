@@ -1,8 +1,5 @@
 var React = require('react');
 var actions = require('../../modules/actions');
-var Navbar = require('../../components/navbar');
-var lodash = require('lodash');
-var _ = require('underscore');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -14,11 +11,10 @@ module.exports = React.createClass({
     };
   },
   render() {
-    var self = this;
-    console.log(self.props.integrations);
-    var integrationsList = lodash.map(self.props.integrations, function(integration){
-      var services = _.map(integration.Services, function(service) {
-        return (<div>
+    var integrationsList = this.props.integrations.map((integration) => {
+      var services = integration.Services.map((service) => {
+        return (
+          <div>
             {service.name} <img src={service.logo_url} style={{height: 50, width: 50}} />
           </div>
         );
@@ -26,7 +22,11 @@ module.exports = React.createClass({
       return (
         <tr key={integration.id}>
           <td>{integration.organization.name}</td>
-          <td><a onClick={actions.goto.bind(null, '/integration/' + integration.id)}>{integration.title}</a></td>
+          <td>
+            <a onClick={() => { actions.goto('/integration/' + integration.id); }}>
+              {integration.title}
+            </a>
+          </td>
           <td>{integration.description}</td>
           <td>{integration.version}</td>
           <td>{services}</td>
@@ -35,7 +35,11 @@ module.exports = React.createClass({
       );
     });
     return <div>
-      <span>Dont see what you need? <a onClick={actions.goto.bind(null, '/marketplace/request')}>Request a custom integration!</a></span>
+      <span>Dont see what you need?{" "}
+        <a onClick={() => { actions.goto('/marketplace/request'); }}>
+          Request a custom integration!
+        </a>
+      </span>
       <hr/>
       <table className="pt-table pt-striped">
         <thead>
