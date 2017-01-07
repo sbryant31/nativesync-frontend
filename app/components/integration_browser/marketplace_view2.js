@@ -9,7 +9,7 @@ module.exports = ({integrations = []}) => {
       integrations.map(integration => (
         <div
           key={integration.id}
-          className="integration pt-card pt-elevation-0 pt-interactive col-md-2"
+          className="integration pt-card pt-elevation-0 pt-interactive col-md-3"
         >
           <div className="services-icons">{
             integration.Services.map((service, idx) => (
