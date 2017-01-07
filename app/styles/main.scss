@@ -1,5 +1,22 @@
 nav.pt-navbar {
   background-color: #32335C;
+  .pt-menu {
+    background-color: #32335C;
+    color: #FFF;
+    .pt-popover-target {
+      margin-right: 10px;
+      .pt-menu-item {
+        transition: color 0.3s;
+        &:hover {
+          background-color: inherit;
+          color: #bbf1ff;
+        }
+        &::before {
+          color: rgba(255, 255, 255, 0.35);
+        }
+      }
+    }
+  }
 }
 
 .CodeMirror pre {
