@@ -81,6 +81,7 @@
     "react-codemirror": "^0.3.0",
     "react-dom": "^15.4.1",
     "react-iframe": "^0.0.4",
+    "react-ellipsis-text": "^1.0.0",
     "react-json": "^0.2.1",
     "react-json-tree": "^0.10.0",
     "react-markdown-editor": "^0.4.0",

@@ -2,12 +2,14 @@ var React = require('react');
 var lodash = require('lodash');
 var Select = require('react-select');
 var _ = require('underscore');
+var ServiceDefinitionSelector = require('../service_definition/service_definition_selector');
 
 var statusCodeParam = {name: 'statusCode', description: 'http status code response', type: 'number', readOnly: true};
 
 module.exports = React.createClass({
   getDefaultProps: () => {
     return {
+			service: {},
       parameters: [statusCodeParam],
       onChange: (parameters) => { console.log('params changed', parameters); },
       readOnly: false
@@ -63,6 +65,9 @@ module.exports = React.createClass({
         </label>
         <label className="pt-label pt-inline col-xs">
           Type <Select options={parameterTypes} value={ parameter.type } onChange={self.handleChange.bind(self, currentIndex, 'type')} />
+          { (parameter.type == 'object' || parameter.type == 'list') &&
+						<ServiceDefinitionSelector service={self.props.service} value={ parameter.ref } onChange={self.handleChange.bind(self, currentIndex, 'ref')} />
+					}
         </label>
         {!self.props.readOnly && !parameter.readOnly &&
         <div className="pt-label pt-inlinecol-xs">

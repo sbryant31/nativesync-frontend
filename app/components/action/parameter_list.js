@@ -2,10 +2,12 @@ var React = require('react');
 var lodash = require('lodash');
 var Select = require('react-select');
 var ParameterInSelector = require('../action/parameter_in_selector');
+var ServiceDefinitionSelector = require('../service_definition/service_definition_selector');
 
 module.exports = React.createClass({
   getDefaultProps: () => {
     return {
+      service: {},
       parameters: [],
       onChange: (parameters) => { console.log('params changed', parameters); },
       readOnly: false
@@ -18,7 +20,7 @@ module.exports = React.createClass({
   },
   handleAdd: function() {
     var parameters = this.props.parameters;
-    parameters.push({in: 'body', name: '', description: '', type: 'string', required: false});
+    parameters.push({in: 'body', name: '', description: '', type: 'string', required: false, ref: null});
     this.props.onChange(parameters);
   },
   handleChange(index, field, e) {
@@ -57,6 +59,9 @@ module.exports = React.createClass({
         </label>
         <label className="pt-label pt-inline col-xs">
           Type <Select options={parameterTypes} value={ parameter.type } onChange={self.handleChange.bind(self, currentIndex, 'type')} />
+          { (parameter.type == 'object' || parameter.type == 'list') &&
+            <ServiceDefinitionSelector service={self.props.service} value={ parameter.ref } onChange={self.handleChange.bind(self, currentIndex, 'ref')} />
+          }
         </label>
         {!self.props.readOnly &&
         <div className="pt-label pt-inlinecol-xs">

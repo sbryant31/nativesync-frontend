@@ -204,13 +204,13 @@ module.exports = React.createClass({
           </TabPanel>
           <TabPanel>
             <h4>Parameters</h4>
-            <ParameterList parameters={this.state.action.input} onChange={this.handleChangeValue.bind(this, 'input')} />
+            <ParameterList service={this.state.service} parameters={this.state.action.input} onChange={this.handleChangeValue.bind(this, 'input')} />
             <h4>Input Body</h4>
             <InputBodyEditor value={this.state.action.input_body} onChange={this.handleChange.bind(this, 'input_body')} />
           </TabPanel>
           <TabPanel>
             <h4>Parameters</h4>
-            <OutputParameterList parameters={this.state.action.output} onChange={this.handleChangeValue.bind(this, 'output')} />
+            <OutputParameterList service={this.state.service} parameters={this.state.action.output} onChange={this.handleChangeValue.bind(this, 'output')} />
             <h4>Output Body</h4>
             <OutputBodyEditor value={this.state.action.output_body} onChange={this.handleChange.bind(this, 'output_body')} />
           </TabPanel>

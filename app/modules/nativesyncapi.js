@@ -58,6 +58,10 @@ exports.getServiceAuths = function(service_id, token){
   return call('/service_auths', {service_id: service_id}, 'GET',token);
 };
 
+exports.getServiceDefinitions = function(service_id, token){
+  return call('/service_definitions', {service_id: service_id}, 'GET',token);
+};
+
 exports.getIntegrations = function(filter, token){
   return call('/integrations', filter, 'GET', token);
 };
