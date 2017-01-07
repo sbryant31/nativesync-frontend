@@ -2,3 +2,21 @@
 nav.pt-navbar {
   background-color: #32335C;
 }
+
+.CodeMirror pre {
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+}
+
+.ServiceAuthConfigurationDetails .item {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.ServiceAuthConfigurationDetails .parent.button-container {
+    padding: 20px;
+}
+
+.fill-height {
+  height: 100%;
+  width: 100%;
+}
