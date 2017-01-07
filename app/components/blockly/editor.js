@@ -5,7 +5,7 @@ var BlocklyBlocks = require('./blockly_blocks');
 
 // a machine readable format for any string
 var internalize = function(string) {
-	return string.toLowerCase().replace(new RegExp(' ', 'g'), '_');
+  return string.toLowerCase().replace(new RegExp(' ', 'g'), '_');
 }
 
 module.exports = React.createClass({
@@ -39,7 +39,7 @@ module.exports = React.createClass({
     var listsCategory = {
       name: "Lists", // TODO: Push, Get, Put
       blocks: [
-        { type: "lists_create_empty" },
+        { type: "new_empty_list", values: defaultVariableValues },
         { type: "lists_create_with" },
         { type: "lists_repeat", values: {"NUM": {type: 'math_number', fields: {"NUM": 5}}} },
         { type: "lists_length" },
@@ -65,7 +65,6 @@ module.exports = React.createClass({
       blocks: [
         { type: "start_program" },
         { type: "end_program" },
-        { type: "input_value" },
         { type: "log_value" },
       ]
     };
@@ -103,24 +102,24 @@ module.exports = React.createClass({
       var serviceActions = _.where(this.props.actions, {service_id: service.id});
       var serviceActionBlocks = _.map(serviceActions, (action) => {
         var paramValues = {};
-				// todo: make this "get object / get list / get string / get number" dynamically
+        // todo: make this "get object / get list / get string / get number" dynamically
         _.each(action.input, (param) => {
           paramValues[param.name] = {
             type: 'get_variable_by_name',
             values: defaultVariableValues
           }
         })
-				// TODO: create "name" text for output values
-				var outputValues = {};
-				_.each(action.output, (param) => {
-					outputValues[param.name] = { type: "text", fields: {'TEXT': internalize(`${action.function_name}_${param.name}`)} }
-				});
+        // TODO: create "name" text for output values
+        var outputValues = {};
+        _.each(action.output, (param) => {
+          outputValues[param.name] = { type: "text", fields: {'TEXT': internalize(`${action.function_name}_${param.name}`)} }
+        });
         var action = {
           type: action.internal_name,
           values: paramValues,
           next: {
             type: `result_${action.internal_name}`,
-						values: outputValues
+            values: outputValues
           },
         };
         return action;
@@ -132,18 +131,36 @@ module.exports = React.createClass({
       };
     });
 
+    var serviceDefinitionBlocks = [];
+    _.each(this.props.services, (service) => {
+      _.each(service.ServiceDefinitions, (definition) => {
+        var paramValues = {}
+        _.each(definition.definition, (param) => {
+          paramValues[param.name] = {
+            type: 'get_variable_by_name',
+            values: defaultVariableValues
+          }
+        })
+        serviceDefinitionBlocks.push({
+          type: internalize(`${service.name}_${definition.name}_definition`),
+          values: paramValues,
+        });
+      })
+    })
+
     var objectsCategory = {
       name: 'Objects',
       blocks: [
+        { type: "new_empty_object", values: defaultVariableValues },
         { type: "nativesync_object" },
         { type: "nativesync_object_parameter" },
-      ]
+      ].concat(serviceDefinitionBlocks)
     }
 
     console.log('default var values', defaultObjectKeyValues);
-		var inputVariables = _.map(this.props.configuration.fields, (field) => {
-			return {type: `input_${field.key}`};
-		})
+    var inputVariables = _.map(this.props.configuration.fields, (field) => {
+      return {type: `input_${field.key}`};
+    })
     var variablesCategory = {
       name: "Variables",
       blocks: [
@@ -155,7 +172,7 @@ module.exports = React.createClass({
         { type: "set_object_key", values: defaultObjectKeyValues },
         { type: "input_by_key", values: defaultObjectKeyValues },
       ]
-			.concat(inputVariables)
+      .concat(inputVariables)
     };
 
 
