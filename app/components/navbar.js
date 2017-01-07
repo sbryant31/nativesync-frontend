@@ -1,8 +1,8 @@
-var React = require('react')
-var lodash = require('lodash')
-var actions = require('../modules/actions')
-import { browserHistory } from 'react-router'
-import { Colors } from '@blueprintjs/core'
+var React = require('react');
+var lodash = require('lodash');
+var actions = require('../modules/actions');
+import { browserHistory } from 'react-router';
+import { Colors } from '@blueprintjs/core';
 
 var cloud = require('../img/cloud.png');
 var logo_text = require('../img/logo_text.png');
@@ -12,7 +12,7 @@ module.exports = React.createClass({
     return {
       links:[],
       avatarMenu: ''
-    }
+    };
   },
   render: function() {
     var links = lodash.map(this.props.links,function(link){
@@ -20,10 +20,10 @@ module.exports = React.createClass({
         key={link.name}
         onClick={actions.goto.bind(null,link.url)}
         className={'pt-menu-item ' + link.icon}
-        >{link.name}</li>
-    }.bind(this))
+        >{link.name}</li>;
+    }.bind(this));
 
-    return <nav className='pt-navbar pt-fixed-top' style={{backgroundColor: '#16253d'}}>
+    return <nav className='pt-navbar pt-fixed-top'>
       <div className="pt-navbar-group pt-align-left">
         <div className="pt-navbar-heading"><img src={cloud} style={{height: 45, width: 79}} /><img src={logo_text} style={{height: 35, width: 210}}/></div>
       </div>
@@ -35,6 +35,6 @@ module.exports = React.createClass({
         </ul>
         {this.props.avatarMenu}
       </div>
-    </nav>
+    </nav>;
   }
-})
+});

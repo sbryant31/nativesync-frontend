@@ -1,23 +1,23 @@
-var React = require('react')
-var state = require('../modules/state')
-var store = require('store')
-var lodash = require('lodash')
+var React = require('react');
+var state = require('../modules/state');
+var store = require('store');
+var lodash = require('lodash');
 var _ = require('underscore');
-var actions = require('../modules/actions')
+var actions = require('../modules/actions');
 var md5 = require('md5');
-var Navbar = require('../components/navbar')
-import {Position,Popover, Menu, MenuItem, MenuDivider} from "@blueprintjs/core"
+var Navbar = require('../components/navbar');
+import {Position,Popover, Menu, MenuItem, MenuDivider} from "@blueprintjs/core";
 
 var OrganizationMenu = React.createClass({
   getInitialState: function() {
     return {
       organizations: [],
-    }
+    };
   },
   getDefaultProps: function() {
     return {
       onChangeOrg: function(org) {console.log('changed org', org);}
-    }
+    };
   },
   handleChangeView: function(org) {
     actions.setViewToOrg(org);
@@ -32,23 +32,27 @@ var OrganizationMenu = React.createClass({
       var org = _.findWhere(result.organizations, {id: user.default_organization_id});
       if (!org) { org = result.organizations[0]; }
       self.handleChangeView(org);
-    })
+    });
   },
   render(){
-    var self = this;
     var organizations = lodash.map(this.state.organizations,function(organization){
       return <MenuItem key={organization.name}
         text={organization.name}
-        onClick={self.handleChangeView.bind(self, organization)}
-      />
-    })
+        onClick={() => { this.handleChangeView(organization); }}
+      />;
+    });
     return <Menu>
       <li className="pt-menu-header"><h6>Organizations</h6></li>
       {organizations}
-      <MenuItem key="newOrganization" text="Create a New Organization" className="pt-icon-add" onClick={actions.goto.bind(null, '/organization/new')} />
-    </Menu>
+      <MenuItem
+        key="newOrganization"
+        text="Create a New Organization"
+        className="pt-icon-add"
+        onClick={() => { actions.goto('/organization/new'); }}
+      />
+    </Menu>;
   }
-})
+});
 
 var UserMenu = React.createClass({
   render(){
@@ -62,19 +66,19 @@ var UserMenu = React.createClass({
         link:'/logout',
         icon: 'log-out'
       }
-    ]
+    ];
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}
         text={item.name}
         iconName={item.iconName}
-        onClick={actions.goto.bind(null,item.link)}
-      />
-    })
+        onClick={() => { actions.goto(item.link); }}
+      />;
+    });
     return <Menu>
       {items}
-    </Menu>
+    </Menu>;
   }
-})
+});
 
 var MarketMenu = React.createClass({
   render(){
@@ -89,19 +93,19 @@ var MarketMenu = React.createClass({
         link:'/marketplace/request',
         icon: 'projects',
       },
-    ]
+    ];
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}
         text={item.name}
         iconName={item.icon}
-        onClick={actions.goto.bind(null,item.link)}
-      />
-    })
+        onClick={() => { actions.goto(item.link); }}
+      />;
+    });
     return <Menu>
       {items}
-    </Menu>
+    </Menu>;
   }
-})
+});
 
 var ManageMenu = React.createClass({
   render(){
@@ -116,19 +120,19 @@ var ManageMenu = React.createClass({
         link:'/organization/' + actions.getState('org').id,
         icon: 'office'
       },
-    ]
+    ];
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}
         text={item.name}
         iconName={item.icon}
-        onClick={actions.goto.bind(null,item.link)}
-      />
-    })
+        onClick={() => { actions.goto(item.link); }}
+      />;
+    });
     return <Menu>
       {items}
-    </Menu>
+    </Menu>;
   }
-})
+});
 
 var BuildMenu = React.createClass({
   render(){
@@ -148,57 +152,56 @@ var BuildMenu = React.createClass({
         link:'/integrations/me',
         icon: 'code'
       },
-    ]
+    ];
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}
         text={item.name}
         iconName={item.icon}
-        onClick={actions.goto.bind(null,item.link)}
-      />
-    })
+        onClick={() => { actions.goto(item.link); }}
+      />;
+    });
     return <Menu>
       {items}
-    </Menu>
+    </Menu>;
   }
-})
+});
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
       org: actions.getState('org'),
       mode: actions.getState('mode'),
-    }
+    };
   },
   componentDidMount: function() {
     // if no org exists for the user logged in set the default org
-    var self = this;
     var org = actions.getState('org');
     if (!org) {
       var user = actions.getState('me');
       actions.myAssociations()
-      .then(function(result) {
+      .then((result) => {
         var org = _.findWhere(result.organizations, {id: user.default_organization_id});
         if (!org) { org = result.organizations[0]; }
-        actions.setViewToOrg(org)
-        self.handleChangeOrg(org);
-      })
+        actions.setViewToOrg(org);
+        this.handleChangeOrg(org);
+      });
     }
   },
   handleChangeOrg: function(org) {
-    this.setState({org: org})
+    this.setState({org: org});
   },
   render(){
-    var child = null
+    var child = null;
     if(this.props.children){
-      child = React.cloneElement(this.props.children,this.props)
+      child = React.cloneElement(this.props.children,this.props);
     }
-    var links = [ ]
+    var links = [ ];
     var emailHash = md5(this.props.me.email.trim().toLowerCase());
     var avatarUrl = this.props.me.avatar_url ? this.props.me.avatar_url : "http://gravatar.com/avatar/" + emailHash + "?s=40";
     var avatarMenu =
       <Popover content={<UserMenu/>} position={Position.BOTTOM_RIGHT}>
           <img src={avatarUrl} />
-      </Popover>
+      </Popover>;
     // figure out what to name teh view menu (gross.)
     // "view" should be a bug - user should always be logged into an org view
     var orgName;
@@ -210,7 +213,12 @@ module.exports = React.createClass({
 
     return <div style={{paddingTop:50}}>
       <Navbar links={links} avatarMenu={avatarMenu}>
-        <Popover content={<OrganizationMenu onChangeOrg={this.handleChangeOrg.bind(this)} />} position={Position.BOTTOM_RIGHT}  >
+        <Popover
+          content={<OrganizationMenu
+            onChangeOrg={this.handleChangeOrg.bind(this)}
+          />}
+          position={Position.BOTTOM_RIGHT}
+        >
           <li className='pt-menu-item pt-icon-people'>{orgName}</li>
         </Popover>
         <span className="pt-navbar-divider"></span>
@@ -227,7 +235,6 @@ module.exports = React.createClass({
       <div className="pt-content" style={{padding: 20}}>
         {child}
       </div>
-    </div>
+    </div>;
   }
-})
-
+});
