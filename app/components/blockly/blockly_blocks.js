@@ -1,4 +1,9 @@
 module.exports = (services, actions, configuration) => {
+  // todo: make this more reusable (also declared in editor.js)
+  var internalize = function(string) {
+    return string.toLowerCase().replace(new RegExp(' ', 'g'), '_');
+  }
+
   var Blockly = window.Blockly;
   Blockly.Blocks['get_object_by_name'] = {
     init: function() {
@@ -44,7 +49,7 @@ module.exports = (services, actions, configuration) => {
       this.appendValueInput("NAME")
           .appendField("Object");
       this.appendValueInput("KEY")
-          .appendField("Key");
+          .appendField("key");
       this.setColour(90);
       this.setInputsInline(true);
       this.setOutput(true);
@@ -75,7 +80,29 @@ module.exports = (services, actions, configuration) => {
       this.setNextStatement(true, 'nativesync_object_parameter');
     }
   };
+    Blockly.Blocks['new_empty_object'] = {
+      init: function() {
+        this.appendDummyInput().appendField('Create empty object');
+        this.appendValueInput('NAME')
+          .appendField("name");
+        this.setColour(180);
+        this.setInputsInline(true);
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+      }
+    };
 
+    Blockly.Blocks['new_empty_list'] = {
+      init: function() {
+        this.appendDummyInput().appendField('Create empty list');
+        this.appendValueInput('NAME')
+          .appendField("name");
+        this.setColour(180);
+        this.setInputsInline(true);
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+      }
+    };
 
     Blockly.Blocks['nativesync_object'] = {
       init: function() {
@@ -86,6 +113,24 @@ module.exports = (services, actions, configuration) => {
         this.setColour(180);
       }
     };
+
+    _.each(services, (service) => {
+      _.each(service.ServiceDefinitions, (definition) => {
+        Blockly.Blocks[internalize(`${service.name}_${definition.name}_definition`)] = {
+          init: function() {
+            this.appendDummyInput().appendField(`${service.name} ${definition.name}`);
+            _.each(definition.definition, (param) => {
+              this.appendValueInput(param.name)
+                  .setAlign(Blockly.ALIGN_RIGHT)
+                  .appendField(`${param.name} [${param.type}]: `);
+            })
+            this.setOutput(true);
+            this.setColour(270);
+            this.setTooltip('');
+          }
+        };
+      });
+    });
 
     _.each(actions, (action) => {
        Blockly.Blocks[action.internal_name] = {
@@ -213,10 +258,7 @@ module.exports = (services, actions, configuration) => {
       init: function() {
         this.appendDummyInput().appendField('Log value');
         this.appendValueInput("object")
-            .setCheck("nativesync_object")
             .appendField("Object");
-        this.appendValueInput("message")
-            .appendField("Message");
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setInputsInline(true);
