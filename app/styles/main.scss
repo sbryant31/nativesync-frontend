@@ -2,3 +2,23 @@
 nav.pt-navbar {
   background-color: #32335C;
 }
+
+.MarketplaceView {
+  .integration {
+    margin-bottom: 20px;
+    margin-right: 20px;
+    .services-icons {
+      margin-bottom: 10px;
+      .service {
+        img { height: 50px; }
+        img.circle_arrow {
+          height:30px;
+          margin: 0px 12px 10px 12px;
+          opacity: 0.10;
+        }
+      }
+    }
+    .title {
+    }
+  }
+}
