@@ -12,7 +12,7 @@ module.exports = React.createClass({
       value: {},
       onChange: function(values) { console.log('values changed', values); },
       readOnly: false
-    }
+    };
   },
   handleChange: function(field, e) {
     var value = this.props.value;
@@ -32,6 +32,6 @@ module.exports = React.createClass({
         <TextInputField label={this.props.details.usernameFieldLabel} value={this.props.value.username} onChange={this.handleChange.bind(this, 'username')} />
         <TextInputField label={this.props.details.passwordFieldLabel} value={this.props.value.password} onChange={this.handleChange.bind(this, 'password')} />
       </label>
-    </div>
+    </div>;
   }
-})
+});

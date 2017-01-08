@@ -12,7 +12,7 @@ module.exports = React.createClass({
       value: {},
       onChange: function(value) { console.log('valuechanged', value); },
       readOnly: false
-    }
+    };
   },
   handleChange: function(field, e) {
     var value = this.props.value;
@@ -32,6 +32,6 @@ module.exports = React.createClass({
     });
     return <div>
       { inputList }
-    </div>
+    </div>;
   }
-})
+});

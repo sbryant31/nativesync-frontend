@@ -15,7 +15,7 @@ module.exports = React.createClass({
       service: {},
       organization: {},
       organizationAuth: {}
-    }
+    };
   },
   render() {
     var self = this;
@@ -36,6 +36,6 @@ module.exports = React.createClass({
           <div>Coming soon: Oauth2 based Auth.</div>
         }
       </div>
-    </div>
+    </div>;
   }
-})
+});

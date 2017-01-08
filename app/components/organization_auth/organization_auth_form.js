@@ -13,7 +13,7 @@ module.exports = React.createClass({
       services: [],
       serviceAuths: [],
       organizationAuths: []
-    }
+    };
   },
   render() {
     var self = this;
@@ -25,11 +25,11 @@ module.exports = React.createClass({
         <div>
           <OrganizationAuthEditor organization={self.props.organization} service={servicesById[serviceAuth.service_id]} serviceAuth={serviceAuth} organizationAuth={organizationAuthsByServiceAuthID[serviceAuth.id]} />
         </div>
-      )
+      );
     });
     return <div>
       <h2>Service Authentications for Organization {self.props.organization.name}</h2>
       { organizationAuthList }
-    </div>
+    </div>;
   }
-})
+});

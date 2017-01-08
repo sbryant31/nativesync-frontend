@@ -39,7 +39,6 @@ module.exports = React.createClass({
     });
   },
   render() {
-    var self = this;
     let value;
     if (this.props.organization) {
       if (this.props.idOnly) {
