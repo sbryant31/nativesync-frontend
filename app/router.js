@@ -1,74 +1,73 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
+const React = require('react');
+const ReactDOM = require('react-dom');
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 
-var actions = require('./modules/actions')
+var actions = require('./modules/actions');
 
-
-var App = require('./app')
-var Landing = require('./pages/landing')
-var IntegrationsMe = require('./pages/integrations_me')
-var IntegrationInstancesMe = require('./pages/integration_instances_me')
-var Marketplace = require('./pages/marketplace')
-var MarketplaceRequest = require('./pages/marketplace_request')
-var IntegrationsBrowse = require('./pages/integrations_browse')
-var ServicesBrowse = require('./pages/services_browse')
-var ServiceEdit = require('./pages/service_edit')
-var IntegrationView = require('./pages/integration_view')
-var IntegrationInstanceEdit = require('./pages/integration_instance_edit')
-var IntegrationEdit = require('./pages/integration_edit')
-var OrganizationEdit = require('./pages/organization_edit')
-var ActionsMe = require('./pages/actions_me');
-var ActionsBrowse = require('./pages/actions_browse');
-var ActionEdit = require('./pages/action_edit');
-var Profile = require('./pages/profile');
-var Login = require('./pages/login')
-var Dashboard = require('./pages/dashboard')
-var NavbarLayout = require('./pages/navbar_layout')
-
+const App = require('./app');
+const Landing = require('./pages/landing');
+const IntegrationDetails = require('./components/integration_browser/integration_details.js');
+const IntegrationsMe = require('./pages/integrations_me');
+const IntegrationInstancesMe = require('./pages/integration_instances_me');
+const Marketplace = require('./pages/marketplace');
+const MarketplaceRequest = require('./pages/marketplace_request');
+const IntegrationsBrowse = require('./pages/integrations_browse');
+const ServicesBrowse = require('./pages/services_browse');
+const ServiceEdit = require('./pages/service_edit');
+const IntegrationView = require('./pages/integration_view');
+const IntegrationInstanceEdit = require('./pages/integration_instance_edit');
+const IntegrationEdit = require('./pages/integration_edit');
+const OrganizationEdit = require('./pages/organization_edit');
+const ActionsMe = require('./pages/actions_me');
+const ActionsBrowse = require('./pages/actions_browse');
+const ActionEdit = require('./pages/action_edit');
+const Profile = require('./pages/profile');
+const Login = require('./pages/login');
+const Dashboard = require('./pages/dashboard');
+const NavbarLayout = require('./pages/navbar_layout');
 
 function checkToken(nextState,replace,cb){
   return actions.me().then(function(user){
-    console.log('checktoken',user)
+    console.log('checktoken',user);
     if(user == null) {
-      replace({pathname:'/login'})
+      replace({pathname:'/login'});
     }
-    cb()
+    cb();
   }).catch(function(){
-    console.log('error checking tokne')
+    console.log('error checking token');
     // actions.toastError('error getting my user info')
-    replace({pathname:'/login'})
-    cb()
-  })
+    replace({pathname:'/login'});
+    cb();
+  });
 }
 
 function notLoggedIn(nextState,replace,cb){
-  console.log(nextState)
+  console.log(nextState);
   return actions.me().then(function(user){
     if(user){
       replace({
         pathname:'/dashboard'
-      })
+      });
     }
-    cb()
+    cb();
   }).catch(function(){
-    cb()
-  })
+    cb();
+  });
 }
 
 function logout(nextState,replace,cb){
   actions.logout().then(function(){
     replace({
       pathname:'/login'
-    })
-    cb()
+    });
+    cb();
   }).catch(function(err){
-    actions.toastError(err)
+    actions.toastError(err);
     replace({
       pathname:'/login'
-    })
-    cb()
-  })
+    });
+    cb();
+  });
 }
 
 module.exports = (
@@ -135,7 +134,10 @@ module.exports = (
         <IndexRoute component={OrganizationEdit}/>
       </Route>
       <Route path='/marketplace' component={NavbarLayout}>
-        <IndexRoute component={Marketplace}/>
+        <IndexRoute component={Marketplace} />
+      </Route>
+      <Route path='/marketplace/:id' component={NavbarLayout}>
+        <IndexRoute component={Marketplace} />
       </Route>
       <Route path='/marketplace/request' component={NavbarLayout}>
         <IndexRoute component={MarketplaceRequest}/>
@@ -143,4 +145,4 @@ module.exports = (
       <Route path='/profile' component={Profile}/>
     </Route>
   </Router>
-)
+);

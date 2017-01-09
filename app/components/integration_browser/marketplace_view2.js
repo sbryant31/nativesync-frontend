@@ -1,10 +1,14 @@
 var React = require('react');
 var actions = require('../../modules/actions');
 import EllipsisText  from 'react-ellipsis-text';
+import { browserHistory } from 'react-router';
+
+// CSS
+import './integration_browser.scss';
 
 const circle_arrow = require("../../img/circle_arrow.svg");
 
-module.exports = ({integrations = []}) => {
+module.exports = ({integrations = [], integrationOnClick}) => {
   return (
     <div className="row MarketplaceView">{
       integrations.map(integration => (
@@ -12,6 +16,7 @@ module.exports = ({integrations = []}) => {
           <div
             key={integration.id}
             className="integration pt-card pt-elevation-0 pt-interactive"
+            onClick={() => { browserHistory.push(`/marketplace/${integration.id}`); }}
           >
             <div className="services-icons">{
               integration.Services.map((service, idx) => (
@@ -46,67 +51,3 @@ module.exports = ({integrations = []}) => {
     }</div>
   );
 };
-
-// module.exports = React.createClass({
-//   getInitialState: function() {
-//     return { };
-//   },
-//   getDefaultProps: function() {
-//     return {
-//       integrations: [],
-//     };
-//   },
-//   render() {
-//     console.log("integrations: ", this.props.integrations);
-//     return (
-//       <div>
-//     );
-//     return this.props.integrations.map((integration) => {
-//       return <span key={integration.id}>abc</span>;
-//       // var services = integration.Services.map((service) => {
-//       //   return (<div>
-//       //       {service.name} <img src={service.logo_url} style={{height: 50, width: 50}} />
-//       //     </div>
-//       //   );
-//       // });
-//       // return (
-//       //   <tr key={integration.id}>
-//       //     <td>{integration.organization.name}</td>
-//       //     <td>
-//       //       <a onClick={() => { actions.goto('/integration/' + integration.id); }}>
-//       //         {integration.title}
-//       //       </a>
-//       //     </td>
-//       //     <td>{integration.description}</td>
-//       //     <td>{integration.version}</td>
-//       //     <td>{services}</td>
-//       //     <td>{JSON.stringify(integration.pricing)}</td>
-//       //   </tr>
-//       // );
-//     });
-//     // return <div>
-//     //   <span>Dont see what you need?{" "}
-//     //     <a onClick={() => { actions.goto('/marketplace/request'); }}>
-//     //       Request a custom integration!
-//     //     </a>
-//     //   </span>
-//     //   <hr/>
-//     //   <table className="pt-table pt-striped">
-//     //     <thead>
-//     //     <tr>
-//     //        <th>Built By</th>
-//     //        <th>Title</th>
-//     //        <th>Description</th>
-//     //        <th>Version</th>
-//     //        <th>Services</th>
-//     //        <th>Cost*</th>
-//     //     </tr>
-//     //     </thead>
-//     //     <tbody>
-//     //       {integrationsList}
-//     //     </tbody>
-//     //   </table>
-//     //   <span>*Costs do not include platform fees which may incur from usage</span>
-//     // </div>;
-//   }
-// });
