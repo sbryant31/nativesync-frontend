@@ -8,7 +8,7 @@ import './integration_browser.scss';
 
 const circle_arrow = require("../../img/circle_arrow.svg");
 
-module.exports = ({integrations = [], integrationOnClick}) => {
+module.exports = ({integrations = []}) => {
   return (
     <div className="row MarketplaceView">{
       integrations.map(integration => (
