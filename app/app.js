@@ -16,12 +16,12 @@ import { browserHistory } from 'react-router';
 import { Toaster, Position, Intent} from "@blueprintjs/core";
 
 module.exports = React.createClass({
-  getInitialState(){
+  getInitialState() {
     console.log('initial state', state());
     return state();
   },
   toast:null,
-  componentWillMount:function(){
+  componentWillMount: function() {
     console.log('app component mounting');
     var self = this;
     // state.on('change',function(){

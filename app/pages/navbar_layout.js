@@ -34,7 +34,7 @@ var OrganizationMenu = React.createClass({
       self.handleChangeView(org);
     });
   },
-  render(){
+  render() {
     var organizations = lodash.map(this.state.organizations,function(organization){
       return <MenuItem key={organization.name}
         text={organization.name}
@@ -174,18 +174,20 @@ module.exports = React.createClass({
     };
   },
   componentDidMount: function() {
-    // if no org exists for the user logged in set the default org
-    var org = actions.getState('org');
-    if (!org) {
-      var user = actions.getState('me');
-      actions.myAssociations()
-      .then((result) => {
-        var org = _.findWhere(result.organizations, {id: user.default_organization_id});
-        if (!org) { org = result.organizations[0]; }
-        actions.setViewToOrg(org);
-        this.handleChangeOrg(org);
-      });
-    }
+    // NQ: if not logged in, no need to worry about any of this
+    if (actions.getState('token'))
+      // if no org exists for the user logged in set the default org
+      var org = actions.getState('org');
+      if (!org) {
+        var user = actions.getState('me');
+        actions.myAssociations()
+        .then((result) => {
+          var org = _.findWhere(result.organizations, {id: user.default_organization_id});
+          if (!org) { org = result.organizations[0]; }
+          actions.setViewToOrg(org);
+          this.handleChangeOrg(org);
+        });
+      }
   },
   handleChangeOrg: function(org) {
     this.setState({org: org});
@@ -196,31 +198,37 @@ module.exports = React.createClass({
       child = React.cloneElement(this.props.children,this.props);
     }
     var links = [ ];
-    var emailHash = md5(this.props.me.email.trim().toLowerCase());
-    var avatarUrl = this.props.me.avatar_url ? this.props.me.avatar_url : "http://gravatar.com/avatar/" + emailHash + "?s=40";
-    var avatarMenu =
-      <Popover content={<UserMenu/>} position={Position.BOTTOM_RIGHT}>
-          <img src={avatarUrl} />
-      </Popover>;
-    // figure out what to name teh view menu (gross.)
-    // "view" should be a bug - user should always be logged into an org view
-    var orgName;
-    if (this.state.org) {
-      orgName = this.state.org.name;
-    } else {
-      orgName = 'Choose an Organization';
+
+    var avatarMenu = null;
+    if (actions.getState('token')) {    // logged in?
+      var emailHash = md5(this.props.me.email.trim().toLowerCase());
+      var avatarUrl = this.props.me.avatar_url ? this.props.me.avatar_url : "http://gravatar.com/avatar/" + emailHash + "?s=40";
+      avatarMenu =
+        <Popover content={<UserMenu/>} position={Position.BOTTOM_RIGHT}>
+            <img src={avatarUrl} />
+        </Popover>;
+      // figure out what to name teh view menu (gross.)
+      // "view" should be a bug - user should always be logged into an org view
+      var orgName;
+      if (this.state.org) {
+        orgName = this.state.org.name;
+      } else {
+        orgName = 'Choose an Organization';
+      }
     }
 
     return <div style={{paddingTop:50}}>
       <Navbar links={links} avatarMenu={avatarMenu}>
-        <Popover
-          content={<OrganizationMenu
-            onChangeOrg={this.handleChangeOrg.bind(this)}
-          />}
-          position={Position.BOTTOM_RIGHT}
-        >
-          <li className='pt-menu-item pt-icon-people'>{orgName}</li>
-        </Popover>
+        { actions.getState('token') &&    // NQ: only show this menu if logged in
+          <Popover
+            content={<OrganizationMenu
+              onChangeOrg={this.handleChangeOrg}
+            />}
+            position={Position.BOTTOM_RIGHT}
+          >
+            <li className='pt-menu-item pt-icon-people'>{orgName}</li>
+          </Popover>
+        }
         <span className="pt-navbar-divider"></span>
         <Popover content={<MarketMenu/>} position={Position.BOTTOM_RIGHT}>
           <li className='pt-menu-item pt-icon-shopping-cart'>Marketplace</li>

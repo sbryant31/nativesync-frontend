@@ -1,10 +1,10 @@
 var React = require('react');
-var actions = require('../modules/actions');
+var actions = require('../../modules/actions');
 var _ = require('underscore');
-var ListView = require('./integration_browser/list_view');
-// var MarketplaceView = require('./integration_browser/marketplace_view');
-var MarketplaceView2 = require('./integration_browser/marketplace_view2');
-const ServiceMultiSelect = require('./service/service_multi_select');
+const ListView = require('./list_view');
+// const MarketplaceView = require('./integration_browser/marketplace_view');
+const MarketplaceView2 = require('./marketplace_view2');
+const ServiceMultiSelect = require('../service/service_multi_select');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -12,8 +12,10 @@ module.exports = React.createClass({
       filter: {},
       filteredIntegrations: [],
       integrations: [],
+      integration_ids: [],
     };
   },
+
   getDefaultProps: function() {
     return {
       initialFilter: {},
@@ -21,20 +23,23 @@ module.exports = React.createClass({
       view: 'list',
     };
   },
+
   componentDidMount: function() {
-    this.setState({filter: this.props.initialFilter});
+    // this.setState({filter: this.props.initialFilter});
     var filter = this.state.filter;
     if (this.props.org) {
       filter.organization_id = this.props.org.id;
     }
-    actions.getIntegrations(filter)
+    actions.getMarketplaceIntegrations(filter)
     .then((result) => {
       this.setState({
         integrations: result.integrations,
+        integration_ids: _.pluck(result.integrations, 'id'),
         filteredIntegrations: result.integrations,
       });
     });
   },
+
   handleFilterChange: function(field, e) {
     var filter = this.state.filter;
     let value;
@@ -73,24 +78,23 @@ module.exports = React.createClass({
     });
     this.setState({filteredIntegrations: filteredIntegrations});
   },
+
   render() {
     return (
       <div>
-        { this.props.view == 'marketplace' &&
-					<h1>Integration MarketPlace</h1>
-				}
-        { this.props.view == 'list' &&
-					<h1>Browse Integrations</h1>
-				}
-				<hr/>
-				<ServiceMultiSelect
-					value={this.state.filter.serviceIDs}
-					onChange={this.handleFilterChange.bind(this, 'serviceIDs')}
+        { this.props.view == 'marketplace' && <h1>Integration MarketPlace</h1> }
+        { this.props.view == 'list' && <h1>Browse Integrations</h1> }
+        <hr/>
+        <ServiceMultiSelect
+          value={this.state.filter.serviceIDs}
+          onChange={(e) => { this.handleFilterChange('serviceIDs', e); }}
         />
-				<hr/>
+        <hr/>
         { this.props.view == 'marketplace' &&
           <div>
-            <MarketplaceView2 integrations={this.state.filteredIntegrations} />
+            <MarketplaceView2
+              integrations={this.state.filteredIntegrations}
+            />
             {/* <MarketplaceView integrations={this.state.filteredIntegrations} /> */}
           </div>
         }

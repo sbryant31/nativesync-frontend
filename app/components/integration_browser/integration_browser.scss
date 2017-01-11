@@ -1,0 +1,38 @@
+.MarketplaceView {
+  .integration {
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    height: 250px;
+    position: relative;
+    .services-icons {
+      margin-bottom: 10px;
+      .service {
+        img { height: 40px; }
+        img.circle_arrow {
+          height:20px;
+          margin: 0px 12px 10px 12px;
+          opacity: 0.15;
+        }
+      }
+    }
+    .title {
+    }
+    .description {
+    }
+    .author {
+      position: absolute;
+      bottom: 16px;
+      color: #AAA;
+    }
+    .pricing {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: #E0E0E0;
+      padding: 8px 12px;
+      border-radius: 20px;
+      color: #666;
+      font-size: 0.9em;
+    }
+  }
+}
