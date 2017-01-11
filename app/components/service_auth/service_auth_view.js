@@ -32,6 +32,11 @@ module.exports = React.createClass({
     var checkboxHandler = this.props.isSelected ? this.props.onDeselect : this.props.onSelect;
     var checked = this.props.isSelected ? true : false;
         //<Checkbox onChange={checkboxHandler} checked={checked} />
+    var environmentOptions = [
+      {label: 'Developer', value: 'developer'},
+      {label: 'Test', value: 'test'},
+      {label: 'Production', value: 'production'}
+    ];
     return (
         <div>
             <div className="row">
@@ -42,14 +47,20 @@ module.exports = React.createClass({
                 <TextInputField label="Service" value={this.props.service.name} />
               </div>
               <div className="col-xs">
-                <TextInputField label="Name" value={this.props.serviceAuth.name} 
+                <TextInputField label="Name" value={this.props.serviceAuth.name}
                                              onChange={this.handleChange.bind(self, 'name')} />
               </div>
+              <div className="col-xs">
+                <label className="pt-label">
+                  Environment
+                  <Select value={this.props.serviceAuth.environment} onChange={this.handleChange.bind(self, 'environment')} options={environmentOptions} />
+                </label>
+              </div>
               <div className="col-xs-3">
-                <ServiceAuthDetails type={this.props.serviceAuth.type} 
-                                    details={this.props.serviceAuth.details} 
-                                    readOnly={self.props.readOnly} 
-                                    onTypeChange={this.handleChange.bind(self, 'type')} 
+                <ServiceAuthDetails type={this.props.serviceAuth.type}
+                                    details={this.props.serviceAuth.details}
+                                    readOnly={self.props.readOnly}
+                                    onTypeChange={this.handleChange.bind(self, 'type')}
                                     onDetailsChange={this.handleChange.bind(self, 'details')} />
               </div>
               <div className="button-container">
