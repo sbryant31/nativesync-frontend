@@ -31,14 +31,19 @@ module.exports = React.createClass({
       <label className="pt-label pt-inline">
         <TextInputField label="Client ID" value={this.props.details.clientID} onChange={this.handleChange.bind(this, 'clientID')} />
         <TextInputField label="Client Secret" value={this.props.details.clientSecret} onChange={this.handleChange.bind(this, 'clientSecret')} />
+        <TextInputField label="App Token (optional)" value={this.props.details.appToken} onChange={this.handleChange.bind(this, 'appToken')} />
+        <div>
         <TextInputField label="Authorize URL" value={this.props.details.authorizeUrl} onChange={this.handleChange.bind(this, 'authorizeUrl')} />
-        <div>Typically https://api.example.com/oauth/authorize</div>
-        <TextInputField label="Access Token Url" value={this.props.details.accessTokenUrl} onChange={this.handleChange.bind(this, 'accessTokenUrl')} />
-        <div>Typically https://api.example.com/oauth/access_token</div>
+        Typically https://api.example.com/oauth/authorize
+        </div>
+        <div>
         <TextInputField label="Scopes (optional)" value={this.props.details.scopes} onChange={this.handleChange.bind(this, 'accessTokenUrl')} />
-        <div>Check with API provider docs to see if scopes should be comma or space separated.</div>
+        Check with API provider docs to see if scopes should be comma or space separated.
+        </div>
+        <div>
         <TextInputField label="Callback URL" value="https://api.nativesync.io/tools/oauth/callback" />
-        <div>Enter this in the application settings with your API provider.</div>
+        Enter this in the application settings with your API provider.
+        </div>
       </label>
     </div>
   }
