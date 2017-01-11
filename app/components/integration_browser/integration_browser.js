@@ -1,11 +1,10 @@
 var React = require('react');
-var actions = require('../modules/actions');
+var actions = require('../../modules/actions');
 var _ = require('underscore');
-const ListView = require('./integration_browser/list_view');
+const ListView = require('./list_view');
 // const MarketplaceView = require('./integration_browser/marketplace_view');
-const MarketplaceView2 = require('./integration_browser/marketplace_view2');
-const ServiceMultiSelect = require('./service/service_multi_select');
-// import IntegrationDetails from './integration_browser/integration_details.js';
+const MarketplaceView2 = require('./marketplace_view2');
+const ServiceMultiSelect = require('../service/service_multi_select');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -14,7 +13,6 @@ module.exports = React.createClass({
       filteredIntegrations: [],
       integrations: [],
       integration_ids: [],
-      curr_selected_id: null,
     };
   },
 
@@ -23,7 +21,6 @@ module.exports = React.createClass({
       initialFilter: {},
       org: null,
       view: 'list',
-      preselected_id: null,
     };
   },
 
@@ -39,7 +36,6 @@ module.exports = React.createClass({
         integrations: result.integrations,
         integration_ids: _.pluck(result.integrations, 'id'),
         filteredIntegrations: result.integrations,
-        curr_selected_id: this.props.preselected_id
       });
     });
   },
@@ -98,7 +94,6 @@ module.exports = React.createClass({
           <div>
             <MarketplaceView2
               integrations={this.state.filteredIntegrations}
-              integrationOnClick={this.integrationOnClick}
             />
             {/* <MarketplaceView integrations={this.state.filteredIntegrations} /> */}
           </div>

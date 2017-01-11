@@ -6,10 +6,9 @@ var actions = require('./modules/actions');
 
 const App = require('./app');
 const Landing = require('./pages/landing');
-const IntegrationDetails = require('./components/integration_browser/integration_details.js');
 const IntegrationsMe = require('./pages/integrations_me');
 const IntegrationInstancesMe = require('./pages/integration_instances_me');
-const Marketplace = require('./pages/marketplace');
+import Marketplace from './pages/marketplace';
 const MarketplaceRequest = require('./pages/marketplace_request');
 const IntegrationsBrowse = require('./pages/integrations_browse');
 const ServicesBrowse = require('./pages/services_browse');

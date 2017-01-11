@@ -36,3 +36,12 @@ nav.pt-navbar {
   height: 100%;
   width: 100%;
 }
+
+.pt-button {
+  border: none;
+  border-radius: 20px;
+  &.pt-intent-primary {
+    background: #6B75DD;
+    box-shadow: none;
+  }
+}

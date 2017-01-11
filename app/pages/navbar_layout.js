@@ -215,7 +215,7 @@ module.exports = React.createClass({
       <Navbar links={links} avatarMenu={avatarMenu}>
         <Popover
           content={<OrganizationMenu
-            onChangeOrg={this.handleChangeOrg.bind(this)}
+            onChangeOrg={this.handleChangeOrg}
           />}
           position={Position.BOTTOM_RIGHT}
         >

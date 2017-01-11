@@ -1,10 +1,10 @@
 import React, {PropTypes as T} from 'react';
-import IntegrationBrowser from '../components/integration_browser';
-import IntegrationDetails from '../components/integration_browser/integration_details';
+const IntegrationBrowser = require('../components/integration_browser/integration_browser');
+import IntegrationDetails from '../components/integration_details/integration_details';
 
-export default class Marketplace extends React.createClass{
-  constructor() {
-    super();
+export default class Marketplace extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       filter: {}
     };
@@ -13,7 +13,7 @@ export default class Marketplace extends React.createClass{
   render() {
     return (this.props.params.id ?
       // if an integration id was given, then show details for the integration
-      <IntegrationDetails id={this.props.params.id} /> :
+      <IntegrationDetails integration_id={this.props.params.id} /> :
 
       // otherwise show the integration browser
       <IntegrationBrowser
@@ -25,5 +25,5 @@ export default class Marketplace extends React.createClass{
 }
 
 Marketplace.propTypes = {
-  params: T.object.isRequired,
+  params: T.object,
 };
