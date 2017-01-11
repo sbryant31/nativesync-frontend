@@ -175,7 +175,7 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     // NQ: if not logged in, no need to worry about any of this
-    if (actions.getState('token'))
+    if (actions.getState('token')) {
       // if no org exists for the user logged in set the default org
       var org = actions.getState('org');
       if (!org) {
@@ -188,6 +188,7 @@ module.exports = React.createClass({
           this.handleChangeOrg(org);
         });
       }
+    }
   },
   handleChangeOrg: function(org) {
     this.setState({org: org});
