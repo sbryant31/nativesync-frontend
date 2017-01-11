@@ -72,6 +72,10 @@ exports.getIntegrations = function(filter){
   return nsapi.getIntegrations(filter, token);
 };
 
+exports.getMarketplaceIntegrations = function(filter){
+  return nsapi.getMarketplaceIntegrations(filter);
+};
+
 exports.getServices = function(filter){
   return nsapi.getServices(filter, token);
 };

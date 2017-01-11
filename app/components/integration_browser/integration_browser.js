@@ -30,7 +30,7 @@ module.exports = React.createClass({
     if (this.props.org) {
       filter.organization_id = this.props.org.id;
     }
-    actions.getIntegrations(filter)
+    actions.getMarketplaceIntegrations(filter)
     .then((result) => {
       this.setState({
         integrations: result.integrations,

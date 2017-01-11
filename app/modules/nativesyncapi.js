@@ -6,17 +6,17 @@ var urljoin = require('url-join');
 
 function call(path, data, method, authtoken, organizationtoken){
   console.log(arguments);
-  var method = method || 'POST';
-  return request({
-    method: method,
+  var meth = method || 'POST';
+  var opts = {
+    method: meth,
     uri: urljoin(base,path),
-    body: (method == 'POST' && data) ? data : {},
-    qs: (method == 'GET' && data) ? data : {},
+    body: (meth == 'POST' && data) ? data : {},
+    qs: (meth == 'GET' && data) ? data : {},
     json: true,
-    headers: {
-      Token: authtoken
-    }
-  }).catch((response) => {
+  };
+  if (authtoken) opts['headers'] = { Token: authtoken };
+
+  return request(opts).catch((response) => {
     console.log(response);
     throw response;
   });
@@ -64,6 +64,10 @@ exports.getServiceDefinitions = function(service_id, token){
 
 exports.getIntegrations = function(filter, token){
   return call('/integrations', filter, 'GET', token);
+};
+
+exports.getMarketplaceIntegrations = function(filter){
+  return call('/marketplace/integrations', filter, 'GET');
 };
 
 exports.getOrganizationAuths = function(organizationId, serviceAuthIds, token){
