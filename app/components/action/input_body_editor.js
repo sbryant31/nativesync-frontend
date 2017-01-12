@@ -27,6 +27,7 @@ module.exports = React.createClass({
   render() {
     // var self = this;
     var bodyTypes = [
+      {value: 'text/plain', label: 'Text/Plain'},
       {value: 'formData', label: 'Form'},
       {value: 'json', label: 'JSON'},
       {value: 'xml', label: 'XML'}

@@ -7,6 +7,7 @@ var _ = require('underscore');
 var Select = require('react-select');
 import NumericInput from 'react-numeric-input';
 
+var EnvironmentSelector = require('./inputs/environment_selector');
 var OrganizationAuthForm = require('./organization_auth/organization_auth_form');
 var Json = require('react-json');
 var ServiceAuthSelector = require('../components/service_auth/service_auth_selector');
@@ -24,6 +25,14 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       action: {
+        environment: 'production',
+        visibility: 'private',
+        function_name: 'some_function_name',
+        description: 'describe what the function does',
+        host: 'api.something.io',
+        path: '/some/api/path',
+        method: 'POST',
+        scheme: 'https',
         headers: [],
         query: [],
         input: [],
@@ -89,6 +98,7 @@ module.exports = React.createClass({
     .then((result) => {
       return actions.testAction(this.state.action.id, organization.id, this.state.testInput)
       .then((result) => {
+        console.log('test result', result);
         self.setState({testOutput: result});
       });
     });
@@ -152,6 +162,9 @@ module.exports = React.createClass({
           <TabPanel>
             <h4>Basics</h4>
             <div className="row">
+              <TextInputField label="Title" value={this.state.action.title} onChange={this.handleChange.bind(this, 'title')} />
+            </div>
+            <div className="row">
               <ServiceSelector service={ this.state.service } onChange={this.handleServiceChange.bind(this)} />
             </div>
             <div className="row">
@@ -160,6 +173,7 @@ module.exports = React.createClass({
                 <NumericInput value={ this.state.action.version } onChange={this.handleChange.bind(this, 'version')} />
               </label>
             </div>
+            <EnvironmentSelector value={this.state.action.environment} onChange={this.handleChange.bind(this, 'environment')} />
             <div className="row">
               <VisibilitySelector value={ this.state.action.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
             </div>
@@ -219,6 +233,7 @@ module.exports = React.createClass({
             <OrganizationAuthForm
               organization={actions.getState('org')}
               services={[this.state.service]}
+              organizationAuths={this.state.organizationAuths}
               serviceAuths={this.state.selectedServiceAuths}
               onChange={this.handleChangeOrganizationAuths.bind(this)} />
             <h4>Inputs</h4>

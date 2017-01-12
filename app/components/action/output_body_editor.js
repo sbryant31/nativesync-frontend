@@ -28,7 +28,7 @@ module.exports = React.createClass({
     var self = this;
     var bodyTypes = [
       {value: 'json', label: 'JSON'},
-      {value: 'xml', label: 'XML'}
+      {value: 'xml', label: 'XML'},
     ];
     var bodyCodeTypes = [
       {value: 'direct', label: 'Directly Map Response Body to Params'},

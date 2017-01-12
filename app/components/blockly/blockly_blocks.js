@@ -1,9 +1,6 @@
-module.exports = (services, actions, configuration) => {
-  // todo: make this more reusable (also declared in editor.js)
-  var internalize = function(string) {
-    return string.toLowerCase().replace(new RegExp(' ', 'g'), '_');
-  }
+var internalize = require('../../modules/helpers').internalize;
 
+module.exports = (services, actions, configuration) => {
   var Blockly = window.Blockly;
   Blockly.Blocks['get_object_by_name'] = {
     init: function() {

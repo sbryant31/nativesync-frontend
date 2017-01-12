@@ -12,6 +12,7 @@ var ServiceAuthOauth2Details = require('./service_auth_oauth2_details');
 module.exports = React.createClass({
   getDefaultProps: function() {
     return {
+      id: null,
       type: '',
       details: {},
       onTypeChange: function(type) { console.log('type changed', type); },
@@ -46,10 +47,10 @@ module.exports = React.createClass({
         <ServiceAuthBasicDetails details={this.props.details} readOnly={this.props.readOnly} onChange={self.props.onDetailsChange} />
       }
       { this.props.type == 'oauth1' &&
-        <ServiceAuthOauth1Details details={this.props.details} readOnly={this.props.readOnly} onChange={self.props.onDetailsChange} />
+        <ServiceAuthOauth1Details details={this.props.details} readOnly={this.props.readOnly} onChange={self.props.onDetailsChange} id={this.props.id} />
       }
       { this.props.type == 'oauth2' &&
-        <ServiceAuthOauth2Details details={this.props.details} readOnly={this.props.readOnly} onChange={self.props.onDetailsChange} />
+        <ServiceAuthOauth2Details details={this.props.details} readOnly={this.props.readOnly} onChange={self.props.onDetailsChange} id={this.props.id} />
       }
     </div>
   }

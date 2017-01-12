@@ -12,18 +12,32 @@ module.exports = React.createClass({
       organization: {},
       services: [],
       serviceAuths: [],
-      organizationAuths: []
+      organizationAuths: [],
+      onChange: function(orgs) { console.log('change', orgs) }
     };
+  },
+  handleChange: function(index, organizationAuth) {
+    var organizationAuths = this.props.organizationAuths;
+    organizationAuths[index] = organizationAuth;
+    this.props.onChange(organizationAuths);
   },
   render() {
     var self = this;
     var servicesById = _.indexBy(this.props.services, 'id');
     var organizationAuthsByServiceAuthID = _.indexBy(this.props.organizationAuths, 'service_auth_id');
-    var organizationAuthList = lodash.map(this.props.serviceAuths, function(serviceAuth) {
+    console.log('org auths', organizationAuthsByServiceAuthID);
+    var organizationAuthList = lodash.map(this.props.serviceAuths, function(serviceAuth, index) {
       var service = servicesById[serviceAuth.service_id];
+      var organizationAuth = organizationAuthsByServiceAuthID[serviceAuth.id];
       return (
         <div>
-          <OrganizationAuthEditor organization={self.props.organization} service={servicesById[serviceAuth.service_id]} serviceAuth={serviceAuth} organizationAuth={organizationAuthsByServiceAuthID[serviceAuth.id]} />
+          <OrganizationAuthEditor
+            organization={self.props.organization}
+            service={servicesById[serviceAuth.service_id]}
+            serviceAuth={serviceAuth}
+            organizationAuth={organizationAuth}
+            onChange={self.handleChange.bind(self, index)}
+           />
         </div>
       );
     });

@@ -5,6 +5,7 @@ var Select = require('react-select');
 var actions = require('../../modules/actions');
 var ServiceAuthDetails = require('./service_auth_details');
 var TextInputField = require('../inputs/text_input_field');
+var EnvironmentSelector = require('../inputs/environment_selector');
 
 module.exports = React.createClass({
   getDefaultProps: function() {
@@ -32,11 +33,6 @@ module.exports = React.createClass({
     var checkboxHandler = this.props.isSelected ? this.props.onDeselect : this.props.onSelect;
     var checked = this.props.isSelected ? true : false;
         //<Checkbox onChange={checkboxHandler} checked={checked} />
-    var environmentOptions = [
-      {label: 'Developer', value: 'developer'},
-      {label: 'Test', value: 'test'},
-      {label: 'Production', value: 'production'}
-    ];
     return (
         <div>
             <div className="row">
@@ -51,10 +47,7 @@ module.exports = React.createClass({
                                              onChange={this.handleChange.bind(self, 'name')} />
               </div>
               <div className="col-xs">
-                <label className="pt-label">
-                  Environment
-                  <Select value={this.props.serviceAuth.environment} onChange={this.handleChange.bind(self, 'environment')} options={environmentOptions} />
-                </label>
+                <EnvironmentSelector value={this.props.serviceAuth.environment} onChange={this.handleChange.bind(self, 'environment')} />
               </div>
               <div className="col-xs-3">
                 <ServiceAuthDetails type={this.props.serviceAuth.type}

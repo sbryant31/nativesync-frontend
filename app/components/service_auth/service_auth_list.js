@@ -65,6 +65,7 @@ module.exports = React.createClass({
       return (
           <div>
             <ServiceAuthView
+              id={serviceAuth.id}
               isSelected={isSelected}
               service={service}
               serviceAuth={serviceAuth}
