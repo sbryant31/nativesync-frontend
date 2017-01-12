@@ -157,6 +157,10 @@ exports.upsertAction = function(action, service, serviceAuths) {
   });
 };
 
+exports.saveOrganizationAuth = function(organizationAuth) {
+  return nsapi.saveOrganizationAuth(organizationAuth, token)
+};
+
 exports.testAction = function(id, organizationId, input) {
   return nsapi.testAction(id, organizationId, input, token);
 };

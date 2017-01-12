@@ -3,10 +3,7 @@ var _ = require('underscore');
 var ReactBlockly = require('react-blockly-component');
 var BlocklyBlocks = require('./blockly_blocks');
 
-// a machine readable format for any string
-var internalize = function(string) {
-  return string.toLowerCase().replace(new RegExp(' ', 'g'), '_');
-}
+var internalize = require('../../modules/helpers').internalize;
 
 module.exports = React.createClass({
   getDefaultProps: function() {

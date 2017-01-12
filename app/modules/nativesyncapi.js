@@ -126,6 +126,10 @@ exports.upsertService = function(service, serviceAuths, serviceDefinitions, toke
   return call('/services/upsert', {service: service, serviceAuths: serviceAuths, serviceDefinitions: serviceDefinitions}, 'POST', token);
 };
 
+exports.saveOrganizationAuth = function(organizationAuth, token){
+  return call('/organization_auths/upsert',{organizationAuth: organizationAuth},'POST',token);
+};
+
 
 exports.upsertOrganization = function(organization, token) {
   return call('/organizations/upsert', {organization: organization}, 'POST', token);
