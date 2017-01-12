@@ -234,12 +234,16 @@ module.exports = React.createClass({
         <Popover content={<MarketMenu/>} position={Position.BOTTOM_RIGHT}>
           <li className='pt-menu-item pt-icon-shopping-cart'>Marketplace</li>
         </Popover>
-        <Popover content={<ManageMenu/>} position={Position.BOTTOM_RIGHT}>
-          <li className='pt-menu-item pt-icon-office'>Manage</li>
-        </Popover>
-        <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
-          <li className='pt-menu-item pt-icon-wrench'>Build</li>
-        </Popover>
+        { actions.getState('token') &&
+          <Popover content={<ManageMenu/>} position={Position.BOTTOM_RIGHT}>
+            <li className='pt-menu-item pt-icon-office'>Manage</li>
+          </Popover>
+        }
+        { actions.getState('token') &&
+          <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
+            <li className='pt-menu-item pt-icon-wrench'>Build</li>
+          </Popover>
+        }
       </Navbar>
       <div className="pt-content" style={{padding: 20}}>
         {child}

@@ -1,11 +1,44 @@
 .IntegrationDetails {
+  width: 1080px;
+  margin: 0px auto;
+  .heading {
+    .title { margin: 10px 0px; }
+    margin-bottom: 15px;
+  }
+  .subheading {
+    line-height: 10px;
+  }
   .details-col-1 {
-    background-color: #EEE;
+    border: 1px dashed #F00;
+    .services-icons {
+      background-color: #FFF;
+      box-shadow: 0px 0px 8px #aaa;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 40px 0px;
+      img { height: 100px; }
+      img.circle_arrow {
+        opacity: 0.15;
+        height: 50px;
+        margin: 0px 15px 25px 15px;
+      }
+    }
+    .what-you-need {
+      margin-bottom: 30px;
+    }
   }
   .details-col-2 {
-    background-color: #EEE;
+    border: 1px dashed #F00;
     button {
-      padding: 0px 30px;
+      padding: 5px 30px;
+      width: 100%;
+    }
+    .pricing {
+      font-size: 20px;
+      text-align: center;
+      padding: 20px 0px;
     }
   }
 }
