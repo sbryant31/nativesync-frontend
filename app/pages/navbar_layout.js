@@ -198,7 +198,11 @@ module.exports = React.createClass({
     if(this.props.children){
       child = React.cloneElement(this.props.children,this.props);
     }
-    var links = [ ];
+    var links = [{
+      name: 'Marketplace',
+      icon: 'pt-icon-shopping-cart',
+      url: '/marketplace'
+    }];
 
     var avatarMenu = null;
     if (actions.getState('token')) {    // logged in?
@@ -219,38 +223,32 @@ module.exports = React.createClass({
     }
     else {
       // code to add 'Login' link should go here
-      links = [{
+      links.push({
         name:'Login',
         icon:'pt-icon-log-in',
         url:'/login'
-      }];
+      });
     }
 
     return <div style={{paddingTop:50}}>
       <Navbar links={links} avatarMenu={avatarMenu}>
         { actions.getState('token') &&    // NQ: only show this menu if logged in
-          <Popover
-            content={<OrganizationMenu
-              onChangeOrg={this.handleChangeOrg}
-            />}
-            position={Position.BOTTOM_RIGHT}
-          >
-            <li className='pt-menu-item pt-icon-people'>{orgName}</li>
-          </Popover>
-        }
-        <span className="pt-navbar-divider"></span>
-        <Popover content={<MarketMenu/>} position={Position.BOTTOM_RIGHT}>
-          <li className='pt-menu-item pt-icon-shopping-cart'>Marketplace</li>
-        </Popover>
-        { actions.getState('token') &&
-          <Popover content={<ManageMenu/>} position={Position.BOTTOM_RIGHT}>
-            <li className='pt-menu-item pt-icon-office'>Manage</li>
-          </Popover>
-        }
-        { actions.getState('token') &&
-          <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
-            <li className='pt-menu-item pt-icon-wrench'>Build</li>
-          </Popover>
+          <span>
+            <Popover
+              content={<OrganizationMenu
+                onChangeOrg={this.handleChangeOrg}
+              />}
+              position={Position.BOTTOM_RIGHT}
+            >
+              <li className='pt-menu-item pt-icon-people'>{orgName}</li>
+            </Popover>
+            <Popover content={<ManageMenu/>} position={Position.BOTTOM_RIGHT}>
+              <li className='pt-menu-item pt-icon-office'>Manage</li>
+            </Popover>
+            <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
+              <li className='pt-menu-item pt-icon-wrench'>Build</li>
+            </Popover>
+          </span>
         }
       </Navbar>
       <div className="pt-content" style={{padding: 20}}>
