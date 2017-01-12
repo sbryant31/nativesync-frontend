@@ -7,6 +7,7 @@ var actions = require('../../modules/actions');
 var OrganizationAuthBasic = require('../organization_auth/organization_auth_basic');
 var OrganizationAuthConfiguration = require('../organization_auth/organization_auth_configuration');
 var OrganizationAuthOauth1 = require('../organization_auth/organization_auth_oauth1');
+var OrganizationAuthOauth2 = require('../organization_auth/organization_auth_oauth2');
 var OrganizationAuthApikey = require('../organization_auth/organization_auth_apikey');
 
 module.exports = React.createClass({
@@ -76,7 +77,12 @@ module.exports = React.createClass({
             organization={this.props.organization} />
         }
         { this.props.serviceAuth.type == 'oauth2' &&
-          <div>Coming soon: Oauth2 based Auth.</div>
+          <OrganizationAuthOauth2
+            details={this.props.serviceAuth.details}
+            value={this.props.organizationAuth.value}
+            onChange={this.handleDetailsChange}
+            serviceAuth={this.props.serviceAuth}
+            organization={this.props.organization} />
         }
       </div>
     </div>;
