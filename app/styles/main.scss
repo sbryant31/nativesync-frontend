@@ -98,15 +98,18 @@ a {
     .pt-tab[aria-selected=true] {
       color: #FFF;
       outline: none;
-      transition: color 0.2s;
+      transition: color 0.3s 0.05s;
     }
     .pt-tab-indicator-wrapper {
       .pt-tab-indicator {
+        height: 30px;
         background-color: #6B75DD;
-        height: 40px;
         border-radius: 5px;
       }
     }
+  }
+  .pt-tab-list.pt-large .pt-tab-indicator-wrapper .pt-tab-indicator {
+    height: 40px;
   }
 }
 nav.pt-navbar {
