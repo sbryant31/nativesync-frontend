@@ -70,6 +70,10 @@ exports.getMarketplaceIntegrations = function(filter) {
   return call('/marketplace/integrations', filter, 'GET');
 };
 
+exports.getIntegrationById = function(id, options, token) {
+  return call('/integration/' + id, options, 'GET', token)
+}
+
 exports.getOrganizationAuths = function(organizationId, serviceAuthIds, token) {
   return call('/organization_auths', {organization_id: organizationId, service_auth_ids: serviceAuthIds}, 'GET', token);
 };
