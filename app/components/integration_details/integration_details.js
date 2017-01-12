@@ -1,10 +1,9 @@
 import React from 'react';
 const actions = require('../../modules/actions');
-import { Button } from '@blueprintjs/core';
+import { Button, Tabs, TabList, Tab, TabPanel } from '@blueprintjs/core';
 
 const circle_arrow = require("../../img/circle_arrow.svg");
-const filler_text_long = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-const filler_text_short = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.";
+import { filler_text_par1, filler_text_par2, filler_text_par3, filler_text_long, filler_text_short } from './filler_text';
 
 // CSS
 import './integration_details.scss';
@@ -13,7 +12,8 @@ export default class IntegrationDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      integration: null
+      integration: null,
+      tab: 'overview'
     };
   }
 
@@ -23,6 +23,65 @@ export default class IntegrationDetails extends React.Component {
       console.log('integration: ', integration);
       this.setState({ integration: integration.integration });
     });
+  }
+
+  _overview() {
+    return (
+      <div className="content">
+        <div className="overview">
+          <h3 className="with-hr">Overview</h3>
+          <p>{this.state.integration.description || filler_text_short}</p>
+        </div>
+        <div className="how-it-works">
+          <h3 className="with-hr">How It Works</h3>
+          <p>{this.state.integration.how_it_works || filler_text_long}</p>
+        </div>
+        <div className="what-you-need">
+          <h3 className="with-hr">What You Need</h3>
+          <p>{this.state.integration.requirements || filler_text_long}</p>
+        </div>
+        {/* <h3>Configuration</h3>
+        <p>{JSON.stringify(this.state.integration.configuration)}</p> */}
+        {/* <h3>Raw JSON</h3>
+        <p>{JSON.stringify(this.state.integration)}</p> */}
+      </div>
+    );
+  }
+
+  _documentation() {
+    return (
+      <div className="content">
+        <div className="documentation">
+          <h3 className="with-hr">Documentation</h3>
+          <p>{filler_text_par1}</p>
+          <p>{filler_text_par2}</p>
+          <p>{filler_text_par3}</p>
+        </div>
+      </div>
+    );
+  }
+
+  _tabs() {
+    return (
+      <Tabs>
+        <TabList>
+          <Tab>Overview</Tab>
+          <Tab>Documentation</Tab>
+        </TabList>
+        <TabPanel>{this._overview()}</TabPanel>
+        <TabPanel>{this._documentation()}</TabPanel>
+      </Tabs>
+    );
+  }
+
+  _likes() {
+    return (
+      <div className="likes">
+        <i className="fa fa-heart-o" aria-hidden="true"></i>
+        <a href="#">Like</a>
+        <strong className="total_likes_indicator"><span className="howmany">{"63"}</span> Likes</strong>
+      </div>
+    );
   }
 
   render() {
@@ -50,31 +109,17 @@ export default class IntegrationDetails extends React.Component {
                     </span>
                   ))
                 }</div>
-                <div className="overview">
-                  <h3 className="with-hr">Overview</h3>
-                  <p>{this.state.integration.description || filler_text_short}</p>
-                </div>
-                <div className="how-it-works">
-                  <h3 className="with-hr">How It Works</h3>
-                  <p>{this.state.integration.how_it_works || filler_text_long}</p>
-                </div>
-                <div className="what-you-need">
-                  <h3 className="with-hr">What You Need</h3>
-                  <p>{this.state.integration.requirements || filler_text_long}</p>
-                </div>
-                {/* <h3>Configuration</h3>
-                <p>{JSON.stringify(this.state.integration.configuration)}</p> */}
-                {/* <h3>Raw JSON</h3>
-                <p>{JSON.stringify(this.state.integration)}</p> */}
+                {this._tabs()}
               </div>
             </div>
             <div className="col-md-3">
               <div className="details-col-2">
                 <Button className="pt-intent-primary pt-large" text="Buy Now" />
-                <div className="pricing">{
+                <h4 className="pricing">{
                   `$${this.state.integration.pricing.upfront} + ` +
                   `$${this.state.integration.pricing.monthly}/month`
-                }</div>
+                }</h4>
+                {this._likes()}
               </div>
             </div>
           </div>

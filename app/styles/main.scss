@@ -1,19 +1,108 @@
 @font-face {
+  font-family: 'Geomanist Light';
+  src: url('geomanist-light-webfont.woff2') format('woff2'),
+       url('geomanist-light-webfont.eot') format('eot'),
+       url('geomanist-light-webfont.woff') format('woff'),
+       url('geomanist-light-webfont.ttf') format('ttf');
+}
+@font-face {
   font-family: 'Geomanist Regular';
-  src: url('geomanist-regular-webfont.eot') format('woff2'),
+  src: url('geomanist-regular-webfont.woff2') format('woff2'),
        url('geomanist-regular-webfont.eot') format('eot'),
        url('geomanist-regular-webfont.woff') format('woff'),
        url('geomanist-regular-webfont.ttf') format('ttf');
 }
+@font-face {
+  font-family: 'Geomanist Book';
+  src: url('geomanist-book-webfont.woff2') format('woff2'),
+       url('geomanist-book-webfont.eot') format('eot'),
+       url('geomanist-book-webfont.woff') format('woff'),
+       url('geomanist-book-webfont.ttf') format('ttf');
+}
 
+body {
+  background-color: #f3f8fd;
+  font-family: "Geomanist Light", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 30px 0px 15px 0px;
+  color: #48485A;
+  font-family: "Geomanist Regular", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
+  &.with-hr {
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(111, 125, 146, 0.15);   // #6F7D92 with 0.15 opacity
+  }
+  font-weight: normal;
+}
+
+strong {
+  font-family: "Geomanist Regular", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
+  color: inherit;
+}
+
+p {
+  color: #6F7D92;
+  line-height: 22px;
+}
+
+a {
+  color: #6B75DD;
+  font-family: "Geomanist Book", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
+}
+
+[class^=col-] {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.fill-height {
+  height: 100%;
+  width: 100%;
+}
+
+.pt-button {
+  border: none;
+  border-radius: 30px;
+  &.pt-intent-primary {
+    background: #6B75DD;
+    box-shadow: none;
+  }
+}
+
+.pt-tabs {
+  .pt-tab-list {
+    .pt-tab {
+      font-family: "Geomanist Book", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
+      color: #48485A;
+      padding: 0px 15px;
+      &:active {
+        outline: none;
+      }
+    }
+    .pt-tab[aria-selected=true] {
+      color: #FFF;
+      outline: none;
+      transition: color 0.2s;
+    }
+    .pt-tab-indicator-wrapper {
+      .pt-tab-indicator {
+        background-color: #6B75DD;
+        height: 30px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
 nav.pt-navbar {
   background-color: #32335C;
+  font-family: "Geomanist Regular", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
   .pt-menu {
     background-color: #32335C;
-    color: #FFF;
     .pt-popover-target {
       margin-right: 10px;
       .pt-menu-item {
+        color: #FFF;
         transition: color 0.3s;
         &:hover {
           background-color: inherit;
@@ -38,42 +127,4 @@ nav.pt-navbar {
 
 .ServiceAuthConfigurationDetails .parent.button-container {
     padding: 20px;
-}
-
-body {
-  background-color: #f3f8fd;
-  font-family: "Geomanist Regular", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 30px 0px 15px 0px;
-  color: rgba(0, 0, 0, 0.7);
-  &.with-hr {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #BBB;
-  }
-}
-
-p {
-  color: rgba(0, 0, 0, 0.5);
-  line-height: 22px;
-}
-
-[class^=col-] {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.fill-height {
-  height: 100%;
-  width: 100%;
-}
-
-.pt-button {
-  border: none;
-  border-radius: 20px;
-  &.pt-intent-primary {
-    background: #6B75DD;
-    box-shadow: none;
-  }
 }
