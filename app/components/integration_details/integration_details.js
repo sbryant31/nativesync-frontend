@@ -15,7 +15,7 @@ export default class IntegrationDetails extends React.Component {
 
   componentDidMount() {
     // fetch the integration details here
-    actions.getIntegrationById(this.props.integration_id).then(integration => {
+    actions.getMarketplaceIntegrationById(this.props.integration_id).then(integration => {
       console.log('integration: ', integration);
       this.setState({ integration: integration.integration });
     });

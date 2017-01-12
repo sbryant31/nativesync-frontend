@@ -100,6 +100,10 @@ exports.getIntegrationById = function(id, includeAssociations) {
   return nsapi.getIntegrationById(id, {includeAssociations: includeAssociations}, token);
 };
 
+exports.getMarketplaceIntegrationById = function(id) {
+  return nsapi.getMarketplaceIntegrationById(id);
+};
+
 exports.duplicateAction = function(actionId) {
   var org = exports.getState('org');
   return nsapi.duplicateAction(actionId, org.id, token)
