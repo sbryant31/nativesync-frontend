@@ -13,6 +13,10 @@ module.exports = React.createClass({
       height:600,
     };
     var links = [{
+      name: 'Marketplace',
+      icon: 'pt-icon-shopping-cart',
+      url: '/marketplace'
+    }, {
       name:'Login',
       icon:'pt-icon-log-in',
       url:'/login'

@@ -29,9 +29,9 @@ module.exports = React.createClass({
       </div>
       <div className="pt-navbar-group pt-align-right" >
         <ul className='pt-menu'>
-          {links}
-          <span className="pt-navbar-divider"></span>
           {this.props.children}
+          <span className="pt-navbar-divider"></span>
+          {links}
         </ul>
         {this.props.avatarMenu}
       </div>
