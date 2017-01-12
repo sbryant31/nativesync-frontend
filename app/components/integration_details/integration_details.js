@@ -64,8 +64,8 @@ export default class IntegrationDetails extends React.Component {
   _tabs() {
     return (
       <Tabs>
-        <TabList>
-          <Tab>Overview</Tab>
+        <TabList className="pt-large">
+          <Tab className="noselect">Overview</Tab>
           <Tab>Documentation</Tab>
         </TabList>
         <TabPanel>{this._overview()}</TabPanel>
@@ -84,6 +84,14 @@ export default class IntegrationDetails extends React.Component {
     );
   }
 
+  _developer_info() {
+    return (
+      <div className="developer_info">
+
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="IntegrationDetails">
@@ -93,9 +101,11 @@ export default class IntegrationDetails extends React.Component {
 
           // once it's finished retrieving, show the data
           <div className="row">
-            <div className="heading col-md-12">
+            <div className="col-md-12 heading">
               <h2 className="title">{this.state.integration.title}</h2>
-              <p className="subtitle">By {this.state.integration.organization.name}
+              <p className="subtitle">
+                By
+                <a href="#" className="developer"> {this.state.integration.organization.name}</a>
                 <span> (version {this.state.integration.version})</span>
               </p>
             </div>

@@ -82,7 +82,7 @@ module.exports = React.createClass({
   render() {
     return (
       <div>
-        { this.props.view == 'marketplace' && <h1>Integration MarketPlace</h1> }
+        { this.props.view == 'marketplace' && <h1>Integration Marketplace</h1> }
         { this.props.view == 'list' && <h1>Browse Integrations</h1> }
         <hr/>
         <ServiceMultiSelect

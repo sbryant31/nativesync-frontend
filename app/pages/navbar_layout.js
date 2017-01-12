@@ -217,6 +217,14 @@ module.exports = React.createClass({
         orgName = 'Choose an Organization';
       }
     }
+    else {
+      // code to add 'Login' link should go here
+      links = [{
+        name:'Login',
+        icon:'pt-icon-log-in',
+        url:'/login'
+      }];
+    }
 
     return <div style={{paddingTop:50}}>
       <Navbar links={links} avatarMenu={avatarMenu}>
