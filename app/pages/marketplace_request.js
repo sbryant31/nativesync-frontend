@@ -1,8 +1,8 @@
-var React = require('react')
-var actions = require('../modules/actions')
-var Navbar = require('../components/navbar')
+var React = require('react');
+var actions = require('../modules/actions');
+var Navbar = require('../components/navbar');
 var IntegrationBrowser = require('../components/integration_browser/integration_browser');
-var lodash = require('lodash')
+var lodash = require('lodash');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -11,7 +11,7 @@ module.exports = React.createClass({
       overview: '',
       budget: '',
       notes: '',
-    }
+    };
   },
   handleChange: function(field, e) {
     if (e.target) {
@@ -59,6 +59,6 @@ module.exports = React.createClass({
       </label>
       <hr />
       <button className="pt-button" onClick={this.handleSubmit}>Submit Request</button>
-    </div>
+    </div>;
   }
-})
+});
