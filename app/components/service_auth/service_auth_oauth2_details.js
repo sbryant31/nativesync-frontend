@@ -30,11 +30,13 @@ module.exports = React.createClass({
   render() {
     var self = this;
     var tokenLocationOptions = [
+      {label: 'Bearer Token', value: 'bearer'},
       {label: 'Token in Header', value: 'header'},
       {label: 'Token in Query Strings', value: 'query'},
     ];
     if (this.props.id) {
-      var callbackUrl = `https://api.nativesync.io/oauth/callback/2.0/${this.props.serviceAuth.id}/org/${this.props.organization.id}`
+      var org = actions.getState('org');
+      var callbackUrl = `https://api.nativesync.io/oauth/callback/2.0/${this.props.id}/org/${org.id}`
     } else {
       var callbackUrl = "will be generated upon saving"
     }
@@ -50,11 +52,19 @@ module.exports = React.createClass({
         <TextInputField label="Authorize Host (defaults to Token Host)" value={this.props.details.authorizeHost} onChange={this.handleChange.bind(this, 'authorizeHost')} />
         <TextInputField label="Authorize Path (defaults to /oauth/authorize)" value={this.props.details.authorizePath} onChange={this.handleChange.bind(this, 'authorizePath')} />
         <TextInputField label="Scopes (comma separated)" value={this.props.details.scopes} onChange={this.handleChange.bind(this, 'scopes')} />
-        <Select name="token-location-selector" options={tokenLocationOptions} value={this.props.details.tokenLocation ? this.props.details.tokenLocation : 'header'} onChange={this.handleChange.bind(this, 'tokenLocation')} />
         <div>
         <TextInputField label="Callback URL" value={callbackUrl} />
         </div>
       </label>
+      <Select
+        name="token-location-selector"
+        options={tokenLocationOptions}
+        value={this.props.details.tokenLocation}
+        onChange={this.handleChange.bind(this, 'tokenLocation')}
+      />
+      { (this.props.details.tokenLocation == 'header' || this.props.details.tokenLocation == 'query') &&
+        <TextInputField label="Field Name" value={this.props.details.tokenFieldName} onChange={this.handleChange.bind(this, 'tokenFieldName')} />
+      }
     </div>
   }
 })

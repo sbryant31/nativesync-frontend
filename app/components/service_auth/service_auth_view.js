@@ -52,6 +52,7 @@ module.exports = React.createClass({
               <div className="col-xs-3">
                 <ServiceAuthDetails type={this.props.serviceAuth.type}
                                     details={this.props.serviceAuth.details}
+                                    id={this.props.serviceAuth.id}
                                     readOnly={self.props.readOnly}
                                     onTypeChange={this.handleChange.bind(self, 'type')}
                                     onDetailsChange={this.handleChange.bind(self, 'details')} />
