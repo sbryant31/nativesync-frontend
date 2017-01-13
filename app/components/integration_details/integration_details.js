@@ -6,7 +6,7 @@ const circle_arrow = require("../../img/circle_arrow.svg");
 import { filler_text_par1, filler_text_par2, filler_text_par3, filler_text_long, filler_text_short } from './filler_text';
 
 // CSS
-import './integration_details.scss';
+require('./integration_details.scss');
 
 export default class IntegrationDetails extends React.Component {
   constructor(props) {
