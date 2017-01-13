@@ -72,7 +72,7 @@ module.exports = {
           // PRODUCTION
           [ExtractTextPlugin.extract('style'),
           'css',
-          'resolve-url',
+          'resolve-url-loader',
           'sass?sourceMap'] :
 
           // DEVELOPMENT
