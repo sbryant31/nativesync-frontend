@@ -47,7 +47,7 @@ module.exports = {
     //   'node_modules',
     //   path.resolve(__dirname, './node_modules')
     // ],
-    // root: [path.resolve('./app')],
+    root: [path.resolve('./app')],
   },
   resolveLoader: { fallback: __dirname + "/node_modules" },
   module: {
@@ -88,9 +88,6 @@ module.exports = {
   },
   sassLoader: {
     includePaths: [path.resolve('./app')],
-  },
-  resolve: {
-    root: [path.resolve('./app')],
   },
   node: {
     console: true,
