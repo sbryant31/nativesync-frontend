@@ -201,7 +201,7 @@ module.exports = React.createClass({
     var links = [{
       name: 'Marketplace',
       icon: 'pt-icon-shopping-cart',
-      url: '/marketplace'
+      url: '/'
     }];
 
     var avatarMenu = null;
@@ -230,6 +230,7 @@ module.exports = React.createClass({
       });
     }
 
+    console.log("PROPS: ", this.props);
     return <div style={{paddingTop:50}}>
       <Navbar links={links} avatarMenu={avatarMenu}>
         { actions.getState('token') &&    // NQ: only show this menu if logged in
@@ -251,6 +252,7 @@ module.exports = React.createClass({
           </span>
         }
       </Navbar>
+      { this.props.pagetitle && <h1 className="page-title">{this.props.pagetitle}</h1> }
       <div className="pt-content" style={{padding: 20}}>
         {child}
       </div>

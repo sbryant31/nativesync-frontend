@@ -5,6 +5,7 @@ const ListView = require('./list_view');
 // const MarketplaceView = require('./integration_browser/marketplace_view');
 const MarketplaceView2 = require('./marketplace_view2');
 const ServiceMultiSelect = require('../service/service_multi_select');
+import Link from 'react-router/lib/Link';
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -82,9 +83,15 @@ module.exports = React.createClass({
   render() {
     return (
       <div>
-        { this.props.view == 'marketplace' && <h1>Integration Marketplace</h1> }
-        { this.props.view == 'list' && <h1>Browse Integrations</h1> }
-        <hr/>
+        {/* { this.props.view === 'marketplace' &&
+          <h1 className="page-title">Ready to use Integrations</h1>
+        }
+        { this.props.view === 'list' &&
+          <h1 className="page-title">Browse Integrations</h1>
+        } */}
+        <div className="integration-request">
+          Don't see the integration you need? <Link to="/marketplace/request">We can build it!</Link>
+        </div>
         <ServiceMultiSelect
           value={this.state.filter.serviceIDs}
           onChange={(e) => { this.handleFilterChange('serviceIDs', e); }}

@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, Link, browserHistory, IndexRoute, IndexRedirect } from 'react-router';
 
 var actions = require('./modules/actions');
 
@@ -72,7 +72,13 @@ function logout(nextState,replace,cb){
 module.exports = (
   <Router history = {browserHistory}>
     <Route path='/' component={App}>
-      <IndexRoute component={Landing} />
+      {/* <IndexRoute component={Marketplace} /> */}
+      {/* <IndexRedirect to="/marketplace" /> */}
+      <Route getComponent={(location, cb) => {
+        cb(null, props => <NavbarLayout {...props} pagetitle="Ready to use Integrations" />);
+      }}>
+        <IndexRoute component={Marketplace} />
+      </Route>
       <Route path='/login' component={Login} onEnter={notLoggedIn}/>
       <Route path='/logout' onEnter={logout}/>
       <Route path='/dashboard' component={NavbarLayout} onEnter={checkToken}>
@@ -132,14 +138,16 @@ module.exports = (
       <Route path='/organization/new' component={NavbarLayout}>
         <IndexRoute component={OrganizationEdit}/>
       </Route>
-      <Route path='/marketplace' component={NavbarLayout}>
-        <IndexRoute component={Marketplace} />
-      </Route>
-      <Route path='/marketplace/:id' component={NavbarLayout}>
+      <Route path='/marketplace' getComponent={(location, cb) => {
+        cb(null, props => <NavbarLayout {...props} pagetitle="Ready to use Integrations" />);
+      }}>
         <IndexRoute component={Marketplace} />
       </Route>
       <Route path='/marketplace/request' component={NavbarLayout}>
         <IndexRoute component={MarketplaceRequest}/>
+      </Route>
+      <Route path='/marketplace/:id' component={NavbarLayout}>
+        <IndexRoute component={Marketplace} />
       </Route>
       <Route path='/profile' component={Profile}/>
     </Route>
