@@ -40,15 +40,15 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
-  // resolve: {
-  //   extensions: ['', '.css', '.scss', '.js', '.json'],
-  //   fallback: path.join(__dirname, 'node_modules'),
-  //   modulesDirectories: [
-  //     'node_modules',
-  //     path.resolve(__dirname, './node_modules')
-  //   ],
-  //   root: [path.resolve('./app')],
-  // },
+  resolve: {
+    extensions: ['', '.css', '.scss', '.js', '.json'],
+    // fallback: path.join(__dirname, 'node_modules'),
+    // modulesDirectories: [
+    //   'node_modules',
+    //   path.resolve(__dirname, './node_modules')
+    // ],
+    // root: [path.resolve('./app')],
+  },
   resolveLoader: { fallback: __dirname + "/node_modules" },
   module: {
     loaders: [
@@ -60,13 +60,22 @@ module.exports = {
       {
         test: /\.css$/,
         loader: PROD ?
-          ExtractTextPlugin.extract('style', 'css?sourceMap') :
+          // PRODUCTION
+          ExtractTextPlugin.extract('style-loader', 'css?sourceMap') :
+
+          // DEVELOPMENT
           'style!css?sourceMap',
       },
       {
         test: /\.scss$/,
         loaders: PROD ?
-          [ExtractTextPlugin.extract('style', 'css?sourceMap!resolve-url!sass?sourceMap')] :
+          // PRODUCTION
+          [ExtractTextPlugin.extract('style'),
+          'css',
+          'resolve-url',
+          'sass?sourceMap'] :
+
+          // DEVELOPMENT
           ['style',
           'css?sourceMap',
           'resolve-url',

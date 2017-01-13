@@ -72,8 +72,6 @@ function logout(nextState,replace,cb){
 module.exports = (
   <Router history = {browserHistory}>
     <Route path='/' component={App}>
-      {/* <IndexRoute component={Marketplace} /> */}
-      {/* <IndexRedirect to="/marketplace" /> */}
       <Route getComponent={(location, cb) => {
         cb(null, props => <NavbarLayout {...props} pagetitle="Ready to use Integrations" />);
       }}>
