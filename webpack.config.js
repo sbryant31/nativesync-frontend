@@ -31,7 +31,7 @@ module.exports = {
     root: [path.resolve('./app')],
   },
   resolveLoader: {
-    extensions: ['.svg', '.png', '.jpg', '.gif', '.eot', '.woff', '.woff2', '.ttf'],
+    extensions: ['', '.svg', '.png', '.jpg', '.gif', '.eot', '.woff', '.woff2', '.ttf'],
     root: [path.resolve('./app')],
     fallback: __dirname + "/node_modules"
   },
