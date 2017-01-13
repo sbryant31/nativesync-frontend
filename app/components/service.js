@@ -6,12 +6,13 @@ var Select = require('react-select');
 var ServiceAuthList = require('../components/service_auth/service_auth_list');
 var ServiceDefinitionList = require('./service_definition/service_definition_list');
 var TextInputField = require('../components/inputs/text_input_field');
+var InputList = require('../components/inputs/input_list');
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      service: { },
+      service: {api_base_urls: [] },
       serviceAuths: [],
       serviceDefinitions: [],
     }
@@ -81,6 +82,15 @@ module.exports = React.createClass({
           <h2>General</h2>
           <TextInputField label="Name" value={this.state.service.name} onChange={this.handleChange.bind(this, 'name')} />
           <TextInputField label="Domain" value={this.state.service.domain} onChange={this.handleChange.bind(this, 'domain')} />
+          <label className="pt-label">
+            API Base URLs
+            <InputList
+              defaultObject={''}
+              object={TextInputField}
+              list={this.state.service.api_base_urls}
+              onChange={this.handleChange.bind(this, 'api_base_urls')}
+           />
+          </label>
           <TextInputField label="Logo URL (less than 50x50px please)" value={this.state.service.logo_url} onChange={this.handleChange.bind(this, 'logo_url')} />
           { this.state.service.logo_url &&
             <img src={this.state.service.logo_url} style={{height: '50px', width: '50px'}} />

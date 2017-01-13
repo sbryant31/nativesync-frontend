@@ -32,8 +32,8 @@ module.exports = React.createClass({
   render() {
     var self = this;
     var value = this.props.value;
-    var authURL = `https://api.nativesync.io/oauth/1.0/authenticate/${this.props.serviceAuth.id}/org/${this.props.organization.id}`;
-    if (value.oauthAccessToken && value.oauthAccessTokenSecret) {
+    var authURL = `https://api.nativesync.io/oauth/2.0/authenticate/${this.props.serviceAuth.id}/org/${this.props.organization.id}`;
+    if (value.oauthAccessToken) {
       var content = (
         <div>
           Connected!

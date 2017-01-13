@@ -105,7 +105,7 @@ module.exports = React.createClass({
   },
   handleChange: function(field, e) {
     var action = this.state.action;
-    console.log('change', e);
+    if (e === null) { this.handleChangeValue(field, null); }
     if (e.target) { // normal input handler
       this.handleChangeValue(field, e.target.value);
     } else if (e.value) { // dropdown handler
@@ -145,10 +145,11 @@ module.exports = React.createClass({
       {value: 'PATCH', label: 'PATCH'},
       {value: 'DELETE', label: 'DELETE'},
     ];
-    var schemes = [
-      {value: 'http', label: 'HTTP'},
-      {value: 'https', label: 'HTTPS'},
-    ];
+    var baseUrlOptions = _.map(this.state.service.api_base_urls, (baseUrl) => {
+      return {value: baseUrl, label: baseUrl};
+    });
+    baseUrlOptions.push({value: this.state.action.host, label: this.state.action.host});
+
     return (<div>
       <h2>Build an Action</h2>
       <Tabs>
@@ -184,7 +185,14 @@ module.exports = React.createClass({
               <TextInputField label="Description" value={this.state.action.description} onChange={this.handleChange.bind(this, 'description')} />
             </div>
             <div className="row">
-              <TextInputField label="Host" value={this.state.action.host} onChange={this.handleChange.bind(this, 'host')} />
+              <label className="pt-label col-xs pt-inline">
+                Base Url
+                <Select.Creatable
+                  options={baseUrlOptions}
+                  value={this.state.action.host}
+                  onChange={this.handleChange.bind(this, 'host')}
+                />
+              </label>
             </div>
             <div className="row">
               <TextInputField label="Path" value={this.state.action.path} onChange={this.handleChange.bind(this, 'path')} />
@@ -193,12 +201,6 @@ module.exports = React.createClass({
               <label className="pt-label pt-inline col-xs">
                 Method
                 <Select options={httpMethods} value={ this.state.action.method } onChange={this.handleChange.bind(this, 'method')} />
-              </label>
-            </div>
-            <div className="row">
-              <label className="pt-label pt-inline col-xs">
-                Scheme
-                <Select options={schemes} value={ this.state.action.schemes } onChange={this.handleChange.bind(this, 'schemes')} />
               </label>
             </div>
             <hr />
