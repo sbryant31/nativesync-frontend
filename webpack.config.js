@@ -49,7 +49,7 @@ module.exports = {
     // ],
     root: [path.resolve('./app')],
   },
-  resolveLoader: { fallback: __dirname + "/node_modules" },
+  // resolveLoader: { fallback: __dirname + "/node_modules" },
   module: {
     loaders: [
       {
