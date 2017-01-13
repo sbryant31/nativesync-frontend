@@ -12,7 +12,7 @@ module.exports = React.createClass({
       user:{
         email:'',password:''
       },
-      nextPath:'/dashboard'
+      nextPath:'/'
     }
   },
   handleUserChange:function(prop,val){
@@ -67,4 +67,3 @@ module.exports = React.createClass({
     </div>
   }
 })
-
