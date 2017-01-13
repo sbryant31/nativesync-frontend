@@ -32,7 +32,12 @@ module.exports = React.createClass({
   },
   render() {
    var self = this;
-   var callbackUrl = `api.nativesync.io/oauth/${this.props.details.callbackId}`;
+    if (this.props.id) {
+      var org = actions.getState('org');
+      var callbackUrl = `https://api.nativesync.io/oauth/callback/1.0/${this.props.id}/org/${org.id}`
+    } else {
+      var callbackUrl = "will be generated upon saving"
+    }
    var signatureMethodOptions = [
       {label: 'HMAC-SHA1', value: 'HMAC-SHA1'},
       {label: 'HMAC-SHA256', value: 'HMAC-SHA256'},
