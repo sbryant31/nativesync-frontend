@@ -4,7 +4,7 @@ var lodash = require('lodash');
 var Select = require('react-select');
 var actions = require('../../modules/actions');
 var TextInputField = require('../inputs/text_input_field');
-var ActionSelector = require('../action/action_select');
+var CodeEditor = require('../inputs/code_editor');
 
 module.exports = React.createClass({
   getDefaultProps: function() {
@@ -32,7 +32,7 @@ module.exports = React.createClass({
     var self = this;
     return (
       <div>
-        <ActionSelector value={this.props.details.action_id} onChange={this.handleChange.bind(this, 'action_id')} />
+        <CodeEditor code={this.props.details.code} onChange={this.handleChange.bind(this, 'code')} />
       </div>
     )
   }
