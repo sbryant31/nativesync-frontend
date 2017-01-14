@@ -100,6 +100,7 @@ module.exports = React.createClass({
       .then((result) => {
         console.log('test result', result);
         self.setState({testOutput: result});
+        self.forceUpdate();
       });
     });
   },
@@ -134,6 +135,8 @@ module.exports = React.createClass({
     this.setState({selectedServiceAuths: serviceAuths});
   },
   render() {
+    var testOutput = JSON.stringify(this.state.testOutput);
+    console.log('test output', testOutput);
     var actionTypes = [
       {value: 'rest', label: 'REST Action 1.0'},
       {value: 'code', label: 'Code Action 1.0'}
@@ -241,7 +244,7 @@ module.exports = React.createClass({
             <h4>Inputs</h4>
             <Json value={this.state.testInput} onChange={this.handleChangeTestInput.bind(this)} />
             <h4>Output</h4>
-            <textarea value={this.state.testOutput} />
+            <textarea value={testOutput} />
             <hr />
             <button className="pt-button" onClick={this.handleTest.bind(this)}>Test</button>
           </TabPanel>
