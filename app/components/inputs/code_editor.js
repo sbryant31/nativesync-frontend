@@ -7,7 +7,6 @@ var CodeMirror = require('react-codemirror');
 /*
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
-
 */
 module.exports = React.createClass({
   getDefaultProps: function() {
