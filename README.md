@@ -1,5 +1,11 @@
 #Getting Started
 
+if heroku starts caching shit
+
+heroku config:set NODE_MODULES_CACHE=false
+git commit -am 'rebuild' --allow-empty
+git push heroku master
+heroku config:unset NODE_MODULES_CACHE
 ```npm install```
 
 Copy example.env to .env. It will eventually contain environment variables specific to api server.
