@@ -21,6 +21,20 @@ module.exports = {
       './app/index',
     ],
   target: 'web',
+  resolve: {
+    extensions: ['', '.css', '.scss', '.js', '.json'],
+    // fallback: path.join(__dirname, 'node_modules'),
+    // modulesDirectories: [
+    //   'node_modules',
+    //   path.resolve(__dirname, './node_modules')
+    // ],
+    root: [path.resolve('./app')],
+  },
+  resolveLoader: {
+    extensions: ['', '.svg', '.png', '.jpg', '.gif', '.eot', '.woff', '.woff2', '.ttf', '.css', '.scss', '.js', '.json'],
+    root: [path.resolve('./app')],
+    fallback: __dirname + "/node_modules"
+  },
   output: {
     path: path.join(__dirname, (PROD ? '/build' : '/dist')),
     publicPath: '/',
@@ -40,16 +54,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
-  resolve: {
-    extensions: ['', '.css', '.scss', '.js', '.json'],
-    // fallback: path.join(__dirname, 'node_modules'),
-    // modulesDirectories: [
-    //   'node_modules',
-    //   path.resolve(__dirname, './node_modules')
-    // ],
-    root: [path.resolve('./app')],
-  },
-  resolveLoader: { fallback: __dirname + "/node_modules" },
   module: {
     loaders: [
       {
@@ -72,7 +76,7 @@ module.exports = {
           // PRODUCTION
           [ExtractTextPlugin.extract('style'),
           'css',
-          'resolve-url',
+          'resolve-url-loader',
           'sass?sourceMap'] :
 
           // DEVELOPMENT
