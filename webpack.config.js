@@ -29,6 +29,11 @@ module.exports = {
     //   path.resolve(__dirname, './node_modules')
     // ],
     root: [path.resolve('./app')],
+    modulesDirectories: [
+      'node_modules',
+      path.resolve(__dirname, 'src/scripts'),
+      path.resolve(__dirname, 'src')
+    ]
   },
   resolveLoader: {
     extensions: ['', '.svg', '.png', '.jpg', '.gif', '.eot', '.woff', '.woff2', '.ttf', '.css', '.scss', '.js', '.json'],

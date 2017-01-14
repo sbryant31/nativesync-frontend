@@ -61,16 +61,16 @@ module.exports = React.createClass({
     var filteredIntegrations = _.filter(this.state.integrations, (integration) => {
       var match = true;
       _.each(filter, (value, key) => {
-				console.log('filtering key', key, value);
-				if (key == 'serviceIDs') {
-					// get the IDs that are required
-					var requiredIDs = _.pluck(value, 'id');
-					var serviceIDs = _.pluck(integration.Services, 'id');
-					_.each(requiredIDs, function(id) {
-						if (serviceIDs.indexOf(id) === -1) {
-							match = false;
-						}
-					});
+        console.log('filtering key', key, value);
+        if (key == 'serviceIDs') {
+          // get the IDs that are required
+          var requiredIDs = _.pluck(value, 'id');
+          var serviceIDs = _.pluck(integration.Services, 'id');
+          _.each(requiredIDs, function(id) {
+            if (serviceIDs.indexOf(id) === -1) {
+              match = false;
+            }
+          });
         } else if (integration[key].toLowerCase().indexOf(value.toLowerCase()) === -1) {
           match = false;
         }

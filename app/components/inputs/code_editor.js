@@ -4,9 +4,11 @@ var React = require('react');
 // var actions = require('../../modules/actions');
 // var Select = require('react-select');
 var CodeMirror = require('react-codemirror');
+/*
 require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/xml/xml');
 
+*/
 module.exports = React.createClass({
   getDefaultProps: function() {
     return {

@@ -1,5 +1,5 @@
 import React, {PropTypes as T} from 'react';
-const IntegrationBrowser = require('../components/integration_browser/integration_browser');
+const IntegrationBrowser = require('../components/integration_browser/integration_browser.js');
 import IntegrationDetails from '../components/integration_details/integration_details';
 
 export default class Marketplace extends React.Component {

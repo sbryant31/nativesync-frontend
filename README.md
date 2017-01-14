@@ -1,6 +1,6 @@
 #Getting Started
 
-if heroku starts caching shit
+if heroku starts caching shit and is misbehaving try this:
 
 heroku config:set NODE_MODULES_CACHE=false
 git commit -am 'rebuild' --allow-empty
