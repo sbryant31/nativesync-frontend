@@ -35,10 +35,11 @@ var OrganizationMenu = React.createClass({
     });
   },
   render() {
+    var self = this;
     var organizations = lodash.map(this.state.organizations,function(organization){
       return <MenuItem key={organization.name}
         text={organization.name}
-        onClick={() => { this.handleChangeView(organization); }}
+        onClick={() => { self.handleChangeView(organization); }}
       />;
     });
     return <Menu>
