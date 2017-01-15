@@ -241,7 +241,7 @@ module.exports = React.createClass({
             <h4>Inputs</h4>
             <Json value={this.state.testInput} onChange={this.handleChangeTestInput.bind(this)} />
             <h4>Output</h4>
-            <Json value={this.state.testOutput} />
+            <textarea value={this.state.testOutput} />
             <hr />
             <button className="pt-button" onClick={this.handleTest.bind(this)}>Test</button>
           </TabPanel>
