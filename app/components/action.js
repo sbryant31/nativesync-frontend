@@ -29,7 +29,7 @@ module.exports = React.createClass({
         visibility: 'private',
         function_name: 'some_function_name',
         description: 'describe what the function does',
-        host: 'api.something.io',
+        host: '',
         path: '/some/api/path',
         method: 'POST',
         scheme: 'https',
