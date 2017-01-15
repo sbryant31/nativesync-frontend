@@ -1,16 +1,18 @@
-import React, {PropTypes as T} from 'react';
+import React from 'react';
 const IntegrationBrowser = require('../components/integration_browser/integration_browser.js');
 import IntegrationDetails from '../components/integration_details/integration_details.js';
 
-export default class Marketplace extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+// CSS
+import '../components/integration_browser/integration_browser.scss';
+
+module.exports = React.createClass({
+  getInitialState: function() {
+    return {
       filter: {}
     };
-  }
+  },
 
-  render() {
+  render: function() {
     return (
       <div className="Marketplace">
         <h1 className="page-title">Ready to use Integrations</h1>
@@ -28,8 +30,4 @@ export default class Marketplace extends React.Component {
       </div>
     );
   }
-}
-
-Marketplace.propTypes = {
-  params: T.object,
-};
+});
