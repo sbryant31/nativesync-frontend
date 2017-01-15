@@ -5,7 +5,7 @@ import { Router, Route, Link, browserHistory, IndexRoute, IndexRedirect } from '
 var actions = require('./modules/actions');
 
 const App = require('./app');
-const Landing = require('./pages/landing');
+// const Landing = require('./pages/landing');
 // bundle?lazy! Webpack directive below is for code splitting
 const IntegrationsMe = require('bundle?lazy!./pages/integrations_me');
 const IntegrationInstancesMe = require('bundle?lazy!./pages/integration_instances_me');
@@ -25,7 +25,7 @@ const Profile = require('bundle?lazy!./pages/profile');
 const Login = require('bundle?lazy!./pages/login');
 const Dashboard = require('bundle?lazy!./pages/dashboard');
 
-function checkToken(nextState,replace,cb) {
+function checkToken(nextState, replace, cb) {
   return actions.me().then(user => {
     console.log('checktoken', user);
     cb();
@@ -40,10 +40,10 @@ function checkToken(nextState,replace,cb) {
 }
 
 // NQ: TODO - do we really need this?
-function notLoggedIn(nextState,replace,cb){
+function notLoggedIn(nextState, replace, cb){
   console.log(nextState);
   return actions.me().then(user => {
-    replace({ pathname:'/dashboard' });
+    replace({ pathname:'/' });
     cb();
   }).catch(function(){
     cb();
