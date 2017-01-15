@@ -31,9 +31,9 @@ exports.setViewToOrg = function(org) {
 };
 
 exports.login = function(username,password){
-  return nsapi.login(username,password).then(function(t){
-    assert(t,'login failed');
-    state.set('token',t.token);
+  return nsapi.login(username, password).then(function(t) {
+    assert(t, 'login failed');
+    state.set('token', t.token);
     token = t.token;
     return exports.me();
   });
@@ -61,11 +61,16 @@ exports.logout = function(){
 };
 
 exports.me = function(){
-  return nsapi.me(token).then(function(user){
-    console.log('me',user,token);
-    assert(user,'user not found');
-    return state.set('me',user);
-  });
+  return token ?
+    // only call API to check token if there is one to check in the first place
+    nsapi.me(token)
+    .then(function(user) {
+      console.log('me', user, token);
+      assert(user,'user not found');
+      return state.set('me', user);
+    }) :
+    // otherwise return null straight away
+    Promise.reject('not logged in');
 };
 
 exports.getIntegrations = function(filter){
@@ -214,6 +219,9 @@ exports.toastError = function(error){
   state.set('error',error.message || error);
 };
 
-exports.goto = function(url){
-  browserHistory.push(url);
+exports.goto = function(url /*, params_obj*/) {
+  browserHistory.push({
+    pathname: url,
+    // query: params_obj
+  });
 };

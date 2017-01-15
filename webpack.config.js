@@ -22,24 +22,24 @@ module.exports = {
     ],
   target: 'web',
   resolve: {
-    extensions: ['', '.css', '.scss', '.js', '.json'],
+    // extensions: ['', '.css', '.scss', '.js', '.json'],
     // fallback: path.join(__dirname, 'node_modules'),
     // modulesDirectories: [
     //   'node_modules',
     //   path.resolve(__dirname, './node_modules')
     // ],
     root: [path.resolve('./app')],
-    modulesDirectories: [
-      'node_modules',
-      path.resolve(__dirname, 'src/scripts'),
-      path.resolve(__dirname, 'src')
-    ]
+    // modulesDirectories: [
+    //   'node_modules',
+    //   path.resolve(__dirname, 'src/scripts'),
+    //   path.resolve(__dirname, 'src')
+    // ]
   },
-  resolveLoader: {
-    extensions: ['', '.svg', '.png', '.jpg', '.gif', '.eot', '.woff', '.woff2', '.ttf', '.css', '.scss', '.js', '.json'],
-    root: [path.resolve('./app')],
-    fallback: __dirname + "/node_modules"
-  },
+  // resolveLoader: {
+  //   extensions: ['', '.svg', '.png', '.jpg', '.gif', '.eot', '.woff', '.woff2', '.ttf', '.css', '.scss', '.js', '.json'],
+  //   root: [path.resolve('./app')],
+  //   fallback: __dirname + "/node_modules"
+  // },
   output: {
     path: path.join(__dirname, (PROD ? '/build' : '/dist')),
     publicPath: '/',
@@ -77,18 +77,20 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: PROD ?
+        loader: PROD ?
           // PRODUCTION
-          [ExtractTextPlugin.extract('style'),
-          'css',
-          'resolve-url-loader',
-          'sass?sourceMap'] :
+          ExtractTextPlugin.extract('style', 'css?sourceMap!resolve-url!sass?sourceMap') :
+          // [ExtractTextPlugin.extract('style'),
+          // 'css',
+          // 'resolve-url-loader',
+          // 'sass?sourceMap'] :
 
           // DEVELOPMENT
-          ['style',
-          'css?sourceMap',
-          'resolve-url',
-          'sass?sourceMap'],
+          'style!css?sourceMap!resolve-url!sass?sourceMap'
+          // ['style',
+          // 'css?sourceMap',
+          // 'resolve-url',
+          // 'sass?sourceMap'],
       },
       {test: /\.(svg|png|jpe?g|gif)(\?\S*)?$/, loader: 'url?limit=100000&name=img/[name].[ext]'},
       {test: /\.(eot|woff|woff2|ttf)(\?\S*)?$/, loader: 'url?limit=100000&name=fonts/[name].[ext]'},

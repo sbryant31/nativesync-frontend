@@ -12,8 +12,12 @@ module.exports = React.createClass({
       }
     }
   },
+  componentWillUpdate: function(nextProps, nextState) {
+    if (!nextProps.token) {
+      actions.goto('/');
+    }
+  },
   render() {
     return <ActionBrowser initialFilter={this.state.filter} view='self' />
   }
 })
-

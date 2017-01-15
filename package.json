@@ -36,6 +36,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/nativesyncdev/nativesync-frontend#readme",
   "devDependencies": {
+    "bundle-loader": "^0.5.4",
     "eslint": "^3.12.2",
     "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-react": "^6.8.0",

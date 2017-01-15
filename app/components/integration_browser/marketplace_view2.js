@@ -3,9 +3,6 @@ var actions = require('../../modules/actions');
 import EllipsisText  from 'react-ellipsis-text';
 import { browserHistory } from 'react-router';
 
-// CSS
-import './integration_browser.scss';
-
 const circle_arrow = require("../../img/circle_arrow.svg");
 
 module.exports = ({integrations = []}) => {
