@@ -26,7 +26,7 @@ module.exports = React.createClass({
       outputJson[param.name] = ` <${param['type']}> - ${param['description']}`;
     }
 
-    var example = `callAction('${action.organization_name}/${action.service_name}/${action.function_name}/${action.version}', ${JSON.stringify(inputJson)})`;
+    var example = `callAction(${action.internal_name}, ${JSON.stringify(inputJson)})`;
     return <div>
       <Popover content={
           <div>
@@ -42,7 +42,7 @@ module.exports = React.createClass({
         }
         position={Position.LEFT}
         isModal={true}>
-        <a>{`${action.organization_name}/${action.service_name}/${action.function_name}/${action.version}`}</a>
+        <a>{action.internal_name}</a>
       </Popover>
     </div>;
   }

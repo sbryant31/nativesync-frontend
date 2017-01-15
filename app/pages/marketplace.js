@@ -6,7 +6,7 @@ export default class Marketplace extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      filter: {}
+      filter: {visibility: 'published'}
     };
   }
 

@@ -81,6 +81,7 @@ module.exports = React.createClass({
   // whenever service auths change, load the corresponding organization auths
   loadOrganizationAuths: function() {
     var self = this;
+    console.log('underscore', _.pluck);
     var serviceAuthIDs = _.pluck(this.state.selectedServiceAuths, 'id');
     var organization = actions.getState('org');
     actions.getOrganizationAuths(organization.id, serviceAuthIDs)
