@@ -64,15 +64,20 @@ var UserMenu = React.createClass({
       },
       {
         name:'Logout',
-        link:'/logout',
-        icon: 'log-out'
+        icon: 'log-out',
+        action: actions.logout
       }
     ];
     items = lodash.map(items,function(item){
       return <MenuItem key={item.name}
         text={item.name}
         iconName={item.iconName}
-        onClick={() => { actions.goto(item.link); }}
+        onClick={item.link ?
+          // if there is a 'link key' then assume we want it to act as a link
+          (() => { actions.goto(item.link); }) :
+          // otherwise have it trigger an action, if one is present
+          item.action
+        }
       />;
     });
     return <Menu>
@@ -176,7 +181,7 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     // NQ: if not logged in, no need to worry about any of this
-    if (actions.getState('token')) {
+    if (this.props.token) {
       // if no org exists for the user logged in set the default org
       var org = actions.getState('org');
       if (!org) {
@@ -195,10 +200,6 @@ module.exports = React.createClass({
     this.setState({org: org});
   },
   render(){
-    var child = null;
-    if(this.props.children){
-      child = React.cloneElement(this.props.children,this.props);
-    }
     var links = [{
       name: 'Marketplace',
       icon: 'pt-icon-shopping-cart',
@@ -206,7 +207,7 @@ module.exports = React.createClass({
     }];
 
     var avatarMenu = null;
-    if (actions.getState('token')) {    // logged in?
+    if (this.props.token) {
       var emailHash = md5(this.props.me.email.trim().toLowerCase());
       var avatarUrl = this.props.me.avatar_url ? this.props.me.avatar_url : "http://gravatar.com/avatar/" + emailHash + "?s=40";
       avatarMenu =
@@ -231,10 +232,9 @@ module.exports = React.createClass({
       });
     }
 
-    console.log("PROPS: ", this.props);
     return <div style={{paddingTop:50}}>
       <Navbar links={links} avatarMenu={avatarMenu}>
-        { actions.getState('token') &&    // NQ: only show this menu if logged in
+        { this.props.token &&    // NQ: only show this menu if logged in
           <span>
             <Popover
               content={<OrganizationMenu
@@ -253,10 +253,6 @@ module.exports = React.createClass({
           </span>
         }
       </Navbar>
-      { this.props.pagetitle && <h1 className="page-title">{this.props.pagetitle}</h1> }
-      <div className="pt-content" style={{padding: 20}}>
-        {child}
-      </div>
     </div>;
   }
 });

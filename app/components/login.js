@@ -1,4 +1,4 @@
-var React = require('react')
+var React = require('react');
 module.exports = React.createClass({
   getDefaultProps(){
     return {
@@ -6,16 +6,16 @@ module.exports = React.createClass({
       onSwitch:function(){},
       onSubmit:function(){},
       password:'',email:''
-    }
+    };
   },
   handleInput(prop,e){
-    this.props.onChange(prop,e.target.value,e)
+    this.props.onChange(prop,e.target.value,e);
   },
   handleSwitch(){
-    this.props.onSwitch()
+    this.props.onSwitch();
   },
   submit(){
-    this.props.onSubmit()
+    this.props.onSubmit();
   },
   render(){
     return <div>
@@ -25,15 +25,15 @@ module.exports = React.createClass({
       <div className='pt-card'>
         <div className='pt-control-group pt-vertical'>
           <div className='pt-input-group pt-large'>
-            <input 
-              onChange={this.handleInput.bind(this,'email')} 
+            <input
+              onChange={this.handleInput.bind(this,'email')}
               className='pt-input' value={this.props.email}
               placeholder='Email'
             />
           </div>
           <div className='pt-input-group pt-large'>
-            <input 
-              onChange={this.handleInput.bind(this,'password')} 
+            <input
+              onChange={this.handleInput.bind(this,'password')}
               className='pt-input' type='password' value={this.props.password}
               placeholder='Password'
             />
@@ -47,6 +47,6 @@ module.exports = React.createClass({
       <div className='pt-card'>
         Need an account? <a onClick={this.handleSwitch}>Signup</a>
       </div>
-    </div>
+    </div>;
   }
-})
+});

@@ -8,8 +8,12 @@ module.exports = React.createClass({
   getInitialState: function() {
     return { }
   },
+  componentWillUpdate: function(nextProps, nextState) {
+    if (!nextProps.token) {
+      actions.goto('/');
+    }
+  },
   render() {
     return <Service id={this.props.params.id} />
   }
 })
-

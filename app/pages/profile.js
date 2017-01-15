@@ -3,6 +3,11 @@ var Navbar = require('../components/navbar')
 var Sidebar = require('../components/sidebar')
 
 module.exports = React.createClass({
+  componentWillUpdate: function(nextProps, nextState) {
+    if (!nextProps.token) {
+      actions.goto('/');
+    }
+  },
   render:function(){
     var sidebarItems = [
       {name:'Dashboard',url:'/organization/dashboard'},
