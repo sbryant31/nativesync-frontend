@@ -1,6 +1,6 @@
-var React = require('react')
-var Navbar = require('../components/navbar')
-var Sidebar = require('../components/sidebar')
+var React = require('react');
+var Navbar = require('../components/navbar/navbar');
+var Sidebar = require('../components/sidebar');
 
 module.exports = React.createClass({
   componentWillUpdate: function(nextProps, nextState) {
@@ -18,7 +18,7 @@ module.exports = React.createClass({
     ];
 
     return <div style={{paddingTop:50}}>
-      <Navbar/>
+      <Navbar />
       <div className='container'>
         <div className='row'>
           <div className='pt-card col-xs-3'>

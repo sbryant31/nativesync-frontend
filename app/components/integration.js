@@ -1,7 +1,7 @@
-var React = require('react')
-var actions = require('../modules/actions')
-var Navbar = require('../components/navbar')
-var lodash = require('lodash')
+var React = require('react');
+var actions = require('../modules/actions');
+// var Navbar = require('../components/navbar');
+var lodash = require('lodash');
 var Select = require('react-select');
 var Json = require('react-json');
 var OrganizationAuthForm = require('./organization_auth/organization_auth_form');
@@ -251,4 +251,3 @@ module.exports = React.createClass({
     </div>
   }
 })
-

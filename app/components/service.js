@@ -1,7 +1,7 @@
-var React = require('react')
-var actions = require('../modules/actions')
-var Navbar = require('../components/navbar')
-var lodash = require('lodash')
+var React = require('react');
+var actions = require('../modules/actions');
+// var Navbar = require('../components/navbar');
+var lodash = require('lodash');
 var Select = require('react-select');
 var ServiceAuthList = require('../components/service_auth/service_auth_list');
 var ServiceDefinitionList = require('./service_definition/service_definition_list');
@@ -114,4 +114,3 @@ module.exports = React.createClass({
     </div>
   }
 })
-

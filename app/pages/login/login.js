@@ -1,9 +1,12 @@
 var React = require('react');
 import { browserHistory } from 'react-router';
 
-var Login = require('../components/login');
-var Signup = require('../components/signup');
-var actions = require('../modules/actions');
+// CSS
+import './login.scss';
+
+var Login = require('../../components/login');
+var Signup = require('../../components/signup');
+var actions = require('../../modules/actions');
 
 module.exports = React.createClass({
   getInitialState:function(){
@@ -59,9 +62,9 @@ module.exports = React.createClass({
                     password={this.state.password}/>;
     }
     return <div>
-      <div className='row center-xs'>
-        <div style={{paddingTop:200, paddingBottom:200}}  className='col-xs-4'>
-        {show}
+      <div className='LoginContainer row center-xs'>
+        <div className='col-xs-4'>
+          {show}
         </div>
       </div>
     </div>;

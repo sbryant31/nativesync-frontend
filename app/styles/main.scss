@@ -1,4 +1,18 @@
 @font-face {
+  font-family: 'Geomanist ExtraLight';
+  src: url('../fonts/geomanist-extralight-webfont.woff2') format('woff2'),
+       url('../fonts/geomanist-extralight-webfont.eot') format('eot'),
+       url('../fonts/geomanist-extralight-webfont.woff') format('woff'),
+       url('../fonts/geomanist-extralight-webfont.ttf') format('ttf');
+}
+@font-face {
+  font-family: 'Geomanist Thin';
+  src: url('../fonts/geomanist-thin-webfont.woff2') format('woff2'),
+       url('../fonts/geomanist-thin-webfont.eot') format('eot'),
+       url('../fonts/geomanist-thin-webfont.woff') format('woff'),
+       url('../fonts/geomanist-thin-webfont.ttf') format('ttf');
+}
+@font-face {
   font-family: 'Geomanist Light';
   src: url('../fonts/geomanist-light-webfont.woff2') format('woff2'),
        url('../fonts/geomanist-light-webfont.eot') format('eot'),
@@ -19,16 +33,27 @@
        url('../fonts/geomanist-book-webfont.woff') format('woff'),
        url('../fonts/geomanist-book-webfont.ttf') format('ttf');
 }
+@font-face {
+  font-family: 'Geomanist Bold';
+  src: url('../fonts/geomanist-bold-webfont.woff2') format('woff2'),
+       url('../fonts/geomanist-bold-webfont.eot') format('eot'),
+       url('../fonts/geomanist-bold-webfont.woff') format('woff'),
+       url('../fonts/geomanist-bold-webfont.ttf') format('ttf');
+}
 
 body {
   background-color: #f3f8fd;
   font-family: "Geomanist Light", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
+  height: 100vh;
+  margin: 0;
+  // margin-right: 8px;
+  display: block;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 30px 0px 15px 0px;
   color: #48485A;
-  font-family: "Geomanist Regular", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
+  font-family: "Geomanist Book", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
   &.with-hr {
     padding-bottom: 10px;
     border-bottom: 2px solid rgba(111, 125, 146, 0.15);   // #6F7D92 with 0.15 opacity
@@ -37,10 +62,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .page-title {
+  font-family: "Geomanist Regular", -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", sans-serif, "Icons16";
   margin: 0px;
   background-color: #2CC2FD;
   color: #FFF;
-  padding: 30px;
+  padding: 20px;
+  display: block;
+  font-size: 2.5em;
 }
 
 strong {
@@ -65,6 +93,7 @@ a {
     color: #434789;
   }
 }
+hr { margin: 30px 0px; }
 
 [class^=col-] {
   padding-left: 30px;
@@ -79,7 +108,6 @@ a {
 .pt-content {
   padding: 30px;
 }
-
 .pt-button {
   border: none;
   border-radius: 30px;
@@ -87,6 +115,9 @@ a {
     background: #6B75DD;
     box-shadow: none;
   }
+}
+.pt-control-group.pt-vertical > .pt-button:last-child {
+  border-radius: 30px;
 }
 
 .pt-tabs {

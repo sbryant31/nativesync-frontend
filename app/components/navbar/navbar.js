@@ -1,11 +1,15 @@
 var React = require('react');
 var lodash = require('lodash');
-var actions = require('../modules/actions');
+var actions = require('../../modules/actions');
 import { browserHistory } from 'react-router';
 import { Colors } from '@blueprintjs/core';
 
-var cloud = require('../img/cloud.png');
-var logo_text = require('../img/logo_text.png');
+import LogoSVG from '../logo_svg';
+// var cloud = require('../img/cloud.png');
+// var logo_text = require('../img/logo_text.png');
+
+// CSS
+import './navbar.scss';
 
 module.exports = React.createClass({
   getDefaultProps:function(){
@@ -23,9 +27,12 @@ module.exports = React.createClass({
         >{link.name}</li>;
     }.bind(this));
 
-    return <nav className='pt-navbar pt-fixed-top'>
+    return <nav className='Navbar pt-navbar pt-fixed-top'>
       <div className="pt-navbar-group pt-align-left">
-        <div className="pt-navbar-heading"><img src={cloud} style={{height: 45, width: 79}} /><img src={logo_text} style={{height: 35, width: 210}}/></div>
+        <div className="pt-navbar-heading">
+          <LogoSVG />
+          <span className="ns_text">NativeSync</span>
+        </div>
       </div>
       <div className="pt-navbar-group pt-align-right" >
         <ul className='pt-menu'>
