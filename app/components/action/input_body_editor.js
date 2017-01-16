@@ -59,32 +59,28 @@ module.exports = React.createClass({
       <label className="pt-label">
         <h4>Data Type</h4>
         <Select value={ this.props.value.content_type } options={bodyTypes} onChange={this.handleChange.bind(this, 'content_type')} />
-        {this.props.value.content_type == 'form' &&
-          <span>The parameters specified as in "body" will be sent as form data</span>
-        }
       </label>
-      { (this.props.value.content_type == 'xml' || this.props.value.content_type == 'json') &&
-        <div>
-          <label className="pt-label pt-inline">
-            <Select value={ this.props.value.body_code_type } options={bodyCodeTypes} onChange={this.handleChange.bind(this, 'body_code_type')} />
-          </label>
-          <label className="pt-label pt-inline">
-            {this.props.value.body_code_type == 'javascript' &&
-              <div>
-                <h4>Input Body Generator</h4>
-                <span>Write a javascript function that returns a request body. Assume "input" is
-                a javascript object containing all the parameters above.</span>
-                <CodeEditor
-                  onChange={this.handleChange.bind(this, 'code')}
-                  code={code}
-                  json={json}
-                  mode={codeMode}
-                />
-              </div>
-            }
+      <div>
+        <label className="pt-label pt-inline">
+          <Select value={ this.props.value.body_code_type } options={bodyCodeTypes} onChange={this.handleChange.bind(this, 'body_code_type')} />
         </label>
-        </div>
-      }
+        <label className="pt-label pt-inline">
+          {this.props.value.body_code_type == 'javascript' &&
+            <div>
+              <h4>Input Body Generator</h4>
+              <span>Write a javascript function that returns a request body. Assume "input" is
+              a javascript object containing all the parameters above.</span>
+              <CodeEditor
+                onChange={this.handleChange.bind(this, 'code')}
+                code={code}
+                json={json}
+                mode={codeMode}
+              />
+            </div>
+          }
+        </label>
+      </div>
+
     </div>;
   }
 });

@@ -10,7 +10,7 @@ import Link from 'react-router/lib/Link';
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      filter: {},
+      filter: {visibility: 'published'},
       filteredIntegrations: [],
       integrations: [],
       integration_ids: [],

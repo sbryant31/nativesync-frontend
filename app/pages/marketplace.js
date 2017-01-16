@@ -1,18 +1,16 @@
 import React from 'react';
-const IntegrationBrowser = require('../components/integration_browser/integration_browser.js');
 import IntegrationDetails from '../components/integration_details/integration_details.js';
-
 // CSS
 import '../components/integration_browser/integration_browser.scss';
 
-module.exports = React.createClass({
-  getInitialState: function() {
-    return {
-      filter: {}
-    };
-  },
-
-  render: function() {
+export default class Marketplace extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filter: {visibility: 'published'}
+    }
+  }
+  render() {
     return (
       <div className="Marketplace">
         <h1 className="page-title">Ready to use Integrations</h1>
@@ -30,4 +28,4 @@ module.exports = React.createClass({
       </div>
     );
   }
-});
+};

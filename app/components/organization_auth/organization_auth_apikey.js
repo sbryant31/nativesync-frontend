@@ -28,7 +28,7 @@ module.exports = React.createClass({
       <TextInputField
         label={"Api Key"}
         value={this.props.value.apiKeyValue}
-        onChange={this.handleChange}
+        onChange={this.handleChange.bind(this, 'apiKeyValue')}
       />
     </div>;
   }
