@@ -1,24 +1,23 @@
-var React = require('react');
-// var _ = require('underscore');
-// var lodash = require('lodash');
-// var actions = require('../../modules/actions');
-// var Select = require('react-select');
+import React, { Component } from 'react';
 
-module.exports = React.createClass({
-  getDefaultProps: function() {
-    return {
-      onChange: (res) => { console.log(res); }
-    };
-  },
-  render() {
-    var self = this;
-    return (
-        <div>
-            <label className="pt-label pt-inline col-xs">
-                <span>{this.props.label}</span>
-                <input type="pt-input" onChange={this.props.onChange} value={this.props.value} />
-            </label>
-        </div>
-    );
-  }
-});
+class TextInputField extends Component {
+
+    constructor(props) {
+        super(props)
+    }
+
+    get value() {
+        return this.refs.root.value
+    }
+
+    render() {
+        const { label, onChange, defaultValue } = this.props
+        return <label className="pt-label pt-inline col-xs">
+            <span>{label}</span>
+            <input type='pt-input' onChange={onChange} defaultValue={defaultValue} ref='root' />
+        </label>
+    }
+}
+
+module.exports = TextInputField;
+// export default TextInputField

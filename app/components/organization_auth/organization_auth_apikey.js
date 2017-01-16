@@ -7,26 +7,16 @@ class OrganizationAuthAPIKey extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(field = 'apiKeyValue', e) {
-    var value = this.props.value;
-    if (e.target) {
-      value[field] = e.target.value;
-    } else if (e.value) {
-      value[field] = e.value;
-    } else {
-      value[field] = e;
-    }
-    this.props.onChange(value);
+  handleChange(ev) {
+    this.props.onChange(ev.target.value);
   }
 
   render() {
-    return <div>
-      <TextInputField
+    return <TextInputField
         label={"Api Key"}
-        value={this.props.value.apiKeyValue}
-        onChange={this.handleChange.bind(this, 'apiKeyValue')}
+        defaultValue={this.props.value.apiKeyValue}
+        onChange={this.handleChange.bind(this)}
       />
-    </div>;
   }
 }
 OrganizationAuthAPIKey.defaultProps = {

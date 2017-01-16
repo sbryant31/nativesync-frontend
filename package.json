@@ -76,6 +76,7 @@
     "normalize.css": "^5.0.0",
     "npm-run-all": "^4.0.0",
     "open": "^0.0.5",
+    "os-browserify": "^0.2.1",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
     "react-blockly-component": "^2.0.1",
