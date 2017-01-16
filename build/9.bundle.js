@@ -31,7 +31,7 @@ webpackJsonp([9],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactInputAutosize = __webpack_require__(26);
+	var _reactInputAutosize = __webpack_require__(22);
 
 	var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
@@ -39,35 +39,35 @@ webpackJsonp([9],{
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _utilsDefaultArrowRenderer = __webpack_require__(32);
+	var _utilsDefaultArrowRenderer = __webpack_require__(28);
 
 	var _utilsDefaultArrowRenderer2 = _interopRequireDefault(_utilsDefaultArrowRenderer);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
-	var _Async = __webpack_require__(27);
+	var _Async = __webpack_require__(23);
 
 	var _Async2 = _interopRequireDefault(_Async);
 
-	var _AsyncCreatable = __webpack_require__(28);
+	var _AsyncCreatable = __webpack_require__(24);
 
 	var _AsyncCreatable2 = _interopRequireDefault(_AsyncCreatable);
 
-	var _Creatable = __webpack_require__(29);
+	var _Creatable = __webpack_require__(25);
 
 	var _Creatable2 = _interopRequireDefault(_Creatable);
 
-	var _Option = __webpack_require__(30);
+	var _Option = __webpack_require__(26);
 
 	var _Option2 = _interopRequireDefault(_Option);
 
-	var _Value = __webpack_require__(31);
+	var _Value = __webpack_require__(27);
 
 	var _Value2 = _interopRequireDefault(_Value);
 
@@ -1193,57 +1193,14 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 8:
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(console) {"use strict";
-
-	var React = __webpack_require__(1);
-	// var _ = require('underscore');
-	// var lodash = require('lodash');
-	// var actions = require('../../modules/actions');
-	// var Select = require('react-select');
-
-	module.exports = React.createClass({
-	  displayName: "exports",
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      onChange: function onChange(res) {
-	        console.log(res);
-	      }
-	    };
-	  },
-	  render: function render() {
-	    var self = this;
-	    return React.createElement(
-	      "div",
-	      null,
-	      React.createElement(
-	        "label",
-	        { className: "pt-label pt-inline col-xs" },
-	        React.createElement(
-	          "span",
-	          null,
-	          this.props.label
-	        ),
-	        React.createElement("input", { type: "pt-input", onChange: this.props.onChange, value: this.props.value })
-	      )
-	    );
-	  }
-	});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-
-/***/ 14:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _stripDiacritics = __webpack_require__(16);
+	var _stripDiacritics = __webpack_require__(14);
 
 	var _stripDiacritics2 = _interopRequireDefault(_stripDiacritics);
 
@@ -1284,7 +1241,7 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 15:
+/***/ 13:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1351,7 +1308,7 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 16:
+/***/ 14:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1367,7 +1324,7 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 26:
+/***/ 22:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1502,7 +1459,7 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 27:
+/***/ 23:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1533,7 +1490,7 @@ webpackJsonp([9],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsStripDiacritics = __webpack_require__(16);
+	var _utilsStripDiacritics = __webpack_require__(14);
 
 	var _utilsStripDiacritics2 = _interopRequireDefault(_utilsStripDiacritics);
 
@@ -1711,7 +1668,7 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 28:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1759,7 +1716,7 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 29:
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1778,11 +1735,11 @@ webpackJsonp([9],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
@@ -2049,7 +2006,7 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 30:
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2166,7 +2123,7 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 31:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2278,7 +2235,7 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 32:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2308,15 +2265,15 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 181:
+/***/ 71:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
-	var actions = __webpack_require__(5);
+	// var lodash = require('lodash');
+	var actions = __webpack_require__(4);
 	var Select = __webpack_require__(3);
 
 	module.exports = React.createClass({
@@ -2324,29 +2281,30 @@ webpackJsonp([9],{
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      services: {}
+	      services: [],
+	      serviceOptions: []
 	    };
 	  },
 	  getDefaultProps: function getDefaultProps() {
 	    return {
-	      service: {},
-	      onChange: function onChange(service) {
-	        console.log('change service', service);
+	      value: [],
+	      onChange: function onChange(services) {
+	        console.log('change services', services);
 	      }
 	    };
 	  },
 	  handleChange: function handleChange(selection) {
-	    if (selection == null) {
-	      this.props.onChange(null);
-	    } else {
-	      this.props.onChange(this.state.services[selection.value]);
-	    }
+	    var selectedIDs = _.pluck(selection, 'value');
+	    var services = _.filter(this.state.services, function (service) {
+	      return selectedIDs.indexOf(service.id) !== -1;
+	    });
+	    this.props.onChange(services);
 	  },
 	  componentDidMount: function componentDidMount() {
 	    console.log('loading options for service');
 	    var self = this;
 	    return actions.getServices().then(function (result) {
-	      self.setState({ services: _.indexBy(result.services, 'id') });
+	      self.setState({ services: result.services });
 	      var serviceOptions = _.map(result.services, function (service) {
 	        return { value: service.id, label: service.name };
 	      });
@@ -2355,13 +2313,17 @@ webpackJsonp([9],{
 	  },
 	  render: function render() {
 	    var self = this;
+	    var value = _.map(self.props.value, function (service) {
+	      return { value: service.id, label: service.name };
+	    });
 	    return React.createElement(
 	      'label',
 	      { className: 'pt-label pt-inline col-xs' },
-	      'Service',
+	      'Services',
 	      React.createElement(Select, {
-	        name: 'service-selector',
-	        value: this.props.service ? this.props.service.id : null,
+	        name: 'service-multi-select',
+	        multi: true,
+	        value: value,
 	        options: this.state.serviceOptions,
 	        onChange: this.handleChange
 	      })
@@ -2372,57 +2334,74 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 273:
+/***/ 115:
+/***/ function(module, exports) {
+
+	module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjYxMi4wMDVweCIgaGVpZ2h0PSI2MTIuMDA2cHgiIHZpZXdCb3g9IjAgMCA2MTIuMDA1IDYxMi4wMDYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDYxMi4wMDUgNjEyLjAwNjsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPGcgaWQ9Il94MzdfXzIyXyI+DQoJCTxnPg0KCQkJPHBhdGggZD0iTTYwNS43MzEsMjY3Ljc3NmgtMzQuOTU5QzU1Mi4xNzQsMTM4LjE0Nyw0NDAuOTkxLDM4LjQxMiwzMDYuMjIxLDM4LjQxMmMtMTA0LjE1LDAtMTk0LjE3NSw1OS42MzUtMjM4LjQwNCwxNDYuNDg3DQoJCQkJbDcxLjc5MSwyNy42YzMyLjc0Mi01OC4yMiw5NS4wMzMtOTcuNjMzLDE2Ni42MTQtOTcuNjMzYzkyLjQ3MSwwLDE2OS41OTUsNjUuNjc1LDE4Ny4yOTQsMTUyLjkwOWgtNDYuMDY0DQoJCQkJYy01LjkwNSw1LjczNC0xMS41NjMsOS4yOS0zLjA5NiwxOS4yMjlsNzEuMzEyLDcyLjUxN2M1LjkwNiw1LjczNCwxNS40ODIsNS43MzQsMjEuMzg5LDBsNzEuNzkxLTcyLjUxNw0KCQkJCUM2MTQuNzM0LDI4MS4yNzEsNjExLjYzNywyNzMuNTI5LDYwNS43MzEsMjY3Ljc3NnogTTMwNi4yMjEsNDk3LjE0MWMtODUuNTcyLDAtMTU3Ljk5My01Ni4yNTItMTgyLjM2My0xMzMuNzk3aDQxLjgyMQ0KCQkJCWM1LjkwNi01LjczNCw5LjAwMi0xMy40OTQsMy4wOTYtMTkuMjI5bC03MS43NzEtNzIuNTE3Yy01LjkwNi01LjczNC0xNS40ODItNS43MzQtMjEuMzg4LDBMNC4zMDIsMzQ0LjExNQ0KCQkJCWMtOC40NjgsOS45MzktMi44MSwxMy40OTQsMy4wOTYsMTkuMjI5aDM1LjA1NWMyMC43MzgsMTEzLjM4MywxMzAuNzU2LDIxMC4yNSwyNjMuNzg3LDIxMC4yNQ0KCQkJCWM5Ny4zNDYsMCwxODIuMjg2LTUyLjE2LDIyOS4xMTUtMTI5Ljg3N2wtNzIuMzQ2LTI4LjU1NUM0MjguNDUyLDQ2NC42ODYsMzcxLjE2OCw0OTcuMTQxLDMwNi4yMjEsNDk3LjE0MXoiLz4NCgkJPC9nPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K"
+
+/***/ },
+
+/***/ 117:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
+	var _Link = __webpack_require__(174);
+
+	var _Link2 = _interopRequireDefault(_Link);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var lodash = __webpack_require__(4);
-	var ServiceSelector = __webpack_require__(181);
-	var TextInputField = __webpack_require__(8);
+	var actions = __webpack_require__(4);
+	var _ = __webpack_require__(6);
+	var ListView = __webpack_require__(118);
+	// const MarketplaceView = require('./integration_browser/marketplace_view');
+	var MarketplaceView2 = __webpack_require__(119);
+	var ServiceMultiSelect = __webpack_require__(71);
+
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      view: 'all',
-	      filter: {},
-	      filteredActions: [],
-	      actions: []
+	      filter: { visibility: 'published' },
+	      filteredIntegrations: [],
+	      integrations: [],
+	      integration_ids: []
 	    };
 	  },
+
 	  getDefaultProps: function getDefaultProps() {
 	    return {
-	      initialFilter: {}
+	      initialFilter: {},
+	      org: null,
+	      view: 'list'
 	    };
 	  },
+
 	  componentDidMount: function componentDidMount() {
-	    var self = this;
-	    var filter = this.props.initialFilter;
-	    self.setState({ filter: filter });
-	    return actions.getActions(filter).then(function (result) {
-	      self.setState({
-	        actions: result.actions,
-	        filteredActions: result.actions
+	    var _this = this;
+
+	    // this.setState({filter: this.props.initialFilter});
+	    var filter = this.state.filter;
+	    if (this.props.org) {
+	      filter.organization_id = this.props.org.id;
+	    }
+	    actions.getMarketplaceIntegrations(filter).then(function (result) {
+	      _this.setState({
+	        integrations: result.integrations,
+	        integration_ids: _.pluck(result.integrations, 'id'),
+	        filteredIntegrations: result.integrations
 	      });
 	    });
 	  },
-	  handleMakeDuplicate: function handleMakeDuplicate(actionId) {
-	    return actions.duplicateAction(actionId).then(function (result) {
-	      return actions.goto.bind('/action/' + result.action.id);
-	    });
-	  },
+
 	  handleFilterChange: function handleFilterChange(field, e) {
-	    console.log('filter change', field, e);
 	    var filter = this.state.filter;
 	    var value = void 0;
-	    if (e == null) {
-	      value = null;
-	    } else if (e.target) {
+	    if (e.target) {
 	      value = e.target.value;
 	    } else if (e.value) {
 	      value = e.value;
@@ -2436,56 +2415,158 @@ webpackJsonp([9],{
 	    }
 
 	    this.setState({ filter: filter });
-	    var filteredActions = _.filter(this.state.actions, function (action) {
+	    var filteredIntegrations = _.filter(this.state.integrations, function (integration) {
 	      var match = true;
 	      _.each(filter, function (value, key) {
-	        if (action[key].toLowerCase().indexOf(value.toLowerCase()) === -1) {
+	        console.log('filtering key', key, value);
+	        if (key == 'serviceIDs') {
+	          // get the IDs that are required
+	          var requiredIDs = _.pluck(value, 'id');
+	          var serviceIDs = _.pluck(integration.Services, 'id');
+	          _.each(requiredIDs, function (id) {
+	            if (serviceIDs.indexOf(id) === -1) {
+	              match = false;
+	            }
+	          });
+	        } else if (integration[key].toLowerCase().indexOf(value.toLowerCase()) === -1) {
 	          match = false;
 	        }
 	      });
 	      return match;
 	    });
-	    this.setState({ filteredActions: filteredActions });
-	    this.forceUpdate();
+	    this.setState({ filteredIntegrations: filteredIntegrations });
+	  },
+
+	  render: function render() {
+	    var _this2 = this;
+
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'div',
+	        { className: 'integration-request' },
+	        'Don\'t see the integration you need? ',
+	        React.createElement(
+	          _Link2.default,
+	          { to: '/marketplace/request' },
+	          'We can build it!'
+	        )
+	      ),
+	      React.createElement(ServiceMultiSelect, {
+	        value: this.state.filter.serviceIDs,
+	        onChange: function onChange(e) {
+	          _this2.handleFilterChange('serviceIDs', e);
+	        }
+	      }),
+	      React.createElement('hr', null),
+	      this.props.view == 'marketplace' && React.createElement(
+	        'div',
+	        null,
+	        React.createElement(MarketplaceView2, {
+	          integrations: this.state.filteredIntegrations
+	        })
+	      ),
+	      this.props.view == 'list' && React.createElement(ListView, { integrations: this.state.filteredIntegrations })
+	    );
+	  }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+
+/***/ 118:
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
+
+	var React = __webpack_require__(1);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../../components/navbar');
+	var lodash = __webpack_require__(5);
+
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      selectedIntegrationId: null,
+	      integrationInstances: []
+	    };
+	  },
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      integrations: []
+	    };
+	  },
+	  handleGetIntegrationInstances: function handleGetIntegrationInstances(integrationId) {
+	    var self = this;
+	    self.setState({ selectedIntegrationId: integrationId });
+	    actions.getIntegrationInstances(integrationId).then(function (result) {
+	      console.log('got instances', result);
+	      self.setState({ integrationInstances: result.integrationInstances });
+	    });
 	  },
 	  render: function render() {
 	    var self = this;
-	    var actionsList = lodash.map(this.state.filteredActions, function (action) {
+	    var integrationsList = lodash.map(self.props.integrations, function (integration) {
+	      var instances = '';
+	      if (self.state.selectedIntegrationId == integration.id) {
+	        instances = lodash.map(self.state.integrationInstances, function (instance) {
+	          return React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(
+	              'a',
+	              { onClick: actions.goto.bind(null, '/integration_instance/' + instance.id) },
+	              instance.organization.name,
+	              ' ',
+	              instance.title
+	            )
+	          );
+	        });
+	      }
 	      return React.createElement(
 	        'tr',
-	        { key: action.id },
+	        { key: integration.id },
 	        React.createElement(
 	          'td',
 	          null,
-	          action.organization.name
-	        ),
-	        React.createElement(
-	          'td',
-	          null,
-	          action.service_name
+	          integration.organization.name
 	        ),
 	        React.createElement(
 	          'td',
 	          null,
 	          React.createElement(
 	            'a',
-	            { onClick: actions.goto.bind(null, '/action/' + action.id) },
-	            action.function_name
+	            { onClick: actions.goto.bind(null, '/integration/' + integration.id) },
+	            integration.title
 	          )
 	        ),
 	        React.createElement(
 	          'td',
 	          null,
-	          action.version
+	          integration.description
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          integration.version
 	        ),
 	        React.createElement(
 	          'td',
 	          null,
 	          React.createElement(
-	            'a',
-	            { onClick: self.handleMakeDuplicate.bind(null, action.id) },
-	            React.createElement('span', { className: 'pt-icon-duplicate' })
-	          )
+	            'div',
+	            { className: 'row' },
+	            React.createElement('span', { className: 'pt-icon-double-chevron-down', onClick: self.handleGetIntegrationInstances.bind(self, integration.id) })
+	          ),
+	          instances
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement('span', { className: 'pt-icon-add', onClick: actions.goto.bind(self, '/integration/' + integration.id + '/instance/new') })
 	        )
 	      );
 	    });
@@ -2493,18 +2574,9 @@ webpackJsonp([9],{
 	      'div',
 	      null,
 	      React.createElement(
-	        'h1',
-	        null,
-	        'Actions'
-	      ),
-	      React.createElement(TextInputField, { label: 'Service', value: this.state.filter.service_name, onChange: this.handleFilterChange.bind(this, 'service_name') }),
-	      React.createElement(TextInputField, { label: 'Function', value: this.state.filter.function_name, onChange: this.handleFilterChange.bind(this, 'function_name') }),
-	      React.createElement(TextInputField, { label: 'Organization', value: this.state.filter.organization_name, onChange: this.handleFilterChange.bind(this, 'organization_name') }),
-	      React.createElement('hr', null),
-	      React.createElement(
 	        'a',
-	        { onClick: actions.goto.bind(null, '/action/new') },
-	        'New action'
+	        { onClick: actions.goto.bind(null, '/integration/new') },
+	        'New Integration'
 	      ),
 	      React.createElement('hr', null),
 	      React.createElement(
@@ -2524,12 +2596,12 @@ webpackJsonp([9],{
 	            React.createElement(
 	              'th',
 	              null,
-	              'Service'
+	              'Title'
 	            ),
 	            React.createElement(
 	              'th',
 	              null,
-	              'Function'
+	              'Description'
 	            ),
 	            React.createElement(
 	              'th',
@@ -2539,14 +2611,19 @@ webpackJsonp([9],{
 	            React.createElement(
 	              'th',
 	              null,
-	              'Menu'
+	              'Managed Instances'
+	            ),
+	            React.createElement(
+	              'th',
+	              null,
+	              'Implement Instance'
 	            )
 	          )
 	        ),
 	        React.createElement(
 	          'tbody',
 	          null,
-	          actionsList
+	          integrationsList
 	        )
 	      )
 	    );
@@ -2556,25 +2633,219 @@ webpackJsonp([9],{
 
 /***/ },
 
-/***/ 634:
+/***/ 119:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _reactEllipsisText = __webpack_require__(152);
+
+	var _reactEllipsisText2 = _interopRequireDefault(_reactEllipsisText);
+
+	var _reactRouter = __webpack_require__(80);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var React = __webpack_require__(1);
+	var actions = __webpack_require__(4);
+
+
+	var circle_arrow = __webpack_require__(115);
+
+	module.exports = function (_ref) {
+	  var _ref$integrations = _ref.integrations,
+	      integrations = _ref$integrations === undefined ? [] : _ref$integrations;
+
+	  return React.createElement(
+	    'div',
+	    { className: 'row MarketplaceView' },
+	    integrations.map(function (integration) {
+	      return React.createElement(
+	        'div',
+	        { key: integration.id, className: 'col-lg-3 col-md-4 col-sm-6 col-xs-12' },
+	        React.createElement(
+	          'div',
+	          {
+	            className: 'integration pt-card pt-elevation-0 pt-interactive',
+	            onClick: function onClick() {
+	              _reactRouter.browserHistory.push('/marketplace/' + integration.id);
+	            }
+	          },
+	          React.createElement(
+	            'div',
+	            { className: 'services-icons' },
+	            integration.Services.map(function (service, idx) {
+	              return React.createElement(
+	                'span',
+	                { className: 'service', key: service.id },
+	                idx > 0 ? React.createElement('img', { className: 'circle_arrow', src: circle_arrow }) : null,
+	                React.createElement('img', { src: service.logo_url })
+	              );
+	            })
+	          ),
+	          React.createElement(
+	            'h4',
+	            { className: 'title' },
+	            integration.title
+	          ),
+	          React.createElement(_reactEllipsisText2.default, {
+	            text: integration.description || "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+	            length: 140
+	          }),
+	          React.createElement(
+	            'div',
+	            { className: 'author' },
+	            'By ' + integration.organization.name
+	          ),
+	          Object.getOwnPropertyNames(integration.pricing).length > 0 ? React.createElement(
+	            'div',
+	            { className: 'pricing' },
+	            '$' + integration.pricing.upfront + ' + $' + integration.pricing.monthly + '/mo'
+	          ) : ""
+	        )
+	      );
+	    })
+	  );
+	};
+
+/***/ },
+
+/***/ 152:
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(153);
+
+
+/***/ },
+
+/***/ 153:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var styles = {
+	  allText: {
+	    MozUserSelect: 'text',
+	    WebkitUserSelect: 'text',
+	    msUserSelect: 'text',
+	    userSelect: 'text'
+	  }
+	};
+
+	var EllipsisText = function (_React$Component) {
+	  _inherits(EllipsisText, _React$Component);
+
+	  function EllipsisText(props) {
+	    _classCallCheck(this, EllipsisText);
+
+	    var _this = _possibleConstructorReturn(this, (EllipsisText.__proto__ || Object.getPrototypeOf(EllipsisText)).call(this, props));
+
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  _createClass(EllipsisText, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props,
+	          text = _props.text,
+	          length = _props.length,
+	          tail = _props.tail,
+	          tailClassName = _props.tailClassName,
+	          others = _objectWithoutProperties(_props, ['text', 'length', 'tail', 'tailClassName']);
+
+	      if (text.length <= this.props.length || this.props.length < 0) {
+	        return _react2.default.createElement(
+	          'span',
+	          others,
+	          this.props.text
+	        );
+	      } else {
+
+	        var tailStyle = {
+	          cursor: 'auto'
+	        };
+
+	        var displayText = void 0;
+	        if (length - tail.length <= 0) {
+	          displayText = '';
+	        } else {
+	          displayText = text.slice(0, length - tail.length);
+	        }
+
+	        return _react2.default.createElement(
+	          'span',
+	          _extends({ title: this.props.text }, others),
+	          displayText,
+	          _react2.default.createElement(
+	            'span',
+	            { style: tailStyle,
+	              className: tailClassName },
+	            tail
+	          )
+	        );
+	      }
+	    }
+	  }]);
+
+	  return EllipsisText;
+	}(_react2.default.Component);
+
+	EllipsisText.propTypes = {
+	  text: _react2.default.PropTypes.string.isRequired,
+	  length: _react2.default.PropTypes.number.isRequired,
+	  tail: _react2.default.PropTypes.string,
+	  tailClassName: _react2.default.PropTypes.string
+	};
+
+	EllipsisText.defaultProps = {
+	  tail: '...',
+	  tailClassName: 'more'
+	};
+
+	exports.default = EllipsisText;
+
+/***/ },
+
+/***/ 642:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var ActionBrowser = __webpack_require__(273);
-	var lodash = __webpack_require__(4);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var IntegrationBrowser = __webpack_require__(117);
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      filter: {
-	        organization_id: actions.getState('org').id
-	      }
+	      filter: {}
 	    };
 	  },
 	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
@@ -2583,7 +2854,7 @@ webpackJsonp([9],{
 	    }
 	  },
 	  render: function render() {
-	    return React.createElement(ActionBrowser, { initialFilter: this.state.filter, view: 'self' });
+	    return React.createElement(IntegrationBrowser, null);
 	  }
 	});
 

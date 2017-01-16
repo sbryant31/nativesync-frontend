@@ -31,7 +31,7 @@ webpackJsonp([8],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactInputAutosize = __webpack_require__(26);
+	var _reactInputAutosize = __webpack_require__(22);
 
 	var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
@@ -39,35 +39,35 @@ webpackJsonp([8],{
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _utilsDefaultArrowRenderer = __webpack_require__(32);
+	var _utilsDefaultArrowRenderer = __webpack_require__(28);
 
 	var _utilsDefaultArrowRenderer2 = _interopRequireDefault(_utilsDefaultArrowRenderer);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
-	var _Async = __webpack_require__(27);
+	var _Async = __webpack_require__(23);
 
 	var _Async2 = _interopRequireDefault(_Async);
 
-	var _AsyncCreatable = __webpack_require__(28);
+	var _AsyncCreatable = __webpack_require__(24);
 
 	var _AsyncCreatable2 = _interopRequireDefault(_AsyncCreatable);
 
-	var _Creatable = __webpack_require__(29);
+	var _Creatable = __webpack_require__(25);
 
 	var _Creatable2 = _interopRequireDefault(_Creatable);
 
-	var _Option = __webpack_require__(30);
+	var _Option = __webpack_require__(26);
 
 	var _Option2 = _interopRequireDefault(_Option);
 
-	var _Value = __webpack_require__(31);
+	var _Value = __webpack_require__(27);
 
 	var _Value2 = _interopRequireDefault(_Value);
 
@@ -1193,14 +1193,14 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 14:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _stripDiacritics = __webpack_require__(16);
+	var _stripDiacritics = __webpack_require__(14);
 
 	var _stripDiacritics2 = _interopRequireDefault(_stripDiacritics);
 
@@ -1241,7 +1241,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 15:
+/***/ 13:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1308,7 +1308,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 16:
+/***/ 14:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1324,7 +1324,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 26:
+/***/ 22:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1459,7 +1459,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 27:
+/***/ 23:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1490,7 +1490,7 @@ webpackJsonp([8],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsStripDiacritics = __webpack_require__(16);
+	var _utilsStripDiacritics = __webpack_require__(14);
 
 	var _utilsStripDiacritics2 = _interopRequireDefault(_utilsStripDiacritics);
 
@@ -1668,7 +1668,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 28:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1716,7 +1716,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 29:
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1735,11 +1735,11 @@ webpackJsonp([8],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
@@ -2006,7 +2006,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 30:
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2123,7 +2123,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 31:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2235,7 +2235,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 32:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2265,7 +2265,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 83:
+/***/ 71:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
@@ -2273,7 +2273,7 @@ webpackJsonp([8],{
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
 	// var lodash = require('lodash');
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var Select = __webpack_require__(3);
 
 	module.exports = React.createClass({
@@ -2334,31 +2334,31 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 160:
+/***/ 115:
 /***/ function(module, exports) {
 
 	module.exports = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjYxMi4wMDVweCIgaGVpZ2h0PSI2MTIuMDA2cHgiIHZpZXdCb3g9IjAgMCA2MTIuMDA1IDYxMi4wMDYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDYxMi4wMDUgNjEyLjAwNjsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPGcgaWQ9Il94MzdfXzIyXyI+DQoJCTxnPg0KCQkJPHBhdGggZD0iTTYwNS43MzEsMjY3Ljc3NmgtMzQuOTU5QzU1Mi4xNzQsMTM4LjE0Nyw0NDAuOTkxLDM4LjQxMiwzMDYuMjIxLDM4LjQxMmMtMTA0LjE1LDAtMTk0LjE3NSw1OS42MzUtMjM4LjQwNCwxNDYuNDg3DQoJCQkJbDcxLjc5MSwyNy42YzMyLjc0Mi01OC4yMiw5NS4wMzMtOTcuNjMzLDE2Ni42MTQtOTcuNjMzYzkyLjQ3MSwwLDE2OS41OTUsNjUuNjc1LDE4Ny4yOTQsMTUyLjkwOWgtNDYuMDY0DQoJCQkJYy01LjkwNSw1LjczNC0xMS41NjMsOS4yOS0zLjA5NiwxOS4yMjlsNzEuMzEyLDcyLjUxN2M1LjkwNiw1LjczNCwxNS40ODIsNS43MzQsMjEuMzg5LDBsNzEuNzkxLTcyLjUxNw0KCQkJCUM2MTQuNzM0LDI4MS4yNzEsNjExLjYzNywyNzMuNTI5LDYwNS43MzEsMjY3Ljc3NnogTTMwNi4yMjEsNDk3LjE0MWMtODUuNTcyLDAtMTU3Ljk5My01Ni4yNTItMTgyLjM2My0xMzMuNzk3aDQxLjgyMQ0KCQkJCWM1LjkwNi01LjczNCw5LjAwMi0xMy40OTQsMy4wOTYtMTkuMjI5bC03MS43NzEtNzIuNTE3Yy01LjkwNi01LjczNC0xNS40ODItNS43MzQtMjEuMzg4LDBMNC4zMDIsMzQ0LjExNQ0KCQkJCWMtOC40NjgsOS45MzktMi44MSwxMy40OTQsMy4wOTYsMTkuMjI5aDM1LjA1NWMyMC43MzgsMTEzLjM4MywxMzAuNzU2LDIxMC4yNSwyNjMuNzg3LDIxMC4yNQ0KCQkJCWM5Ny4zNDYsMCwxODIuMjg2LTUyLjE2LDIyOS4xMTUtMTI5Ljg3N2wtNzIuMzQ2LTI4LjU1NUM0MjguNDUyLDQ2NC42ODYsMzcxLjE2OCw0OTcuMTQxLDMwNi4yMjEsNDk3LjE0MXoiLz4NCgkJPC9nPg0KCTwvZz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K"
 
 /***/ },
 
-/***/ 177:
+/***/ 117:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
-	var _Link = __webpack_require__(231);
+	var _Link = __webpack_require__(174);
 
 	var _Link2 = _interopRequireDefault(_Link);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var _ = __webpack_require__(6);
-	var ListView = __webpack_require__(178);
+	var ListView = __webpack_require__(118);
 	// const MarketplaceView = require('./integration_browser/marketplace_view');
-	var MarketplaceView2 = __webpack_require__(179);
-	var ServiceMultiSelect = __webpack_require__(83);
+	var MarketplaceView2 = __webpack_require__(119);
+	var ServiceMultiSelect = __webpack_require__(71);
 
 
 	module.exports = React.createClass({
@@ -2475,15 +2475,15 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 178:
+/***/ 118:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var lodash = __webpack_require__(4);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../../components/navbar');
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -2633,24 +2633,24 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 179:
+/***/ 119:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactEllipsisText = __webpack_require__(213);
+	var _reactEllipsisText = __webpack_require__(152);
 
 	var _reactEllipsisText2 = _interopRequireDefault(_reactEllipsisText);
 
-	var _reactRouter = __webpack_require__(103);
+	var _reactRouter = __webpack_require__(80);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 
 
-	var circle_arrow = __webpack_require__(160);
+	var circle_arrow = __webpack_require__(115);
 
 	module.exports = function (_ref) {
 	  var _ref$integrations = _ref.integrations,
@@ -2710,15 +2710,15 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 213:
+/***/ 152:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(214);
+	module.exports = __webpack_require__(153);
 
 
 /***/ },
 
-/***/ 214:
+/***/ 153:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2829,16 +2829,16 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 640:
+/***/ 643:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var IntegrationBrowser = __webpack_require__(177);
-	var lodash = __webpack_require__(4);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var IntegrationBrowser = __webpack_require__(117);
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -2854,7 +2854,7 @@ webpackJsonp([8],{
 	    }
 	  },
 	  render: function render() {
-	    return React.createElement(IntegrationBrowser, null);
+	    return React.createElement(IntegrationBrowser, { org: actions.getState('org'), initialFilter: this.filter });
 	  }
 	});
 

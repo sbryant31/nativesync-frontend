@@ -1,14 +1,14 @@
 webpackJsonp([16],{
 
-/***/ 620:
+/***/ 622:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var lodash = __webpack_require__(4);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -88,15 +88,15 @@ webpackJsonp([16],{
 
 /***/ },
 
-/***/ 638:
+/***/ 640:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	// var Navbar = require('../components/navbar');
-	var IntegrationInstanceBrowser = __webpack_require__(620);
+	var IntegrationInstanceBrowser = __webpack_require__(622);
 	// var lodash = require('lodash');
 
 	module.exports = React.createClass({

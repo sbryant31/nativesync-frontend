@@ -31,7 +31,7 @@ webpackJsonp([11],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactInputAutosize = __webpack_require__(26);
+	var _reactInputAutosize = __webpack_require__(22);
 
 	var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
@@ -39,35 +39,35 @@ webpackJsonp([11],{
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _utilsDefaultArrowRenderer = __webpack_require__(32);
+	var _utilsDefaultArrowRenderer = __webpack_require__(28);
 
 	var _utilsDefaultArrowRenderer2 = _interopRequireDefault(_utilsDefaultArrowRenderer);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
-	var _Async = __webpack_require__(27);
+	var _Async = __webpack_require__(23);
 
 	var _Async2 = _interopRequireDefault(_Async);
 
-	var _AsyncCreatable = __webpack_require__(28);
+	var _AsyncCreatable = __webpack_require__(24);
 
 	var _AsyncCreatable2 = _interopRequireDefault(_AsyncCreatable);
 
-	var _Creatable = __webpack_require__(29);
+	var _Creatable = __webpack_require__(25);
 
 	var _Creatable2 = _interopRequireDefault(_Creatable);
 
-	var _Option = __webpack_require__(30);
+	var _Option = __webpack_require__(26);
 
 	var _Option2 = _interopRequireDefault(_Option);
 
-	var _Value = __webpack_require__(31);
+	var _Value = __webpack_require__(27);
 
 	var _Value2 = _interopRequireDefault(_Value);
 
@@ -1236,14 +1236,14 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 14:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _stripDiacritics = __webpack_require__(16);
+	var _stripDiacritics = __webpack_require__(14);
 
 	var _stripDiacritics2 = _interopRequireDefault(_stripDiacritics);
 
@@ -1284,7 +1284,7 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 15:
+/***/ 13:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1351,7 +1351,7 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 16:
+/***/ 14:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1367,7 +1367,7 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 26:
+/***/ 22:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1502,7 +1502,7 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 27:
+/***/ 23:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1533,7 +1533,7 @@ webpackJsonp([11],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsStripDiacritics = __webpack_require__(16);
+	var _utilsStripDiacritics = __webpack_require__(14);
 
 	var _utilsStripDiacritics2 = _interopRequireDefault(_utilsStripDiacritics);
 
@@ -1711,7 +1711,7 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 28:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1759,7 +1759,7 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 29:
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1778,11 +1778,11 @@ webpackJsonp([11],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
@@ -2049,7 +2049,7 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 30:
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2166,7 +2166,7 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 31:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2278,7 +2278,7 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 32:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2308,103 +2308,272 @@ webpackJsonp([11],{
 
 /***/ },
 
-/***/ 622:
+/***/ 183:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var _core = __webpack_require__(23);
+	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var lodash = __webpack_require__(4);
+	var _ = __webpack_require__(6);
+	var lodash = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var Select = __webpack_require__(3);
-	var TextInputField = __webpack_require__(8);
-
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      organization: {}
+	      services: {}
 	    };
-	  },
-	  handleSave: function handleSave() {
-	    actions.upsertOrganization(this.state.organization);
-	  },
-	  handleChange: function handleChange(field, e) {
-	    if (e.target) {
-	      // normal input handler
-	      this.handleChangeValue(field, e.target.value);
-	    } else if (e.value) {
-	      // dropdown handler
-	      this.handleChangeValue(field, e.value);
-	    } else {
-	      this.handleChangeValue(field, e);
-	    }
-	  },
-	  handleChangeValue: function handleChangeValue(field, value) {
-	    var organization = this.state.organization;
-	    organization[field] = value;
-	    this.setState({ organization: organization });
 	  },
 	  getDefaultProps: function getDefaultProps() {
 	    return {
-	      id: null
+	      service: {},
+	      onChange: function onChange(service) {
+	        console.log('change service', service);
+	      }
+	    };
+	  },
+	  handleChange: function handleChange(selection) {
+	    if (selection == null) {
+	      this.props.onChange(null);
+	    } else {
+	      this.props.onChange(this.state.services[selection.value]);
+	    }
+	  },
+	  componentDidMount: function componentDidMount() {
+	    console.log('loading options for service');
+	    var self = this;
+	    return actions.getServices().then(function (result) {
+	      self.setState({ services: _.indexBy(result.services, 'id') });
+	      var serviceOptions = _.map(result.services, function (service) {
+	        return { value: service.id, label: service.name };
+	      });
+	      self.setState({ serviceOptions: serviceOptions });
+	    });
+	  },
+	  render: function render() {
+	    var self = this;
+	    return React.createElement(
+	      'label',
+	      { className: 'pt-label pt-inline col-xs' },
+	      'Service',
+	      React.createElement(Select, {
+	        name: 'service-selector',
+	        value: this.props.service ? this.props.service.id : null,
+	        options: this.state.serviceOptions,
+	        onChange: this.handleChange
+	      })
+	    );
+	  }
+	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+
+/***/ 272:
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
+
+	var React = __webpack_require__(1);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var lodash = __webpack_require__(5);
+	var ServiceSelector = __webpack_require__(183);
+	var TextInputField = __webpack_require__(8);
+
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      view: 'all',
+	      filter: {},
+	      filteredActions: [],
+	      actions: []
+	    };
+	  },
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      initialFilter: {}
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
 	    var self = this;
-	    if (self.props.id && !isNaN(self.props.id)) {
-	      actions.getOrganizationById(self.props.id).then(function (result) {
-	        self.setState({ organization: result.organization });
+	    var filter = this.props.initialFilter;
+	    self.setState({ filter: filter });
+	    return actions.getActions(filter).then(function (result) {
+	      self.setState({
+	        actions: result.actions,
+	        filteredActions: result.actions
 	      });
+	    });
+	  },
+	  handleMakeDuplicate: function handleMakeDuplicate(actionId) {
+	    return actions.duplicateAction(actionId).then(function (result) {
+	      return actions.goto.bind('/action/' + result.action.id);
+	    });
+	  },
+	  handleFilterChange: function handleFilterChange(field, e) {
+	    console.log('filter change', field, e);
+	    var filter = this.state.filter;
+	    var value = void 0;
+	    if (e == null) {
+	      value = null;
+	    } else if (e.target) {
+	      value = e.target.value;
+	    } else if (e.value) {
+	      value = e.value;
+	    } else {
+	      value = e;
 	    }
+	    if (value) {
+	      filter[field] = value;
+	    } else {
+	      delete filter[field];
+	    }
+
+	    this.setState({ filter: filter });
+	    var filteredActions = _.filter(this.state.actions, function (action) {
+	      var match = true;
+	      _.each(filter, function (value, key) {
+	        if (action[key].toLowerCase().indexOf(value.toLowerCase()) === -1) {
+	          match = false;
+	        }
+	      });
+	      return match;
+	    });
+	    this.setState({ filteredActions: filteredActions });
+	    this.forceUpdate();
 	  },
 	  render: function render() {
+	    var self = this;
+	    var actionsList = lodash.map(this.state.filteredActions, function (action) {
+	      return React.createElement(
+	        'tr',
+	        { key: action.id },
+	        React.createElement(
+	          'td',
+	          null,
+	          action.organization.name
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          action.service_name
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { onClick: actions.goto.bind(null, '/action/' + action.id) },
+	            action.function_name
+	          )
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          action.version
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { onClick: self.handleMakeDuplicate.bind(null, action.id) },
+	            React.createElement('span', { className: 'pt-icon-duplicate' })
+	          )
+	        )
+	      );
+	    });
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(
-	        'h2',
+	        'h1',
 	        null,
-	        'Create/Edit Organization ',
-	        this.state.organization.name
+	        'Actions'
 	      ),
-	      React.createElement(TextInputField, { label: 'Name', value: this.state.organization.name, onChange: this.handleChange.bind(this, 'name') }),
-	      React.createElement(TextInputField, { label: 'Secret Passphrase (required to join your organization)', value: this.state.organization.passphrase, onChange: this.handleChange.bind(this, 'passphrase') }),
-	      React.createElement(TextInputField, { label: 'Logo Url', value: this.state.organization.logo_url, onChange: this.handleChange.bind(this, 'logo_url') }),
-	      this.state.organization.logo_url && React.createElement('img', { src: this.state.organization.logo_url, style: { height: 50, width: 50 } }),
+	      React.createElement(TextInputField, { label: 'Service', value: this.state.filter.service_name, onChange: this.handleFilterChange.bind(this, 'service_name') }),
+	      React.createElement(TextInputField, { label: 'Function', value: this.state.filter.function_name, onChange: this.handleFilterChange.bind(this, 'function_name') }),
+	      React.createElement(TextInputField, { label: 'Organization', value: this.state.filter.organization_name, onChange: this.handleFilterChange.bind(this, 'organization_name') }),
 	      React.createElement('hr', null),
 	      React.createElement(
-	        'button',
-	        { className: 'pt-button pt-icon-add', onClick: this.handleSave },
-	        'Save'
+	        'a',
+	        { onClick: actions.goto.bind(null, '/action/new') },
+	        'New action'
+	      ),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'table',
+	        { className: 'pt-table pt-striped' },
+	        React.createElement(
+	          'thead',
+	          null,
+	          React.createElement(
+	            'tr',
+	            null,
+	            React.createElement(
+	              'th',
+	              null,
+	              'Owner'
+	            ),
+	            React.createElement(
+	              'th',
+	              null,
+	              'Service'
+	            ),
+	            React.createElement(
+	              'th',
+	              null,
+	              'Function'
+	            ),
+	            React.createElement(
+	              'th',
+	              null,
+	              'Version'
+	            ),
+	            React.createElement(
+	              'th',
+	              null,
+	              'Menu'
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'tbody',
+	          null,
+	          actionsList
+	        )
 	      )
 	    );
 	  }
 	});
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 
-/***/ 646:
+/***/ 635:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var Organization = __webpack_require__(622);
-	var lodash = __webpack_require__(4);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var ActionBrowser = __webpack_require__(272);
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
 	  getInitialState: function getInitialState() {
-	    return {};
+	    return {
+	      filter: {}
+	    };
 	  },
 	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
 	    if (!nextProps.token) {
@@ -2412,7 +2581,7 @@ webpackJsonp([11],{
 	    }
 	  },
 	  render: function render() {
-	    return React.createElement(Organization, { id: this.props.params.id });
+	    return React.createElement(ActionBrowser, { filter: this.filter });
 	  }
 	});
 

@@ -31,7 +31,7 @@ webpackJsonp([10],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactInputAutosize = __webpack_require__(26);
+	var _reactInputAutosize = __webpack_require__(22);
 
 	var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
@@ -39,35 +39,35 @@ webpackJsonp([10],{
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _utilsDefaultArrowRenderer = __webpack_require__(32);
+	var _utilsDefaultArrowRenderer = __webpack_require__(28);
 
 	var _utilsDefaultArrowRenderer2 = _interopRequireDefault(_utilsDefaultArrowRenderer);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
-	var _Async = __webpack_require__(27);
+	var _Async = __webpack_require__(23);
 
 	var _Async2 = _interopRequireDefault(_Async);
 
-	var _AsyncCreatable = __webpack_require__(28);
+	var _AsyncCreatable = __webpack_require__(24);
 
 	var _AsyncCreatable2 = _interopRequireDefault(_AsyncCreatable);
 
-	var _Creatable = __webpack_require__(29);
+	var _Creatable = __webpack_require__(25);
 
 	var _Creatable2 = _interopRequireDefault(_Creatable);
 
-	var _Option = __webpack_require__(30);
+	var _Option = __webpack_require__(26);
 
 	var _Option2 = _interopRequireDefault(_Option);
 
-	var _Value = __webpack_require__(31);
+	var _Value = __webpack_require__(27);
 
 	var _Value2 = _interopRequireDefault(_Value);
 
@@ -1236,14 +1236,14 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 14:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _stripDiacritics = __webpack_require__(16);
+	var _stripDiacritics = __webpack_require__(14);
 
 	var _stripDiacritics2 = _interopRequireDefault(_stripDiacritics);
 
@@ -1284,7 +1284,7 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 15:
+/***/ 13:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1351,7 +1351,7 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 16:
+/***/ 14:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1367,7 +1367,7 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 26:
+/***/ 22:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1502,7 +1502,7 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 27:
+/***/ 23:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1533,7 +1533,7 @@ webpackJsonp([10],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsStripDiacritics = __webpack_require__(16);
+	var _utilsStripDiacritics = __webpack_require__(14);
 
 	var _utilsStripDiacritics2 = _interopRequireDefault(_utilsStripDiacritics);
 
@@ -1711,7 +1711,7 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 28:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1759,7 +1759,7 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 29:
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1778,11 +1778,11 @@ webpackJsonp([10],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
@@ -2049,7 +2049,7 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 30:
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2166,7 +2166,7 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 31:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2278,7 +2278,7 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 32:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2308,15 +2308,15 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 181:
+/***/ 183:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
-	var actions = __webpack_require__(5);
+	var lodash = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var Select = __webpack_require__(3);
 
 	module.exports = React.createClass({
@@ -2372,16 +2372,16 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 273:
+/***/ 272:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var lodash = __webpack_require__(4);
-	var ServiceSelector = __webpack_require__(181);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var lodash = __webpack_require__(5);
+	var ServiceSelector = __webpack_require__(183);
 	var TextInputField = __webpack_require__(8);
 
 	module.exports = React.createClass({
@@ -2556,23 +2556,25 @@ webpackJsonp([10],{
 
 /***/ },
 
-/***/ 633:
+/***/ 636:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var ActionBrowser = __webpack_require__(273);
-	var lodash = __webpack_require__(4);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var ActionBrowser = __webpack_require__(272);
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      filter: {}
+	      filter: {
+	        organization_id: actions.getState('org').id
+	      }
 	    };
 	  },
 	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
@@ -2581,7 +2583,7 @@ webpackJsonp([10],{
 	    }
 	  },
 	  render: function render() {
-	    return React.createElement(ActionBrowser, { filter: this.filter });
+	    return React.createElement(ActionBrowser, { initialFilter: this.state.filter, view: 'self' });
 	  }
 	});
 

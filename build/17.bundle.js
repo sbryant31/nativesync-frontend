@@ -1,12 +1,13 @@
 webpackJsonp([17],{
 
-/***/ 635:
+/***/ 637:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Navbar = __webpack_require__(20);
+	// var Navbar = require('../components/navbar');
+
 	module.exports = React.createClass({
 	  displayName: 'exports',
 

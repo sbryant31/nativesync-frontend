@@ -31,7 +31,7 @@ webpackJsonp([4],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactInputAutosize = __webpack_require__(26);
+	var _reactInputAutosize = __webpack_require__(22);
 
 	var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
@@ -39,35 +39,35 @@ webpackJsonp([4],{
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _utilsDefaultArrowRenderer = __webpack_require__(32);
+	var _utilsDefaultArrowRenderer = __webpack_require__(28);
 
 	var _utilsDefaultArrowRenderer2 = _interopRequireDefault(_utilsDefaultArrowRenderer);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
-	var _Async = __webpack_require__(27);
+	var _Async = __webpack_require__(23);
 
 	var _Async2 = _interopRequireDefault(_Async);
 
-	var _AsyncCreatable = __webpack_require__(28);
+	var _AsyncCreatable = __webpack_require__(24);
 
 	var _AsyncCreatable2 = _interopRequireDefault(_AsyncCreatable);
 
-	var _Creatable = __webpack_require__(29);
+	var _Creatable = __webpack_require__(25);
 
 	var _Creatable2 = _interopRequireDefault(_Creatable);
 
-	var _Option = __webpack_require__(30);
+	var _Option = __webpack_require__(26);
 
 	var _Option2 = _interopRequireDefault(_Option);
 
-	var _Value = __webpack_require__(31);
+	var _Value = __webpack_require__(27);
 
 	var _Value2 = _interopRequireDefault(_Value);
 
@@ -1236,14 +1236,14 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 14:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _stripDiacritics = __webpack_require__(16);
+	var _stripDiacritics = __webpack_require__(14);
 
 	var _stripDiacritics2 = _interopRequireDefault(_stripDiacritics);
 
@@ -1284,7 +1284,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 15:
+/***/ 13:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1351,7 +1351,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 16:
+/***/ 14:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1367,7 +1367,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 26:
+/***/ 22:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1502,7 +1502,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 27:
+/***/ 23:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1533,7 +1533,7 @@ webpackJsonp([4],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsStripDiacritics = __webpack_require__(16);
+	var _utilsStripDiacritics = __webpack_require__(14);
 
 	var _utilsStripDiacritics2 = _interopRequireDefault(_utilsStripDiacritics);
 
@@ -1711,7 +1711,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 28:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1759,7 +1759,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 29:
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1778,11 +1778,11 @@ webpackJsonp([4],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
@@ -2049,7 +2049,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 30:
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2166,7 +2166,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 31:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2278,7 +2278,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 32:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2308,7 +2308,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 45:
+/***/ 44:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
@@ -2348,16 +2348,16 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 57:
+/***/ 56:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var ServiceAuthConfigurationDetails = __webpack_require__(87);
 	var ServiceAuthApikeyDetails = __webpack_require__(84);
 	var ServiceAuthBasicDetails = __webpack_require__(85);
@@ -2412,17 +2412,17 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 60:
+/***/ 59:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
-	var ServiceAuthDetails = __webpack_require__(57);
+	var actions = __webpack_require__(4);
+	var ServiceAuthDetails = __webpack_require__(56);
 	var TextInputField = __webpack_require__(8);
 	var EnvironmentSelector = __webpack_require__(77);
 
@@ -2506,7 +2506,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 67:
+/***/ 66:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2620,13 +2620,13 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 82:
+/***/ 83:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var _ = __webpack_require__(6);
 
 	module.exports = React.createClass({
@@ -2738,9 +2738,9 @@ webpackJsonp([4],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var ParameterInSelector = __webpack_require__(76);
 	var TextInputField = __webpack_require__(8);
 
@@ -2794,9 +2794,9 @@ webpackJsonp([4],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 
 	module.exports = React.createClass({
@@ -2848,11 +2848,11 @@ webpackJsonp([4],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
-	var CodeEditor = __webpack_require__(45);
+	var CodeEditor = __webpack_require__(44);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -2900,11 +2900,11 @@ webpackJsonp([4],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
-	var ServiceAuthDetails = __webpack_require__(57);
-	var KeyValueObject = __webpack_require__(82);
+	var actions = __webpack_require__(4);
+	var ServiceAuthDetails = __webpack_require__(56);
+	var KeyValueObject = __webpack_require__(83);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -2941,10 +2941,10 @@ webpackJsonp([4],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
-	var ServiceAuthView = __webpack_require__(60);
+	var actions = __webpack_require__(4);
+	var ServiceAuthView = __webpack_require__(59);
 
 	// todo: create a service select only in the case when services.length > 1
 
@@ -3065,9 +3065,9 @@ webpackJsonp([4],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 	var Guid = __webpack_require__(97);
 
@@ -3146,9 +3146,9 @@ webpackJsonp([4],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 
 	module.exports = React.createClass({
@@ -12911,65 +12911,91 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 117:
+/***/ 120:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 	var React = __webpack_require__(1);
 	var TextInputField = __webpack_require__(8);
 
-	module.exports = React.createClass({
-	  displayName: 'exports',
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      details: {},
-	      value: {},
-	      onChange: function onChange(value) {
-	        console.log('valuechanged', value);
-	      },
-	      readOnly: false
-	    };
-	  },
-	  handleChange: function handleChange(e) {
-	    var field = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'apiKeyValue';
+	var OrganizationAuthAPIKey = function (_React$Component) {
+	  _inherits(OrganizationAuthAPIKey, _React$Component);
 
-	    var value = this.props.value;
-	    if (e.target) {
-	      value[field] = e.target.value;
-	    } else if (e.value) {
-	      value[field] = e.value;
-	    } else {
-	      value[field] = e;
-	    }
-	    this.props.onChange(value);
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(TextInputField, {
-	        label: "Api Key",
-	        value: this.props.value.apiKeyValue,
-	        onChange: this.handleChange
-	      })
-	    );
+	  function OrganizationAuthAPIKey(props) {
+	    _classCallCheck(this, OrganizationAuthAPIKey);
+
+	    var _this = _possibleConstructorReturn(this, (OrganizationAuthAPIKey.__proto__ || Object.getPrototypeOf(OrganizationAuthAPIKey)).call(this, props));
+
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    return _this;
 	  }
-	});
+
+	  _createClass(OrganizationAuthAPIKey, [{
+	    key: 'handleChange',
+	    value: function handleChange() {
+	      var field = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'apiKeyValue';
+	      var e = arguments[1];
+
+	      var value = this.props.value;
+	      if (e.target) {
+	        value[field] = e.target.value;
+	      } else if (e.value) {
+	        value[field] = e.value;
+	      } else {
+	        value[field] = e;
+	      }
+	      this.props.onChange(value);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(TextInputField, {
+	          label: "Api Key",
+	          value: this.props.value.apiKeyValue,
+	          onChange: this.handleChange.bind(this, 'apiKeyValue')
+	        })
+	      );
+	    }
+	  }]);
+
+	  return OrganizationAuthAPIKey;
+	}(React.Component);
+
+	OrganizationAuthAPIKey.defaultProps = {
+	  details: {},
+	  value: {},
+	  onChange: function onChange(value) {
+	    console.log('valuechanged', value);
+	  },
+	  readOnly: false
+	};
+	module.exports = OrganizationAuthAPIKey;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 
-/***/ 118:
+/***/ 121:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 
 	module.exports = React.createClass({
@@ -13014,16 +13040,16 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 119:
+/***/ 122:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 
 	module.exports = React.createClass({
@@ -13066,22 +13092,22 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 120:
+/***/ 123:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 
-	var OrganizationAuthBasic = __webpack_require__(118);
-	var OrganizationAuthConfiguration = __webpack_require__(119);
-	var OrganizationAuthOauth1 = __webpack_require__(122);
-	var OrganizationAuthOauth2 = __webpack_require__(123);
-	var OrganizationAuthApikey = __webpack_require__(117);
+	var OrganizationAuthBasic = __webpack_require__(121);
+	var OrganizationAuthConfiguration = __webpack_require__(122);
+	var OrganizationAuthOauth1 = __webpack_require__(125);
+	var OrganizationAuthOauth2 = __webpack_require__(126);
+	var OrganizationAuthApikey = __webpack_require__(120);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -13191,18 +13217,18 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 121:
+/***/ 124:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
-	var ServiceAuthView = __webpack_require__(60);
-	var OrganizationAuthEditor = __webpack_require__(120);
+	var actions = __webpack_require__(4);
+	var ServiceAuthView = __webpack_require__(59);
+	var OrganizationAuthEditor = __webpack_require__(123);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -13260,21 +13286,21 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 122:
+/***/ 125:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
-	var _core = __webpack_require__(23);
+	var _core = __webpack_require__(29);
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 
-	var Iframe = __webpack_require__(67);
+	var Iframe = __webpack_require__(66);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -13343,21 +13369,21 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 123:
+/***/ 126:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
-	var _core = __webpack_require__(23);
+	var _core = __webpack_require__(29);
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 
-	var Iframe = __webpack_require__(67);
+	var Iframe = __webpack_require__(66);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -13426,7 +13452,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 176:
+/***/ 181:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
@@ -13467,15 +13493,15 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 180:
+/***/ 182:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
-	var actions = __webpack_require__(5);
+	var lodash = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var Select = __webpack_require__(3);
 
 	module.exports = React.createClass({
@@ -13541,13 +13567,13 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 276:
+/***/ 275:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -13630,25 +13656,25 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 618:
+/***/ 620:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
-	var _core = __webpack_require__(23);
+	var _core = __webpack_require__(29);
 
 	var _ = __webpack_require__(6);
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var lodash = __webpack_require__(4);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var TriggerInfo = __webpack_require__(176);
-	var IntegrationInstanceInputEditor = __webpack_require__(619);
+	var TriggerInfo = __webpack_require__(181);
+	var IntegrationInstanceInputEditor = __webpack_require__(621);
 	var TextInputField = __webpack_require__(8);
-	var OrganizationSelect = __webpack_require__(180);
-	var KeyValueList = __webpack_require__(276);
-	var OrganizationAuthForm = __webpack_require__(121);
+	var OrganizationSelect = __webpack_require__(182);
+	var KeyValueList = __webpack_require__(275);
+	var OrganizationAuthForm = __webpack_require__(124);
 	var ServiceAuthList = __webpack_require__(88);
 
 
@@ -13853,16 +13879,16 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 619:
+/***/ 621:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 
 	module.exports = React.createClass({
@@ -13913,16 +13939,16 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 637:
+/***/ 639:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var IntegrationInstance = __webpack_require__(618);
-	var lodash = __webpack_require__(4);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var IntegrationInstance = __webpack_require__(620);
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',

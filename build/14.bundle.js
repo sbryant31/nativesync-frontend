@@ -1,286 +1,211 @@
 webpackJsonp([14],{
 
-/***/ 621:
+/***/ 66:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var React = __webpack_require__(1);
+	var Iframe = React.createClass({
+	    displayName: "React-Iframe",
+
+	    propTypes: {
+	        url: React.PropTypes.string.isRequired,
+	        width: React.PropTypes.string,
+	        height: React.PropTypes.string
+	    },
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            height: "100%",
+	            width: "100%",
+	            position: "fixed"
+	        };
+	    },
+
+	    shouldComponentUpdate: function shouldComponentUpdate(nextProps) {
+	        return this.props.url !== nextProps.url;
+	    },
+
+	    render: function render() {
+	        return React.createElement("iframe", { ref: "iframe",
+	            frameBorder: "0",
+	            src: this.props.url,
+	            style: { position: this.props.position, height: this.props.height, width: this.props.width },
+	            height: this.props.height, width: this.props.width });
+	    }
+	});
+
+	module.exports = Iframe;
+
+/***/ },
+
+/***/ 627:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var React = __webpack_require__(1);
-	module.exports = React.createClass({
-	  displayName: 'exports',
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      onChange: function onChange() {},
-	      onSwitch: function onSwitch() {},
-	      onSubmit: function onSubmit() {},
-	      password: '', email: ''
-	    };
-	  },
-	  handleInput: function handleInput(prop, e) {
-	    this.props.onChange(prop, e.target.value, e);
-	  },
-	  handleSwitch: function handleSwitch() {
-	    this.props.onSwitch();
-	  },
-	  submit: function submit() {
-	    this.props.onSubmit();
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'div',
-	        { className: 'pt-card' },
-	        'Login to your Nativesync Account'
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'pt-card' },
-	        React.createElement(
-	          'div',
-	          { className: 'pt-control-group pt-vertical' },
-	          React.createElement(
-	            'div',
-	            { className: 'pt-input-group pt-large' },
-	            React.createElement('input', {
-	              onChange: this.handleInput.bind(this, 'email'),
-	              className: 'pt-input', value: this.props.email,
-	              placeholder: 'Email'
-	            })
-	          ),
-	          React.createElement(
-	            'div',
-	            { className: 'pt-input-group pt-large' },
-	            React.createElement('input', {
-	              onChange: this.handleInput.bind(this, 'password'),
-	              className: 'pt-input', type: 'password', value: this.props.password,
-	              placeholder: 'Password'
-	            })
-	          ),
-	          React.createElement(
-	            'button',
-	            { onClick: this.submit,
-	              className: 'pt-button pt-large pt-intent-primary' },
-	            'Login'
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'pt-card' },
-	        'Need an account? ',
-	        React.createElement(
-	          'a',
-	          { onClick: this.handleSwitch },
-	          'Signup'
-	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-
-/***/ 630:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
+	var _core = __webpack_require__(29);
 
 	var React = __webpack_require__(1);
-	module.exports = React.createClass({
-	  displayName: 'exports',
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      onChange: function onChange() {},
-	      onSwitch: function onSwitch() {},
-	      onSubmit: function onSubmit() {},
-	      password: '',
-	      email: '',
-	      companyName: '',
-	      accountType: 'partner'
-	    };
-	  },
-	  handleInput: function handleInput(prop, e) {
-	    this.props.onChange(prop, e.target.value, e);
-	  },
-	  handleSwitch: function handleSwitch() {
-	    this.props.onSwitch();
-	  },
-	  submit: function submit() {
-	    this.props.onSubmit();
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'div',
-	        { className: 'pt-card' },
-	        'Create a Nativesync Account'
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'pt-card' },
-	        React.createElement(
-	          'div',
-	          { className: 'pt-control-group pt-vertical' },
-	          React.createElement(
-	            'div',
-	            { className: 'pt-input-group pt-large' },
-	            React.createElement('input', {
-	              onChange: this.handleInput.bind(this, 'email'),
-	              className: 'pt-input', value: this.props.email,
-	              placeholder: 'Email'
-	            })
-	          ),
-	          React.createElement(
-	            'div',
-	            { className: 'pt-input-group pt-large' },
-	            React.createElement('input', {
-	              onChange: this.handleInput.bind(this, 'password'),
-	              className: 'pt-input', type: 'password', value: this.props.password,
-	              placeholder: 'Password'
-	            })
-	          ),
-	          React.createElement(
-	            'div',
-	            { className: 'pt-select pt-fill' },
-	            React.createElement(
-	              'select',
-	              {
-	                onChange: this.handleInput.bind(this, 'accountType'),
-	                value: this.props.accountType
-	              },
-	              React.createElement(
-	                'option',
-	                { value: 'partner' },
-	                'Developer/Partner'
-	              ),
-	              React.createElement(
-	                'option',
-	                { value: 'client' },
-	                'Client'
-	              )
-	            )
-	          ),
-	          React.createElement(
-	            'div',
-	            { className: 'pt-input-group pt-large' },
-	            React.createElement('input', {
-	              onChange: this.handleInput.bind(this, 'companyName'),
-	              className: 'pt-input', type: 'companyName', value: this.props.companyName,
-	              placeholder: 'Company Name'
-	            })
-	          ),
-	          React.createElement(
-	            'button',
-	            { onClick: this.submit,
-	              className: 'pt-button pt-large pt-intent-primary' },
-	            'Signup'
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'pt-card' },
-	        'Have an account? ',
-	        React.createElement(
-	          'a',
-	          { onClick: this.handleSwitch },
-	          'Login'
-	        )
-	      )
-	    );
-	  }
-	});
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var _ = __webpack_require__(6);
+	var lodash = __webpack_require__(5);
 
-/***/ },
-
-/***/ 642:
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
-
-	var _reactRouter = __webpack_require__(103);
-
-	var React = __webpack_require__(1);
-
-
-	var Login = __webpack_require__(621);
-	var Signup = __webpack_require__(630);
-	var actions = __webpack_require__(5);
+	var Iframe = __webpack_require__(66);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      signup: false,
-	      user: {
-	        email: '', password: ''
-	      },
-	      nextPath: '/'
+	      filter: {},
+	      filteredServices: {},
+	      services: [],
+	      serviceInstances: []
 	    };
 	  },
-	  handleUserChange: function handleUserChange(prop, val) {
-	    var user = this.state.user;
-	    user[prop] = val;
-	    this.setState(user);
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      initialFilter: {},
+	      showInstances: false
+	    };
 	  },
-	  handleLoginSubmit: function handleLoginSubmit() {
+	  componentDidMount: function componentDidMount() {
 	    var self = this;
-	    actions.login(this.state.user.email, this.state.user.password).then(function (user) {
-	      console.log("USER: ", user);
-	      actions.goto(self.state.nextPath);
-	    }).catch(actions.toastError);
+	    self.setState({ filter: this.props.initialFilter });
+	    actions.getServices(this.state.filter).then(function (result) {
+	      self.setState({
+	        services: result.services,
+	        filteredServices: result.services
+	      });
+	    });
 	  },
-	  handleSignupSubmit: function handleSignupSubmit() {
-	    var self = this;
-	    actions.signup(this.state.user.email, this.state.user.password, this.state.accountType, this.state.companyName).then(function (user) {
-	      console.log(user);
-	      actions.goto(self.state.nextPath);
-	    }).catch(actions.toastError);
-	  },
-	  switchToLogin: function switchToLogin() {
-	    this.setState({ signup: false });
-	  },
-	  switchToSignup: function switchToSignup() {
-	    this.setState({ signup: true });
+	  handleFilterChange: function handleFilterChange(field, e) {
+	    var filter = this.state.filter;
+	    var value = void 0;
+	    if (e.target) {
+	      value = e.target.value;
+	    } else if (e.value) {
+	      value = e.value;
+	    } else {
+	      value = e;
+	    }
+	    if (value) {
+	      filter[field] = value.toLowerCase();
+	    } else {
+	      delete filter[field];
+	    }
+
+	    this.setState({ filter: filter });
+	    var filteredServices = _.filter(this.state.services, function (service) {
+	      var match = true;
+	      _.each(filter, function (value, key) {
+	        if (service[key].toLowerCase().indexOf(value) === -1) {
+	          match = false;
+	        }
+	      });
+	      return match;
+	    });
+	    this.setState({ filteredServices: filteredServices });
 	  },
 	  render: function render() {
-	    var show = null;
-	    if (this.state.signup) {
-	      show = React.createElement(Signup, { onSubmit: this.handleSignupSubmit,
-	        onSwitch: this.switchToLogin,
-	        onChange: this.handleUserChange,
-	        email: this.state.email,
-	        companyName: this.state.companyName,
-	        accountType: this.state.accountType,
-	        password: this.state.password });
-	    } else {
-	      show = React.createElement(Login, { onSubmit: this.handleLoginSubmit,
-	        onSwitch: this.switchToSignup,
-	        onChange: this.handleUserChange,
-	        email: this.state.email,
-	        password: this.state.password });
-	    }
+	    var self = this;
+	    var servicesList = lodash.map(self.state.filteredServices, function (service) {
+	      var documentationUrl = 'https://swagger-ui.aerobatic.io/?url=https://api.nativesync.io/docs/service/' + service.id + '/swagger.json';
+	      return React.createElement(
+	        'tr',
+	        { key: service.id },
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { onClick: actions.goto.bind(null, '/service/' + service.id) },
+	            React.createElement('img', { src: service.logo_url, style: { height: 50, width: 50 } }),
+	            ' ',
+	            service.name
+	          )
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { href: documentationUrl, target: 'new' },
+	            React.createElement(
+	              'button',
+	              { className: 'pt-button' },
+	              'Action API Documentation'
+	            )
+	          )
+	        )
+	      );
+	    });
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(
-	        'div',
-	        { className: 'row center-xs' },
+	        'h1',
+	        null,
+	        'Services'
+	      ),
+	      React.createElement(
+	        'a',
+	        { onClick: actions.goto.bind(null, '/service/new') },
+	        'New Service'
+	      ),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'label',
+	        { className: 'pt-label' },
+	        'Name ',
+	        React.createElement('input', { className: 'pt-input', value: this.state.filter.name, onChange: this.handleFilterChange.bind(this, 'name') })
+	      ),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'table',
+	        { className: 'pt-table pt-striped' },
 	        React.createElement(
-	          'div',
-	          { style: { paddingTop: 200, paddingBottom: 200 }, className: 'col-xs-4' },
-	          show
+	          'tbody',
+	          null,
+	          servicesList
 	        )
 	      )
 	    );
 	  }
 	});
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ },
+
+/***/ 650:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var ServiceBrowser = __webpack_require__(627);
+	var lodash = __webpack_require__(5);
+
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      filter: {}
+	    };
+	  },
+	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
+	    if (!nextProps.token) {
+	      actions.goto('/');
+	    }
+	  },
+	  render: function render() {
+	    return React.createElement(ServiceBrowser, { filter: this.filter });
+	  }
+	});
 
 /***/ }
 

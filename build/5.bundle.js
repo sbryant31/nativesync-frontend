@@ -31,7 +31,7 @@ webpackJsonp([5],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactInputAutosize = __webpack_require__(26);
+	var _reactInputAutosize = __webpack_require__(22);
 
 	var _reactInputAutosize2 = _interopRequireDefault(_reactInputAutosize);
 
@@ -39,35 +39,35 @@ webpackJsonp([5],{
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _utilsDefaultArrowRenderer = __webpack_require__(32);
+	var _utilsDefaultArrowRenderer = __webpack_require__(28);
 
 	var _utilsDefaultArrowRenderer2 = _interopRequireDefault(_utilsDefaultArrowRenderer);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
-	var _Async = __webpack_require__(27);
+	var _Async = __webpack_require__(23);
 
 	var _Async2 = _interopRequireDefault(_Async);
 
-	var _AsyncCreatable = __webpack_require__(28);
+	var _AsyncCreatable = __webpack_require__(24);
 
 	var _AsyncCreatable2 = _interopRequireDefault(_AsyncCreatable);
 
-	var _Creatable = __webpack_require__(29);
+	var _Creatable = __webpack_require__(25);
 
 	var _Creatable2 = _interopRequireDefault(_Creatable);
 
-	var _Option = __webpack_require__(30);
+	var _Option = __webpack_require__(26);
 
 	var _Option2 = _interopRequireDefault(_Option);
 
-	var _Value = __webpack_require__(31);
+	var _Value = __webpack_require__(27);
 
 	var _Value2 = _interopRequireDefault(_Value);
 
@@ -1236,14 +1236,14 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 14:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _stripDiacritics = __webpack_require__(16);
+	var _stripDiacritics = __webpack_require__(14);
 
 	var _stripDiacritics2 = _interopRequireDefault(_stripDiacritics);
 
@@ -1284,7 +1284,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 15:
+/***/ 13:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1351,7 +1351,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 16:
+/***/ 14:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1367,7 +1367,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 26:
+/***/ 22:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1502,7 +1502,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 27:
+/***/ 23:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1533,7 +1533,7 @@ webpackJsonp([5],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsStripDiacritics = __webpack_require__(16);
+	var _utilsStripDiacritics = __webpack_require__(14);
 
 	var _utilsStripDiacritics2 = _interopRequireDefault(_utilsStripDiacritics);
 
@@ -1711,7 +1711,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 28:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1759,7 +1759,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 29:
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1778,11 +1778,11 @@ webpackJsonp([5],{
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _utilsDefaultFilterOptions = __webpack_require__(14);
+	var _utilsDefaultFilterOptions = __webpack_require__(12);
 
 	var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
 
-	var _utilsDefaultMenuRenderer = __webpack_require__(15);
+	var _utilsDefaultMenuRenderer = __webpack_require__(13);
 
 	var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
 
@@ -2049,7 +2049,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 30:
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2166,7 +2166,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 31:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2278,7 +2278,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 32:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2308,7 +2308,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 45:
+/***/ 44:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
@@ -2348,16 +2348,16 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 57:
+/***/ 56:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var ServiceAuthConfigurationDetails = __webpack_require__(87);
 	var ServiceAuthApikeyDetails = __webpack_require__(84);
 	var ServiceAuthBasicDetails = __webpack_require__(85);
@@ -2412,17 +2412,17 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 60:
+/***/ 59:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
-	var ServiceAuthDetails = __webpack_require__(57);
+	var actions = __webpack_require__(4);
+	var ServiceAuthDetails = __webpack_require__(56);
 	var TextInputField = __webpack_require__(8);
 	var EnvironmentSelector = __webpack_require__(77);
 
@@ -2581,13 +2581,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 82:
+/***/ 83:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var _ = __webpack_require__(6);
 
 	module.exports = React.createClass({
@@ -2699,9 +2699,9 @@ webpackJsonp([5],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var ParameterInSelector = __webpack_require__(76);
 	var TextInputField = __webpack_require__(8);
 
@@ -2755,9 +2755,9 @@ webpackJsonp([5],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 
 	module.exports = React.createClass({
@@ -2809,11 +2809,11 @@ webpackJsonp([5],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
-	var CodeEditor = __webpack_require__(45);
+	var CodeEditor = __webpack_require__(44);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -2861,11 +2861,11 @@ webpackJsonp([5],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
-	var ServiceAuthDetails = __webpack_require__(57);
-	var KeyValueObject = __webpack_require__(82);
+	var actions = __webpack_require__(4);
+	var ServiceAuthDetails = __webpack_require__(56);
+	var KeyValueObject = __webpack_require__(83);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -2902,10 +2902,10 @@ webpackJsonp([5],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
-	var ServiceAuthView = __webpack_require__(60);
+	var actions = __webpack_require__(4);
+	var ServiceAuthView = __webpack_require__(59);
 
 	// todo: create a service select only in the case when services.length > 1
 
@@ -3026,9 +3026,9 @@ webpackJsonp([5],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 	var Guid = __webpack_require__(97);
 
@@ -3107,9 +3107,9 @@ webpackJsonp([5],{
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 
 	module.exports = React.createClass({
@@ -12872,13 +12872,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 615:
+/***/ 617:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -12968,22 +12968,22 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 623:
+/***/ 625:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
-	var _core = __webpack_require__(23);
+	var _core = __webpack_require__(29);
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var lodash = __webpack_require__(4);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
 	var ServiceAuthList = __webpack_require__(88);
-	var ServiceDefinitionList = __webpack_require__(626);
+	var ServiceDefinitionList = __webpack_require__(628);
 	var TextInputField = __webpack_require__(8);
-	var InputList = __webpack_require__(615);
+	var InputList = __webpack_require__(617);
 
 
 	module.exports = React.createClass({
@@ -13142,17 +13142,17 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 626:
+/***/ 628:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
-	var ServiceDefinitionView = __webpack_require__(628);
+	var actions = __webpack_require__(4);
+	var ServiceDefinitionView = __webpack_require__(630);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -13234,16 +13234,16 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 627:
+/***/ 629:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
+	var actions = __webpack_require__(4);
 	var TextInputField = __webpack_require__(8);
 
 	module.exports = React.createClass({
@@ -13351,17 +13351,17 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 628:
+/***/ 630:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
 	var React = __webpack_require__(1);
 	var _ = __webpack_require__(6);
-	var lodash = __webpack_require__(4);
+	var lodash = __webpack_require__(5);
 	var Select = __webpack_require__(3);
-	var actions = __webpack_require__(5);
-	var ServiceDefinitionParams = __webpack_require__(627);
+	var actions = __webpack_require__(4);
+	var ServiceDefinitionParams = __webpack_require__(629);
 	var TextInputField = __webpack_require__(8);
 
 	module.exports = React.createClass({
@@ -13432,16 +13432,16 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 648:
+/***/ 649:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(5);
-	var Navbar = __webpack_require__(20);
-	var Service = __webpack_require__(623);
-	var lodash = __webpack_require__(4);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var Service = __webpack_require__(625);
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
