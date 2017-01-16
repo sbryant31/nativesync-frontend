@@ -1,9 +1,10 @@
 import React from 'react';
 import IntegrationDetails from '../components/integration_details/integration_details.js';
+import IntegrationBrowser from '../components/integration_browser/integration_browser.js';
 // CSS
 import '../components/integration_browser/integration_browser.scss';
 
-export default class Marketplace extends React.Component {
+class Marketplace extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,3 +30,5 @@ export default class Marketplace extends React.Component {
     );
   }
 };
+
+module.exports = Marketplace;
