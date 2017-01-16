@@ -11,7 +11,7 @@ module.exports = React.createClass({
     };
   },
 
-  handleChange(field = 'apiKeyValue', e) {
+  handleChange(e, field = 'apiKeyValue') {
     var value = this.props.value;
     if (e.target) {
       value[field] = e.target.value;
@@ -28,7 +28,7 @@ module.exports = React.createClass({
       <TextInputField
         label={"Api Key"}
         value={this.props.value.apiKeyValue}
-        onChange={this.handleChange.bind(this, 'apiKeyValue')}
+        onChange={this.handleChange}
       />
     </div>;
   }
