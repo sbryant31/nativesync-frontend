@@ -1,8 +1,8 @@
 var _ = require('underscore');
-var React = require('react')
-var actions = require('../modules/actions')
-var Navbar = require('../components/navbar')
-var lodash = require('lodash')
+var React = require('react');
+var actions = require('../modules/actions');
+// var Navbar = require('../components/navbar');
+var lodash = require('lodash');
 var Select = require('react-select');
 var TriggerInfo = require('../components/integration/trigger_info');
 var IntegrationInstanceInputEditor = require('../components/integration_instance/integration_instance_input_editor');
@@ -11,7 +11,7 @@ var OrganizationSelect = require('../components/organization/organization_select
 var KeyValueList = require('../components/inputs/key_value_list');
 var OrganizationAuthForm = require('../components/organization_auth/organization_auth_form');
 var ServiceAuthList = require('../components/service_auth/service_auth_list');
-import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
+import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core";
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -142,4 +142,3 @@ module.exports = React.createClass({
     </div>
   }
 })
-

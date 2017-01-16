@@ -5,6 +5,7 @@ import { Router, Route, Link, browserHistory, IndexRoute, IndexRedirect } from '
 var actions = require('./modules/actions');
 
 const App = require('./app');
+const NavbarLayout = require('./pages/navbar_layout.js');
 // const Landing = require('./pages/landing');
 // bundle?lazy! Webpack directive below is for code splitting
 const IntegrationsMe = require('bundle?lazy!./pages/integrations_me');
@@ -22,7 +23,7 @@ const ActionsMe = require('bundle?lazy!./pages/actions_me');
 const ActionsBrowse = require('bundle?lazy!./pages/actions_browse');
 const ActionEdit = require('bundle?lazy!./pages/action_edit');
 const Profile = require('bundle?lazy!./pages/profile');
-const Login = require('bundle?lazy!./pages/login');
+const Login = require('bundle?lazy!./pages/login/login');
 const Dashboard = require('bundle?lazy!./pages/dashboard');
 
 function checkToken(nextState, replace, cb) {
@@ -45,7 +46,7 @@ function notLoggedIn(nextState, replace, cb){
   return actions.me().then(user => {
     replace({ pathname:'/' });
     cb();
-  }).catch(function(){
+  }).catch(function() {
     cb();
   });
 }
@@ -64,11 +65,6 @@ function logout(nextState, replace, cb){
 }
 
 // FOR CODE SPLITTING
-// function lazyLoadComponent(Component) {
-//   return (location, cb) => { cb(null, (props) => (
-//     <Component {...props} />
-//   )); };
-// }
 const lazyLoadComponent = lazyModule => {
   return (location, cb) => {
     lazyModule(Module => (
@@ -82,31 +78,34 @@ const lazyLoadComponent = lazyModule => {
 module.exports = (
   <Router history={browserHistory}>
     <Route path='/' component={App}>
-      <IndexRoute getComponent={lazyLoadComponent(Marketplace)} />
-      <Route path='/login' getComponent={lazyLoadComponent(Login)} onEnter={notLoggedIn}/>
-      <Route path='/dashboard' getComponent={lazyLoadComponent(Dashboard)} onEnter={checkToken} />
-      <Route path='/actions/me' getComponent={lazyLoadComponent(ActionsMe)} onEnter={checkToken} />
-      <Route path='/actions/browse' getComponent={lazyLoadComponent(ActionsBrowse)} onEnter={checkToken} />
-      <Route path='/action/:id' getComponent={lazyLoadComponent(ActionEdit)} onEnter={checkToken} />
-      <Route path='/action/new' getComponent={lazyLoadComponent(ActionEdit)} onEnter={checkToken} />
-      <Route path='/integrations/me' getComponent={lazyLoadComponent(IntegrationsMe)} onEnter={checkToken} />
-      <Route path='/integrations/browse' getComponent={lazyLoadComponent(IntegrationsBrowse)} onEnter={checkToken} />
-      <Route path='/integration/:id' getComponent={lazyLoadComponent(IntegrationView)} onEnter={checkToken} />
-      <Route path='/integration/:integrationId/instance/new' getComponent={lazyLoadComponent(IntegrationInstanceEdit)} onEnter={checkToken} />
-      <Route path='/integration/:integrationId/instance/:id' getComponent={lazyLoadComponent(IntegrationInstanceEdit)} onEnter={checkToken} />
-      <Route path='/integration_instance/:id' getComponent={lazyLoadComponent(IntegrationInstanceEdit)} onEnter={checkToken} />
-      <Route path='/integration_instances' getComponent={lazyLoadComponent(IntegrationInstancesMe)} onEnter={checkToken} />
-      <Route path='/integration/new' getComponent={lazyLoadComponent(IntegrationEdit)} onEnter={checkToken} />
-      <Route path='/integration/:id/edit' getComponent={lazyLoadComponent(IntegrationEdit)} onEnter={checkToken} />
-      <Route path='/services/browse' getComponent={lazyLoadComponent(ServicesBrowse)} onEnter={checkToken} />
-      <Route path='/service/new' getComponent={lazyLoadComponent(ServiceEdit)} onEnter={checkToken} />
-      <Route path='/service/:id' getComponent={lazyLoadComponent(ServiceEdit)} onEnter={checkToken} />
-      <Route path='/organization/:id' getComponent={lazyLoadComponent(OrganizationEdit)} onEnter={checkToken} />
-      <Route path='/organization/new' getComponent={lazyLoadComponent(OrganizationEdit)} onEnter={checkToken} />
-      <Route path='/marketplace' getComponent={lazyLoadComponent(Marketplace)} />
-      <Route path='/marketplace/request' getComponent={lazyLoadComponent(MarketplaceRequest)} />
-      <Route path='/marketplace/:id' getComponent={lazyLoadComponent(Marketplace)} />
-      <Route path='/profile' getComponent={lazyLoadComponent(Profile)} onEnter={checkToken} />
+      {/* <NavbarLayout me={this.state.me} token={this.state.token} org={this.state.org}> */}
+      <Route component={NavbarLayout}>
+        <IndexRoute getComponent={lazyLoadComponent(Marketplace)} />
+        <Route path='/dashboard' getComponent={lazyLoadComponent(Dashboard)} onEnter={checkToken} />
+        <Route path='/actions/me' getComponent={lazyLoadComponent(ActionsMe)} onEnter={checkToken} />
+        <Route path='/actions/browse' getComponent={lazyLoadComponent(ActionsBrowse)} onEnter={checkToken} />
+        <Route path='/action/:id' getComponent={lazyLoadComponent(ActionEdit)} onEnter={checkToken} />
+        <Route path='/action/new' getComponent={lazyLoadComponent(ActionEdit)} onEnter={checkToken} />
+        <Route path='/integrations/me' getComponent={lazyLoadComponent(IntegrationsMe)} onEnter={checkToken} />
+        <Route path='/integrations/browse' getComponent={lazyLoadComponent(IntegrationsBrowse)} onEnter={checkToken} />
+        <Route path='/integration/:id' getComponent={lazyLoadComponent(IntegrationView)} onEnter={checkToken} />
+        <Route path='/integration/:integrationId/instance/new' getComponent={lazyLoadComponent(IntegrationInstanceEdit)} onEnter={checkToken} />
+        <Route path='/integration/:integrationId/instance/:id' getComponent={lazyLoadComponent(IntegrationInstanceEdit)} onEnter={checkToken} />
+        <Route path='/integration_instance/:id' getComponent={lazyLoadComponent(IntegrationInstanceEdit)} onEnter={checkToken} />
+        <Route path='/integration_instances' getComponent={lazyLoadComponent(IntegrationInstancesMe)} onEnter={checkToken} />
+        <Route path='/integration/new' getComponent={lazyLoadComponent(IntegrationEdit)} onEnter={checkToken} />
+        <Route path='/integration/:id/edit' getComponent={lazyLoadComponent(IntegrationEdit)} onEnter={checkToken} />
+        <Route path='/services/browse' getComponent={lazyLoadComponent(ServicesBrowse)} onEnter={checkToken} />
+        <Route path='/service/new' getComponent={lazyLoadComponent(ServiceEdit)} onEnter={checkToken} />
+        <Route path='/service/:id' getComponent={lazyLoadComponent(ServiceEdit)} onEnter={checkToken} />
+        <Route path='/organization/:id' getComponent={lazyLoadComponent(OrganizationEdit)} onEnter={checkToken} />
+        <Route path='/organization/new' getComponent={lazyLoadComponent(OrganizationEdit)} onEnter={checkToken} />
+        <Route path='/marketplace' getComponent={lazyLoadComponent(Marketplace)} />
+        <Route path='/marketplace/request' getComponent={lazyLoadComponent(MarketplaceRequest)} />
+        <Route path='/marketplace/:id' getComponent={lazyLoadComponent(Marketplace)} />
+        <Route path='/profile' getComponent={lazyLoadComponent(Profile)} onEnter={checkToken} />
+      </Route>
+      <Route path='login' getComponent={lazyLoadComponent(Login)} onEnter={notLoggedIn}/>
     </Route>
   </Router>
 );

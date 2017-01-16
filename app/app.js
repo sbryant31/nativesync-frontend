@@ -67,14 +67,12 @@ module.exports = React.createClass({
 
   render: function() {
     var children = null;
-
     if (this.props.children) {
       children = React.cloneElement(this.props.children, {...this.state});
     }
     return (
       <div>
         <Toaster onDismiss={this.clearError} timeout={3000} ref={(x)=>{this.toast=x;}}/>
-        <NavbarLayout me={this.state.me} token={this.state.token} org={this.state.org} />
         {children}
       </div>
     );

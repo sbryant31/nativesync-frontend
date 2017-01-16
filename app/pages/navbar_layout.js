@@ -5,7 +5,7 @@ var lodash = require('lodash');
 var _ = require('underscore');
 var actions = require('../modules/actions');
 var md5 = require('md5');
-var Navbar = require('../components/navbar');
+var Navbar = require('../components/navbar/navbar.js');
 import {Position,Popover, Menu, MenuItem, MenuDivider} from "@blueprintjs/core";
 
 var OrganizationMenu = React.createClass({
@@ -232,6 +232,11 @@ module.exports = React.createClass({
       });
     }
 
+    var children = null;
+    if (this.props.children) {
+      children = React.cloneElement(this.props.children, {...this.state});
+    }
+
     return <div style={{paddingTop:50}}>
       <Navbar links={links} avatarMenu={avatarMenu}>
         { this.props.token &&    // NQ: only show this menu if logged in
@@ -253,6 +258,7 @@ module.exports = React.createClass({
           </span>
         }
       </Navbar>
+      {children}
     </div>;
   }
 });

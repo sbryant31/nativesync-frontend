@@ -1,7 +1,7 @@
-var React = require('react')
-var actions = require('../modules/actions')
-var Navbar = require('../components/navbar')
-var lodash = require('lodash')
+var React = require('react');
+var actions = require('../modules/actions');
+// var Navbar = require('../components/navbar');
+var lodash = require('lodash');
 var ServiceSelector = require('./service/service_selector');
 var TextInputField = require('./inputs/text_input_field');
 
@@ -105,4 +105,3 @@ module.exports = React.createClass({
     </div>
   }
 })
-
