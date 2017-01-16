@@ -1,15 +1,11 @@
 var React = require('react');
 var TextInputField = require('../inputs/text_input_field');
 
-module.exports = React.createClass({
-  getDefaultProps() {
-    return {
-      details: {},
-      value: {},
-      onChange: (value) => { console.log('valuechanged', value); },
-      readOnly: false
-    };
-  },
+class OrganizationAuthAPIKey extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange(field = 'apiKeyValue', e) {
     var value = this.props.value;
@@ -21,7 +17,7 @@ module.exports = React.createClass({
       value[field] = e;
     }
     this.props.onChange(value);
-  },
+  }
 
   render() {
     return <div>
@@ -32,4 +28,11 @@ module.exports = React.createClass({
       />
     </div>;
   }
-});
+}
+OrganizationAuthAPIKey.defaultProps = {
+  details: {},
+  value: {},
+  onChange: (value) => { console.log('valuechanged', value); },
+  readOnly: false
+};
+module.exports = OrganizationAuthAPIKey;
