@@ -1,12 +1,12 @@
 var React = require('react');
-var state = require('../modules/state');
-var store = require('store');
+// var state = require('../modules/state');
+// var store = require('store');
 var lodash = require('lodash');
 var _ = require('underscore');
 var actions = require('../modules/actions');
 var md5 = require('md5');
 var Navbar = require('../components/navbar/navbar.js');
-import {Position,Popover, Menu, MenuItem, MenuDivider} from "@blueprintjs/core";
+import { Position,Popover, Menu, MenuItem } from "@blueprintjs/core";
 
 var OrganizationMenu = React.createClass({
   getInitialState: function() {
@@ -24,11 +24,10 @@ var OrganizationMenu = React.createClass({
     this.props.onChangeOrg(org);
   },
   componentDidMount: function() {
-    var self = this;
     var user = actions.getState('me');
     return actions.myAssociations()
-    .then(function(result) {
-      self.setState({organizations: result.organizations});
+    .then(result => {
+      this.setState({organizations: result.organizations});
       var org = _.findWhere(result.organizations, {id: user.default_organization_id});
       if (!org) {
         org = result.organizations[0];
@@ -37,7 +36,6 @@ var OrganizationMenu = React.createClass({
     });
   },
   render() {
-    var self = this;
     var currentOrg = actions.getState('org');
     var organizations = lodash.map(this.state.organizations, function(organization){
       var text = organization.name;
@@ -47,7 +45,7 @@ var OrganizationMenu = React.createClass({
       return <MenuItem key={organization.name}
         text={text}
         onClick={() => {
-          actions.setViewToOrg(organization).then((result) => {
+          actions.setViewToOrg(organization).then(result => {
             console.log('going to org id', organization.id);
             return actions.goto(`/organization/${organization.id}`);
           });
@@ -95,63 +93,63 @@ var UserMenu = React.createClass({
   }
 });
 
-var MarketMenu = React.createClass({
-  render(){
-    var items = [
-      {
-        name:'Buy Integrations',
-        link:'/marketplace',
-        icon: 'shop',
-      },
-      {
-        name:'Request Custom Integration',
-        link:'/marketplace/request',
-        icon: 'projects',
-      },
-    ];
-    items = lodash.map(items,function(item){
-      return <MenuItem key={item.name}
-        text={item.name}
-        iconName={item.icon}
-        onClick={() => { actions.goto(item.link); }}
-      />;
-    });
-    return <Menu>
-      {items}
-    </Menu>;
-  }
-});
+// var MarketMenu = React.createClass({
+//   render(){
+//     var items = [
+//       {
+//         name:'Buy Integrations',
+//         link:'/marketplace',
+//         icon: 'shop',
+//       },
+//       {
+//         name:'Request Custom Integration',
+//         link:'/marketplace/request',
+//         icon: 'projects',
+//       },
+//     ];
+//     items = lodash.map(items,function(item){
+//       return <MenuItem key={item.name}
+//         text={item.name}
+//         iconName={item.icon}
+//         onClick={() => { actions.goto(item.link); }}
+//       />;
+//     });
+//     return <Menu>
+//       {items}
+//     </Menu>;
+//   }
+// });
 
-// deprecated. we moved the org stuff to
-// the profile menu and we moved 'my integrations'
-// to a top level menu item
-
-var ManageMenu = React.createClass({
-  render(){
-    var items = [
-      {
-        name:'Integrations',
-        link:'/integration_instances',
-        icon:'search-around',
-      },
-      {
-        name:'Organization',
-        link:'/organization/' + actions.getState('org').id,
-        icon: 'office'
-      },
-    ];
-    items = lodash.map(items,function(item){
-      return <MenuItem key={item.name}
-        text={item.name}
-        iconName={item.icon}
-        onClick={() => { actions.goto(item.link); }}
-      />;
-    });
-    return <Menu>
-      {items}
-    </Menu>;
-  }
-});
+// // deprecated. we moved the org stuff to
+// // the profile menu and we moved 'my integrations'
+// // to a top level menu item
+//
+// var ManageMenu = React.createClass({
+//   render(){
+//     var items = [
+//       {
+//         name:'Integrations',
+//         link:'/integration_instances',
+//         icon:'search-around',
+//       },
+//       {
+//         name:'Organization',
+//         link:'/organization/' + actions.getState('org').id,
+//         icon: 'office'
+//       },
+//     ];
+//     items = lodash.map(items,function(item){
+//       return <MenuItem key={item.name}
+//         text={item.name}
+//         iconName={item.icon}
+//         onClick={() => { actions.goto(item.link); }}
+//       />;
+//     });
+//     return <Menu>
+//       {items}
+//     </Menu>;
+//   }
+// });
 
 var BuildMenu = React.createClass({
   render(){
@@ -237,12 +235,9 @@ module.exports = React.createClass({
         </Popover>;
       // figure out what to name teh view menu (gross.)
       // "view" should be a bug - user should always be logged into an org view
-      var orgName;
-      if (this.state.org) {
-        orgName = this.state.org.name;
-      } else {
-        orgName = 'Choose an Organization';
-      }
+
+      // NQ - commenting this line out for now - what is this for ?
+      // var orgName = this.state.org ? this.state.org.name : 'Choose an Organization';
     }
     else {
       // code to add 'Login' link should go here
