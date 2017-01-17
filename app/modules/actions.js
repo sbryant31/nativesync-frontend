@@ -23,11 +23,7 @@ exports.setViewToOrg = function(org) {
   var user = state.get('me');
   user.default_organization_id = org.id;
   state.set('me', user);
-
   return exports.updateUser({default_organization_id: org.id})
-  .then((result) => {
-    exports.goto('/dashboard');
-  });
 };
 
 exports.login = function(username,password){

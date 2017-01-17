@@ -26,32 +26,37 @@ var OrganizationMenu = React.createClass({
   componentDidMount: function() {
     var self = this;
     var user = actions.getState('me');
-    actions.myAssociations()
+    return actions.myAssociations()
     .then(function(result) {
       self.setState({organizations: result.organizations});
       var org = _.findWhere(result.organizations, {id: user.default_organization_id});
-      if (!org) { org = result.organizations[0]; }
-      self.handleChangeView(org);
+      if (!org) {
+        org = result.organizations[0];
+        return actions.setViewToOrg(org);
+      }
     });
   },
   render() {
     var self = this;
-    var organizations = lodash.map(this.state.organizations,function(organization){
+    var currentOrg = actions.getState('org');
+    var organizations = lodash.map(this.state.organizations, function(organization){
+      var text = organization.name;
+      if (organization.id == currentOrg.id) {
+        text = text + " (Active)";
+      }
       return <MenuItem key={organization.name}
-        text={organization.name}
-        onClick={() => { self.handleChangeView(organization); }}
+        text={text}
+        onClick={() => {
+          actions.setViewToOrg(organization).then((result) => {
+            console.log('going to org id', organization.id);
+            return actions.goto(`/organization/${organization.id}`);
+          });
+        }}
       />;
     });
-    return <Menu>
-      <li className="pt-menu-header"><h6>Organizations</h6></li>
+    return <div>
       {organizations}
-      <MenuItem
-        key="newOrganization"
-        text="Create a New Organization"
-        className="pt-icon-add"
-        onClick={() => { actions.goto('/organization/new'); }}
-      />
-    </Menu>;
+    </div>;
   }
 });
 
@@ -81,6 +86,10 @@ var UserMenu = React.createClass({
       />;
     });
     return <Menu>
+      <OrganizationMenu
+        onChangeOrg={this.props.onChangeOrg}
+      />
+      <li className="pt-menu-divider" />
       {items}
     </Menu>;
   }
@@ -112,6 +121,10 @@ var MarketMenu = React.createClass({
     </Menu>;
   }
 });
+
+// deprecated. we moved the org stuff to
+// the profile menu and we moved 'my integrations'
+// to a top level menu item
 
 var ManageMenu = React.createClass({
   render(){
@@ -190,6 +203,7 @@ module.exports = React.createClass({
         .then((result) => {
           var org = _.findWhere(result.organizations, {id: user.default_organization_id});
           if (!org) { org = result.organizations[0]; }
+          console.log('checking this thing');
           actions.setViewToOrg(org);
           this.handleChangeOrg(org);
         });
@@ -200,18 +214,25 @@ module.exports = React.createClass({
     this.setState({org: org});
   },
   render(){
-    var links = [{
+    var links = [
+    {
       name: 'Marketplace',
       icon: 'pt-icon-shopping-cart',
       url: '/'
-    }];
+    },
+    {
+      name: 'My Integrations',
+      icon: 'pt-icon-search-around',
+      url: '/integration_instances'
+    }
+    ];
 
     var avatarMenu = null;
     if (this.props.token) {
       var emailHash = md5(this.props.me.email.trim().toLowerCase());
       var avatarUrl = this.props.me.avatar_url ? this.props.me.avatar_url : "http://gravatar.com/avatar/" + emailHash + "?s=40";
       avatarMenu =
-        <Popover content={<UserMenu/>} position={Position.BOTTOM_RIGHT}>
+        <Popover content={<UserMenu onChangeOrg={this.handleChangeOrg}/>} position={Position.BOTTOM_RIGHT}>
             <img src={avatarUrl} />
         </Popover>;
       // figure out what to name teh view menu (gross.)
@@ -241,17 +262,6 @@ module.exports = React.createClass({
       <Navbar links={links} avatarMenu={avatarMenu}>
         { this.props.token &&    // NQ: only show this menu if logged in
           <span>
-            <Popover
-              content={<OrganizationMenu
-                onChangeOrg={this.handleChangeOrg}
-              />}
-              position={Position.BOTTOM_RIGHT}
-            >
-              <li className='pt-menu-item pt-icon-people'>{orgName}</li>
-            </Popover>
-            <Popover content={<ManageMenu/>} position={Position.BOTTOM_RIGHT}>
-              <li className='pt-menu-item pt-icon-office'>Manage</li>
-            </Popover>
             <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
               <li className='pt-menu-item pt-icon-wrench'>Developers</li>
             </Popover>
