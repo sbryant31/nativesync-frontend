@@ -1,4 +1,5 @@
 var React = require('react');
+import { Link } from 'react-router';
 import LogoSVG from './logo_svg';
 
 module.exports = React.createClass({
@@ -126,7 +127,7 @@ module.exports = React.createClass({
           </div>
         </div>
         <div className="divider"></div>
-        <h6>Have an account? <a onClick={this.handleSwitch}>Login</a></h6>
+        <h6>Have an account? <Link to="/login">Login</Link></h6>
       </div>
     </div>;
   }

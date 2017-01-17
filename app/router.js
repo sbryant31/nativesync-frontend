@@ -1,30 +1,32 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
-import { Router, Route, Link, browserHistory, IndexRoute, IndexRedirect } from 'react-router';
+// const ReactDOM = require('react-dom');
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 var actions = require('./modules/actions');
 
 const App = require('./app');
 const NavbarLayout = require('./pages/navbar_layout.js');
 // const Landing = require('./pages/landing');
+
 // bundle?lazy! Webpack directive below is for code splitting
-const IntegrationsMe = require('bundle?lazy!./pages/integrations_me');
+const ActionEdit = require('bundle?lazy!./pages/action_edit');
+const ActionsBrowse = require('bundle?lazy!./pages/actions_browse');
+const ActionsMe = require('bundle?lazy!./pages/actions_me');
+const Dashboard = require('bundle?lazy!./pages/dashboard');
+const IntegrationEdit = require('bundle?lazy!./pages/integration_edit');
+const IntegrationInstanceEdit = require('bundle?lazy!./pages/integration_instance_edit');
 const IntegrationInstancesMe = require('bundle?lazy!./pages/integration_instances_me');
+const IntegrationView = require('bundle?lazy!./pages/integration_view');
+const IntegrationsBrowse = require('bundle?lazy!./pages/integrations_browse');
+const IntegrationsMe = require('bundle?lazy!./pages/integrations_me');
+const Login = require('bundle?lazy!./pages/login/login');
 const Marketplace = require('bundle?lazy!./pages/marketplace');
 const MarketplaceRequest = require('bundle?lazy!./pages/marketplace_request');
-const IntegrationsBrowse = require('bundle?lazy!./pages/integrations_browse');
-const ServicesBrowse = require('bundle?lazy!./pages/services_browse');
-const ServiceEdit = require('bundle?lazy!./pages/service_edit');
-const IntegrationView = require('bundle?lazy!./pages/integration_view');
-const IntegrationInstanceEdit = require('bundle?lazy!./pages/integration_instance_edit');
-const IntegrationEdit = require('bundle?lazy!./pages/integration_edit');
 const OrganizationEdit = require('bundle?lazy!./pages/organization_edit');
-const ActionsMe = require('bundle?lazy!./pages/actions_me');
-const ActionsBrowse = require('bundle?lazy!./pages/actions_browse');
-const ActionEdit = require('bundle?lazy!./pages/action_edit');
 const Profile = require('bundle?lazy!./pages/profile');
-const Login = require('bundle?lazy!./pages/login/login');
-const Dashboard = require('bundle?lazy!./pages/dashboard');
+const ServiceEdit = require('bundle?lazy!./pages/service_edit');
+const ServicesBrowse = require('bundle?lazy!./pages/services_browse');
+const Signup = require('bundle?lazy!./pages/signup/signup');
 
 function checkToken(nextState, replace, cb) {
   return actions.me().then(user => {
@@ -51,18 +53,19 @@ function notLoggedIn(nextState, replace, cb){
   });
 }
 
-function logout(nextState, replace, cb){
-  actions.logout().then(function(){
-    // replace('/');
-    cb();
-  }).catch(function(err){
-    actions.toastError(err);
-    // replace({
-    //   pathname:'/login'
-    // });
-    cb();
-  });
-}
+// NQ - commenting this out for now... what is this for?
+// function logout(nextState, replace, cb){
+//   actions.logout().then(function(){
+//     // replace('/');
+//     cb();
+//   }).catch(function(err){
+//     actions.toastError(err);
+//     // replace({
+//     //   pathname:'/login'
+//     // });
+//     cb();
+//   });
+// }
 
 // FOR CODE SPLITTING
 const lazyLoadComponent = lazyModule => {
@@ -106,6 +109,7 @@ module.exports = (
         <Route path='/profile' getComponent={lazyLoadComponent(Profile)} onEnter={checkToken} />
       </Route>
       <Route path='login' getComponent={lazyLoadComponent(Login)} onEnter={notLoggedIn}/>
+      <Route path='signup' getComponent={lazyLoadComponent(Signup)} onEnter={notLoggedIn}/>
     </Route>
   </Router>
 );
