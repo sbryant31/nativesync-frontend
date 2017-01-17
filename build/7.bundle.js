@@ -2689,7 +2689,7 @@ webpackJsonp([7],{
 	            integration.title
 	          ),
 	          React.createElement(_reactEllipsisText2.default, {
-	            text: integration.description || "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+	            text: integration.description || integration.title || "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
 	            length: 140
 	          }),
 	          React.createElement(
@@ -2700,7 +2700,7 @@ webpackJsonp([7],{
 	          Object.getOwnPropertyNames(integration.pricing).length > 0 ? React.createElement(
 	            'div',
 	            { className: 'pricing' },
-	            '$' + integration.pricing.upfront + ' + $' + integration.pricing.monthly + '/mo'
+	            '$' + integration.pricing.monthly + '/mo'
 	          ) : ""
 	        )
 	      );
