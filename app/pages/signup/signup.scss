@@ -1,4 +1,4 @@
-.LoginContainer {
+.SignupContainer {
   background-color: #2E2F56;
   height: 100vh;
   margin: 0;
@@ -73,8 +73,18 @@
         text-decoration: underline;
       }
     }
-    .pt-button {
-      width: 100%;
+    .buttons {
+      padding: 0px 10px;
+      .pt-button {
+        display: inline-block;
+        width: 100%;
+      }
+      .pt-button.cancel {
+        // width: 30%;
+      }
+      .pt-button.submit {
+        // width: 60%;
+      }
     }
   }
 }
