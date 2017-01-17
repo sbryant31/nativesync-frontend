@@ -110,9 +110,15 @@ hr { margin: 30px 0px; }
 .pt-button {
   border: none;
   border-radius: 30px;
+  transition: background 250ms;
   &.pt-intent-primary {
     background: #6B75DD;
     box-shadow: none;
+    &:hover { background: #565daf; }
+  }
+  &.pt-intent-warning {
+    background: #C23D4B;
+    &:hover { background: #98313b; }
   }
 }
 .pt-control-group.pt-vertical > .pt-button:last-child {

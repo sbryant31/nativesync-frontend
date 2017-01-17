@@ -37,7 +37,6 @@ module.exports = React.createClass({
       <div className='LoginContainer row center-xs'>
         <div className='col-xs-5'>
           <Login onSubmit={this.handleLoginSubmit}
-                 onSwitch={this.switchToSignup}
                  onChange={this.handleUserChange}
                  email={this.state.user.email}
                  password={this.state.user.password}

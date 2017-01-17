@@ -29,19 +29,24 @@ module.exports = React.createClass({
     this.setState({user});
   },
 
-  handleSignupSubmit: function() {
-    actions.signup(this.state.user).then(user => {
-      console.log(user);
-      actions.goto(this.state.nextPath);
-    }).catch(actions.toastError);
+  handleSignupSubmit: function(e) {
+    e.preventDefault();
+    if (!e.target.checkValidity()) {
+      actions.toastError('Form data not valid.');
+    } else if (this.state.user.password === this.state.user.password_confirmation) {
+      actions.signup(this.state.user).then(user => {
+        actions.goto(this.state.nextPath);
+      }).catch(actions.toastError);
+    } else {
+      actions.toastError('Password confirmation doesn\'t match the password.');
+    }
   },
 
   render() {
     return <div>
-      <div className='LoginContainer row center-xs'>
+      <div className='SignupContainer row center-xs'>
         <div className='col-xs-5'>
           <Signup onSubmit={this.handleSignupSubmit}
-                  onSwitch={this.switchToLogin}
                   onChange={this.handleUserChange}
                   first_name={this.state.user.first_name}
                   last_name={this.state.user.last_name}
