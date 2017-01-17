@@ -117,12 +117,12 @@ var ManageMenu = React.createClass({
   render(){
     var items = [
       {
-        name:'My Integrations',
+        name:'Integrations',
         link:'/integration_instances',
         icon:'search-around',
       },
       {
-        name:'My Organization',
+        name:'Organization',
         link:'/organization/' + actions.getState('org').id,
         icon: 'office'
       },
@@ -253,7 +253,7 @@ module.exports = React.createClass({
               <li className='pt-menu-item pt-icon-office'>Manage</li>
             </Popover>
             <Popover content={<BuildMenu/>} position={Position.BOTTOM_RIGHT}>
-              <li className='pt-menu-item pt-icon-wrench'>Build</li>
+              <li className='pt-menu-item pt-icon-wrench'>Developers</li>
             </Popover>
           </span>
         }
