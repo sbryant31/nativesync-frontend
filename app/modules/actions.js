@@ -14,7 +14,7 @@ exports.getState = function(key) {
   return state.get(key);
 };
 
-exports.getToken = function(){
+exports.getToken = function() {
   return token;
 };
 
@@ -30,7 +30,7 @@ exports.setViewToOrg = function(org) {
   });
 };
 
-exports.login = function(username,password){
+exports.login = function(username,password) {
   return nsapi.login(username, password).then(function(t) {
     assert(t, 'login failed');
     state.set('token', t.token);
@@ -39,20 +39,21 @@ exports.login = function(username,password){
   });
 };
 
-exports.signup = function(username,password, accountType, companyName){
-  return nsapi.signup(username,password, accountType, companyName).then(function(user){
+exports.signup = function({first_name, last_name, email, password, accountType, companyName}) {
+  return nsapi.signup(first_name, last_name, email, password, accountType, companyName)
+  .then(function(user) {
     assert(user,'signup failed');
-    return exports.login(username,password);
+    return exports.login(email, password);
   });
 };
 
-exports.logout = function(){
-  return nsapi.logout(token).then(function(){
+exports.logout = function() {
+  return nsapi.logout(token).then(function() {
     state.set('token',null);
     state.set('me',null);
     token = null;
     return true;
-  }).catch(function(){
+  }).catch(function() {
     state.set('token',null);
     state.set('me',null);
     token = null;
@@ -60,7 +61,7 @@ exports.logout = function(){
   });
 };
 
-exports.me = function(){
+exports.me = function() {
   return token ?
     // only call API to check token if there is one to check in the first place
     nsapi.me(token)
@@ -73,31 +74,31 @@ exports.me = function(){
     Promise.reject('not logged in');
 };
 
-exports.getIntegrations = function(filter){
+exports.getIntegrations = function(filter) {
   return nsapi.getIntegrations(filter, token);
 };
 
-exports.getMarketplaceIntegrations = function(filter){
+exports.getMarketplaceIntegrations = function(filter) {
   return nsapi.getMarketplaceIntegrations(filter);
 };
 
-exports.getServices = function(filter){
+exports.getServices = function(filter) {
   return nsapi.getServices(filter, token);
 };
 
-exports.getOrganizationAuths = function(organizationId, serviceAuthIDs){
+exports.getOrganizationAuths = function(organizationId, serviceAuthIDs) {
   return nsapi.getOrganizationAuths(organizationId, serviceAuthIDs, token);
 };
 
-exports.getOrganizations = function(filter){
+exports.getOrganizations = function(filter) {
   return nsapi.getOrganizations(filter, token);
 };
 
-exports.getIntegrationInstances = function(integrationId){
+exports.getIntegrationInstances = function(integrationId) {
   return nsapi.getIntegrationInstances(integrationId, token);
 };
 
-exports.getIntegrationInstancesForOrg = function(organizationId){
+exports.getIntegrationInstancesForOrg = function(organizationId) {
   return nsapi.getIntegrationInstancesForOrg(organizationId, token);
 };
 
@@ -133,15 +134,15 @@ exports.getOrganizationById = function(id) {
   return nsapi.getOrganizationById(id, token);
 };
 
-exports.getActions = function(filter){
+exports.getActions = function(filter) {
   return nsapi.getActions(filter, token);
 };
 
-exports.getServiceAuths = function(service_id){
+exports.getServiceAuths = function(service_id) {
   return nsapi.getServiceAuths(service_id, token);
 };
 
-exports.getServiceDefinitions = function(service_id){
+exports.getServiceDefinitions = function(service_id) {
   return nsapi.getServiceDefinitions(service_id, token);
 };
 
@@ -208,14 +209,14 @@ exports.upsertIntegrationInstance = function(integrationInstance, integration, o
   });
 };
 
-exports.myAssociations = function(){
-  return nsapi.myAssociations(token).then(function(result){
+exports.myAssociations = function() {
+  return nsapi.myAssociations(token).then(function(result) {
     state.set('organizations',result.organizations);
     return result;
   });
 };
 
-exports.toastError = function(error){
+exports.toastError = function(error) {
   state.set('error',error.message || error);
 };
 
