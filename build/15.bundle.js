@@ -1,49 +1,176 @@
 webpackJsonp([15],{
 
-/***/ 631:
+/***/ 66:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var React = __webpack_require__(1);
+	var Iframe = React.createClass({
+	    displayName: "React-Iframe",
+
+	    propTypes: {
+	        url: React.PropTypes.string.isRequired,
+	        width: React.PropTypes.string,
+	        height: React.PropTypes.string
+	    },
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            height: "100%",
+	            width: "100%",
+	            position: "fixed"
+	        };
+	    },
+
+	    shouldComponentUpdate: function shouldComponentUpdate(nextProps) {
+	        return this.props.url !== nextProps.url;
+	    },
+
+	    render: function render() {
+	        return React.createElement("iframe", { ref: "iframe",
+	            frameBorder: "0",
+	            src: this.props.url,
+	            style: { position: this.props.position, height: this.props.height, width: this.props.width },
+	            height: this.props.height, width: this.props.width });
+	    }
+	});
+
+	module.exports = Iframe;
+
+/***/ },
+
+/***/ 627:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _reactRouter = __webpack_require__(80);
+	var _core = __webpack_require__(29);
 
 	var React = __webpack_require__(1);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var _ = __webpack_require__(6);
 	var lodash = __webpack_require__(5);
 
+	var Iframe = __webpack_require__(66);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
-	  getDefaultProps: function getDefaultProps() {
+	  getInitialState: function getInitialState() {
 	    return {
-	      items: {}
+	      filter: {},
+	      filteredServices: {},
+	      services: [],
+	      serviceInstances: []
 	    };
 	  },
-	  goto: function goto(url) {
-	    _reactRouter.browserHistory.push(url);
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      initialFilter: {},
+	      showInstances: false
+	    };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var self = this;
+	    self.setState({ filter: this.props.initialFilter });
+	    actions.getServices(this.state.filter).then(function (result) {
+	      self.setState({
+	        services: result.services,
+	        filteredServices: result.services
+	      });
+	    });
+	  },
+	  handleFilterChange: function handleFilterChange(field, e) {
+	    var filter = this.state.filter;
+	    var value = void 0;
+	    if (e.target) {
+	      value = e.target.value;
+	    } else if (e.value) {
+	      value = e.value;
+	    } else {
+	      value = e;
+	    }
+	    if (value) {
+	      filter[field] = value.toLowerCase();
+	    } else {
+	      delete filter[field];
+	    }
+
+	    this.setState({ filter: filter });
+	    var filteredServices = _.filter(this.state.services, function (service) {
+	      var match = true;
+	      _.each(filter, function (value, key) {
+	        if (service[key].toLowerCase().indexOf(value) === -1) {
+	          match = false;
+	        }
+	      });
+	      return match;
+	    });
+	    this.setState({ filteredServices: filteredServices });
 	  },
 	  render: function render() {
-	    var items = lodash.map(this.props.items, function (item) {
+	    var self = this;
+	    var servicesList = lodash.map(self.state.filteredServices, function (service) {
+	      var documentationUrl = 'https://swagger-ui.aerobatic.io/?url=https://api.nativesync.io/docs/service/' + service.id + '/swagger.json';
 	      return React.createElement(
-	        'li',
-	        { key: item.name },
+	        'tr',
+	        { key: service.id },
 	        React.createElement(
-	          'button',
-	          {
-	            type: 'button',
-	            onClick: this.goto.bind(this, item.url),
-	            className: 'pt-menu-item' },
-	          item.name
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { onClick: actions.goto.bind(null, '/service/' + service.id) },
+	            React.createElement('img', { src: service.logo_url, style: { height: 50, width: 50 } }),
+	            ' ',
+	            service.name
+	          )
+	        ),
+	        React.createElement(
+	          'td',
+	          null,
+	          React.createElement(
+	            'a',
+	            { href: documentationUrl, target: 'new' },
+	            React.createElement(
+	              'button',
+	              { className: 'pt-button' },
+	              'Action API Documentation'
+	            )
+	          )
 	        )
 	      );
-	    }.bind(this));
+	    });
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(
-	        'ul',
-	        { className: 'pt-menu' },
-	        items
+	        'h1',
+	        null,
+	        'Services'
+	      ),
+	      React.createElement(
+	        'a',
+	        { onClick: actions.goto.bind(null, '/service/new') },
+	        'New Service'
+	      ),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'label',
+	        { className: 'pt-label' },
+	        'Name ',
+	        React.createElement('input', { className: 'pt-input', value: this.state.filter.name, onChange: this.handleFilterChange.bind(this, 'name') })
+	      ),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'table',
+	        { className: 'pt-table pt-striped' },
+	        React.createElement(
+	          'tbody',
+	          null,
+	          servicesList
+	        )
 	      )
 	    );
 	  }
@@ -51,49 +178,32 @@ webpackJsonp([15],{
 
 /***/ },
 
-/***/ 648:
+/***/ 650:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Navbar = __webpack_require__(490);
-	var Sidebar = __webpack_require__(631);
+	var actions = __webpack_require__(4);
+	// var Navbar = require('../components/navbar');
+	var ServiceBrowser = __webpack_require__(627);
+	var lodash = __webpack_require__(5);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
+	  getInitialState: function getInitialState() {
+	    return {
+	      filter: {}
+	    };
+	  },
 	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
 	    if (!nextProps.token) {
 	      actions.goto('/');
 	    }
 	  },
 	  render: function render() {
-	    var sidebarItems = [{ name: 'Dashboard', url: '/organization/dashboard' }, { name: 'My Gigs', url: '/organization/gigs' }, { name: 'Post a Gig', url: '/organization/gigs/new' }, { name: 'Browse Integrations', url: '/integrations' }, { name: 'Profile', url: '/profile' }];
-
-	    return React.createElement(
-	      'div',
-	      { style: { paddingTop: 50 } },
-	      React.createElement(Navbar, null),
-	      React.createElement(
-	        'div',
-	        { className: 'container' },
-	        React.createElement(
-	          'div',
-	          { className: 'row' },
-	          React.createElement(
-	            'div',
-	            { className: 'pt-card col-xs-3' },
-	            React.createElement(Sidebar, { items: sidebarItems })
-	          ),
-	          React.createElement(
-	            'div',
-	            { className: 'pt-card col-xs-9' },
-	            'Main Body'
-	          )
-	        )
-	      )
-	    );
+	    return React.createElement(ServiceBrowser, { filter: this.filter });
 	  }
 	});
 

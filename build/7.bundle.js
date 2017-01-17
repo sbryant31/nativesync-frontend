@@ -2642,7 +2642,7 @@ webpackJsonp([7],{
 
 	var _reactEllipsisText2 = _interopRequireDefault(_reactEllipsisText);
 
-	var _reactRouter = __webpack_require__(80);
+	var _reactRouter = __webpack_require__(76);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

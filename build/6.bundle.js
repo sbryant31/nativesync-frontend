@@ -2642,7 +2642,7 @@ webpackJsonp([6],{
 
 	var _reactEllipsisText2 = _interopRequireDefault(_reactEllipsisText);
 
-	var _reactRouter = __webpack_require__(80);
+	var _reactRouter = __webpack_require__(76);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2883,7 +2883,7 @@ webpackJsonp([6],{
 
 
 	// CSS
-	__webpack_require__(701);
+	__webpack_require__(704);
 
 	var IntegrationDetails = function (_React$Component) {
 	  _inherits(IntegrationDetails, _React$Component);
@@ -3163,7 +3163,7 @@ webpackJsonp([6],{
 
 	var _integration_browser2 = _interopRequireDefault(_integration_browser);
 
-	__webpack_require__(700);
+	__webpack_require__(703);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3226,10 +3226,10 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 684:
+/***/ 686:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(381)();
+	exports = module.exports = __webpack_require__(244)();
 	// imports
 
 
@@ -3241,10 +3241,10 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 685:
+/***/ 687:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(381)();
+	exports = module.exports = __webpack_require__(244)();
 	// imports
 
 
@@ -3256,16 +3256,16 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 700:
+/***/ 703:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(684);
+	var content = __webpack_require__(686);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(466)(content, {});
+	var update = __webpack_require__(261)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -3283,16 +3283,16 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 701:
+/***/ 704:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(685);
+	var content = __webpack_require__(687);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(466)(content, {});
+	var update = __webpack_require__(261)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {

@@ -1,86 +1,49 @@
 webpackJsonp([16],{
 
-/***/ 622:
+/***/ 631:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
+	var _reactRouter = __webpack_require__(76);
+
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(4);
-	// var Navbar = require('../components/navbar');
 	var lodash = __webpack_require__(5);
+
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
-	  getInitialState: function getInitialState() {
-	    return {
-	      filter: {},
-	      integrationInstances: []
-	    };
-	  },
 	  getDefaultProps: function getDefaultProps() {
 	    return {
-	      initialFilter: {}
+	      items: {}
 	    };
 	  },
-	  componentDidMount: function componentDidMount() {
-	    var self = this;
-	    self.setState({ filter: this.props.initialFilter });
-	    var org = actions.getState('org');
-	    actions.getIntegrationInstancesForOrg(org.id).then(function (result) {
-	      self.setState({
-	        integrationInstances: result.integrationInstances
-	      });
-	    });
+	  goto: function goto(url) {
+	    _reactRouter.browserHistory.push(url);
 	  },
 	  render: function render() {
-	    var self = this;
-	    var integrationInstancesList = lodash.map(self.state.integrationInstances, function (integrationInstance) {
+	    var items = lodash.map(this.props.items, function (item) {
 	      return React.createElement(
-	        'tr',
-	        { key: integrationInstance.id },
+	        'li',
+	        { key: item.name },
 	        React.createElement(
-	          'td',
-	          null,
-	          React.createElement(
-	            'a',
-	            { onClick: actions.goto.bind(null, '/integration_instance/' + integrationInstance.id) },
-	            integrationInstance.title ? integrationInstance.title : 'untitled'
-	          )
+	          'button',
+	          {
+	            type: 'button',
+	            onClick: this.goto.bind(this, item.url),
+	            className: 'pt-menu-item' },
+	          item.name
 	        )
 	      );
-	    });
+	    }.bind(this));
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(
-	        'h1',
-	        null,
-	        'Integrations'
-	      ),
-	      React.createElement('hr', null),
-	      React.createElement(
-	        'table',
-	        { className: 'pt-table pt-striped' },
-	        React.createElement(
-	          'thead',
-	          null,
-	          React.createElement(
-	            'tr',
-	            null,
-	            React.createElement(
-	              'th',
-	              null,
-	              'Title'
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          'tbody',
-	          null,
-	          integrationInstancesList
-	        )
+	        'ul',
+	        { className: 'pt-menu' },
+	        items
 	      )
 	    );
 	  }
@@ -88,36 +51,48 @@ webpackJsonp([16],{
 
 /***/ },
 
-/***/ 640:
+/***/ 648:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var actions = __webpack_require__(4);
-	// var Navbar = require('../components/navbar');
-	var IntegrationInstanceBrowser = __webpack_require__(622);
-	// var lodash = require('lodash');
+	var Navbar = __webpack_require__(490);
+	var Sidebar = __webpack_require__(631);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
-	  getInitialState: function getInitialState() {
-	    return {
-	      filter: {}
-	    };
-	  },
 	  componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
 	    if (!nextProps.token) {
 	      actions.goto('/');
 	    }
 	  },
-
 	  render: function render() {
+	    var sidebarItems = [{ name: 'Dashboard', url: '/organization/dashboard' }, { name: 'My Gigs', url: '/organization/gigs' }, { name: 'Post a Gig', url: '/organization/gigs/new' }, { name: 'Browse Integrations', url: '/integrations' }, { name: 'Profile', url: '/profile' }];
+
 	    return React.createElement(
 	      'div',
-	      { className: 'pt-content' },
-	      React.createElement(IntegrationInstanceBrowser, { initialFilter: this.filter })
+	      { style: { paddingTop: 50 } },
+	      React.createElement(Navbar, null),
+	      React.createElement(
+	        'div',
+	        { className: 'container' },
+	        React.createElement(
+	          'div',
+	          { className: 'row' },
+	          React.createElement(
+	            'div',
+	            { className: 'pt-card col-xs-3' },
+	            React.createElement(Sidebar, { items: sidebarItems })
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'pt-card col-xs-9' },
+	            'Main Body'
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
