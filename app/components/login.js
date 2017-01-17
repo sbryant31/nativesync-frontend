@@ -1,5 +1,6 @@
 var React = require('react');
 import LogoSVG from './logo_svg';
+import { Link } from 'react-router';
 
 module.exports = React.createClass({
   getDefaultProps() {
@@ -48,7 +49,8 @@ module.exports = React.createClass({
         </div>
         <hr />
         <h6 className="signup">
-          New to NativeSync? <a onClick={this.handleSwitch}>Sign up</a>
+          {/* New to NativeSync? <a onClick={this.handleSwitch}>Sign up</a> */}
+          New to NativeSync? <Link to="/signup">Sign up</Link>.
         </h6>
       </div>
     </div>;
