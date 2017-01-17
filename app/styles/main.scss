@@ -117,8 +117,10 @@ hr { margin: 30px 0px; }
     &:hover { background: #565daf; }
   }
   &.pt-intent-warning {
-    background: #C23D4B;
-    &:hover { background: #98313b; }
+    // background: #C23D4B;
+    // &:hover { background: #98313b; }
+    background: #9BA9BB;
+    &:hover { background: #87909c; }
   }
 }
 .pt-control-group.pt-vertical > .pt-button:last-child {
