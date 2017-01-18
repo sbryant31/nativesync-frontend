@@ -32,7 +32,7 @@ exports.login = function(username,password) {
     assert(t, 'login failed');
     state.set('token', t.token);
     // need to save cookie token (for oauth routes... on api)
-    cookie.save('token', t.token);
+    cookie.save('token', t.token, {domain: 'https://*.nativesync.io'});
     token = t.token;
     return exports.me();
   });
