@@ -3,6 +3,7 @@ var nsapi = require('./nativesyncapi');
 var state = require('./state');
 var _ = require('underscore');
 //persistence
+import cookie from 'react-cookie';
 var store = require('store');
 var assert = require('assert');
 import { browserHistory } from 'react-router';
@@ -30,6 +31,8 @@ exports.login = function(username,password) {
   return nsapi.login(username, password).then(function(t) {
     assert(t, 'login failed');
     state.set('token', t.token);
+    // need to save cookie token (for oauth routes... on api)
+    cookie.save('token', t.token);
     token = t.token;
     return exports.me();
   });
