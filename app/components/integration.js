@@ -140,6 +140,7 @@ module.exports = React.createClass({
       <Tabs>
         <TabList>
             <Tab>General</Tab>
+            <Tab>Trigger/Scheduling</Tab>
             <Tab>Configuration</Tab>
             <Tab>Code</Tab>
             <Tab>Documentation</Tab>
@@ -147,16 +148,12 @@ module.exports = React.createClass({
         </TabList>
         <TabPanel>
           <h2>General</h2>
+          <ServiceMultiSelect value={this.state.services} onChange={this.handleServiceChange.bind(this)} />
           <TextInputField label="Title" value={this.state.integration.title} onChange={this.handleChange.bind(this, 'title')} />
           <TextInputField label="Version" value={this.state.integration.version} onChange={this.handleChange.bind(this, 'version')} />
-          <div className="row">
-            <VisibilitySelector value={ this.state.integration.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
-          </div>
-          <label className="pt-label">
-            Description
-            <textarea className="pt-input pt-fill" value={this.state.integration.description} onChange={this.handleChange.bind(this, 'description')} />
-          </label>
-          <TriggerInfo value={this.state.integration.scheduling_info} onChange={this.handleChange.bind(this, 'scheduling_info')} />
+        </TabPanel>
+        <TabPanel>
+          <TriggerInfo value={this.state.integration.scheduling_info} onChange={this.handleChangeValue.bind(this, 'scheduling_info')} />
         </TabPanel>
         <TabPanel>
           <h2>Configuration</h2>
@@ -225,9 +222,6 @@ module.exports = React.createClass({
                 <hr />
               </div>
               <div className="row">
-                <ServiceMultiSelect value={this.state.services} onChange={this.handleServiceChange.bind(this)} />
-              </div>
-              <div className="row">
                 <ActionMultiSelect value={this.state.actions} services={this.state.services} onChange={this.handleActionChange.bind(this)} />
                 <ActionDocumentationList actions={this.state.actions} />
             </div>
@@ -235,6 +229,8 @@ module.exports = React.createClass({
           </div>
         </TabPanel>
         <TabPanel>
+          <h2>Overview</h2>
+          <MarkdownEditor initialContent={this.state.integration.description} onContentChange={this.handleChangeValue.bind(this, 'description')} iconsSet="font-awesome" />
           <h2>Documentation</h2>
           <MarkdownEditor initialContent={this.state.integration.documentation} onContentChange={this.handleChangeValue.bind(this, 'documentation')} iconsSet="font-awesome" />
         </TabPanel>
@@ -244,6 +240,9 @@ module.exports = React.createClass({
           <PricingInfo value={this.state.integration.pricing} onChange={this.handleChangeValue.bind(this, 'pricing')} />
           <h4>Referral Codes</h4>
           <ReferralCodesList referrals={this.state.integration.referrals} onChange={this.handleChangeValue.bind(this, 'referrals')} />
+          <div className="row">
+            <VisibilitySelector value={ this.state.integration.visibility } onChange={this.handleChange.bind(this, 'visibility')} />
+          </div>
         </TabPanel>
       </Tabs>
       <hr />

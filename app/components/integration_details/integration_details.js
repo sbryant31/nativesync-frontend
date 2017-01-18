@@ -30,15 +30,7 @@ export default class IntegrationDetails extends React.Component {
       <div className="content">
         <div className="overview">
           <h3 className="with-hr">Overview</h3>
-          <p>{this.state.integration.description || filler_text_short}</p>
-        </div>
-        <div className="how-it-works">
-          <h3 className="with-hr">How It Works</h3>
-          <p>{this.state.integration.how_it_works || filler_text_long}</p>
-        </div>
-        <div className="what-you-need">
-          <h3 className="with-hr">What You Need</h3>
-          <p>{this.state.integration.requirements || filler_text_long}</p>
+          <p>{this.state.integration.description}</p>
         </div>
         {/* <h3>Configuration</h3>
         <p>{JSON.stringify(this.state.integration.configuration)}</p> */}
@@ -53,9 +45,7 @@ export default class IntegrationDetails extends React.Component {
       <div className="content">
         <div className="documentation">
           <h3 className="with-hr">Documentation</h3>
-          <p>{filler_text_par1}</p>
-          <p>{filler_text_par2}</p>
-          <p>{filler_text_par3}</p>
+          <p>{this.state.integration.documentation}</p>
         </div>
       </div>
     );
@@ -126,7 +116,6 @@ export default class IntegrationDetails extends React.Component {
               <div className="details-col-2">
                 <Button className="pt-intent-primary pt-large" text="Buy Now" />
                 <h4 className="pricing">{
-                  `$${this.state.integration.pricing.upfront} + ` +
                   `$${this.state.integration.pricing.monthly}/month`
                 }</h4>
                 {this._likes()}
