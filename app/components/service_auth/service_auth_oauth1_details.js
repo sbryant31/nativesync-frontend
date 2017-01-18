@@ -34,7 +34,7 @@ module.exports = React.createClass({
    var self = this;
     if (this.props.id) {
       var org = actions.getState('org');
-      var callbackUrl = `https://api.nativesync.io/oauth/callback/1.0/${this.props.id}/org/${org.id}`
+      var callbackUrl = `https://api.nativesync.io/oauth/callback/1.0/${this.props.id}`
     } else {
       var callbackUrl = "will be generated upon saving"
     }
