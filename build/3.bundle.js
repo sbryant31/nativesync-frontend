@@ -3450,7 +3450,7 @@ webpackJsonp([3],{
 	    var self = this;
 	    if (this.props.id) {
 	      var org = actions.getState('org');
-	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/1.0/' + this.props.id + '/org/' + org.id;
+	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/1.0/' + this.props.id;
 	    } else {
 	      var callbackUrl = "will be generated upon saving";
 	    }
@@ -3529,7 +3529,7 @@ webpackJsonp([3],{
 	    var tokenLocationOptions = [{ label: 'Bearer Token', value: 'bearer' }, { label: 'Token in Header', value: 'header' }, { label: 'Token in Query Strings', value: 'query' }];
 	    if (this.props.id) {
 	      var org = actions.getState('org');
-	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/2.0/' + this.props.id + '/org/' + org.id;
+	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/2.0/' + this.props.id;
 	    } else {
 	      var callbackUrl = "will be generated upon saving";
 	    }
@@ -16378,7 +16378,7 @@ webpackJsonp([3],{
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 
-	var _reactNumericInput = __webpack_require__(859);
+	var _reactNumericInput = __webpack_require__(860);
 
 	var _reactNumericInput2 = _interopRequireDefault(_reactNumericInput);
 
@@ -17267,7 +17267,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 859:
+/***/ 860:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports =

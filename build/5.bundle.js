@@ -3064,7 +3064,7 @@ webpackJsonp([5],{
 	    var self = this;
 	    if (this.props.id) {
 	      var org = actions.getState('org');
-	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/1.0/' + this.props.id + '/org/' + org.id;
+	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/1.0/' + this.props.id;
 	    } else {
 	      var callbackUrl = "will be generated upon saving";
 	    }
@@ -3143,7 +3143,7 @@ webpackJsonp([5],{
 	    var tokenLocationOptions = [{ label: 'Bearer Token', value: 'bearer' }, { label: 'Token in Header', value: 'header' }, { label: 'Token in Query Strings', value: 'query' }];
 	    if (this.props.id) {
 	      var org = actions.getState('org');
-	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/2.0/' + this.props.id + '/org/' + org.id;
+	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/2.0/' + this.props.id;
 	    } else {
 	      var callbackUrl = "will be generated upon saving";
 	    }

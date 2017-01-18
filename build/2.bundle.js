@@ -1388,7 +1388,7 @@ webpackJsonp([2],[
 
 	var store      = __webpack_require__(141)('wks')
 	  , uid        = __webpack_require__(94)
-	  , Symbol     = __webpack_require__(39).Symbol
+	  , Symbol     = __webpack_require__(40).Symbol
 	  , USE_SYMBOL = typeof Symbol == 'function';
 
 	var $exports = module.exports = function(name){
@@ -2502,10 +2502,11 @@ webpackJsonp([2],[
 
 /***/ },
 /* 37 */,
-/* 38 */
+/* 38 */,
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(39)
+	var global    = __webpack_require__(40)
 	  , core      = __webpack_require__(18)
 	  , ctx       = __webpack_require__(133)
 	  , hide      = __webpack_require__(62)
@@ -2568,7 +2569,7 @@ webpackJsonp([2],[
 	module.exports = $export;
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -2577,7 +2578,6 @@ webpackJsonp([2],[
 	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
 
 /***/ },
-/* 40 */,
 /* 41 */,
 /* 42 */,
 /* 43 */,
@@ -4141,7 +4141,7 @@ webpackJsonp([2],[
 	    var self = this;
 	    if (this.props.id) {
 	      var org = actions.getState('org');
-	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/1.0/' + this.props.id + '/org/' + org.id;
+	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/1.0/' + this.props.id;
 	    } else {
 	      var callbackUrl = "will be generated upon saving";
 	    }
@@ -4219,7 +4219,7 @@ webpackJsonp([2],[
 	    var tokenLocationOptions = [{ label: 'Bearer Token', value: 'bearer' }, { label: 'Token in Header', value: 'header' }, { label: 'Token in Query Strings', value: 'query' }];
 	    if (this.props.id) {
 	      var org = actions.getState('org');
-	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/2.0/' + this.props.id + '/org/' + org.id;
+	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/2.0/' + this.props.id;
 	    } else {
 	      var callbackUrl = "will be generated upon saving";
 	    }
@@ -20356,7 +20356,7 @@ webpackJsonp([2],[
 /* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global = __webpack_require__(39)
+	var global = __webpack_require__(40)
 	  , SHARED = '__core-js_shared__'
 	  , store  = global[SHARED] || (global[SHARED] = {});
 	module.exports = function(key){
@@ -20395,7 +20395,7 @@ webpackJsonp([2],[
 /* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global         = __webpack_require__(39)
+	var global         = __webpack_require__(40)
 	  , core           = __webpack_require__(18)
 	  , LIBRARY        = __webpack_require__(136)
 	  , wksExt         = __webpack_require__(145)
@@ -20416,7 +20416,7 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(327);
-	var global        = __webpack_require__(39)
+	var global        = __webpack_require__(40)
 	  , hide          = __webpack_require__(62)
 	  , Iterators     = __webpack_require__(64)
 	  , TO_STRING_TAG = __webpack_require__(21)('toStringTag');
@@ -21495,16 +21495,20 @@ webpackJsonp([2],[
 	  handleChange: function handleChange(field, selection) {
 	    var triggerInfo = this.props.value;
 	    triggerInfo[field] = selection.value;
+	    console.log('trigger info', triggerInfo);
 	    this.props.onChange(triggerInfo);
 	  },
 	  render: function render() {
 	    var triggerTypes = [{ value: 'cron', label: 'Scheduled' }];
+	    var cronOptions = [{ value: '0 0 12 1/1 * ? *', label: 'Daily' }, { value: '0 0 0/1 1/1 * ? *', label: 'Hourly' }, { value: '0 0/30 * 1/1 * ? *', label: 'Every 30 Minutes' }, { value: '0 0/15 * 1/1 * ? *', label: 'Every 15 Minutes' }];
 	    return React.createElement(
 	      'div',
 	      null,
 	      'Trigger info',
 	      React.createElement(Select, { options: triggerTypes, value: this.props.value.type, onChange: this.handleChange.bind(this, 'type') }),
-	      React.createElement(TextInputField, { label: 'Cron', value: this.props.value.value, onChange: this.handleChange.bind(this, 'value') })
+	      this.props.value.type == 'cron' && React.createElement(Select, { options: cronOptions,
+	        value: this.props.value.value,
+	        onChange: this.handleChange.bind(this, 'value') })
 	    );
 	  }
 	});
@@ -21641,7 +21645,7 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(63)
-	  , document = __webpack_require__(39).document
+	  , document = __webpack_require__(40).document
 	  // in old IE typeof document.createElement is 'object'
 	  , is = isObject(document) && isObject(document.createElement);
 	module.exports = function(it){
@@ -21672,7 +21676,7 @@ webpackJsonp([2],[
 
 	'use strict';
 	var LIBRARY        = __webpack_require__(136)
-	  , $export        = __webpack_require__(38)
+	  , $export        = __webpack_require__(39)
 	  , redefine       = __webpack_require__(197)
 	  , hide           = __webpack_require__(62)
 	  , has            = __webpack_require__(46)
@@ -21826,7 +21830,7 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(38)
+	var $export = __webpack_require__(39)
 	  , core    = __webpack_require__(18)
 	  , fails   = __webpack_require__(61);
 	module.exports = function(KEY, exec){
@@ -25179,6 +25183,11 @@ webpackJsonp([2],[
 	          React.createElement(
 	            _core.Tab,
 	            null,
+	            'Trigger/Scheduling'
+	          ),
+	          React.createElement(
+	            _core.Tab,
+	            null,
 	            'Configuration'
 	          ),
 	          React.createElement(
@@ -25205,20 +25214,14 @@ webpackJsonp([2],[
 	            null,
 	            'General'
 	          ),
+	          React.createElement(ServiceMultiSelect, { value: this.state.services, onChange: this.handleServiceChange.bind(this) }),
 	          React.createElement(TextInputField, { label: 'Title', value: this.state.integration.title, onChange: this.handleChange.bind(this, 'title') }),
-	          React.createElement(TextInputField, { label: 'Version', value: this.state.integration.version, onChange: this.handleChange.bind(this, 'version') }),
-	          React.createElement(
-	            'div',
-	            { className: 'row' },
-	            React.createElement(VisibilitySelector, { value: this.state.integration.visibility, onChange: this.handleChange.bind(this, 'visibility') })
-	          ),
-	          React.createElement(
-	            'label',
-	            { className: 'pt-label' },
-	            'Description',
-	            React.createElement('textarea', { className: 'pt-input pt-fill', value: this.state.integration.description, onChange: this.handleChange.bind(this, 'description') })
-	          ),
-	          React.createElement(TriggerInfo, { value: this.state.integration.scheduling_info, onChange: this.handleChange.bind(this, 'scheduling_info') })
+	          React.createElement(TextInputField, { label: 'Version', value: this.state.integration.version, onChange: this.handleChange.bind(this, 'version') })
+	        ),
+	        React.createElement(
+	          _core.TabPanel,
+	          null,
+	          React.createElement(TriggerInfo, { value: this.state.integration.scheduling_info, onChange: this.handleChangeValue.bind(this, 'scheduling_info') })
 	        ),
 	        React.createElement(
 	          _core.TabPanel,
@@ -25326,11 +25329,6 @@ webpackJsonp([2],[
 	              React.createElement(
 	                'div',
 	                { className: 'row' },
-	                React.createElement(ServiceMultiSelect, { value: this.state.services, onChange: this.handleServiceChange.bind(this) })
-	              ),
-	              React.createElement(
-	                'div',
-	                { className: 'row' },
 	                React.createElement(ActionMultiSelect, { value: this.state.actions, services: this.state.services, onChange: this.handleActionChange.bind(this) }),
 	                React.createElement(ActionDocumentationList, { actions: this.state.actions })
 	              )
@@ -25340,6 +25338,12 @@ webpackJsonp([2],[
 	        React.createElement(
 	          _core.TabPanel,
 	          null,
+	          React.createElement(
+	            'h2',
+	            null,
+	            'Overview'
+	          ),
+	          React.createElement(MarkdownEditor, { initialContent: this.state.integration.description, onContentChange: this.handleChangeValue.bind(this, 'description'), iconsSet: 'font-awesome' }),
 	          React.createElement(
 	            'h2',
 	            null,
@@ -25366,7 +25370,12 @@ webpackJsonp([2],[
 	            null,
 	            'Referral Codes'
 	          ),
-	          React.createElement(ReferralCodesList, { referrals: this.state.integration.referrals, onChange: this.handleChangeValue.bind(this, 'referrals') })
+	          React.createElement(ReferralCodesList, { referrals: this.state.integration.referrals, onChange: this.handleChangeValue.bind(this, 'referrals') }),
+	          React.createElement(
+	            'div',
+	            { className: 'row' },
+	            React.createElement(VisibilitySelector, { value: this.state.integration.visibility, onChange: this.handleChange.bind(this, 'visibility') })
+	          )
 	        )
 	      ),
 	      React.createElement('hr', null),
@@ -26026,7 +26035,7 @@ webpackJsonp([2],[
 /* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(39).document && document.documentElement;
+	module.exports = __webpack_require__(40).document && document.documentElement;
 
 /***/ },
 /* 309 */
@@ -26374,7 +26383,7 @@ webpackJsonp([2],[
 
 	'use strict';
 	var ctx            = __webpack_require__(133)
-	  , $export        = __webpack_require__(38)
+	  , $export        = __webpack_require__(39)
 	  , toObject       = __webpack_require__(93)
 	  , call           = __webpack_require__(312)
 	  , isArrayIter    = __webpack_require__(309)
@@ -26455,7 +26464,7 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	// 20.1.2.5 Number.isSafeInteger(number)
-	var $export   = __webpack_require__(38)
+	var $export   = __webpack_require__(39)
 	  , isInteger = __webpack_require__(311)
 	  , abs       = Math.abs;
 
@@ -26470,7 +26479,7 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.3.1 Object.assign(target, source)
-	var $export = __webpack_require__(38);
+	var $export = __webpack_require__(39);
 
 	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(318)});
 
@@ -26478,7 +26487,7 @@ webpackJsonp([2],[
 /* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $export = __webpack_require__(38)
+	var $export = __webpack_require__(39)
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 	$export($export.S, 'Object', {create: __webpack_require__(137)});
 
@@ -26510,7 +26519,7 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.3.19 Object.setPrototypeOf(O, proto)
-	var $export = __webpack_require__(38);
+	var $export = __webpack_require__(39);
 	$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(321).set});
 
 /***/ },
@@ -26521,10 +26530,10 @@ webpackJsonp([2],[
 
 	'use strict';
 	// ECMAScript 6 symbols shim
-	var global         = __webpack_require__(39)
+	var global         = __webpack_require__(40)
 	  , has            = __webpack_require__(46)
 	  , DESCRIPTORS    = __webpack_require__(60)
-	  , $export        = __webpack_require__(38)
+	  , $export        = __webpack_require__(39)
 	  , redefine       = __webpack_require__(197)
 	  , META           = __webpack_require__(317).KEY
 	  , $fails         = __webpack_require__(61)

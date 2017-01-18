@@ -3103,7 +3103,7 @@ webpackJsonp([4],{
 	    var self = this;
 	    if (this.props.id) {
 	      var org = actions.getState('org');
-	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/1.0/' + this.props.id + '/org/' + org.id;
+	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/1.0/' + this.props.id;
 	    } else {
 	      var callbackUrl = "will be generated upon saving";
 	    }
@@ -3182,7 +3182,7 @@ webpackJsonp([4],{
 	    var tokenLocationOptions = [{ label: 'Bearer Token', value: 'bearer' }, { label: 'Token in Header', value: 'header' }, { label: 'Token in Query Strings', value: 'query' }];
 	    if (this.props.id) {
 	      var org = actions.getState('org');
-	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/2.0/' + this.props.id + '/org/' + org.id;
+	      var callbackUrl = 'https://api.nativesync.io/oauth/callback/2.0/' + this.props.id;
 	    } else {
 	      var callbackUrl = "will be generated upon saving";
 	    }
@@ -13476,16 +13476,20 @@ webpackJsonp([4],{
 	  handleChange: function handleChange(field, selection) {
 	    var triggerInfo = this.props.value;
 	    triggerInfo[field] = selection.value;
+	    console.log('trigger info', triggerInfo);
 	    this.props.onChange(triggerInfo);
 	  },
 	  render: function render() {
 	    var triggerTypes = [{ value: 'cron', label: 'Scheduled' }];
+	    var cronOptions = [{ value: '0 0 12 1/1 * ? *', label: 'Daily' }, { value: '0 0 0/1 1/1 * ? *', label: 'Hourly' }, { value: '0 0/30 * 1/1 * ? *', label: 'Every 30 Minutes' }, { value: '0 0/15 * 1/1 * ? *', label: 'Every 15 Minutes' }];
 	    return React.createElement(
 	      'div',
 	      null,
 	      'Trigger info',
 	      React.createElement(Select, { options: triggerTypes, value: this.props.value.type, onChange: this.handleChange.bind(this, 'type') }),
-	      React.createElement(TextInputField, { label: 'Cron', value: this.props.value.value, onChange: this.handleChange.bind(this, 'value') })
+	      this.props.value.type == 'cron' && React.createElement(Select, { options: cronOptions,
+	        value: this.props.value.value,
+	        onChange: this.handleChange.bind(this, 'value') })
 	    );
 	  }
 	});
