@@ -23,7 +23,7 @@ exports.setViewToOrg = function(org) {
   var user = state.get('me');
   user.default_organization_id = org.id;
   state.set('me', user);
-  return exports.updateUser({default_organization_id: org.id})
+  return exports.updateUser({default_organization_id: org.id});
 };
 
 exports.login = function(username,password) {
@@ -35,8 +35,8 @@ exports.login = function(username,password) {
   });
 };
 
-exports.signup = function({first_name, last_name, email, password, accountType, companyName}) {
-  return nsapi.signup(first_name, last_name, email, password, accountType, companyName)
+exports.signup = function({name, email, password, companyName}) {
+  return nsapi.signup(name, email, password, companyName)
   .then(function(user) {
     assert(user,'signup failed');
     return exports.login(email, password);

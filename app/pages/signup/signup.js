@@ -10,13 +10,10 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       user: {
-        first_name: '',
-        last_name: '',
-        accountType: '',
+        name: '',
         companyName: '',
         email: '',
         password: '',
-        password_confirmation: '',
       },
       nextPath: '/'
     };
@@ -48,13 +45,10 @@ module.exports = React.createClass({
         <div className='col-xs-5'>
           <Signup onSubmit={this.handleSignupSubmit}
                   onChange={this.handleUserChange}
-                  first_name={this.state.user.first_name}
-                  last_name={this.state.user.last_name}
+                  name={this.state.user.name}
                   email={this.state.user.email}
                   companyName={this.state.user.companyName}
-                  accountType={this.state.user.accountType}
                   password={this.state.user.password}
-                  password_confirmation={this.state.user.password_confirmation}
           />;
         </div>
       </div>
