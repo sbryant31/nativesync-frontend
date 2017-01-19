@@ -135,6 +135,10 @@ module.exports = React.createClass({
       {value: 'external', label: 'External/Custom'},
       {value: 'blockly', label: 'Codeless'},
     ];
+    var onboardingTypes = [
+      {value: 'implement', label: 'Custom Implementation'},
+      {value: 'selfServe', label: 'Self-Serve'},
+    ];
     return <div>
       <h2>Build an Integration {this.state.integration.title}</h2>
       <Tabs>
@@ -157,6 +161,13 @@ module.exports = React.createClass({
         </TabPanel>
         <TabPanel>
           <h2>Configuration</h2>
+          <label className="pt-label">
+            Onboarding Type
+            <Select options={onboardingTypes}
+                    value={this.state.integration.onboarding}
+                    onChange={this.handleChange.bind(this, 'onboarding')}
+            />
+          </label>
           <IntegrationConfigurationBuilder
             configuration={this.state.integration.configuration}
             onChange={this.handleChange.bind(this, 'configuration')}

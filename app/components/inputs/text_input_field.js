@@ -16,7 +16,7 @@ module.exports = React.createClass({
         <div>
             <label className="pt-label pt-inline col-xs">
                 <span>{this.props.label}</span>
-                <input type="pt-input" onChange={this.props.onChange} value={this.props.value} />
+                <input className="pt-input pt-fill" onChange={this.props.onChange} value={this.props.value} />
             </label>
         </div>
     );

@@ -74,6 +74,10 @@ exports.me = function() {
     Promise.reject('not logged in');
 };
 
+exports.verifyDiscountCode = function(code) {
+  return nsapi.verifyDiscountCode(code, token);
+};
+
 exports.getIntegrations = function(filter) {
   return nsapi.getIntegrations(filter, token);
 };
@@ -106,6 +110,10 @@ exports.getIntegrationById = function(id, includeAssociations) {
   return nsapi.getIntegrationById(id, {includeAssociations: includeAssociations}, token);
 };
 
+exports.getIntegrationRequestById = function(id) {
+  return nsapi.getIntegrationRequestById(id, token);
+};
+
 exports.getMarketplaceIntegrationById = function(id) {
   return nsapi.getMarketplaceIntegrationById(id);
 };
@@ -130,6 +138,10 @@ exports.updateUser = function(data) {
   return nsapi.updateUser(data, token);
 };
 
+exports.updateOrganization = function(organization) {
+  return nsapi.updateOrganization(organization, token);
+};
+
 exports.getOrganizationById = function(id) {
   return nsapi.getOrganizationById(id, token);
 };
@@ -148,6 +160,14 @@ exports.getServiceDefinitions = function(service_id) {
 
 exports.getActionById = function(id) {
   return nsapi.getActionById(id, token);
+};
+
+exports.createIntegrationRequest = function(integrationRequest) {
+  return nsapi.createIntegrationRequest(integrationRequest, token)
+};
+
+exports.updateIntegrationRequest = function(id, data) {
+  return nsapi.updateIntegrationRequest(id, data, token)
 };
 
 exports.upsertAction = function(action, service, serviceAuths) {

@@ -17,6 +17,22 @@ export default class IntegrationDetails extends React.Component {
     };
   }
 
+  handleBuy() {
+    // todo: switch on integration type
+    var self = this;
+    var integrationRequest = {
+      integration_id: this.state.integration.id,
+      type: this.state.integration.onboarding ? this.state.integration.onboarding : 'implement',
+      jobStatus: 'assigned',
+      discount: 0,
+      discountCode: 0,
+    }
+    return actions.createIntegrationRequest(integrationRequest)
+    .then((result) => {
+      return actions.goto('/integration_request/' + result.integrationRequest.id);
+    })
+  }
+
   componentDidMount() {
     // fetch the integration details here
     actions.getMarketplaceIntegrationById(this.props.integration_id).then(integration => {
@@ -114,7 +130,7 @@ export default class IntegrationDetails extends React.Component {
             </div>
             <div className="col-md-3">
               <div className="details-col-2">
-                <Button className="pt-intent-primary pt-large" text="Buy Now" />
+                <Button className="pt-intent-primary pt-large" onClick={this.handleBuy.bind(this)} text="Buy Now" />
                 <h4 className="pricing">{
                   `$${this.state.integration.pricing.monthly}/month`
                 }</h4>

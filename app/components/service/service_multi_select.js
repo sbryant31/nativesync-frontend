@@ -13,6 +13,7 @@ module.exports = React.createClass({
   },
   getDefaultProps: function() {
     return {
+      creatable: false,
       value: [],
       onChange: (services) => { console.log('change services', services); }
     };
@@ -41,6 +42,7 @@ module.exports = React.createClass({
     var value = _.map(self.props.value, (service) => {
       return {value: service.id, label: service.name};
     });
+
     return <label className="pt-label pt-inline col-xs">
       Services
       <Select

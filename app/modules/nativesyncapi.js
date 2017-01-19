@@ -53,6 +53,10 @@ exports.getActions = function(filter, token) {
   return call('/actions', filter, 'GET', token);
 };
 
+exports.verifyDiscountCode = function(code, token) {
+  return call('/marketplace/checkDiscount', {code: code}, 'GET', token)
+};
+
 exports.duplicateAction = function(actionId, organizationId, token) {
   return call('/action/' + actionId + '/duplicate', {organization_id: organizationId}, 'POST', token);
 };
@@ -79,6 +83,10 @@ exports.getMarketplaceIntegrations = function(filter) {
 
 exports.getIntegrationById = function(id, options, token) {
   return call('/integration/' + id, options, 'GET', token)
+}
+
+exports.getIntegrationRequestById = function(id, token) {
+  return call('/integration_request/' + id, {}, 'GET', token)
 }
 
 exports.getOrganizationAuths = function(organizationId, serviceAuthIds, token) {
@@ -125,6 +133,10 @@ exports.updateUser = function(data, token) {
   return call('/me/update', data, 'POST', token);
 };
 
+exports.updateOrganization = function(organization, token) {
+  return call('/me/updateOrg', {organization: organization}, 'POST', token);
+};
+
 exports.testAction = function(id, organizationId, input, token) {
   return call('/actions/test', {id: id, organizationId: organizationId, input: input}, 'POST', token);
 };
@@ -144,6 +156,15 @@ exports.saveOrganizationAuth = function(organizationAuth, token){
 
 exports.upsertOrganization = function(organization, token) {
   return call('/organizations/upsert', {organization: organization}, 'POST', token);
+};
+
+
+exports.createIntegrationRequest = function(integrationRequest, token) {
+  return call('/integration_requests', {integrationRequest: integrationRequest}, 'POST', token);
+};
+
+exports.updateIntegrationRequest = function(id, data, token) {
+  return call('/integration_request/' + id , data, 'POST', token);
 };
 
 exports.upsertIntegration = function(integration, services, actions, integrationCode, token) {
