@@ -30,12 +30,10 @@ module.exports = React.createClass({
     e.preventDefault();
     if (!e.target.checkValidity()) {
       actions.toastError('Form data not valid.');
-    } else if (this.state.user.password === this.state.user.password_confirmation) {
+    } else {
       actions.signup(this.state.user).then(user => {
         actions.goto(this.state.nextPath);
       }).catch(actions.toastError);
-    } else {
-      actions.toastError('Password confirmation doesn\'t match the password.');
     }
   },
 
