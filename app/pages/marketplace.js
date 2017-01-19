@@ -9,7 +9,7 @@ class Marketplace extends React.Component {
     super(props);
     this.state = {
       filter: {visibility: 'published'}
-    }
+    };
   }
   render() {
     return (
@@ -29,6 +29,6 @@ class Marketplace extends React.Component {
       </div>
     );
   }
-};
+}
 
 module.exports = Marketplace;

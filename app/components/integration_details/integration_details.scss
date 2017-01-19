@@ -19,11 +19,22 @@
       text-align: center;
       margin-bottom: 30px;
       padding: 40px 0px;
-      img { height: 100px; }
-      img.circle_arrow {
-        opacity: 0.15;
-        height: 50px;
-        margin: 0px 15px 25px 15px;
+      .service-icon-container {
+        display: inline-block;
+        border: 2px solid #E9EEF3;
+        padding: 24px;
+        background-color: rgba(#FFF, 0.0);
+        border-radius: 50%;
+        img {
+          height: 60px;
+        }
+      }
+      .connector {
+        border-top: 3px dashed #E9EEF3;
+        width: 50px;
+        display: inline-block;
+        // background-color: #EEE;
+        height: 30px;
       }
     }
     .developer {
@@ -37,7 +48,7 @@
     // border: 1px dashed #F00;
     // padding: 0px 15px;
     button {
-      padding: 5px 30px;
+      // padding: 5px 30px;
       width: 100%;
     }
     .pricing {
