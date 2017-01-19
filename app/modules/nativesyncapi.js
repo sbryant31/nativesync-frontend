@@ -26,13 +26,11 @@ exports.login = function(email, password) {
   return call('auth/login', {email:email, password:password});
 };
 
-exports.signup = function(first_name, last_name, email, password, accountType, companyName) {
+exports.signup = function(name, email, password, companyName) {
   return call('auth/signup', {
-    first_name,
-    last_name,
+    name,
     email,
     password,
-    accountType,
     companyName
   });
 };

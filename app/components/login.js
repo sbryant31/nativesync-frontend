@@ -47,12 +47,10 @@ module.exports = React.createClass({
             Login
           </button>
         </div>
-        <hr />
-        <h6 className="signup">
-          {/* New to NativeSync? <a onClick={this.handleSwitch}>Sign up</a> */}
-          New to NativeSync? <Link to="/signup">Sign up</Link>.
-        </h6>
       </div>
+      <p className="signup">
+        New to NativeSync? <Link to="/signup">Sign Up</Link>
+      </p>
     </div>;
   }
 });
