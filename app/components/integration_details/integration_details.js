@@ -13,6 +13,7 @@ export default class IntegrationDetails extends React.Component {
     super(props);
     this.state = {
       integration: null,
+      loaded: false,
       tab: 'overview'
     };
   }
@@ -37,7 +38,7 @@ export default class IntegrationDetails extends React.Component {
     // fetch the integration details here
     actions.getMarketplaceIntegrationById(this.props.integration_id).then(integration => {
       console.log('integration: ', integration);
-      this.setState({ integration: integration.integration });
+      this.setState({ integration: integration.integration , loaded: true });
     });
   }
 
@@ -46,12 +47,10 @@ export default class IntegrationDetails extends React.Component {
       <div className="content">
         <div className="overview">
           <h3 className="with-hr">Overview</h3>
-          <p>{this.state.integration.description}</p>
+          <p>{this.state.loaded && this.state.integration.description && this.state.integration.description.length > 0 ?
+              this.state.integration.description :
+              this.state.integration.organization.overview_copy}</p>
         </div>
-        {/* <h3>Configuration</h3>
-        <p>{JSON.stringify(this.state.integration.configuration)}</p> */}
-        {/* <h3>Raw JSON</h3>
-        <p>{JSON.stringify(this.state.integration)}</p> */}
       </div>
     );
   }

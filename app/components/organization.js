@@ -2,6 +2,7 @@ var React = require('react');
 var actions = require('../modules/actions');
 // var Navbar = require('../components/navbar');
 var lodash = require('lodash');
+var MarkdownEditor = require('react-markdown-editor').MarkdownEditor;
 var Select = require('react-select');
 var TextInputField = require('../components/inputs/text_input_field');
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core";
@@ -9,7 +10,8 @@ import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core";
 module.exports = React.createClass({
   getInitialState: function() {
     return {
-      organization: { }
+      organization: { },
+      loaded: false
     }
   },
   handleSave: function() {
@@ -39,11 +41,13 @@ module.exports = React.createClass({
     if (self.props.id && !isNaN(self.props.id)) {
       actions.getOrganizationById(self.props.id)
       .then(function(result) {
-        self.setState({organization: result.organization});
+        self.setState({organization: result.organization, loaded: true});
+        self.forceUpdate();
       })
     }
   },
   render() {
+    console.log('rendering org', this.state.organization);
     return <div>
       <h2>Create/Edit Organization {this.state.organization.name}</h2>
       <TextInputField label="Name" value={this.state.organization.name} onChange={this.handleChange.bind(this, 'name')} />
@@ -51,6 +55,10 @@ module.exports = React.createClass({
       <TextInputField label="Logo Url" value={this.state.organization.logo_url} onChange={this.handleChange.bind(this, 'logo_url')} />
       { this.state.organization.logo_url &&
         <img src={this.state.organization.logo_url} style={{height: 50, width: 50}} />
+      }
+      <h2>Marketing Copy</h2>
+      { this.state.loaded &&
+        <MarkdownEditor initialContent={this.state.organization.overview_copy} onContentChange={this.handleChange.bind(this, 'overview_copy')} />
       }
       <hr />
       <button className="pt-button pt-icon-add" onClick={this.handleSave}>Save</button>
