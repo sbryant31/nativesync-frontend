@@ -20,18 +20,17 @@ export default class IntegrationDetails extends React.Component {
 
   handleBuy() {
     // todo: switch on integration type
-    var self = this;
     var integrationRequest = {
       integration_id: this.state.integration.id,
       type: this.state.integration.onboarding ? this.state.integration.onboarding : 'implement',
       jobStatus: 'assigned',
       discount: 0,
       discountCode: 0,
-    }
+    };
     return actions.createIntegrationRequest(integrationRequest)
     .then((result) => {
       return actions.goto('/integration_request/' + result.integrationRequest.id);
-    })
+    });
   }
 
   componentDidMount() {
@@ -119,8 +118,10 @@ export default class IntegrationDetails extends React.Component {
                 <div className="services-icons">{
                   this.state.integration.Services.map((service, idx) => (
                     <span className="service" key={service.id}>
-                      {idx > 0 ? <img className="circle_arrow" src={circle_arrow} /> : null}
-                      <img src={service.logo_url} />
+                      {idx > 0 ? <span className="connector" /> : null}
+                      <div className="service-icon-container">
+                        <img src={service.logo_url} />
+                      </div>
                     </span>
                   ))
                 }</div>
@@ -129,11 +130,11 @@ export default class IntegrationDetails extends React.Component {
             </div>
             <div className="col-md-3">
               <div className="details-col-2">
-                <Button className="pt-intent-primary pt-large" onClick={this.handleBuy.bind(this)} text="Buy Now" />
-                <h4 className="pricing">{
+                <Button className="pt-intent-primary pt-large" onClick={this.handleBuy.bind(this)} text="Get this Integration" />
+                {/* <h4 className="pricing">{
                   `$${this.state.integration.pricing.monthly}/month`
-                }</h4>
-                {this._likes()}
+                }</h4> */}
+                {/* {this._likes()} */}
               </div>
             </div>
           </div>
