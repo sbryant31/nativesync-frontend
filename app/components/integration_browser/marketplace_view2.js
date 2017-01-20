@@ -9,18 +9,18 @@ module.exports = ({integrations = []}) => {
       integrations.map(integration => (
         <div key={integration.id} className="col-lg-3 col-md-4 col-sm-6 col-xs-12">
           <div
-            className="integration pt-card pt-elevation-0 pt-interactive"
+            className={`integration pt-card pt-elevation-0 pt-interactive qty-${integration.Services.length}`}
             onClick={() => { browserHistory.push(`/marketplace/${integration.id}`); }}
           >
             <h4 className="title">{integration.title}</h4>
-            <div className="services-icons">{
+            <div className={`services-icons`}>{
               integration.Services.map((service, idx) => (
-                <span className="service" key={service.id}>
-                  {idx > 0 ? <span className="connector" /> : null}
-                  <div className="service-icon-container">
+                <div className="service-container">
+                  <div className="connector"></div>
+                  <span className="service" key={service.id}>
                     <img src={service.logo_url} />
-                  </div>
-                </span>
+                  </span>
+                </div>
               ))
             }</div>
             {/* <div>{
