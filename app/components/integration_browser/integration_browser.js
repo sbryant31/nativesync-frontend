@@ -14,6 +14,7 @@ module.exports = React.createClass({
       filteredIntegrations: [],
       integrations: [],
       integration_ids: [],
+      page: 1
     };
   },
 
@@ -101,6 +102,7 @@ module.exports = React.createClass({
           <div>
             <MarketplaceView2
               integrations={this.state.filteredIntegrations}
+              selected_apps={this.state.filter.serviceIDs && [...this.state.filter.serviceIDs]}
             />
             {/* <MarketplaceView integrations={this.state.filteredIntegrations} /> */}
           </div>
