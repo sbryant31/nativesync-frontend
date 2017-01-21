@@ -1,6 +1,7 @@
 import React from 'react';
 const actions = require('../../modules/actions');
 import { Button, Tabs, TabList, Tab, TabPanel } from '@blueprintjs/core';
+import MarkdownRenderer from 'react-markdown';
 
 const circle_arrow = require("../../img/circle_arrow.svg");
 import { filler_text_par1, filler_text_par2, filler_text_par3, filler_text_long, filler_text_short } from './filler_text';
@@ -47,9 +48,9 @@ export default class IntegrationDetails extends React.Component {
       <div className="content">
         <div className="overview">
           <h3 className="with-hr">Overview</h3>
-          <p>{this.state.loaded && this.state.integration.description && this.state.integration.description.length > 0 ?
+          <MarkdownRenderer source={this.state.loaded && this.state.integration.description && this.state.integration.description.length > 0 ?
               this.state.integration.description :
-              this.state.integration.organization.overview_copy}</p>
+              this.state.integration.organization.overview_copy} />
         </div>
       </div>
     );
@@ -60,7 +61,7 @@ export default class IntegrationDetails extends React.Component {
       <div className="content">
         <div className="documentation">
           <h3 className="with-hr">Documentation</h3>
-          <p>{this.state.integration.documentation}</p>
+          <MarkdownRenderer source={this.state.integration.documentation} />
         </div>
       </div>
     );
