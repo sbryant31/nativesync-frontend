@@ -2,6 +2,7 @@ var React = require('react');
 // var actions = require('../../modules/actions');
 // import EllipsisText  from 'react-ellipsis-text';
 import { browserHistory, Link } from 'react-router';
+import Avatar from 'react-avatar';
 
 module.exports = ({integrations = [], selected_apps=[], requestIntegrationCardOnClick}) => {
   return (
@@ -18,7 +19,10 @@ module.exports = ({integrations = [], selected_apps=[], requestIntegrationCardOn
                 <div className="service-container">
                   <div className="connector"></div>
                   <span className="service" key={service.id}>
-                    <img src={service.logo_url} />
+                    { service.logo_url ?
+                      <img src={service.logo_url} />
+                      : <Avatar name={service.name} />
+                    }
                   </span>
                 </div>
               ))
@@ -67,7 +71,10 @@ module.exports = ({integrations = [], selected_apps=[], requestIntegrationCardOn
                 <div className="service-container">
                   <div className="connector"></div>
                   <span className="service" key={service.id}>
-                    <img src={service.logo_url} />
+                    { service.logo_url ?
+                      <img src={service.logo_url} />
+                      : <Avatar name={service.name} />
+                    }
                   </span>
                 </div>
               ))

@@ -63,7 +63,6 @@ module.exports = React.createClass({
     var filteredIntegrations = _.filter(this.state.integrations, (integration) => {
       var match = true;
       _.each(filter, (value, key) => {
-        console.log('filtering key', key, value);
         if (key == 'serviceIDs') {
           // get the IDs that are required
           var requiredIDs = _.pluck(value, 'id');
