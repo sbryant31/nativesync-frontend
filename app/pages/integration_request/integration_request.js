@@ -1,10 +1,13 @@
 var React = require('react');
-var actions = require('../modules/actions');
-var state = require('../modules/state');
-// var Navbar = require('../components/navbar');
-var DeveloperView = require('../components/integration_request/developer_view');
-var CustomerView = require('../components/integration_request/customer_view');
+var actions = require('../../modules/actions');
+var state = require('../../modules/state');
+// var Navbar = require('../../components/navbar');
+var DeveloperView = require('../../components/integration_request/developer_view');
+var CustomerView = require('../../components/integration_request/customer_view');
 var lodash = require('lodash');
+
+// CSS
+import './integration_request.scss';
 
 module.exports = React.createClass({
   getInitialState() {
@@ -51,7 +54,7 @@ module.exports = React.createClass({
       this.props.params.id ?
         // SHOW
         <CustomerView
-          id={this.state.id}  // for the period when it hasn't yet loaded
+          mode="show"
           {...this.state}
         /> :
         // NQ: DECIDE LATER WHETHER OR NOT WE WANT TO HAVE A SEPARATE DEVELOPER VIEW

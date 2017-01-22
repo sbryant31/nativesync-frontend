@@ -1,0 +1,47 @@
+.IntegrationRequest {
+  .NewIntegrationRequestForm {
+    margin: 0px 0px;
+    [class^=col-] {
+      margin: 0px auto;
+    }
+    .content {
+      margin-top: 100px;
+      padding: 30px 50px 50px 50px;
+      h3 {
+        line-height: 30px;
+        margin-bottom: 30px;
+      }
+      label {
+        margin-bottom: 20px;
+      }
+      textarea {
+        height: 105px;
+      }
+      button {
+        margin-top: 10px;
+        width: 200px;
+      }
+    }
+  }
+  .NewIntegrationRequestSuccess {
+    .content.pt-card {
+      margin: 50px 0px;
+      padding: 150px 0px;
+      text-align: center;
+      border-radius: 5px;
+      .fa {
+        font-size: 10em;
+        color: #6B75DD;
+      }
+      h2 {
+        font-size: 2.1em;
+      }
+      h4 {
+        margin-bottom: 70px;
+      }
+      a {
+        font-size: 1.3em;
+      }
+    }
+  }
+}

@@ -15,7 +15,8 @@ module.exports = React.createClass({
     return {
       creatable: false,
       value: [],
-      onChange: (services) => { console.log('change services', services); }
+      onChange: (services) => { console.log('change services', services); },
+      label: "Services"
     };
   },
   handleChange: function(selection) {
@@ -44,8 +45,8 @@ module.exports = React.createClass({
       return {value: service.id, label: service.name};
     });
 
-    return <label className="pt-label pt-inline col-xs">
-      Services
+    return <label className="pt-label pt-inline">
+      {this.props.label}
       <Select
         name="service-multi-select"
         multi={true}
