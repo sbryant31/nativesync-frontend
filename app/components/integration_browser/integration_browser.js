@@ -1,5 +1,6 @@
 var React = require('react');
 var actions = require('../../modules/actions');
+var state = require('../../modules/state');
 var _ = require('underscore');
 const ListView = require('./list_view');
 // const MarketplaceView = require('./integration_browser/marketplace_view');
@@ -81,6 +82,11 @@ module.exports = React.createClass({
     this.setState({filteredIntegrations: filteredIntegrations});
   },
 
+  requestIntegrationCardOnClick() {
+    state.set('integration_request_services', [...this.state.filter.serviceIDs]);
+    actions.goto('/integration_request');
+  },
+
   render() {
     return (
       <div>
@@ -91,7 +97,7 @@ module.exports = React.createClass({
           <h1 className="page-title">Browse Integrations</h1>
         } */}
         <div className="integration-request">
-          Don't see the integration you need? <Link to="/marketplace/request">We can build it!</Link>
+          Don't see the integration you need? <Link to="/integration_request">We can build it!</Link>
         </div>
         <ServiceMultiSelect
           value={this.state.filter.serviceIDs}
@@ -103,6 +109,7 @@ module.exports = React.createClass({
             <MarketplaceView2
               integrations={this.state.filteredIntegrations}
               selected_apps={this.state.filter.serviceIDs && [...this.state.filter.serviceIDs]}
+              requestIntegrationCardOnClick={this.requestIntegrationCardOnClick}
             />
             {/* <MarketplaceView integrations={this.state.filteredIntegrations} /> */}
           </div>

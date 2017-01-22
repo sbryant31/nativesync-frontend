@@ -2,9 +2,9 @@ var React = require('react');
 var actions = require('../../modules/actions');
 var state = require('../../modules/state');
 // var Navbar = require('../../components/navbar');
-var DeveloperView = require('../../components/integration_request/developer_view');
+// var DeveloperView = require('../../components/integration_request/developer_view');
 var CustomerView = require('../../components/integration_request/customer_view');
-var lodash = require('lodash');
+// var lodash = require('lodash');
 
 // CSS
 import './integration_request.scss';
