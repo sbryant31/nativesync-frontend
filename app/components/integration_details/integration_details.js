@@ -2,12 +2,9 @@ import React from 'react';
 const state = require('../../modules/state');
 const actions = require('../../modules/actions');
 import { Button, Tabs, TabList, Tab, TabPanel } from '@blueprintjs/core';
-<<<<<<< HEAD
 import { browserHistory } from 'react-router';
 // const _ = require('underscore');
-=======
 import MarkdownRenderer from 'react-markdown';
->>>>>>> eba85e994005939e169d2be7455a07759b8c5975
 
 import { filler_text_par1, filler_text_par2, filler_text_par3, filler_text_long, filler_text_short } from './filler_text';
 
