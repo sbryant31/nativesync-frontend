@@ -27,19 +27,20 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     console.log('loading options for service');
-    var self = this;
     return actions.getServices()
-    .then(function(result) {
-      self.setState({services: result.services});
-      var serviceOptions = _.map(result.services, (service) => {
-        return {value: service.id, label: service.name};
+    .then(result => {
+      var serviceOptions = _.map(result.services, (service) => ({
+        value: service.id,
+        label: service.name
+      }));
+      this.setState({
+        services: result.services,
+        serviceOptions: serviceOptions
       });
-      self.setState({serviceOptions: serviceOptions});
     });
   },
   render() {
-    var self = this;
-    var value = _.map(self.props.value, (service) => {
+    var value = _.map(this.props.value, (service) => {
       return {value: service.id, label: service.name};
     });
 

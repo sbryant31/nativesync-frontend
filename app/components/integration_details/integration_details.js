@@ -1,8 +1,10 @@
 import React from 'react';
+const state = require('../../modules/state');
 const actions = require('../../modules/actions');
 import { Button, Tabs, TabList, Tab, TabPanel } from '@blueprintjs/core';
+import { browserHistory } from 'react-router';
+// const _ = require('underscore');
 
-const circle_arrow = require("../../img/circle_arrow.svg");
 import { filler_text_par1, filler_text_par2, filler_text_par3, filler_text_long, filler_text_short } from './filler_text';
 
 // CSS
@@ -19,17 +21,9 @@ export default class IntegrationDetails extends React.Component {
   }
 
   handleBuy() {
-    // todo: switch on integration type
-    var integrationRequest = {
-      integration_id: this.state.integration.id,
-      type: this.state.integration.onboarding ? this.state.integration.onboarding : 'implement',
-      jobStatus: 'assigned',
-      discount: 0,
-      discountCode: 0,
-    };
-    return actions.createIntegrationRequest(integrationRequest)
-    .then((result) => {
-      return actions.goto('/integration_request/' + result.integrationRequest.id);
+    state.set('integration_request_services', [...this.state.integration.Services]);
+    browserHistory.push({
+      pathname: '/integration_request',
     });
   }
 

@@ -16,13 +16,13 @@ const Dashboard = require('bundle?lazy!./pages/dashboard');
 const IntegrationEdit = require('bundle?lazy!./pages/integration_edit');
 const IntegrationInstanceEdit = require('bundle?lazy!./pages/integration_instance_edit');
 const IntegrationInstancesMe = require('bundle?lazy!./pages/integration_instances_me');
-const IntegrationRequestView = require('bundle?lazy!./pages/integration_request_view');
 const IntegrationView = require('bundle?lazy!./pages/integration_view');
 const IntegrationsBrowse = require('bundle?lazy!./pages/integrations_browse');
 const IntegrationsMe = require('bundle?lazy!./pages/integrations_me');
 const Login = require('bundle?lazy!./pages/login/login');
 const Marketplace = require('bundle?lazy!./pages/marketplace');
 const MarketplaceRequest = require('bundle?lazy!./pages/marketplace_request');
+const IntegrationRequest = require('bundle?lazy!./pages/integration_request');
 const OrganizationEdit = require('bundle?lazy!./pages/organization_edit');
 const Profile = require('bundle?lazy!./pages/profile');
 const ServiceEdit = require('bundle?lazy!./pages/service_edit');
@@ -99,7 +99,8 @@ module.exports = (
         <Route path='/integration_instances' getComponent={lazyLoadComponent(IntegrationInstancesMe)} onEnter={checkToken} />
         <Route path='/integration/new' getComponent={lazyLoadComponent(IntegrationEdit)} onEnter={checkToken} />
         <Route path='/integration/:id/edit' getComponent={lazyLoadComponent(IntegrationEdit)} onEnter={checkToken} />
-        <Route path='/integration_request/:id' getComponent={lazyLoadComponent(IntegrationRequestView)} />
+        <Route path='/integration_request' getComponent={lazyLoadComponent(IntegrationRequest)} />
+        <Route path='/integration_request/:id' getComponent={lazyLoadComponent(IntegrationRequest)} />
         <Route path='/services/browse' getComponent={lazyLoadComponent(ServicesBrowse)} onEnter={checkToken} />
         <Route path='/service/new' getComponent={lazyLoadComponent(ServiceEdit)} onEnter={checkToken} />
         <Route path='/service/:id' getComponent={lazyLoadComponent(ServiceEdit)} onEnter={checkToken} />

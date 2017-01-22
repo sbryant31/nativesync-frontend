@@ -163,11 +163,11 @@ exports.getActionById = function(id) {
 };
 
 exports.createIntegrationRequest = function(integrationRequest) {
-  return nsapi.createIntegrationRequest(integrationRequest, token)
+  return nsapi.createIntegrationRequest(integrationRequest, token);
 };
 
 exports.updateIntegrationRequest = function(id, data) {
-  return nsapi.updateIntegrationRequest(id, data, token)
+  return nsapi.updateIntegrationRequest(id, data, token);
 };
 
 exports.upsertAction = function(action, service, serviceAuths) {

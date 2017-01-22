@@ -39,7 +39,8 @@ module.exports = React.createClass({
                     autoFocus
                     required
                     onChange={this.handleInput.bind(this,'name')}
-                    className='pt-input' value={this.props.name}
+                    className='pt-input'
+                    value={this.props.name}
                     placeholder='John Smith'
                   />
                 </div>

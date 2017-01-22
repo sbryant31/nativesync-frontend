@@ -52,7 +52,7 @@ exports.getActions = function(filter, token) {
 };
 
 exports.verifyDiscountCode = function(code, token) {
-  return call('/marketplace/checkDiscount', {code: code}, 'GET', token)
+  return call('/marketplace/checkDiscount', {code: code}, 'GET', token);
 };
 
 exports.duplicateAction = function(actionId, organizationId, token) {
@@ -80,12 +80,12 @@ exports.getMarketplaceIntegrations = function(filter) {
 };
 
 exports.getIntegrationById = function(id, options, token) {
-  return call('/integration/' + id, options, 'GET', token)
-}
+  return call('/integration/' + id, options, 'GET', token);
+};
 
 exports.getIntegrationRequestById = function(id, token) {
-  return call('/integration_request/' + id, {}, 'GET', token)
-}
+  return call('/integration_request/' + id, {}, 'GET', token);
+};
 
 exports.getOrganizationAuths = function(organizationId, serviceAuthIds, token) {
   return call('/organization_auths', {organization_id: organizationId, service_auth_ids: serviceAuthIds}, 'GET', token);
