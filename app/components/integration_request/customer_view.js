@@ -55,7 +55,9 @@ module.exports = React.createClass({
   newIntegrationRequestOnSubmit(e) {
     e.preventDefault();
     // todo: switch on integration type
+    var org = actions.getState('org');
     var request_object = {
+      organization_id: org.id,
       integration_id: this.props.id,
       contact_name: this.props.name,
       contact_email: this.props.email,
@@ -133,7 +135,7 @@ module.exports = React.createClass({
             <button type="submit" className="pt-button pt-intent-primary pt-large">Send</button>
           </form>
           <hr />
-          <h4>Or call us any time at 1-800-123-3456</h4>
+          <h4>Or call us any time at 1-352-538-2624</h4>
         </div>
       </div>
 
