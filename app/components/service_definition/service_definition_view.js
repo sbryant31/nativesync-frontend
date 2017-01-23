@@ -3,7 +3,7 @@ var _ = require('underscore');
 var lodash = require('lodash');
 var Select = require('react-select');
 var actions = require('../../modules/actions');
-var ServiceDefinitionParams = require('./service_definition_params');
+var ServiceDefinitionSchema = require('./service_definition_schema');
 var TextInputField = require('../inputs/text_input_field');
 
 module.exports = React.createClass({
@@ -16,6 +16,7 @@ module.exports = React.createClass({
     }
   },
   handleChange: function(field, e) {
+    console.log('change', field, e);
     var serviceDefinition = this.props.serviceDefinition;
     if (e.target) {
       serviceDefinition[field] = e.target.value;
@@ -40,10 +41,11 @@ module.exports = React.createClass({
             </div>
             <div className="col-xs-3">
               <label className="pt-label">
-              Params
-                <ServiceDefinitionParams
+              Schema
+                <ServiceDefinitionSchema
                   definition={this.props.serviceDefinition.definition}
-                  onChange={this.handleChange.bind(self, 'definition')} />
+                  onChange={this.handleChange.bind(self, 'definition')}
+                 />
               </label>
             </div>
             <div className="col-xs-3">

@@ -3,6 +3,7 @@ var lodash = require('lodash');
 var Select = require('react-select');
 var ParameterInSelector = require('../action/parameter_in_selector');
 var ServiceDefinitionSelector = require('../service_definition/service_definition_selector');
+var ServiceDefinitionSchema = require('../service_definition/service_definition_schema');
 
 module.exports = React.createClass({
   getDefaultProps: () => {
@@ -59,6 +60,12 @@ module.exports = React.createClass({
         </label>
         <label className="pt-label pt-inline col-xs">
           Type <Select options={parameterTypes} value={ parameter.type } onChange={self.handleChange.bind(self, currentIndex, 'type')} />
+					{ parameter.schema &&
+						<ServiceDefinitionSchema
+							definition={parameter.schema}
+							onChange={self.handleChange.bind(self, currentIndex, 'schema')}
+						 />
+					}
           { (parameter.type == 'object' || parameter.type == 'list') &&
             <ServiceDefinitionSelector service={self.props.service} value={ parameter.ref } onChange={self.handleChange.bind(self, currentIndex, 'ref')} />
           }

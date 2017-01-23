@@ -7,6 +7,7 @@ var ServiceAuthList = require('../components/service_auth/service_auth_list');
 var ServiceDefinitionList = require('./service_definition/service_definition_list');
 var TextInputField = require('../components/inputs/text_input_field');
 var InputList = require('../components/inputs/input_list');
+var ActionBrowser = require('../components/action_browser');
 import {Tabs, Tab, TabList, TabPanel} from "@blueprintjs/core"
 
 module.exports = React.createClass({
@@ -74,9 +75,10 @@ module.exports = React.createClass({
       <h2>Implement a Service {this.state.service.name}</h2>
       <Tabs>
         <TabList>
-            <Tab>General</Tab>
-            <Tab>Authentication</Tab>
-            <Tab>Definitions</Tab>
+          <Tab>General</Tab>
+          <Tab>Authentication</Tab>
+          <Tab>Definitions</Tab>
+          <Tab>Actions</Tab>
         </TabList>
         <TabPanel>
           <h2>General</h2>
@@ -107,6 +109,9 @@ module.exports = React.createClass({
             serviceDefinitions={this.state.serviceDefinitions}
             onChange={this.handleServiceDefinitionChange.bind(this)}
           />
+        </TabPanel>
+        <TabPanel>
+          <ActionBrowser initialFilter={{service_id: this.state.service.id}} />
         </TabPanel>
       </Tabs>
       <hr />
