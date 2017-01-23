@@ -1,11 +1,12 @@
 .integration-request {
   text-align: right;
 }
+
 .MarketplaceView {
   .integration {
     text-align: center;
     background-color: #f9f9f9;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     min-height: 300px;
     position: relative;
     .title {
@@ -20,22 +21,38 @@
         display: inline-block;
         margin: 0px 10px 10px 10px;
         &:first-of-type .connector { display: none; }
+
         .connector {
           border-top: 2px dashed #E9EEF3;
           width: 30px;
           display: inline-block;
           height: 0px;
         }
+
         .service {
           display: inline-block;
           vertical-align: middle;
           border: 2px solid #E9EEF3;
           border-radius: 50%;
-          padding: 18px;
-          max-width: 90px;
+          width: 90px;
+          height: 90px;
+          overflow: hidden;
+          background: #fff;
+
+          &:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+          }
+
+          .service-image {
+            display: inline-block;
+            vertical-align: middle;
+          }
+
           img {
             max-width: 100%;
-            max-height: 100%;
             display: inline-block;
           }
         }
@@ -46,7 +63,6 @@
     .author {
       position: absolute;
       bottom: 16px;
-      // font-weight: bold;
       color: #6F7D92;
     }
     .pricing {
@@ -60,6 +76,7 @@
       font-size: 0.9em;
     }
   }
+
   .integration.qty-1 {
     .title { margin-bottom: 30px; }
     .services-icons {
@@ -68,20 +85,18 @@
         width: 40%;
         margin: 0px 0px;
         .service {
-          padding: 30px;
+          background: #fff;
+          padding: 15px;
           max-width: none;
           img {
-            display: inline;
-
+            display: inline-block;
           }
         }
       }
     }
-    // .ghost-center {
-    //   position: relative;
-    // }
+
     .ghost-center::before {
-      content: " ";
+      content: '';
       display: inline-block;
       height: 100%;
       width: 1%;
@@ -92,6 +107,7 @@
       vertical-align: middle;
     }
   }
+
   .integration.qty-2 {
     // .title { margin-bottom: 20px; }
     .services-icons {
@@ -101,7 +117,7 @@
         width: 36%;
         margin: 0px;
         .service {
-          padding: 24px;
+          padding: 20px;
           max-width: none;
         }
       }
@@ -110,6 +126,7 @@
       }
     }
   }
+
   .integration {
     &.qty-3, &.qty-4 {
       .services-icons {
