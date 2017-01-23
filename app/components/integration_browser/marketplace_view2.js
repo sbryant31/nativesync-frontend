@@ -19,12 +19,14 @@ module.exports = ({integrations = [], selected_apps=[], requestIntegrationCardOn
                 <div className="service-container">
                   {/* <div className="connector"></div> */}
                   {integration.Services.length <= 2 && <div className="connector"></div>}
-                  <span className="service" key={service.id}>
+                  <div className="service" key={service.id}>
+                    <div className="service-image">
                     { service.logo_url ?
                       <img src={service.logo_url} />
                       : <Avatar name={service.name} />
                     }
-                  </span>
+                    </div>
+                  </div>
                 </div>
               ))
             }</div>
@@ -49,6 +51,7 @@ module.exports = ({integrations = [], selected_apps=[], requestIntegrationCardOn
           </div>
         </div>
       ))}
+
       {selected_apps.length > 0 &&
         <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12">
           <div
@@ -67,6 +70,7 @@ module.exports = ({integrations = [], selected_apps=[], requestIntegrationCardOn
                   ""
               )))
             }</h4>
+
             <div className={`services-icons ${selected_apps.length === 1 ? "ghost-center" : ""}`}>{
               selected_apps.map((service, idx) => (
                 <div className="service-container">

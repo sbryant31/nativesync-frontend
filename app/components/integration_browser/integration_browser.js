@@ -98,11 +98,14 @@ module.exports = React.createClass({
         <div className="integration-request">
           Don't see the integration you need? <Link to="/integration_request">We can build it!</Link>
         </div>
+        
         <ServiceMultiSelect
           value={this.state.filter.serviceIDs}
           onChange={(e) => { this.handleFilterChange('serviceIDs', e); }}
         />
+    
         <hr/>
+        
         { this.props.view == 'marketplace' &&
           <div>
             <MarketplaceView2
@@ -113,6 +116,7 @@ module.exports = React.createClass({
             {/* <MarketplaceView integrations={this.state.filteredIntegrations} /> */}
           </div>
         }
+    
         { this.props.view == 'list' &&
           <ListView integrations={this.state.filteredIntegrations} />
         }

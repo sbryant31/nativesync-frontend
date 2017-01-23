@@ -14,7 +14,7 @@ class Marketplace extends React.Component {
   render() {
     return (
       <div className="Marketplace">
-        <span className="page-title">Ready to use Integrations</span>
+        <h2 className="page-title">Ready to use Integrations</h2>
         <div className="pt-content">{
           this.props.params.id ?
             // if an integration id was given, then show details for the integration
