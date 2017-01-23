@@ -6,19 +6,19 @@
     text-align: center;
     background-color: #f9f9f9;
     margin-bottom: 20px;
-    height: 300px;
+    min-height: 300px;
     position: relative;
     .title {
       margin: 15px 0px 40px 0px;
-      height: 40px;
+      // height: 40px;
     }
     .services-icons {
       width: 100%;
-      height: 150px;
-      white-space: nowrap;
+      min-height: 150px;
       text-align: center;
       .service-container {
         display: inline-block;
+        margin: 0px 10px 10px 10px;
         &:first-of-type .connector { display: none; }
         .connector {
           border-top: 2px dashed #E9EEF3;
@@ -61,25 +61,45 @@
     }
   }
   .integration.qty-1 {
-    .title { margin-bottom: 20px; }
+    .title { margin-bottom: 30px; }
     .services-icons {
+      height: 150px;
       .service-container {
-        width: 100%;
-        height: 100%;
+        width: 40%;
+        margin: 0px 0px;
         .service {
           padding: 30px;
-          height: 100%;
           max-width: none;
+          img {
+            display: inline;
+
+          }
         }
       }
     }
+    // .ghost-center {
+    //   position: relative;
+    // }
+    .ghost-center::before {
+      content: " ";
+      display: inline-block;
+      height: 100%;
+      width: 1%;
+      vertical-align: middle;
+    }
+    .ghost-center div {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
   .integration.qty-2 {
-    .title { margin-bottom: 20px; }
+    // .title { margin-bottom: 20px; }
     .services-icons {
+      white-space: nowrap;
       .service-container {
         height: 100%;
         width: 36%;
+        margin: 0px;
         .service {
           padding: 24px;
           max-width: none;
@@ -90,15 +110,20 @@
       }
     }
   }
-  .integration.qty-4 {
-    .services-icons {
-      .service-container {
-        .service {
-          img {
+  .integration {
+    &.qty-3, &.qty-4 {
+      .services-icons {
+        white-space: normal;
+        .service-container {
+          margin: 0px 10px 10px 10px;
+          width: 33%;
+          .service {
+            img {
+            }
           }
         }
-      }
-      .service-container:first-of-type {
+        .service-container:first-of-type {
+        }
       }
     }
   }

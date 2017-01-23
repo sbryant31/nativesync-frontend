@@ -4690,12 +4690,12 @@ webpackJsonp([6],{
 	          ),
 	          React.createElement(
 	            'div',
-	            { className: 'services-icons' },
+	            { className: 'services-icons ' + (integration.Services.length === 1 ? "ghost-center" : "") },
 	            integration.Services.map(function (service, idx) {
 	              return React.createElement(
 	                'div',
 	                { className: 'service-container' },
-	                React.createElement('div', { className: 'connector' }),
+	                integration.Services.length <= 2 && React.createElement('div', { className: 'connector' }),
 	                React.createElement(
 	                  'span',
 	                  { className: 'service', key: service.id },
@@ -4735,16 +4735,16 @@ webpackJsonp([6],{
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'services-icons' },
+	          { className: 'services-icons ' + (selected_apps.length === 1 ? "ghost-center" : "") },
 	          selected_apps.map(function (service, idx) {
 	            return React.createElement(
 	              'div',
 	              { className: 'service-container' },
-	              React.createElement('div', { className: 'connector' }),
+	              selected_apps.length <= 2 && React.createElement('div', { className: 'connector' }),
 	              React.createElement(
 	                'span',
 	                { className: 'service', key: service.id },
-	                service.logo_url ? React.createElement('img', { src: service.logo_url }) : React.createElement(_reactAvatar2.default, { name: service.name })
+	                service.logo_url ? React.createElement('img', { src: service.logo_url }) : React.createElement(_reactAvatar2.default, { size: 50, name: service.name })
 	              )
 	            );
 	          })

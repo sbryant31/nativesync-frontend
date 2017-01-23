@@ -14,10 +14,11 @@ module.exports = ({integrations = [], selected_apps=[], requestIntegrationCardOn
             onClick={() => { browserHistory.push(`/marketplace/${integration.id}`); }}
           >
             <h4 className="title">{integration.title}</h4>
-            <div className={`services-icons`}>{
+            <div className={`services-icons ${integration.Services.length === 1 ? "ghost-center" : ""}`}>{
               integration.Services.map((service, idx) => (
                 <div className="service-container">
-                  <div className="connector"></div>
+                  {/* <div className="connector"></div> */}
+                  {integration.Services.length <= 2 && <div className="connector"></div>}
                   <span className="service" key={service.id}>
                     { service.logo_url ?
                       <img src={service.logo_url} />
@@ -66,14 +67,14 @@ module.exports = ({integrations = [], selected_apps=[], requestIntegrationCardOn
                   ""
               )))
             }</h4>
-            <div className="services-icons">{
+            <div className={`services-icons ${selected_apps.length === 1 ? "ghost-center" : ""}`}>{
               selected_apps.map((service, idx) => (
                 <div className="service-container">
-                  <div className="connector"></div>
+                  {selected_apps.length <= 2 && <div className="connector"></div>}
                   <span className="service" key={service.id}>
                     { service.logo_url ?
                       <img src={service.logo_url} />
-                      : <Avatar name={service.name} />
+                      : <Avatar size={50} name={service.name} />
                     }
                   </span>
                 </div>
