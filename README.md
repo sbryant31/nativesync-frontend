@@ -1,4 +1,12 @@
-#Getting Started
+
+# An abandoned, simple frontend to an integration platform as a service
+
+A project I worked on several months ago, released for educational purposes. Documentation coming soon.
+See also [url]https://github.com/sbryant31/nativesync-backend[/url]
+
+
+
+# Getting Started
 
 if heroku starts caching shit and is misbehaving try this:
 
